@@ -10,6 +10,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "exif-js": "^2.3.0",
+    "google-map-react": "^2.1.9",
     "ical-toolkit": "^1.0.9",
     "ical2json": "^3.0.0",
     "jss-rtl": "^0.3.0",

@@ -1,6 +1,6 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
-//import PreviewTemplate from "../../preview/PageMap"
+//import PreviewTemplate from "../../Preview/PageMap"
 
 export default {
     id: 1,

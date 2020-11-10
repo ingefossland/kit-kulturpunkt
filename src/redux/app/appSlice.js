@@ -161,7 +161,7 @@ export const getParents = ({menuByUrl, pathname}) => dispatch => {
             url = '/';
         }
     
-        if (menuByUrl && menuByUrl[url]) {
+        if (menuByUrl && menuByUrl[url] && menuByUrl[url].title) {
             parents.push(menuByUrl[url]);
         }
         

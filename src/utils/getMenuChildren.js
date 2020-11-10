@@ -109,7 +109,7 @@ export function getMenuChild(child, props) {
     // hidden
 
     if (hidden) {
-        url = undefined
+//        url = undefined
     }
 
     // rootUrl

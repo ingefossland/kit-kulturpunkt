@@ -120,7 +120,12 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
         onSubmit: (status) => onSubmit && onSubmit({formData: {...formData, status: status || formData.status}}), // (e) => editorRef && editorRef.current && editorRef.current.onSubmit(e),
 
         preview: {
-            template: EditorPreview,
+            template: props.preview && props.preview.template || EditorPreview,
+            formData: formData,
+            formContext: {
+                currentId,
+                onToggle: _onToggle
+            }
         },
 
         ...props.formContext,
