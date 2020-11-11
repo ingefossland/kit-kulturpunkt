@@ -11,7 +11,7 @@ export default {
         "settings"
     ],
     "content": {
-        "ui:field": "kioskPage",
+        "ui:field": "kpPage",
         "ui:fieldset": [
             "header",
             "body"

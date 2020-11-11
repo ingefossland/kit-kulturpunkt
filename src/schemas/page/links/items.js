@@ -47,7 +47,7 @@ export default {
         },
         "titleColor": {
             "type": "string",
-            "format": "textColor",
+            "format": "color",
             "enum": ["black","white"],
             "default": "black"
         },
@@ -87,7 +87,7 @@ export default {
         },
         "color": {
             "type": "string",
-            "format": "textColor",
+            "format": "color",
             "enum": ["black","white"],
             "default": "black"
         },

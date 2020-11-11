@@ -3,7 +3,6 @@ import links from "../../page/links/uiSchema"
 export default {
     ...links,
     "ui:title": "Media",
-    "ui:layout": "list",
     "ui:preview": {
         "select": {
             "title": "title"
@@ -14,7 +13,7 @@ export default {
             }
         }
     },
-    "ui:sidebar": {
+    "ui:dialog": {
         "query": {
             "models": "media",
             "mediaType": ["image","video","audio"]
@@ -24,11 +23,11 @@ export default {
         {
             "type": "sidebar",
             "icon": "search",
-            "label": "Finn media",
+            "title": "Finn media",
         },
         {
             "type": "upload",
-            "label": "Last opp"
+            "title": "Last opp"
         }
     ],
     "items": {

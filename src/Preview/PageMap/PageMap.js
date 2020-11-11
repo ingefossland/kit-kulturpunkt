@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getModel } from '../../redux/modelsById';
 
 import PageLayout from "../Page/PageLayout"
@@ -16,8 +15,11 @@ const mapTypes = {
     "roundtrip": RoundtripMap
 }
 
-const PageMap = ({formData, formContext, modelsById, ...props}) => {
+const PageMap = ({formData, formContext, ...props}) => {
 
+    const dispatch = useDispatch()
+    const modelsById = useSelector(state => state.modelsById)
+   
     const links = formData && formData.content && formData.content.links
 
     useEffect(() => {
@@ -27,7 +29,7 @@ const PageMap = ({formData, formContext, modelsById, ...props}) => {
             const referenceModel = referenceId && modelsById[referenceId]
 
             if (referenceId && !referenceModel) {
-                props.getModel("documents", referenceId)
+                dispatch(getModel({modelName: "documents", uniqueId: referenceId}))
             }
         })
 
@@ -59,9 +61,9 @@ const PageMap = ({formData, formContext, modelsById, ...props}) => {
     const content = formData && formData.content
 
     const mapLayout = content && content.mapLayout
-
     const MapTemplate = mapLayout && mapTypes[mapLayout] || DefaultMap
 
+    return <MapTemplate links={newLinks} />
     
     return (
         <PageLayout>
@@ -73,21 +75,5 @@ const PageMap = ({formData, formContext, modelsById, ...props}) => {
 
 }
 
-const mapStateToProps = (state) => {
-	return {
-         formData: state.editor.formData,
-        modelsById: state.modelsById
-    };
-}  
-
-const mapDispatchToProps = (dispatch) =>
-  bindActionCreators({
-    getModel
-  }, 
-dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps,
-)(PageMap);
+export default PageMap
 

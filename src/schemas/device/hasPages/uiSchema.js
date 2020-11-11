@@ -21,7 +21,7 @@ export default {
             }
         }
     },
-    "ui:sidebar": {
+    "ui:dialog": {
         "query": {
             "models": "documents",
             "documentType": "page*"
@@ -31,16 +31,13 @@ export default {
         {
             "type": "sidebar",
             "icon": "search",
-            "label": "Finn side"
-        },
-        {
-            "label": "Hallo"
+            "title": "Finn side"
         },
     ],
     "items": {
         "ui:options": {
             "editable": false
         },
-        "ui:layout": "kioskDeviceLink"
+        "ui:field": "kpDeviceLink"
     }
 }

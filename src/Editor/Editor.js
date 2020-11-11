@@ -17,9 +17,12 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
 
     const dispatch = useDispatch()
 
-    const formData = useSelector(state => state.editor.formData)
-    const dialog = useSelector(state => state.editor.dialog)
-    const currentId = useSelector(state => state.editor.currentId)
+    const editor = useSelector(state => state.editor)
+
+    const { formData, currentId } = editor
+
+//    const formData = useSelector(state => state.editor.formData)
+//    const currentId = useSelector(state => state.editor.currentId)
 
     const onChange = ({formData}) => {
         console.log('onChange', formData)
@@ -84,19 +87,33 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
         _onToggle({id})
     }
 
-    const _onDialog = ({id, formData, schema, uiSchema, onChange}) => {
+//    const dialog = useSelector(state => state.editor.dialog)
+    const [dialog, setDialog] = useState({})
+
+    const _onDialog = (props) => {
+
+        const {id, formData, schema, uiSchema, onChange} = props
+
+        console.log("Editor:onDialog", props)
 
         if (dialog && dialog.id) {
-            dispatch(requestDialog())
+//            dispatch(requestDialog())
+            setDialog({})
         } else {
-            dispatch(receiveDialog({
+            setDialog({
                 id: id,
-                expanded: true,
                 formData: formData,
                 schema: schema,
                 uiSchema: uiSchema,
-                onChange: onChange
+                onChange: onChange,
+                expanded: true
+            })
+            /*
+            dispatch(receiveDialog({
+                ...props,
+                expanded: true
             }))
+            */
         }
 
     }
@@ -104,6 +121,9 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     // formContext
 
     const formContext = {
+        isLoading: editor.isLoading,
+        isSaving: editor.isSaving,
+
         languages: languages,
         currentLocale: currentLocale,
         onLocale: _onLocale,

@@ -1,10 +1,10 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
-import PreviewTemplate from "@frontend-components/admin/lib/components/AppKp/preview/Page"
+import PreviewTemplate from "../../Preview/KioskPreview"
 
 export default {
     id: 1,
-    schemaType: 'kp',
+    schemaType: 'documents',
     name: 'device',
     schema: schema,
     uiSchema: uiSchema,

@@ -23,6 +23,7 @@ const Admin = (props) => {
 
 
     useEffect(() => {
+        console.log('xx', pathname)
         menuByUrl && dispatch(getParents({menuByUrl, pathname: pathname}))
     }, [menuByUrl, pathname])
 

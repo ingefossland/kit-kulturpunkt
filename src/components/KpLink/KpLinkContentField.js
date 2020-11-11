@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import KpLinkContentLayout from "./KpLinkContentLayout"
+//import KpLinkContentLayout from "./KpLinkContentLayout"
 import KpLinkMediaLayout from "./KpLinkMediaLayout"
 import KpLinkReferenceLayout from "./KpLinkReferenceLayout"
 
@@ -93,7 +93,6 @@ const KpLinKContentField = (props) => {
     }
     
     const newUiSchema = {
-        "ui:layout": KpLinkContentLayout,
         "ui:fieldset": [
             "linkMedia",
             "linkContent",
@@ -128,11 +127,19 @@ const KpLinKContentField = (props) => {
                 "description",
             ],
             "runningHead": {
-                "ui:title": "Stikktittel"
+                "ui:title": "Stikktittel",
+                ...uiSchema.linkContent.runningHead,
+                "color": {
+                    "ui:widget": "color"
+                }
             },
             "title": {
                 "ui:title": "Tittel",
-                "ui:placeholder": referenceTitle
+                "ui:placeholder": referenceTitle,
+                ...uiSchema.linkContent.title,
+                "titleColor": {
+                    "ui:widget": "color"
+                }
             },
             "description": {
                 "ui:title": "Beskrivelse",

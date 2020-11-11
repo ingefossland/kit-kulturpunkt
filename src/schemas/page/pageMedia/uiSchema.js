@@ -6,13 +6,11 @@ export default {
     ],
     "ui:options": {
         "collapsible": true,
-        "padding": 2,
         "spacing": 2,
-        "grid": true
     },
     "media": {
         "ui:options": {
-            "grid": true,
+//            "grid": true,
             "spacing": 2
         },
         "ui:fieldset": [
@@ -24,7 +22,7 @@ export default {
                 {
                     "type": "sidebar",
                     "icon": "search",
-                    "label": "Finn bakgrunnsbilde"
+                    "title": "Finn bakgrunnsbilde"
                 }
             ],
             "ui:fieldset": [
@@ -40,7 +38,7 @@ export default {
                 {
                     "type": "sidebar",
                     "icon": "search",
-                    "label": "Finn parallaxbilde"
+                    "title": "Finn parallaxbilde"
                 }
             ],
             "media": {

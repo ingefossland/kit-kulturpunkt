@@ -5,7 +5,7 @@ import uiSchema from "./uiSchema";
 export default {
     id: 1,
     schemaType: 'documents',
-    name: 'kpTopic',
+    name: 'pageTopic',
     schema: schema,
     uiSchema: uiSchema,
     preview: {

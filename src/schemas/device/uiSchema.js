@@ -13,7 +13,7 @@ export default {
     ],
     "settings": settings,
     "content": {
-        "ui:field": "kioskDevice",
+        "ui:field": "kpDevice",
         "ui:nav": true,
         "ui:fieldset": [
             "header",

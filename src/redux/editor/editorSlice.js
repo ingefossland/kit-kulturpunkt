@@ -82,10 +82,10 @@ const editorSlide = createSlice({
             return {
                 ...state,
                 dialog: {
-                    expanded: true,
                     id: id,
+                    expanded: true,
                     schema: schema,
-//                    uiSchema: uiSchema,
+                    uiSchema: uiSchema,
                     formData: formData,
                     onChange: onChange
                 },

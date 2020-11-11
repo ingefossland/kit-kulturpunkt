@@ -15,11 +15,11 @@ export default {
         ],
         "backgroundImage": {
             ...uiSchema.media.backgroundImage,
-            "ui:gridCols": 6
+            "ui:xs": 6
         },
         "parallaxImage": {
             ...uiSchema.media.parallaxImage,
-            "ui:gridCols": 6
+            "ui:xs": 6
         }
     }
 }

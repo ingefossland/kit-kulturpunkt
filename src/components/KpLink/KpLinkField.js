@@ -20,7 +20,8 @@ const KpLinkField = (props) => {
 
     const uiSchema = {
         ...model.uiSchema,
-        ...props.uiSchema
+        ...props.uiSchema,
+        "ui:layout": "kpLink"
     }
 
     const mediaId = formData && formData.mediaId
@@ -105,20 +106,6 @@ const KpLinkField = (props) => {
 
                 "ui:field": KpLinkContentField,
 
-                /*
-
-                "linkMedia": {
-                    ...uiSchema.link.linkMedia,
-                    "ui:layout": KpLinkMediaField
-                },
-                "linkContent": {
-                    ...uiSchema.link.linkContent,
-                    "title": {
-                        ...uiSchema.link.linkContent.title,
-                        "ui:placeholder": referenceTitle,
-                    }
-                }
-                */
             }
 
             fieldset.push('content')
@@ -166,10 +153,12 @@ const KpLinkField = (props) => {
         }
 
         return {
+            ...uiSchema,
             ...newUiSchema,
             "ui:options": uiOptions,
             "ui:fieldset": fieldset,
             "color": {
+                ...uiSchema.color,
                 "ui:backgroundColor": formData && formData.backgroundColor
             },
             "link": {

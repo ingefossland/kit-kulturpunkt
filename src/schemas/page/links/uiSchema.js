@@ -15,7 +15,7 @@ export default {
     "ui:options": {
         "draggable": true
     },
-    "ui:sidebar": {
+    "ui:dialog": {
         "query": {
             "models": "documents",
             "documentType": ["page*","article"]

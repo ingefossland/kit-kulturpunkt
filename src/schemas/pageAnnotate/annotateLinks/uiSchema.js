@@ -4,7 +4,6 @@ export default {
     ...links,
     "ui:field": "kpAnnotateArray",
     "ui:title": "Markører",
-    "ui:layout": "list",
     "ui:preview": {
         "select": {
             "title": "title"
@@ -19,7 +18,7 @@ export default {
         ...links.items,
         "ui:preview": {
             "select": {
-                "sortBadge": "sortBadge",
+                "badgeContent": "badgeContent",
                 "imageUrl": "imageUrl",
                 "typeLabel": "typeLabel",
                 "title": "title",
@@ -33,7 +32,7 @@ export default {
     
                 const runningHead = formData.runningHead && formData.runningHead[localeId] 
                 const title = formData.title && formData.title[localeId] 
-                const sortBadge = index + 1
+                const badgeContent = index + 1
 
                 const localTitle = runningHead && title && runningHead + ": " + title || title
                 const referenceTitle = referenceId && reference && reference.title
@@ -46,7 +45,7 @@ export default {
                 referenceId && reference && reference.title && metadata.push(reference.title)
     
                 return {
-                    sortBadge: sortBadge,
+                    badgeContent: badgeContent,
                     imageUrl: imageUrl,
                     typeLabel: typeLabel,
                     title: localTitle || referenceTitle,

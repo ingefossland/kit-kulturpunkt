@@ -23,7 +23,6 @@ export default {
     "ui:options": {
         "expanded": true,
         "collapsible": true,
-        "padding": 2,
         "spacing": 2,
     },
     "title": {

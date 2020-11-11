@@ -5,7 +5,7 @@ import Dialog from "../Dialog/Dialog"
 
 const EditorDialog = (props) => {
 
-    const { expanded, schema = {}, formData = {}, formContext, onChange, onClose } = props
+    const { expanded, schema = {}, uiSchema = {}, formData = {}, formContext, onChange, onClose } = props
 
     if (!expanded) {
         return false

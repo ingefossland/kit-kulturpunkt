@@ -5,12 +5,12 @@ const kpPages = {
         {
             icon: "event",
             title: "Nytt kart",
-            url: "/admin/kpMap/new"
+            url: "/admin/pageMap/new"
         },
         {
             icon: "event",
             title: "Nytt tema",
-            url: "/admin/kpTopic/new"
+            url: "/admin/pageTopic/new"
         },
     ]
 }
@@ -21,27 +21,38 @@ const kioskPages = {
         {
             icon: "event",
             title: "Ny mosaikkk",
-            url: "/admin/kioskGrid/new"
+            url: "/admin/pageGrid/new"
         },
         {
             icon: "event",
             title: "Ny tidslinje",
-            url: "/admin/kioskTimeline/new"
+            url: "/admin/pageTimeline/new"
         },
         {
             icon: "event",
             title: "Nytt bildekart",
-            url: "/admin/kioskAnnotate/new"
+            url: "/admin/pageAnnotate/new"
         },
         {
             icon: "event",
-            title: "Ny tidslinje",
-            url: "/admin/kioskMedia/new"
+            title: "Ny media",
+            url: "/admin/pageMedia/new"
         },
         {
             icon: "event",
             title: "Ny liste",
-            url: "/admin/kioskList/new"
+            url: "/admin/pageList/new"
+        },
+    ]
+}
+
+const kioskDevice = {
+    role: "group",
+    children: [
+        {
+            icon: "bug_report",
+            title: "Ny enhet",
+            url: "/admin/device/new"
         },
     ]
 }
@@ -55,7 +66,8 @@ export default {
             url: "/admin/article/new"
         },
         kpPages,
-        kioskPages
+        kioskPages,
+        kioskDevice
     ]
 
 }

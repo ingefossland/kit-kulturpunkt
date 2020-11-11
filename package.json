@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@kit-ui/admin": "^1.0.83",
-    "@kit-ui/schema": "^1.0.83",
+    "@kit-ui/admin": "^1.0.90",
+    "@kit-ui/schema": "^1.0.90",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -15,6 +15,7 @@
     "ical2json": "^3.0.0",
     "jss-rtl": "^0.3.0",
     "music-metadata-browser": "^2.1.4",
+    "pure-react-carousel": "^1.27.6",
     "qrcode.react": "^1.0.0",
     "query-string": "^6.13.2",
     "react": "^16.13.1",

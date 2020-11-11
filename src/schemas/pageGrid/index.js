@@ -1,16 +1,16 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
 import formData from "./formData"
-//import PreviewTemplate from "@frontend-components/admin/lib/components/AppKp/preview/Page"
+import PreviewTemplate from "../../Preview/KioskPreview"
 
 export default {
     id: 1,
     schemaType: 'documents',
-    name: 'kioskGrid',
+    name: 'pageGrid',
     schema: schema,
     uiSchema: uiSchema,
     formData: formData,
     preview: {
-//        template: PreviewTemplate
+        template: PreviewTemplate
     }
 }

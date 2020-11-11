@@ -9,7 +9,8 @@ export default {
     prepare({formData, formContext}) {
         let { documentType, locale, imageUrl, title, content, description } = formData
   
-        const { defaultLocale } = formContext
+//        const { defaultLocale } = formContext
+        const defaultLocale = locale
         const localeId = "locale:" + defaultLocale;
   
         let metadata = []

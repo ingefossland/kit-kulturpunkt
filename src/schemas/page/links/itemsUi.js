@@ -41,6 +41,21 @@ export default {
 
         }
     },
+    "backgroundColor": {
+        "ui:widget": "color"
+    },
+    "color": {
+        "ui:widget": "color",
+        "ui:settingsVariant": "text"
+    },
+    "grid": {
+        "ui:widget": "grid",
+        "ui:maxCols": 5,
+        "ui:maxRows": 3
+    },
+    "placement": {
+        "ui:widget": "placement",
+    },
     "imageFilters": {
         "ui:title": "Filters",
         "ui:field": "imageFilters"
@@ -110,10 +125,16 @@ export default {
                 "description",
             ],
             "runningHead": {
-                "ui:title": "Stikktittel"
+                "ui:title": "Stikktittel",
+                "ui:settings": [
+                    "color"
+                ]
             },
             "title": {
                 "ui:title": "Tittel"
+            },
+            "titleColor": {
+                "ui:widget": "color"
             },
             "description": {
                 "ui:title": "Beskrivelse",

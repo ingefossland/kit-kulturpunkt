@@ -20,6 +20,7 @@ const dialogMedia = {
 
 const templates = {
     "finder": Finder,
+    "upload": MediaUpload
 }
 
 

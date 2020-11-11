@@ -1,14 +1,14 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
-//import PreviewTemplate from "../../Preview/PageMap"
+import PreviewTemplate from "../../Preview/PageMap"
 
 export default {
     id: 1,
     schemaType: 'documents',
-    name: 'kpMap',
+    name: 'pageMap',
     schema: schema,
     uiSchema: uiSchema,
     preview: {
-//        template: PreviewTemplate
+        template: PreviewTemplate
     }
 }

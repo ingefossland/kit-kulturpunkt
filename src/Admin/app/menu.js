@@ -10,7 +10,7 @@ const kpPages = {
             pathname: "topic",
             query: {
                 models: "documents",
-                documentType: "kpTopic",
+                documentType: "pageTopic",
                 status: "NOT trash"
             }
         },
@@ -21,7 +21,7 @@ const kpPages = {
             pathname: "map",
             query: {
                 models: "documents",
-                documentType: "kpMap",
+                documentType: "pageMap",
                 status: "NOT trash"
             }
         }
@@ -85,7 +85,7 @@ const kioskPages = {
             pathname: "grid",
             query: {
                 models: "documents",
-                documentType: "kioskGrid",
+                documentType: "pageGrid",
                 status: "NOT trash"
             }
         },
@@ -96,7 +96,7 @@ const kioskPages = {
             pathname: "timeline",
             query: {
                 models: "documents",
-                documentType: "kioskTimeline",
+                documentType: "pageTimeline",
                 status: "NOT trash"
             }
         },
@@ -107,7 +107,7 @@ const kioskPages = {
             pathname: "annotate",
             query: {
                 models: "documents",
-                documentType: "kioskAnnotate",
+                documentType: "pageAnnotate",
                 status: "NOT trash"
             }
         },
@@ -118,7 +118,7 @@ const kioskPages = {
             pathname: "media",
             query: {
                 models: "documents",
-                documentType: "kioskMedia",
+                documentType: "pageMedia",
                 status: "NOT trash"
             }
         },
@@ -129,7 +129,7 @@ const kioskPages = {
             pathname: "list",
             query: {
                 models: "documents",
-                documentType: "kioskList",
+                documentType: "pageList",
                 status: "NOT trash"
             }
         }
@@ -153,6 +153,17 @@ export default [
     kpArticles,
     kpPages,
     kioskPages,
+    {
+        role: "group",
+        title: "Enheter",
+        icon: "bug_report",
+        pathname: "device",
+        query: {
+            models: "documents",
+            documentType: "device",
+            status: "NOT trash"
+        }
+    },
     media,
     {
         role: "group",

@@ -16,9 +16,6 @@ export default {
     languages: [
         "no", "sv", "en", "de", "es", "fr"
     ],
-    sidebar: {
-        expanded: true
-    },
     search: {
         "expanded": false,
         "placeholder": "Søk i KulturPunkt"

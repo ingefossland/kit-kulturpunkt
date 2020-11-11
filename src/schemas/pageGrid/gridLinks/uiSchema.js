@@ -10,14 +10,19 @@ export default {
             "backgroundColor",
             "color"
         ],
+    
+
         "content": {
             ...links.items.content,
             "linkContent": {
                 ...links.items.content.linkContent,
-                "ui:settings": [
-                    "titleSize",
-                    "titleColor",
-                ]
+                "title": {
+                    ...links.items.content.linkContent.title,
+                    "ui:settings": [
+                        "titleSize",
+                        "titleColor",
+                    ],
+                }
             }
         }
     }

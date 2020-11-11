@@ -14,7 +14,7 @@ export default {
         {
             "type": "sidebar",
             "icon": "search",
-            "label": "Finn bilde"
+            "title": "Finn bilde"
         }
     ]
 }

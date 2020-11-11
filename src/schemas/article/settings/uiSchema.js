@@ -19,13 +19,12 @@ export default {
                 "location"
             ],
             "keywords": {
-//                "ui:widget": "tags",
+                "ui:widget": "tags",
                 "ui:title": "Nøkkelord",
                 "ui:help": "Beskrivende stikkord.",
             },
             "license": {
-                "ui:widget": "selectLicense",
-                "ui:title": "Lisenser",
+//                "ui:widget": "selectLicense",
                 "ui:title": "Lisens",
                 "ui:help": "Velg en lisens for dette innholdet.",
             },

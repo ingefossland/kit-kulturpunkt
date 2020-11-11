@@ -16,8 +16,8 @@ export default {
 
     let metadata = []
 
-    const headerImage = content && content.headerImage
-    const imageUrl = headerImage && headerImage.media && headerImage.media.imageUrl
+    const titleImage = content && content.titleImage
+    const imageUrl = titleImage && titleImage.media && titleImage.media.imageUrl
     
     if (content) {
 

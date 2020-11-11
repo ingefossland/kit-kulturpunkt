@@ -10,7 +10,9 @@ const appSlice = createSlice({
         search: {
 //            expanded: false
         },
-        sidebar: {}
+        sidebar: {
+            expanded: true
+        }
     }, 
     reducers: {
         requestApp(state, action) {

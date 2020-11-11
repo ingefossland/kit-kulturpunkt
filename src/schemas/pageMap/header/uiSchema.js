@@ -18,7 +18,6 @@ export default {
         }
     },
     "ui:fieldset": [
-//        "titleImage",
         "title",
         "leadtext",
         "bodytext"
@@ -27,27 +26,9 @@ export default {
         "expanded": true,
         "collapsible": true,
         "spacing": 2,
-        "grid": true
     },
     "title": {
         "ui:title": "Tittel"
-    },
-    "titleImage": {
-        "ui:layout": "media",
-        "ui:buttons": [
-            {
-                "type": "sidebar",
-                "icon": "search",
-                "label": "Finn hovedbilde"
-            }
-        ],
-        "ui:fieldset": [
-            "media"
-        ],
-        "media": {
-            "ui:title": "Hovedbilde"
-        }
-
     },
     "leadtext": {
         "ui:title": "Ingress",

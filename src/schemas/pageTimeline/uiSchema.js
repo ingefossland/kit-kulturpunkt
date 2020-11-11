@@ -8,10 +8,11 @@ export default {
     "ui:field": "pageEditor",
     "ui:preview": uiPreview,
     "ui:fieldset": [
-        "content"
+        "content",
+        "settings"
     ],
     "content": {
-        "ui:field": "kioskPage",
+        "ui:field": "kpPage",
         "ui:fieldset": [
             "header",
             "media",
