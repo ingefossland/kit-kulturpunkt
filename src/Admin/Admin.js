@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react"
 import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getAppLayout, toggleSearch, getParents } from '../redux/app';
+import { getApp, getAppLayout, toggleSearch, getMenuItem, getParents } from '../redux/app';
 import _ from "lodash"
 import qs from 'query-string';
 
 import appData from "./app"
 import AdminRoutes from "./AdminRoutes"
+import AdminLayout from "./AdminLayout"
 
 const Admin = (props) => {
     const { pathname } = props.location
@@ -19,13 +20,11 @@ const Admin = (props) => {
     }, [])
 
     const app = useSelector(state => state.app)
-    const menuByUrl = app && app.menuByUrl
-
 
     useEffect(() => {
-        console.log('xx', pathname)
-        menuByUrl && dispatch(getParents({menuByUrl, pathname: pathname}))
-    }, [menuByUrl, pathname])
+        dispatch(getParents({pathname: pathname}))
+        dispatch(getMenuItem({pathname}))
+    }, [pathname])
 
     // date + view
 
@@ -97,7 +96,7 @@ const Admin = (props) => {
     
 
     return (
-        <AppLayout
+        <AdminLayout
             app={app}
             theme={app && app.theme}
             header={app && app.header}
@@ -117,7 +116,7 @@ const Admin = (props) => {
             onSelect={_onSelect}
             >
                 <AdminRoutes {...props} />
-        </AppLayout>
+        </AdminLayout>
     )
 }
 

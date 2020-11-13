@@ -1,5 +1,5 @@
 export default {
-    type: "documents/tree",
+    type: "tree",
     role: "group",
     title: "KulturPunkt",
     icon: "home",

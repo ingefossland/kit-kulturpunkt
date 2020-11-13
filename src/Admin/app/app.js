@@ -11,7 +11,7 @@ export default {
     collectionId: 54,
     title: "KulturPunkt",
     subtitle: "Museum",
-    menu: getMenuChildren({root: "/kp", children: menu}),
+    menu: getMenuChildren({root: "/kp", collectionId: 54, children: menu}),
     primaryAction: primaryAction,
     languages: [
         "no", "sv", "en", "de", "es", "fr"

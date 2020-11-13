@@ -98,7 +98,7 @@ const appSlice = createSlice({
             const { menuByUrl } = action.payload
             return {
                 ...state,
-                menuByUrl:  menuByUrl
+                menuByUrl: menuByUrl
             }
         },
         receiveMenuItemByUrl(state, action) {
@@ -107,7 +107,10 @@ const appSlice = createSlice({
                 ...state,
                 menuByUrl: {
                     ...state.menuByUrl,
-                    [url]: item
+                    [url]: {
+                        ...item,
+                        url: url
+                    }
                 }
             }
         },
@@ -156,9 +159,12 @@ export const getAppSearch = ({expanded, q}) => dispatch => {
     dispatch(toggleSearch({expanded, q}))  
 }
 
-export const getParents = ({menuByUrl, pathname}) => dispatch => {
+export const getParents = ({pathname}) => (dispatch, getState) => {
 
     dispatch(requestParents())
+
+    const state = getState()
+    const menuByUrl = state.app.menuByUrl
 
     let parents = [];
   
@@ -206,6 +212,24 @@ export const getSchemasByName = ({schemas = []}) => dispatch => {
     
 }
 
+export const getMenuItem = ({pathname}) => (dispatch, getState) => {
+
+    const state = getState()
+    const menuByUrl = state.app.menuByUrl
+
+    const menuItem = menuByUrl && menuByUrl[pathname]
+
+    if (menuItem && menuItem.type === "tree") {
+        dispatch(getMenuTree(menuItem))
+    }
+
+    if (menuItem && menuItem.type === "treeitem") {
+        dispatch(getMenuTree(menuItem))
+    }
+
+    
+}
+ 
 const getMenuTree = (parent) => dispatch => {
 
     const { query } = parent
@@ -222,8 +246,8 @@ const getMenuTree = (parent) => dispatch => {
         response => response.json(),
         error => console.log('An error occurred.', error)
     )
-    .then(results =>
-        dispatch(getMenuTreeParent({parent, results}))
+    .then(results => 
+       dispatch(getMenuTreeParent({parent, results}))
     )
 
 }
@@ -242,16 +266,14 @@ const getMenuTreeParent = ({parent, results}) => dispatch => {
         
             let url;
         
-            if (type === "documents/tree") {
-        //        url = parent.url + "/tree/" + id
+            if (type === "tree") {
                 url = parent.url + "/tree/" + uniqueId
              } else {
-        //        url = parent.url + "/" + id
                 url = parent.url + "/" + uniqueId
             }
         
             const child = {
-                type: "documents/treeitem",
+                type: "treeitem",
                 id: id,
                 uniqueId: uniqueId,
                 url: url,
@@ -269,7 +291,7 @@ const getMenuTreeParent = ({parent, results}) => dispatch => {
     }
     
     if (children.length) {
-        dispatch(receiveMenuItemByUrl({...parent, count: children.length, children: children}))
+        dispatch(receiveMenuItemByUrl({...parent, type: "tree", count: children.length, children: children}))
         
         children.map((child) => {
             dispatch(receiveMenuItemByUrl(child))
@@ -294,25 +316,6 @@ const getMenuChildren = ({children = [], level = 0}) => dispatch => {
         }
 
         dispatch(receiveMenuItemByUrl(item))
-
-        /*
-
-        if (item.type && item.type === "documents/tree") {
-//            dispatch(getMenuTree(item))
-            dispatch(receiveMenuItemByUrl(item))
-
-        } else {
-
-            if (item.children) {
-                dispatch(getMenuChildren({children: item.children, level: level++}))
-            }
-    
-            dispatch(receiveMenuItemByUrl(item))
-    
-        }
-
-        */
-
 
     });
 
