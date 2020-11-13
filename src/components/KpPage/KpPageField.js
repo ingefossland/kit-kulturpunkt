@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { v4 as uuidv4 } from 'uuid';
+// import { v4 as uuidv4 } from 'uuid';
 
 import { utils } from "@rjsf/core"
 const { getUiOptions, getDefaultFormState } = utils
-
 
 const FieldKioskPage = (props) => {
     const { registry, formData, schema, uiSchema, formContext } = props;
@@ -47,9 +46,11 @@ const FieldKioskPage = (props) => {
         }
     }
 
+    /*
     useEffect(() => {
         newRegistry.formContext.imageAnnotations = imageAnnotations
     }, [imageAnnotations])
+    */
 
     const newUiSchema = {
         ...uiSchema,
@@ -60,13 +61,18 @@ const FieldKioskPage = (props) => {
             ...formContext.sidebar
         },
         "ui:layout": "pageContent",
-
     }
+
+    const newFormContext = newRegistry.formContext
 
     const { ObjectField } = registry.fields;
 
     return (
-        <ObjectField {...props} registry={newRegistry} uiSchema={newUiSchema} onChange={handleChange} />
+        <ObjectField {...props} 
+            registry={newRegistry} 
+            formContext={newFormContext} 
+            uiSchema={newUiSchema}
+            onChange={handleChange} />
     )
 
 

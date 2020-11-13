@@ -1,5 +1,6 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
+import qs from 'query-string';
 
 const appSlice = createSlice({
     name: 'app',
@@ -100,6 +101,16 @@ const appSlice = createSlice({
                 menuByUrl:  menuByUrl
             }
         },
+        receiveMenuItemByUrl(state, action) {
+            const { url, ...item } = action.payload
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [url]: item
+                }
+            }
+        },
         requestParents(state, action) {
             return state            
         },
@@ -195,12 +206,81 @@ export const getSchemasByName = ({schemas = []}) => dispatch => {
     
 }
 
+const getMenuTree = (parent) => dispatch => {
 
-const getMenuUrls = ({children = [], urls = {}, level = 0}) => {
+    const { query } = parent
 
-    if (!urls) {
-        urls = {}
+    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "id,title,uniqueId,parentId"});
+
+    fetch(fetchUrl, {
+        method: "GET",
+        headers: {
+        "Accept": "application/json",
+        },
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(results =>
+        dispatch(getMenuTreeParent({parent, results}))
+    )
+
+}
+
+const getMenuTreeParent = ({parent, results}) => dispatch => {
+    const { models } = results;
+    
+    let children = []
+
+    if (models) {
+        models.map((model) => {
+
+            const { id, title, uniqueId } = model;
+            const { type, query } = parent
+            const { collectionId, models } = query;
+        
+            let url;
+        
+            if (type === "documents/tree") {
+        //        url = parent.url + "/tree/" + id
+                url = parent.url + "/tree/" + uniqueId
+             } else {
+        //        url = parent.url + "/" + id
+                url = parent.url + "/" + uniqueId
+            }
+        
+            const child = {
+                type: "documents/treeitem",
+                id: id,
+                uniqueId: uniqueId,
+                url: url,
+                title: title,
+                query: {
+                    collectionId: collectionId,
+                    models: models,
+                    parentId: id
+                }
+            }
+            
+            children.push(child)
+        })
+    
     }
+    
+    if (children.length) {
+        dispatch(receiveMenuItemByUrl({...parent, count: children.length, children: children}))
+        
+        children.map((child) => {
+            dispatch(receiveMenuItemByUrl(child))
+        })
+        
+    }
+
+}
+
+
+const getMenuChildren = ({children = [], level = 0}) => dispatch => {
 
     children.forEach((child) => {
 
@@ -209,30 +289,41 @@ const getMenuUrls = ({children = [], urls = {}, level = 0}) => {
             level: level
         }
 
-        if (item.url) {
-            urls[item.url] = item;
-        }
-      
         if (item.children) {
-            urls = getMenuUrls({children: item.children, urls: urls, level: level++});
+            dispatch(getMenuChildren({children: item.children, level: level++}))
         }
-    });
 
-    return urls
+        dispatch(receiveMenuItemByUrl(item))
+
+        /*
+
+        if (item.type && item.type === "documents/tree") {
+//            dispatch(getMenuTree(item))
+            dispatch(receiveMenuItemByUrl(item))
+
+        } else {
+
+            if (item.children) {
+                dispatch(getMenuChildren({children: item.children, level: level++}))
+            }
+    
+            dispatch(receiveMenuItemByUrl(item))
+    
+        }
+
+        */
+
+
+    });
 
 }
 
 
 export const getMenuByUrl = ({menu = []}) => dispatch => {
-
     dispatch(requestMenuByUrl())
-
-    const menuByUrl = getMenuUrls({children: menu})
-
-    dispatch(receiveMenuByUrl({menuByUrl: menuByUrl}))
-    
+    dispatch(getMenuChildren({children: menu}))
 }
 
 
-export const { requestApp, receiveApp, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, requestMenuByUrl, receiveMenuByUrl, requestParents, receiveParents } = appSlice.actions
+export const { requestApp, receiveApp, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
 export default appSlice.reducer

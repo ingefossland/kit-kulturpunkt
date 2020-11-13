@@ -1,8 +1,8 @@
 export default {
     "type": "string",
     "enum": [
-        "page/topic",
-        "page/map"
+        "pageTopic",
+        "pageMap"
     ],
     "enumNames": [
         "Tema",

@@ -12,14 +12,19 @@ export default {
             "documentType",
             "parentId"
         ],
+        "ui:options": {
+            "spacing": 2
+        },
         "documentType": {
             "ui:title": "Sidetype"
         },
         "parentId": {
             "ui:field": "parentId",
-            "ui:documentType": "page*",
 //            "ui:widget": "autocomplete",
-            "ui:title": "ParentId"
+            "ui:title": "ParentId",
+            "ui:query": {
+                "documentType": "page*",
+            }
         }
     }
 }

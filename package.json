@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@kit-ui/admin": "^1.0.90",
-    "@kit-ui/schema": "^1.0.90",
+    "@kit-ui/schema": "^1.0.92",
     "@reduxjs/toolkit": "^1.4.0",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",

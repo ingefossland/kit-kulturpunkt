@@ -17,12 +17,14 @@ const DocumentEditor = (props) => {
 
     const dispatch = useDispatch()
 
-    // new or create doc
-
     const app = useSelector(state => state.app)
+    const editor = useSelector(state => state.editor)
+    const formData = editor.formData
+
+    // create new
 
     useEffect(() => {
-        const { pathname, search } = props.location
+        const { search } = props.location
         const sq = search && qs.parse(search) || {}
 
         documentType && dispatch(editModel({
@@ -33,6 +35,8 @@ const DocumentEditor = (props) => {
             content: sq.content && JSON.parse(sq.content) || {}
         }))
     }, [documentType])
+
+    // load uniqueId
 
     useEffect(() => {
         uniqueId && dispatch(editModel({uniqueId: uniqueId}))
@@ -102,8 +106,6 @@ const DocumentEditor = (props) => {
 
     }
 
-    const editor = useSelector(state => state.editor)
-    const formData = editor.formData
 
     const formContext = {
         isLoading: editor && editor.isLoading,

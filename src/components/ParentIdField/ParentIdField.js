@@ -5,7 +5,7 @@ import { utils } from '@kit-ui/schema';
 const { getUiOptions } = utils
 
 const ParentIdField = (props) => {
-    const { formContext, schema, uiSchema } = props;
+    const { formData, formContext, schema, uiSchema } = props;
 
     const uiOptions = getUiOptions(uiSchema)
     const uiQuery = uiOptions.query || {}
@@ -28,8 +28,8 @@ const ParentIdField = (props) => {
         uniqueId && dispatch(getQuery(query))
     }, [uniqueId])
 
-    const [enumOptions, setEnumOptions] = useState([])
-    const [enumNames, setEnumNames] = useState([])
+    const [enumOptions, setEnumOptions] = useState([formData])
+    const [enumNames, setEnumNames] = useState([formData])
 
     const searchById = useSelector(state => state.searchById)
     const currentSearch = searchById && searchById[query.id]
@@ -60,7 +60,7 @@ const ParentIdField = (props) => {
         getOptions()
     }, [currentSearch])
 
-    const { StringField } = props.registry.fields;
+    const { SchemaField } = props.registry.fields;
 
     const newSchema = {
         ...schema,
@@ -68,8 +68,13 @@ const ParentIdField = (props) => {
         enumNames: enumNames
     }
 
+    const newUiSchema = {
+        ...uiSchema,
+        "ui:field": undefined
+    }
+
     return (
-        <StringField {...props} schema={newSchema} />
+        <SchemaField {...props} schema={newSchema} uiSchema={newUiSchema} />
     )
 
 }

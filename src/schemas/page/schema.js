@@ -11,7 +11,7 @@ export default {
             "default": "no"
         },
         "parentId": {
-            "type": "string"
+            "type": "string",
         },
         "schemaId": {
             "type": "number",

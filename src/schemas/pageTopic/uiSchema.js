@@ -5,6 +5,7 @@ import body from "./body/uiSchema"
 
 export default {
     "ui:field": "pageEditor",
+    "ui:collapsible": true,
     "ui:preview": uiPreview,
     "ui:fieldset": [
         "content",
