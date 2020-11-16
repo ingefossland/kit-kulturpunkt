@@ -1,7 +1,8 @@
 import mediaSchemas from "@kit-ui/schema/es/Media/schemas"
 import schemas from "./"
 
-let schemasByName = {}
+let schemasByName = {
+}
 
 const allSchemas = [
     ...mediaSchemas,

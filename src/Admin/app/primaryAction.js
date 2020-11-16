@@ -3,6 +3,11 @@ const kpPages = {
     role: "group",
     children: [
         {
+            icon: "home",
+            title: "Ny forside",
+            url: "/admin/pageHome/new"
+        },
+        {
             icon: "event",
             title: "Nytt kart",
             url: "/admin/pageMap/new"

@@ -9,13 +9,15 @@ export default {
         "typeLabel": "typeLabel"
     },
     prepare({formData, formContext}) {
-        const { documentType, content } = formData
+        const { parentId, documentType, content } = formData
         const defaultLocale = formContext && formContext.defaultLocale
         const currentLocale = formContext && formContext.currentLocale
         const locale = defaultLocale || currentLocale || formData.locale
         const localeId =  "locale:" + locale
 
         let metadata = []
+
+        parentId && metadata.push("Parent: " + parentId)
 
         const pageIcon = documentType && icons[documentType]
         const backgroundImage = content && content.backgroundImage

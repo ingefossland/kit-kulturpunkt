@@ -1,5 +1,6 @@
 import article from './article';
 
+import pageHome from './pageHome';
 import pageMap from './pageMap';
 import pageTopic from './pageTopic';
 
@@ -13,6 +14,7 @@ import device from './device';
 
 export default [
     article,
+    pageHome,
     pageMap,
     pageTopic,
     pageGrid,

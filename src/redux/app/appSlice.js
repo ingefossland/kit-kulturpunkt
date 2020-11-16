@@ -101,6 +101,20 @@ const appSlice = createSlice({
                 menuByUrl: menuByUrl
             }
         },
+        toggleMenuItem(state, action) {
+            const { url } = action.payload
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [url]: {
+                        ...state.menuByUrl[url],
+                        expanded: !state.menuByUrl[url].expanded
+                    }
+                }
+            }
+
+        },
         receiveMenuItemByUrl(state, action) {
             const { url, ...item } = action.payload
             return {
@@ -234,7 +248,7 @@ const getMenuTree = (parent) => dispatch => {
 
     const { query } = parent
 
-    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "id,title,uniqueId,parentId"});
+    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "modelName,id,title,uniqueId,parentId"});
 
     fetch(fetchUrl, {
         method: "GET",
@@ -247,37 +261,33 @@ const getMenuTree = (parent) => dispatch => {
         error => console.log('An error occurred.', error)
     )
     .then(results => 
-       dispatch(getMenuTreeParent({parent, results}))
+       dispatch(getMenuTreeChildren({parent, results}))
     )
 
 }
 
-const getMenuTreeParent = ({parent, results}) => dispatch => {
+const getMenuTreeChildren = ({parent, results}) => dispatch => {
     const { models } = results;
-    
+
+
     let children = []
 
     if (models) {
         models.map((model) => {
 
-            const { id, title, uniqueId } = model;
-            const { type, query } = parent
+            const { query } = parent
             const { collectionId, models } = query;
+
+            const { id, title, uniqueId } = model;
+                
+            let url = parent.url + "/" + uniqueId;
         
-            let url;
-        
-            if (type === "tree") {
-                url = parent.url + "/tree/" + uniqueId
-             } else {
-                url = parent.url + "/" + uniqueId
-            }
         
             const child = {
+                ...model,
                 type: "treeitem",
-                id: id,
-                uniqueId: uniqueId,
+                pathname: url,
                 url: url,
-                title: title,
                 query: {
                     collectionId: collectionId,
                     models: models,
@@ -294,9 +304,13 @@ const getMenuTreeParent = ({parent, results}) => dispatch => {
         dispatch(receiveMenuItemByUrl({...parent, type: "tree", count: children.length, children: children}))
         
         children.map((child) => {
-            dispatch(receiveMenuItemByUrl(child))
+//            dispatch(receiveMenuItemByUrl(child))
+            dispatch(getMenuTree(child))
         })
         
+    } else {
+        dispatch(receiveMenuItemByUrl({...parent, type: "treeitem"}))
+
     }
 
 }
@@ -328,5 +342,5 @@ export const getMenuByUrl = ({menu = []}) => dispatch => {
 }
 
 
-export const { requestApp, receiveApp, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
+export const { requestApp, receiveApp, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, toggleMenuItem, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
 export default appSlice.reducer

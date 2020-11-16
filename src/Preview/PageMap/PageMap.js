@@ -22,6 +22,8 @@ const PageMap = ({formData, formContext, ...props}) => {
    
     const links = formData && formData.content && formData.content.links
 
+    const [newLinks, setNewLinks] = useState([])
+
     useEffect(() => {
 
         links && links.map(link => {
@@ -35,7 +37,6 @@ const PageMap = ({formData, formContext, ...props}) => {
 
     }, [links])
 
-    const [newLinks, setNewLinks] = useState([])
 
     useEffect(() => {
 
@@ -62,6 +63,10 @@ const PageMap = ({formData, formContext, ...props}) => {
 
     const mapLayout = content && content.mapLayout
     const MapTemplate = mapLayout && mapTypes[mapLayout] || DefaultMap
+
+    if (!newLinks) {
+        return <p>No links to display</p>
+    }
 
     return <MapTemplate links={newLinks} />
     

@@ -4,10 +4,11 @@ export default {
     title: "KulturPunkt",
     icon: "home",
     pathname: "",
+    template: "finder/tree",
     query: {
         models: "documents",
         status: "NOT trash",
-        documentType: "page*",
+        documentType: "pageHome",
         q: "NOT parentId:*"
     },
 }

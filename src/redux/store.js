@@ -15,5 +15,5 @@ const middleware = [...getDefaultMiddleware({
 
 export default configureStore({
     reducer: rootReducer,
-    middleware
+//    middleware
 });

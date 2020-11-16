@@ -39,7 +39,7 @@ const ParentIdField = (props) => {
         // const options = models.length && getOptionsTree(models) || []
 
         let optionsEnum = [
-            undefined
+            null
         ], optionsNames = [
             "No parentId"
         ]
@@ -65,7 +65,8 @@ const ParentIdField = (props) => {
     const newSchema = {
         ...schema,
         enum: enumOptions,
-        enumNames: enumNames
+        enumNames: enumNames,
+        default: null
     }
 
     const newUiSchema = {

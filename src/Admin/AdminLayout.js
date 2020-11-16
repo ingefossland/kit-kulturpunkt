@@ -101,6 +101,7 @@ const AppLayout = ({
     menuByUrl = {},
     currentUrl = undefined,
     onSelect,
+    onToggle,
     children
 }) => {
 
@@ -134,7 +135,7 @@ const AppLayout = ({
                 <AppSidebar {...sidebar} className={classes.sidebar}>
                     { primaryAction && <NavAction className={classes.navAction} primaryAction={primaryAction} onSelect={onSelect} />}
                     { calendar && <NavCalendar className={classes.navCalendar} {...calendar} onChange={(date) => onSelect({type: "calendar", date: date})}  />}
-                    { menu && <NavMenu className={classes.navMenu} menu={menu} menuByUrl={menuByUrl} currentUrl={currentUrl} onSelect={onSelect} />}
+                    { menu && <NavMenu className={classes.navMenu} menu={menu} menuByUrl={menuByUrl} currentUrl={currentUrl} onSelect={onSelect} onToggle={onToggle} />}
                 </AppSidebar>
                 <AppContent className={classes.content}>
                     { children }

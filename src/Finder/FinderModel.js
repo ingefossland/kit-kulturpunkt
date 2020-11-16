@@ -20,8 +20,8 @@ const layouts = {
 }
 
 
-const FinderModel = ({model, layout = "list", ...props}) => {
-    const { modelName, uniqueId, documentType, mediaType, source, sourceId, } = model;
+const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
+    const { modelName, uniqueId, mediaType, source, sourceId, } = model;
 
     const dispatch = useDispatch()
 
@@ -60,16 +60,21 @@ const FinderModel = ({model, layout = "list", ...props}) => {
     const modelsById = useSelector(state => state.modelsById)
     const uniqueModel = modelsById && modelsById[uniqueId] || {}
 
+    const bulkById = useSelector(state => state.bulk.bulkById)
+    const bulkModel = bulkById && bulkById[uniqueId] || {}
+
     // uiPreview
    
+    const documentType = uniqueModel && uniqueModel.documentType || model && model.documentType
     const documentModel = documentType && schemasByName && schemasByName["documents/" + documentType]
     const uiPreview = documentModel && uniqueModel.uniqueId && getUiPreview({...documentModel, formData: uniqueModel}) || {}
 
     // model
 
     model = {
-        ...uniqueModel,
         ...model,
+        ...bulkModel,
+        ...uniqueModel,
         ...uiPreview
     }
 
@@ -119,10 +124,14 @@ const FinderModel = ({model, layout = "list", ...props}) => {
 
     const toolbar = getToolbar()
 
-    const ModuleTemplate = layout && layouts[layout]
+    if (!moduleComponent) {
+        moduleComponent = layout && layouts[layout]
+    }
+
+    const ModuleComponent = moduleComponent
 
     return (
-        <ModuleTemplate {...model} 
+        <ModuleComponent {...model} 
             description={false}
             selectable={true}
             onEdit={_onEdit}

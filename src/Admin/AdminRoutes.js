@@ -5,7 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import DocumentEditor from "./DocumentEditor"
 import MediaEditor from "./MediaEditor"
 import MediaUpload from "./MediaUpload"
+
 import Finder from "../Finder/Finder"
+import FinderQuery from "../Finder/FinderQuery"
+import FinderTree from "../Finder/FinderTree"
 
 const dialogMedia = {
     schema: {
@@ -19,7 +22,8 @@ const dialogMedia = {
 }
 
 const templates = {
-    "finder": Finder,
+    "finder/query": FinderQuery,
+    "finder/tree": FinderTree,
     "upload": MediaUpload
 }
 
@@ -34,13 +38,10 @@ const AdminRoutes = (props) => {
 
     if (query) {
 
-        const AdminTemplate = templates[template] || templates['finder']
+        const AdminTemplate = templates[template] || templates['finder/query']
 
         return (
-            <AdminTemplate {...props} layout={layout} query={{
-                ...query,
-                id: pathname
-            }} />
+            <AdminTemplate {...props} {...menuItem}  />
         )
 
     }

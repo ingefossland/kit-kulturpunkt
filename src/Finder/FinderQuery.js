@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
+import Finder from "./Finder"
+
 import List from "./ListLayout"
 import Masonry from "./MasonryLayout"
 import Gallery from "./GalleryLayout"
@@ -18,6 +20,24 @@ const FinderQuery = ({query, layout = "list", ...props}) => {
     const dispatch = useDispatch()
 
     const { pathname, search } = props.location
+
+    // set query
+
+    const app = useSelector(state => state.app)
+
+    const sq = props.location.search && qs.parse(props.location.search)
+
+    query = {
+        ...query,
+        id: pathname,
+        collectionId: app && app.collectionId,
+        page: sq.page || 1,
+        rows: sq.rows || 10,
+        sort: sq.sort || query.sort || undefined,
+        fl: "uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight",
+        q: sq.q || undefined,
+    };
+
 
     // query
 
@@ -47,10 +67,10 @@ const FinderQuery = ({query, layout = "list", ...props}) => {
 
     // template
 
-    const Template = templates && templates[layout] || templates["list"]
+    const FinderTemplate = templates && templates[layout] || templates["list"]
 
-    if (Template) {
-        return <Template {...props} {...currentSearch} onPage={_onPage} />
+    if (FinderTemplate) {
+        return <Finder {...props}><FinderTemplate {...props} {...currentSearch} onPage={_onPage} /></Finder>
     }
 
 

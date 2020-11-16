@@ -1,5 +1,6 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
+import { bulkToggle } from '../bulk/'
 
 const modelsByIdSlice = createSlice({
     name: 'modelsById',
@@ -41,7 +42,7 @@ const modelsByIdSlice = createSlice({
             }
 
         },
-        toggleSelected(state, action) {
+        toggleModel(state, action) {
             const { uniqueId } = action.payload
 
             const selected = state[uniqueId] && state[uniqueId].selected
@@ -208,7 +209,8 @@ export const eraseModel = ({modelName, uniqueId}) => dispatch => {
 /** Select */
 
 export const selectModel = ({modelName, uniqueId}) => dispatch => {
-    dispatch(toggleSelected({modelName, uniqueId}))
+//    dispatch(toggleModel({modelName, uniqueId}))
+    dispatch(bulkToggle({uniqueId}))
 }
 
 /** Document source */
@@ -345,5 +347,5 @@ export const addMediaSource = (model, callback = undefined) => dispatch => {
 
 }
 
-export const { requestModel, receiveModel, receiveStatus, toggleSelected, requestSave, receiveSave } = modelsByIdSlice.actions
+export const { requestModel, receiveModel, receiveStatus, toggleModel, requestSave, receiveSave } = modelsByIdSlice.actions
 export default modelsByIdSlice.reducer
