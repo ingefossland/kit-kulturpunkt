@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const MasonryModule = ({uniqueId, title, imageUrl, documentType, selectable, selected, onSelect, onEdit, ...props}) => {
+const DocumentTreeModule = ({uniqueId, title, imageUrl, documentType, selectable, selected, onSelect, onEdit, ...props}) => {
 
     const classes = useStyles()
 
@@ -82,4 +82,4 @@ const MasonryModule = ({uniqueId, title, imageUrl, documentType, selectable, sel
 
 }
 
-export default MasonryModule
+export default DocumentTreeModule

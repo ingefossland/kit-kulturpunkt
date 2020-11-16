@@ -6,7 +6,6 @@ const useStyles = makeStyles(theme => ({
     treeitem: {
         border: "1px solid",
         borderColor: "transparent",
-        margin: theme.spacing(1),
 
         "&[aria-expanded=true]": {
             borderColor: "black"

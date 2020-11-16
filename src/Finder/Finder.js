@@ -22,14 +22,12 @@ const Finder = ({children, ...props}) => {
 
     const app = useSelector(state => state.app)
     const bulk = useSelector(state => state.bulk)
-    const menuByUrl = app && app.menuByUrl
 
     const { pathname } = props.location
 
     useEffect(() => {
-        menuByUrl && dispatch(getParents({menuByUrl, pathname: pathname}))
-    }, [menuByUrl, pathname])
-
+        dispatch(getParents({pathname: pathname}))
+    }, [pathname])
 
     return (
         <React.Fragment>

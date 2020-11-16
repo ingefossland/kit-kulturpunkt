@@ -4,29 +4,11 @@ import { withResizeDetector } from 'react-resize-detector';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    group: {
-        position: "relative",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center"
-    },
-    connector: {
-        display: "block",
-        width: 2,
-        height: theme.spacing(2),
-        backgroundColor: theme.palette.divider,
-
-    },
     children: {
-//        position: "absolute",
-//        top: theme.spacing(2),
         display: "flex",
         flexDirection: "column",
-
-        "& > *": {
-//            margin: theme.spacing(1)
-        }
-
+        justifyContent: "flex-start",
+        alignItems: "flex-start"
     },
 
 }));

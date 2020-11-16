@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleMenuItem } from '../redux/app';
+import { getParents, toggleMenuItem } from '../redux/app';
 
-import Finder from "./Finder"
+import FinderLayout from "./FinderLayout"
 
 import FinderModel from "./FinderModel"
+import FinderQuery from "./FinderQuery"
 
 import {
     DocumentTree,
@@ -13,6 +14,20 @@ import {
     DocumentTreeModule
 } from "../components/DocumentTree"
 
+const FinderTreeDetails = ({model}) => {
+
+    const { uniqueId } = model;    
+    const modelsById = useSelector(state => state.modelsById)
+    const uniqueModel = modelsById && modelsById[uniqueId]
+
+    return (
+        <div>
+            {JSON.stringify(uniqueModel)}
+        </div>
+    )
+
+
+}
 
 const FinderTreeChild = ({model, ...props}) => {
 
@@ -35,12 +50,16 @@ const FinderTreeChild = ({model, ...props}) => {
     const expanded = currentTree.startsWith(url) || currentTree === url
 
     return (
-        <DocumentTree>
+        <React.Fragment>
             <DocumentTreeParent {...treeModel} expanded={expanded} onClick={() => onSelect(treeModel)}>
                 <FinderModel {...props} model={model} moduleComponent={DocumentTreeModule} />
             </DocumentTreeParent>
-            <DocumentTreeChildren>{ children && children.map(child => <FinderTreeChild {...props} model={child} />) }</DocumentTreeChildren>
-        </DocumentTree>
+            { expanded && children &&
+                <DocumentTreeChildren>
+                    { children && children.map(child => <FinderTreeChild {...props} model={child} />) }
+                </DocumentTreeChildren>
+            }
+        </React.Fragment>
     )
 
 
@@ -59,18 +78,22 @@ const FinderTree = ({url, query, layout = "list", ...props}) => {
 
     const _onSelect = ({url}) => {
         url && setCurrentTree(url)
+        dispatch(getParents({pathname: url}))
     }
 
+    const currentModel = currentTree && menuByUrl[currentTree]
+
     return (
-        <Finder {...props}>
+        <FinderLayout {...props} parents={app && app.parents}>
             <DocumentTree>
-                {children && children.map(child => {
-                    return (
-                        <FinderTreeChild {...props} model={child} currentTree={currentTree} onSelect={_onSelect} />
-                    )
-                })}
+            {children && children.map(child => {
+                return (
+                    <FinderTreeChild {...props} model={child} currentTree={currentTree} onSelect={_onSelect} />
+                )
+            })}
+            <FinderTreeDetails model={currentModel} />
             </DocumentTree>
-        </Finder>
+        </FinderLayout>
     )
     
 
