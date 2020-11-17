@@ -66,6 +66,9 @@ const KpLinKContentField = (props) => {
 
     const _onReferenceChange = ({referenceId, reference}) => {
 
+        console.log("KpLink:onChange", referenceId)
+
+
         const newFormData = getDefaultFormState(schema, {
             ...formData,
             referenceId: referenceId,

@@ -1,0 +1,180 @@
+[
+    {
+        "type": "tree",
+        "role": "group",
+        "title": "KulturPunkt",
+        "icon": "home",
+        "pathname": "",
+        "template": "finder/tree",
+        "query": {
+            "models": "documents",
+            "status": "NOT trash",
+            "documentType": "pageHome",
+            "q": "NOT parentId:*",
+            "collectionId": 54
+        },
+        "children": [
+            {
+                "modelName": "documents",
+                "title": "Norsk Jernbanemuseum",
+                "id": 1757,
+                "documentType": "pageHome",
+                "uniqueId": "b265d040-bef7-4e4d-9b9e-9ecb7e7fee41",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1757
+                },
+                "children": "true"
+            }
+        ],
+        "level": 0,
+        "count": 1,
+        "url": "/kp"
+    },
+    {
+        "modelName": "documents",
+        "title": "Norsk Jernbanemuseum",
+        "id": 1757,
+        "documentType": "pageHome",
+        "uniqueId": "b265d040-bef7-4e4d-9b9e-9ecb7e7fee41",
+        "template": "finder/tree",
+        "type": "tree",
+        "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41",
+        "query": {
+            "collectionId": 54,
+            "models": "documents",
+            "parentId": 1757
+        },
+        "count": 2,
+        "children": [
+            {
+                "id": 1640,
+                "documentType": "pageMap",
+                "parentId": 1757,
+                "title": "Jernbanestrekninger i Norge",
+                "modelName": "documents",
+                "uniqueId": "01c7a265-d577-45a8-a4e6-d7bfbb8d57a1",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/01c7a265-d577-45a8-a4e6-d7bfbb8d57a1",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/01c7a265-d577-45a8-a4e6-d7bfbb8d57a1",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1640
+                }
+            },
+            {
+                "id": 1756,
+                "documentType": "pageTopic",
+                "parentId": 1757,
+                "title": "Bergensbanen",
+                "modelName": "documents",
+                "uniqueId": "c82d5e97-95b2-4565-8d78-84b7a08546c7",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1756
+                }
+            }
+        ],
+        "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41"
+    },
+    {
+        "id": 1756,
+        "documentType": "pageTopic",
+        "parentId": 1757,
+        "title": "Bergensbanen",
+        "modelName": "documents",
+        "uniqueId": "c82d5e97-95b2-4565-8d78-84b7a08546c7",
+        "template": "finder/tree",
+        "type": "tree",
+        "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7",
+        "query": {
+            "collectionId": 54,
+            "models": "documents",
+            "parentId": 1756
+        },
+        "count": 3,
+        "children": [
+            {
+                "parentId": 1756,
+                "documentType": "pageMap",
+                "id": 1559,
+                "title": "Bergensbanen minutt for minutt",
+                "modelName": "documents",
+                "uniqueId": "71dffde7-1c98-4da5-a668-b1f9388dd7e1",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/71dffde7-1c98-4da5-a668-b1f9388dd7e1",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/71dffde7-1c98-4da5-a668-b1f9388dd7e1",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1559
+                }
+            },
+            {
+                "parentId": 1756,
+                "documentType": "pageMap",
+                "id": 1565,
+                "title": "Stasjoner på Bergensbanen",
+                "modelName": "documents",
+                "uniqueId": "acdb0bd8-80f6-4c78-85c9-3b7cd7728fb0",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/acdb0bd8-80f6-4c78-85c9-3b7cd7728fb0",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/acdb0bd8-80f6-4c78-85c9-3b7cd7728fb0",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1565
+                }
+            },
+            {
+                "parentId": 1756,
+                "documentType": "pageMap",
+                "id": 1748,
+                "title": "Stasjoner på Bergensbanen",
+                "modelName": "documents",
+                "uniqueId": "0508bfcd-ede4-49f1-ac88-ddcdc5437fdb",
+                "template": "finder/tree",
+                "type": "treeitem",
+                "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/0508bfcd-ede4-49f1-ac88-ddcdc5437fdb",
+                "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/0508bfcd-ede4-49f1-ac88-ddcdc5437fdb",
+                "query": {
+                    "collectionId": 54,
+                    "models": "documents",
+                    "parentId": 1748
+                }
+            }
+        ],
+        "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7"
+    },
+    {
+        "parentId": 1756,
+        "documentType": "pageMap",
+        "id": 1559,
+        "title": "Bergensbanen minutt for minutt",
+        "modelName": "documents",
+        "uniqueId": "71dffde7-1c98-4da5-a668-b1f9388dd7e1",
+        "template": "finder/tree",
+        "type": "treeitem",
+        "pathname": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/71dffde7-1c98-4da5-a668-b1f9388dd7e1",
+        "query": {
+            "collectionId": 54,
+            "models": "documents",
+            "parentId": 1559
+        },
+        "url": "/kp/b265d040-bef7-4e4d-9b9e-9ecb7e7fee41/c82d5e97-95b2-4565-8d78-84b7a08546c7/71dffde7-1c98-4da5-a668-b1f9388dd7e1"
+    }
+]

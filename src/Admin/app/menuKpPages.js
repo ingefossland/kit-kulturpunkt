@@ -5,6 +5,17 @@ export default {
     children: [
         {
             role: "group",
+            title: "Hjemmeside",
+            icon: "view_stream",
+            pathname: "home",
+            query: {
+                models: "documents",
+                documentType: "pageHome",
+                status: "NOT trash"
+            }
+        },
+        {
+            role: "group",
             title: "Tema",
             icon: "view_stream",
             pathname: "topic",

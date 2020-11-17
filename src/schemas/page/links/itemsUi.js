@@ -19,7 +19,7 @@ export default {
         prepare({formData, formContext, index}) {
             const { mediaId, media, referenceId, reference } = formData
 
-            const locale = formContext.currentLocale || formContext.defaultLocale;
+            const locale = formContext.currentLocale || formContext.defaultLocale || "no";
             const localeId = "locale:" + locale
 
             const title = formData.title && formData.title[localeId] 

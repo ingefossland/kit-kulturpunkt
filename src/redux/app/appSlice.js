@@ -29,9 +29,15 @@ const appSlice = createSlice({
                 ...action.payload
             }
         },
+        receiveLayout(state, action) {
+            const { header, sidebar } = action.payload
+            return {
+                ...state,
+                header: header,
+                sidebar: sidebar
+            }
+        },
         toggleSearch(state, action) {
-//            const { expanded } = action.payload
-
             return {
                 ...state,
                 search: {
@@ -41,24 +47,20 @@ const appSlice = createSlice({
             }
         },
         toggleHeader(state, action) {
-            const { expanded } = action.payload
-
             return {
                 ...state,
                 header: {
                     ...state.header,
-                    expanded: expanded
+                    expanded: !state.header.expanded,
                 }
             }
         },
         toggleSidebar(state, action) {
-            const { expanded } = action.payload
-
             return {
                 ...state,
                 sidebar: {
                     ...state.sidebar,
-                    expanded: expanded
+                    expanded: !state.sidebar.expanded,
                 }
             }
         },
@@ -69,7 +71,7 @@ const appSlice = createSlice({
             }
         },
         receiveSchemasByName(state, action) {
-            const {schemasByName } = action.payload
+            const { schemasByName } = action.payload
             return {
                 ...state,
                 schemasByName: schemasByName
@@ -155,16 +157,28 @@ export const getApp = ({menu = [], schemas = [], ...data}) => dispatch => {
     
 }
 
-    export const getAppLayout = (layout = "default") => dispatch => {
+export const getAppLayout = (layout = "default") => dispatch => {
 
     if (layout === "editor") {
-        dispatch(toggleHeader({expanded: false}))
-        dispatch(toggleSidebar({expanded: false}))
+        dispatch(receiveLayout({
+            header: {
+                expanded: false
+            },
+            sidebar: {
+                expanded: false
+            }
+        }))
     }
 
     if (layout === "finder") {
-        dispatch(toggleHeader({expanded: true}))
-        dispatch(toggleSidebar({expanded: true}))
+        dispatch(receiveLayout({
+            header: {
+                expanded: true
+            },
+            sidebar: {
+                expanded: true
+            }
+        }))
     }
 
 }
@@ -248,7 +262,7 @@ const getMenuTree = (parent) => dispatch => {
 
     const { query } = parent
 
-    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "modelName,id,title,uniqueId,parentId"});
+    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "modelName,documentType,id,title,uniqueId,parentId"});
 
     fetch(fetchUrl, {
         method: "GET",
@@ -275,16 +289,16 @@ const getMenuTreeChildren = ({parent, results}) => dispatch => {
     if (models) {
         models.map((model) => {
 
-            const { query } = parent
+            const { template, query } = parent
             const { collectionId, models } = query;
 
             const { id, title, uniqueId } = model;
                 
             let url = parent.url + "/" + uniqueId;
         
-        
             const child = {
                 ...model,
+                template: template,
                 type: "treeitem",
                 pathname: url,
                 url: url,
@@ -342,5 +356,5 @@ export const getMenuByUrl = ({menu = []}) => dispatch => {
 }
 
 
-export const { requestApp, receiveApp, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, toggleMenuItem, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
+export const { requestApp, receiveApp, receiveLayout, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, toggleMenuItem, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
 export default appSlice.reducer

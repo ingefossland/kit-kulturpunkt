@@ -30,6 +30,42 @@ const modelsByIdSlice = createSlice({
             }
 
         },
+        requestReferences(state, action) {
+            const { uniqueId } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    references: []
+                }
+            }
+
+        },
+        receiveReferences(state, action) {
+            const { uniqueId, references } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    references: references
+                }
+           }
+
+        },
+        receiveParentId(state, action) {
+            const { uniqueId, parentId } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    parentId: parentId
+                }
+            }
+
+        },
         receiveStatus(state, action) {
             const { uniqueId, status } = action.payload
 
@@ -38,20 +74,6 @@ const modelsByIdSlice = createSlice({
                 [uniqueId]: {
                     ...state[uniqueId],
                     status: status
-                }
-            }
-
-        },
-        toggleModel(state, action) {
-            const { uniqueId } = action.payload
-
-            const selected = state[uniqueId] && state[uniqueId].selected
-
-            return {
-                ...state,
-                [uniqueId]: {
-                    ...state[uniqueId],
-                    selected: !selected
                 }
             }
 
@@ -106,6 +128,32 @@ export const getModel = ({modelName = "documents", uniqueId}) => dispatch => {
         })
 
 }
+
+/** Get references from uniqueId */
+
+export const getReferences = ({modelName = "documents", uniqueId}) => dispatch => {
+
+    const url = API + '/admin/api/references/' + modelName + '/' + uniqueId;
+
+    dispatch(requestReferences({uniqueId}))
+
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+        }})
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(formData => {
+            dispatch(receiveReferences({...formData, uniqueId}))
+        })
+
+}
+
+
 /** Load model from uniqueId */
 
 export const loadModel = ({modelName = "documents", uniqueId}) => dispatch => {
@@ -213,6 +261,37 @@ export const selectModel = ({modelName, uniqueId}) => dispatch => {
     dispatch(bulkToggle({uniqueId}))
 }
 
+/** Set parentId */
+
+export const setParentId = ({modelName = "documents", uniqueId, parentId}) => dispatch => {
+//    dispatch(receiveParentId({uniqueId, parentId}))
+
+    const url = API + '/admin/api/' + modelName;
+
+
+    const formData = {
+        uniqueId: uniqueId,
+        parentId: parentId,
+    }
+
+    fetch(url, {
+        method: "POST",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+        },
+        body: JSON.stringify(formData)
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(formData => {
+        dispatch(receiveSave(formData))
+    })
+
+}
+    
 /** Document source */
 
 export const getDocumentSource = (model, callback = undefined) => dispatch => {
@@ -347,5 +426,10 @@ export const addMediaSource = (model, callback = undefined) => dispatch => {
 
 }
 
-export const { requestModel, receiveModel, receiveStatus, toggleModel, requestSave, receiveSave } = modelsByIdSlice.actions
+export const { 
+    requestModel, receiveModel, 
+    requestReferences, receiveReferences, 
+    receiveStatus, receiveParentId,
+    requestSave, receiveSave
+} = modelsByIdSlice.actions
 export default modelsByIdSlice.reducer

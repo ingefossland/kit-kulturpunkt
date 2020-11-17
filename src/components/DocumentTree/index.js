@@ -1,10 +1,11 @@
 import DocumentTree from "./DocumentTree"
-import DocumentTreeParent from "./DocumentTreeParent"
-import DocumentTreeChildren from "./DocumentTreeChildren"
-import DocumentTreeModule from "./DocumentTreeModule"
+import DocumentTreeColumn from "./DocumentTreeColumn"
+import DocumentTreeRow from "./DocumentTreeRow"
+import DocumentInspector from "./DocumentInspector"
+
 export {
     DocumentTree,
-    DocumentTreeParent,
-    DocumentTreeChildren,
-    DocumentTreeModule
+    DocumentTreeColumn,
+    DocumentTreeRow,
+    DocumentInspector
 }

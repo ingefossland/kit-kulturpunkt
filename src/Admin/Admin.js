@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getAppLayout, toggleSearch, toggleMenuItem, getMenuItem, getParents } from '../redux/app';
+import { getApp, getAppLayout, toggleSearch, toggleSidebar, toggleMenuItem, getMenuItem, getParents } from '../redux/app';
 import _ from "lodash"
 import qs from 'query-string';
 
@@ -37,8 +37,13 @@ const Admin = (props) => {
 
     // select menu or calendar
 
-    const _onToggle = ({url}) => {
+    const _onToggle = ({sidebar, search, url}) => {
+
+        sidebar && dispatch(toggleSidebar())
+        search && dispatch(toggleSearch())
+        
         url && dispatch(toggleMenuItem({url}))
+
     }
 
     const _onSelect = ({url, date}) => {

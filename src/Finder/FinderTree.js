@@ -1,101 +1,81 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getParents, toggleMenuItem } from '../redux/app';
+import { getAppLayout, getParents, getMenuItem } from '../redux/app';
+import { getModel, setParentId } from '../redux/modelsById';
 
-import FinderLayout from "./FinderLayout"
+import SortableTree from "../components/DocumentTree/SortableTree"
 
-import FinderModel from "./FinderModel"
-import FinderQuery from "./FinderQuery"
+const FinderTree = ({layout = "list", ...props}) => {
+    const dispatch = useDispatch()
 
-import {
-    DocumentTree,
-    DocumentTreeChildren,
-    DocumentTreeParent,
-    DocumentTreeModule
-} from "../components/DocumentTree"
+    const app = useSelector(state => state.app)
+    const menuByUrl = app.menuByUrl;
 
-const FinderTreeDetails = ({model}) => {
+    const pathname = props.location.pathname
+    const parent = menuByUrl[pathname]
 
-    const { uniqueId } = model;    
+    const uniqueId = parent && parent.uniqueId
+
+    useEffect(() => {
+        dispatch(getAppLayout("finder"))
+        dispatch(getParents({pathname}))
+        uniqueId && dispatch(getModel(parent))
+    }, [parent])
+
     const modelsById = useSelector(state => state.modelsById)
-    const uniqueModel = modelsById && modelsById[uniqueId]
-
-    return (
-        <div>
-            {JSON.stringify(uniqueModel)}
-        </div>
-    )
 
 
-}
+    const documentTree = {}
 
-const FinderTreeChild = ({model, ...props}) => {
+    
+    const parents = app && app.parents && app.parents.map(parent => {
+        const { uniqueId, url, children } = parent;
+        const uniqueModel = uniqueId && modelsById && modelsById[uniqueId]
+        const selected = pathname.startsWith(url) || pathname === url
 
-    const { currentTree, onSelect } = props
+        return {
+            ...parent,
+            ...uniqueModel,
+            selected: selected || true,
+            children: children && children.map(child => {
+                const { uniqueId, url, children } = child;
+                const menuModel = menuByUrl[url]
+                const uniqueModel = uniqueId && modelsById && modelsById[uniqueId]
+                const selected = pathname.includes(url) || pathname === url
 
-    const dispatch = useDispatch()
-
-    const app = useSelector(state => state.app)
-    const menuByUrl = app.menuByUrl;
-
-    const treeModel = menuByUrl && menuByUrl[model.url]
-
-    model = {
-        ...model,
-        ...treeModel,
-    }
-
-    const { children, url } = model;    
-
-    const expanded = currentTree.startsWith(url) || currentTree === url
-
-    return (
-        <React.Fragment>
-            <DocumentTreeParent {...treeModel} expanded={expanded} onClick={() => onSelect(treeModel)}>
-                <FinderModel {...props} model={model} moduleComponent={DocumentTreeModule} />
-            </DocumentTreeParent>
-            { expanded && children &&
-                <DocumentTreeChildren>
-                    { children && children.map(child => <FinderTreeChild {...props} model={child} />) }
-                </DocumentTreeChildren>
-            }
-        </React.Fragment>
-    )
-
-
-}
-
-const FinderTree = ({url, query, layout = "list", ...props}) => {
-    const dispatch = useDispatch()
-    const app = useSelector(state => state.app)
-    const menuByUrl = app.menuByUrl;
-
-    const parent = menuByUrl && menuByUrl[url]
-
-    const { children } = parent;    
-
-    const [currentTree, setCurrentTree] = useState(url)
+                return {
+                    ...child,
+                    ...menuModel,
+                    ...uniqueModel,
+                    selected: selected
+                }
+        
+            })
+        }
+    });
 
     const _onSelect = ({url}) => {
-        url && setCurrentTree(url)
-        dispatch(getParents({pathname: url}))
+        url && props.history.push(url)
     }
 
-    const currentModel = currentTree && menuByUrl[currentTree]
+    const _onSort = ({parent, child}) => {
 
-    return (
-        <FinderLayout {...props} parents={app && app.parents}>
-            <DocumentTree>
-            {children && children.map(child => {
-                return (
-                    <FinderTreeChild {...props} model={child} currentTree={currentTree} onSelect={_onSelect} />
-                )
-            })}
-            <FinderTreeDetails model={currentModel} />
-            </DocumentTree>
-        </FinderLayout>
-    )
-    
+        const uniqueId = child && child.uniqueId
+        const parentId = parent && parent.id
+
+        if (uniqueId && parentId) {
+
+            console.log('PARENT', parentId)
+            console.log('CHILD', uniqueId)
+
+            dispatch(setParentId({uniqueId, parentId}))
+            dispatch(getMenuItem({pathname}))
+
+        }
+
+    }
+
+    return <SortableTree pathname={pathname} parents={parents} onSelect={_onSelect} onSort={_onSort} />
 
 }
 

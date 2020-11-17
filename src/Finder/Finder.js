@@ -26,7 +26,7 @@ const Finder = ({children, ...props}) => {
     const { pathname } = props.location
 
     useEffect(() => {
-        dispatch(getParents({pathname: pathname}))
+        dispatch(getParents({pathname}))
     }, [pathname])
 
     return (

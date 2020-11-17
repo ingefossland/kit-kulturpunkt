@@ -118,6 +118,10 @@ const AppLayout = ({
         subtitle: app.subtitle,
         subview: subview,
         search: search,
+        menu: {
+            expanded: false,
+            onToggle: () => onToggle({sidebar: true})
+        },
         ...header
     }
 

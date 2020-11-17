@@ -44,7 +44,7 @@ const KpLinkField = (props) => {
         return color.isLight() && "black" || "white"
     }
 
-    const handleChange = (formData) => {
+    const _onChange = (formData) => {
 
         if (formData.backgroundColor !== backgroundColor) {
             formData.color = getContrastColor(formData.backgroundColor)
@@ -58,23 +58,21 @@ const KpLinkField = (props) => {
         props.onChange && props.onChange(newFormData)
     }
 
-
-
-    const handleCropdata = (imageCropdata) => {
+    const _onCropChange = (imageCropdata) => {
         props.onChange && props.onChange({
             ...formData,
             imageCropdata: imageCropdata
         })
     }
 
-    const handleFocalpoint = (imageFocalpoint) => {
+    const _onFocalpoint = (imageFocalpoint) => {
         props.onChange && props.onChange({
             ...formData,
             imageFocalpoint: imageFocalpoint
         })
     }
 
-    const handleFilters = (imageFilters) => {
+    const _onFiltersChange = (imageFilters) => {
         props.onChange && props.onChange({
             ...formData,
             imageFilters: imageFilters
@@ -116,7 +114,7 @@ const KpLinkField = (props) => {
             newUiSchema.imageCropdata = {
                 ...uiSchema.imageCropdata,
                 ...uiPreview,
-                "ui:onChange": (cropdata) => handleCropdata(cropdata),
+                "ui:onChange": (cropdata) => _onCropChange(cropdata),
             }
 
             fieldset.push('imageCropdata')
@@ -126,7 +124,7 @@ const KpLinkField = (props) => {
             newUiSchema.imageFocalpoint = {
                 ...uiSchema.imageFocalpoint,
                 ...uiPreview,
-                "ui:onChange": (focalpoint) => handleFocalpoint(focalpoint),
+                "ui:onChange": (focalpoint) => _onFocalpoint(focalpoint),
             }
 
             fieldset.push('imageFocalpoint')
@@ -137,7 +135,7 @@ const KpLinkField = (props) => {
             newUiSchema.imageFilters = {
                 ...uiSchema.imageFilters,
                 ...uiPreview,
-                "ui:onChange": (filters) => handleFilters(filters),
+                "ui:onChange": (filters) => _onFiltersChange(filters),
             }
 
             fieldset.push('imageFilters')
@@ -179,7 +177,7 @@ const KpLinkField = (props) => {
     const { ObjectField } = registry.fields;
 
     return (
-        <ObjectField {...props} schema={schema} uiSchema={newUiSchema} onChange={handleChange} />
+        <ObjectField {...props} schema={schema} uiSchema={newUiSchema} onChange={_onChange} />
     )
 
 }

@@ -65,12 +65,12 @@ const FinderQuery = ({query, layout = "list", ...props}) => {
         props.history.push(props.location.pathname + '/' + query.documentType + "/new")
     }
 
-    // template
+    // layout
 
-    const FinderTemplate = templates && templates[layout] || templates["list"]
+    const ResultsTemplate = templates && templates[layout] || templates["list"]
 
-    if (FinderTemplate) {
-        return <Finder {...props}><FinderTemplate {...props} {...currentSearch} onPage={_onPage} /></Finder>
+    if (ResultsTemplate) {
+        return <ResultsTemplate {...props} {...currentSearch} onPage={_onPage} />
     }
 
 

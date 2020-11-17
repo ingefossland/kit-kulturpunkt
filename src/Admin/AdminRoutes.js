@@ -38,10 +38,12 @@ const AdminRoutes = (props) => {
 
     if (query) {
 
-        const AdminTemplate = templates[template] || templates['finder/query']
+        const FinderTemplate = templates[template] || templates['finder/query']
 
         return (
-            <AdminTemplate {...props} {...menuItem}  />
+            <Finder {...props}>
+                <FinderTemplate {...props} {...menuItem}  />
+            </Finder>
         )
 
     }
