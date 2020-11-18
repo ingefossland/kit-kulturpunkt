@@ -11,56 +11,26 @@ const SortableTree = ({pathname, parents = [], onSelect, onSort}) => {
 
     const [result, setResult] = useState({})
 
-    let modelsById = {}
-
-    parents.map((parent => {
-        const parentId = "parent-" + parent.id
-
-        modelsById[parentId] = {
-            id: undefined
-        }
-
-        parent.children && parent.children.map((child => {
-            const childId = child.id
-            modelsById[childId] = child
-
-        }))
-
-    }))
-
     const _onDragEnd = (result) => {
-
-        const { draggableId, destination, combine } = result
-
-        const childId = draggableId.replace('child-', '')
-        const parentId = destination && destination.droppableId.replace('parent-', '') || combine && combine.draggableId.replace('child-', '')
-        
-        result = {
-            parent: modelsById[parentId],
-            child: modelsById[childId],
-        }
-
-        console.log("DRAG", result)
         setResult(result)
 
         onSort && onSort(result)
-
-
     }
 
     return (
         <DragDropContext onDragEnd={_onDragEnd}>
             <DocumentTree>
                 { parents && parents.map((parent, px) => {
-                    const parentId = "parent-" + parent.id
+                    const { children } = parent;
+                    const droppableId = "drop-" + parent.uniqueId
 
                     return (
-                        <DocumentTreeColumn droppableId={parentId} key={parentId}>
-                            { parent.children && parent.children.map((child, cx) => {
-                                const childId = "child-" + child.id
+                        <DocumentTreeColumn droppableId={droppableId} key={droppableId}>
+                            { children && children.map((child, cx) => {
+                                const draggableId = "drag-" + child.uniqueId 
                                 const selected = pathname.includes(child.url)
                                 return (
-                                    <DocumentTreeRow {...child} key={childId} selected={selected} index={cx} draggableId={childId} onSelect={() => onSelect(child)} />
+                                    <DocumentTreeRow {...child} key={draggableId} selected={selected} index={cx} draggableId={draggableId} onSelect={() => onSelect(child)} />
                                 )
                             })}
                         </DocumentTreeColumn>

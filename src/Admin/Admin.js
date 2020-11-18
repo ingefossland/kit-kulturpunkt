@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react"
 import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getAppLayout, toggleSearch, toggleSidebar, toggleMenuItem, getMenuItem, getParents } from '../redux/app';
+import { getApp, getAppLayout, toggleSearch, toggleSidebar, toggleMenuItem, getMenuItem } from '../redux/app';
+import { getFinder, getParents, getMenuByUrl } from '../redux/finder';
+
 import _ from "lodash"
 import qs from 'query-string';
 
@@ -20,10 +22,10 @@ const Admin = (props) => {
     }, [])
 
     const app = useSelector(state => state.app)
+    const finder = useSelector(state => state.finder)
 
     useEffect(() => {
-        dispatch(getParents({pathname: pathname}))
-        dispatch(getMenuItem({pathname}))
+        dispatch(getParents({url: pathname}))
     }, [pathname])
 
     // date + view
@@ -42,7 +44,7 @@ const Admin = (props) => {
         sidebar && dispatch(toggleSidebar())
         search && dispatch(toggleSearch())
         
-        url && dispatch(toggleMenuItem({url}))
+//        url && dispatch(toggleMenuItem({url}))
 
     }
 
@@ -101,7 +103,6 @@ const Admin = (props) => {
         onReset: (q, event) => _onSearchReset(),
         onToggle: () => dispatch(toggleSearch())
     }
-    
 
     return (
         <AdminLayout
@@ -116,10 +117,10 @@ const Admin = (props) => {
             primaryAction={app.primaryAction}
 
             menu={app && app.menu}
-            menuByUrl={app && app.menuByUrl}
+            menuByUrl={finder && finder.menuByUrl}
             currentUrl={pathname}
             
-            parents={app && app.parents}
+            parents={finder && finder.parents}
 
             onSelect={_onSelect}
             onToggle={_onToggle}

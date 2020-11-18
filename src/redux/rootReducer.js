@@ -1,6 +1,7 @@
 import { combineReducers } from '@reduxjs/toolkit'
 
 import appReducer from './app/appSlice'
+import finderReducer from './finder/finderSlice'
 import editorReducer from './editor/editorSlice'
 import bulkReducer from './bulk/bulkSlice'
 
@@ -11,6 +12,7 @@ import modelsByIdReducer from './modelsById/modelsByIdSlice'
 export default combineReducers({
     app: appReducer,
     editor: editorReducer,
+    finder: finderReducer,
     bulk: bulkReducer,
     modelsById: modelsByIdReducer,
     searchById: searchByIdReducer,

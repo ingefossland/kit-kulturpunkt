@@ -2,6 +2,8 @@ import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
 
+import { getMenuByUrl } from "../finder/"
+
 const appSlice = createSlice({
     name: 'app',
     initialState: {
@@ -349,11 +351,11 @@ const getMenuChildren = ({children = [], level = 0}) => dispatch => {
 
 }
 
-
+/*
 export const getMenuByUrl = ({menu = []}) => dispatch => {
     dispatch(requestMenuByUrl())
     dispatch(getMenuChildren({children: menu}))
-}
+}*/
 
 
 export const { requestApp, receiveApp, receiveLayout, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, toggleMenuItem, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions

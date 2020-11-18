@@ -1,82 +1,60 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout, getParents, getMenuItem } from '../redux/app';
-import { getModel, setParentId } from '../redux/modelsById';
+import { sortMenuTree, getParents } from '../redux/finder';
+import { getModel, saveModel } from '../redux/modelsById';
 
 import SortableTree from "../components/DocumentTree/SortableTree"
 
-const FinderTree = ({layout = "list", ...props}) => {
+const FinderTree = ({item = {}, layout = "list", ...props}) => {
     const dispatch = useDispatch()
 
-    const app = useSelector(state => state.app)
-    const menuByUrl = app.menuByUrl;
-
     const pathname = props.location.pathname
-    const parent = menuByUrl[pathname]
 
-    const uniqueId = parent && parent.uniqueId
-
-    useEffect(() => {
-        dispatch(getAppLayout("finder"))
-        dispatch(getParents({pathname}))
-        uniqueId && dispatch(getModel(parent))
-    }, [parent])
-
-    const modelsById = useSelector(state => state.modelsById)
-
-
-    const documentTree = {}
-
-    
-    const parents = app && app.parents && app.parents.map(parent => {
-        const { uniqueId, url, children } = parent;
-        const uniqueModel = uniqueId && modelsById && modelsById[uniqueId]
-        const selected = pathname.startsWith(url) || pathname === url
-
-        return {
-            ...parent,
-            ...uniqueModel,
-            selected: selected || true,
-            children: children && children.map(child => {
-                const { uniqueId, url, children } = child;
-                const menuModel = menuByUrl[url]
-                const uniqueModel = uniqueId && modelsById && modelsById[uniqueId]
-                const selected = pathname.includes(url) || pathname === url
-
-                return {
-                    ...child,
-                    ...menuModel,
-                    ...uniqueModel,
-                    selected: selected
-                }
-        
-            })
-        }
-    });
+    const finder = useSelector(state => state.finder)
+    const parents = finder.parents;
+    const menuById = finder.menuById;
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
     }
 
-    const _onSort = ({parent, child}) => {
+    const _onSort = (result) => {
 
-        const uniqueId = child && child.uniqueId
-        const parentId = parent && parent.id
+        const { draggableId, source, destination, combine } = result
 
-        if (uniqueId && parentId) {
+        const uniqueId = draggableId.replace("drag-", "")
+        const parentId = destination && destination.droppableId.replace("drop-", "") || combine && combine.draggableId.replace("drag-", "")
 
-            console.log('PARENT', parentId)
-            console.log('CHILD', uniqueId)
+        const parent = parentId && menuById && menuById[parentId]
+        const child = uniqueId && menuById && menuById[uniqueId]
 
-            dispatch(setParentId({uniqueId, parentId}))
-            dispatch(getMenuItem({pathname}))
+        if (parent && child) {
+            child.id && parent.id && dispatch(saveModel({id: child.id, parentId: parent.id}))
+        }
+
+        if (source && destination) {
+
+            const destinationId = destination && destination.droppableId.replace("drop-", "")
+            const destinationUrl = menuById && menuById[destinationId] && menuById[destinationId].url
+
+            destinationUrl && props.history.push(destinationUrl)
+
+
+        } else if (combine) {
+
+            const combineId = combine && combine.draggableId.replace("drag-", "")
+            const combineUrl = menuById && menuById[combineId] && menuById[combineId].url
+
+            combineUrl && props.history.push(combineUrl)
 
         }
 
     }
 
-    return <SortableTree pathname={pathname} parents={parents} onSelect={_onSelect} onSort={_onSort} />
+    return <div>
 
+        <SortableTree pathname={pathname} parents={parents} onSelect={_onSelect} onSort={_onSort} />
+        </div>
 }
 
 FinderTree.defaultProps = {

@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getApp, getAppLayout, getParents } from '../redux/app';
 import { getUpload } from '../redux/uploadById';
 
-import FinderLayout from "../Finder/FinderLayout"
-import ListLayout from "../Finder/ListLayout"
+import FinderLayout from "./FinderLayout"
+import ListLayout from "./ListLayout"
 import UploadDropzone from "../Upload/UploadDropzone"
 
 const MediaUpload = (props) => {

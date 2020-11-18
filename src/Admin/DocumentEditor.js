@@ -18,6 +18,7 @@ const DocumentEditor = (props) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
+    const finder = useSelector(state => state.finder)
     const editor = useSelector(state => state.editor)
     const formData = editor.formData
 
@@ -103,9 +104,7 @@ const DocumentEditor = (props) => {
             search: "?backUrl=" + props.location.pathname + "&backId=" + id
         })
         
-
     }
-
 
     const formContext = {
         isLoading: editor && editor.isLoading,
@@ -113,7 +112,7 @@ const DocumentEditor = (props) => {
         id: formData && formData.id,
         uniqueId: formData && formData.uniqueId,
         collectionId: formData && formData.collectionId,
-        parents: app && app.parents,
+        parents: finder && finder.parents,
         languages: app && app.languages,
         onBack: _onBack,
         onSelect: _onSelect,

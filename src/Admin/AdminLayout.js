@@ -3,7 +3,9 @@ import React from 'react';
 import PropTypes from "prop-types"
 
 import { AppBase, AppHeader, AppSidebar, AppContent, AppBody } from "@kit-ui/admin"
-import { NavAction, NavCalendar, NavMenu } from "@kit-ui/admin"
+import { NavAction, NavCalendar } from "@kit-ui/admin"
+
+import NavMenu from "../components/NavMenu/NavMenu"
 
 import { makeStyles } from '@material-ui/core/styles';
 
