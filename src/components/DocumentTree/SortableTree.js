@@ -15,6 +15,52 @@ const SortableTree = ({pathname, parents = [], onSelect, onSort}) => {
         setResult(result)
 
         onSort && onSort(result)
+
+        /*
+
+        const { draggableId, source, destination, combine } = result
+
+        const childId = draggableId
+        const parentId = destination && destination.droppableId || combine && combine.draggableId
+
+        if (destination && source) {
+
+            modelsById[destination.droppableId].children = [
+                ...modelsById[destination.droppableId].children,
+                modelsById[draggableId]
+            ]
+
+            modelsById[source.droppableId].children.splice(source.index, 1)
+
+        } else if (combine) {
+
+            if (!modelsById[combine.draggableId].children) {
+                modelsById[combine.draggableId].children = [draggableId]
+            } else {
+                modelsById[combine.draggableId].children = [
+                    ...modelsById[combine.draggableId].children,
+                    modelsById[draggableId]
+                ]
+            }
+
+            modelsById[source.droppableId].children.splice(source.index, 1)
+
+        }
+
+        const sort = {
+            parentId: parentId,
+            parent: modelsById[parentId],
+            childId: childId,
+            child: modelsById[childId],
+        }
+
+        console.log("DRAG", result)
+
+        onSort && onSort(sort)
+
+        */
+
+
     }
 
     return (

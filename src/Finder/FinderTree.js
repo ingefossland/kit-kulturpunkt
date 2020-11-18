@@ -11,8 +11,25 @@ const FinderTree = ({item = {}, layout = "list", ...props}) => {
     const pathname = props.location.pathname
 
     const finder = useSelector(state => state.finder)
-    const parents = finder.parents;
     const menuById = finder.menuById;
+    const parents = finder.parents
+    
+
+
+    let sortableTree = {}
+
+    parents.map((parent => {
+        const parentId = "drop-" + parent.uniqueId
+
+        parent.children && parent.children.map((child => {
+            const childId = "drag-" + child.uniqueId
+            sortableTree[childId] = child
+        }))
+
+        sortableTree[parentId] = parent
+
+    }))
+
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
@@ -33,10 +50,19 @@ const FinderTree = ({item = {}, layout = "list", ...props}) => {
         }
 
         if (source && destination) {
-
+            const sourceId = source && source.droppableId.replace("drop-", "")
             const destinationId = destination && destination.droppableId.replace("drop-", "")
-            const destinationUrl = menuById && menuById[destinationId] && menuById[destinationId].url
 
+            /*
+            sortableTree[destination.droppableId].children = [
+                ...sortableTree[destination.droppableId].children,
+                sortableTree[draggableId]
+            ]
+
+            sortableTree[source.droppableId].children.splice(source.index, 1)
+            */
+
+            const destinationUrl = menuById && menuById[destinationId] && menuById[destinationId].url
             destinationUrl && props.history.push(destinationUrl)
 
 
