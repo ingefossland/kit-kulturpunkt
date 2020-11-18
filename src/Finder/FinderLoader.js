@@ -44,11 +44,12 @@ const FinderLoader = (props) => {
             ...menuItem,
             url: pathname
         }))
-    }, [pathname, menuItem.isLoading])
+    }, [pathname, menuItem.query])
+
 
     useEffect(() => {
         dispatch(getParents({url: pathname}))
-    }, [menuItem])
+    }, [menuItem.isLoading])
 
 
     const { type, template } = menuItem

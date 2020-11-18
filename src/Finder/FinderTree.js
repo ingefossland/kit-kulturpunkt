@@ -3,50 +3,68 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getMenuItem, getParents } from '../redux/finder';
 import { saveModel } from '../redux/modelsById';
 
-import SortableTree from "../components/DocumentTree/SortableTree"
-
 import {
     DocumentTree,
     DocumentTreeColumn,
     DocumentTreeRow,
 } from "../components/DocumentTree/"
 
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-const FinderTree = ({menuItem = {}, ...props}) => {
+const FinderTree = (props) => {
     const dispatch = useDispatch()
 
     const finder = useSelector(state => state.finder)
 
+    const pathname = props.location.pathname
     const parents = finder.parents
     const menuByUrl = finder.menuByUrl
+    const menuById = finder.menuById
 
-    const pathname = props.location.pathname
-    
     const [menuTree, setMenuTree] = useState([])
     const [menuTreeById, setMenuTreeById] = useState({})
     const [result, setResult] = useState(parents)
 
-
     useEffect(() => {
 
         const menuTree = parents.map(parent => {
+            const { id, uniqueId, url } = parent
+            const droppableId = "drop-" + id
 
-            const droppableId = "drop-" + parent.id
+            if (uniqueId && menuById[uniqueId]) {
+                parent = {
+                    ...menuById[uniqueId],
+                    droppableId: droppableId
+                }
+            } else if (url && menuByUrl[url]) {
+                parent = {
+                    ...menuByUrl[url],
+                    droppableId: droppableId
+                }
+            }
 
-            parent = {
-                ...parent,
-                droppableId: droppableId,
-                children: parent.children && parent.children.map(child => {
+            const children = parent.children && parent.children.map(child => {
+                const { id, uniqueId, url } = child
+                const draggableId = "drag-" + id
+
+                if (uniqueId && menuById[uniqueId]) {
                     return {
-                        ...child,
-                        draggableId: "drag-" + child.id
+                        ...menuById[uniqueId],
+                        draggableId: draggableId,
                     }
-                }) 
+                }
+
+            }) 
+
+            if (children && children.length) {
+                return {
+                    ...parent,
+                    children: children
+                }
             }
 
             return parent
+
         })
 
         let menuTreeById = {}
@@ -129,20 +147,26 @@ const FinderTree = ({menuItem = {}, ...props}) => {
         <DragDropContext onDragEnd={_onDragEnd}>
             <DocumentTree>
                 { menuTree && menuTree.map((parent, px) => {
-                    const { droppableId } = parent;
-
-                    const { children } = menuTreeById[droppableId]
+                    const { children, droppableId } = parent;
 
                     return (
-                        <DocumentTreeColumn droppableId={droppableId} key={droppableId}>
-                            { children && children.map((child, cx) => {
-                                const { draggableId } = child 
-                                const selected = pathname.includes(child.url)
-                                return (
-                                    <DocumentTreeRow {...child} key={draggableId} selected={selected} index={cx} draggableId={draggableId} onSelect={() => _onSelect(child)} />
-                                )
-                            })}
-                        </DocumentTreeColumn>
+                        <Droppable index={px} droppableId={droppableId} isCombineEnabled={true} key={droppableId}>
+                            {(provided, snapshot) => (
+                                <DocumentTreeColumn droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
+                                    { children && children.map((child, cx) => {
+                                        const { uniqueId, draggableId } = child 
+                                        const selected = pathname.includes(child.url)
+                                        return (
+                                            <Draggable index={cx} draggableId={draggableId} key={draggableId}>
+                                                {(provided, snapshot) => (
+                                                    <DocumentTreeRow {...child} draggable={{provided, snapshot}} draggableRef={provided.innerRef} selected={selected} onSelect={() => _onSelect(child)} />
+                                                )}
+                                            </Draggable>
+                                        )
+                                    })}
+                                </DocumentTreeColumn>
+                            )}
+                        </Droppable>
                     )
 
                 })}

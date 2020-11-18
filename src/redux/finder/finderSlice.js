@@ -83,6 +83,20 @@ const finderByIdSlice = createSlice({
                 }
             }
         },
+        toggleMenuItem(state, action) {
+            const { url } = action.payload
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [url]: {
+                        ...state.menuByUrl[url],
+                        expanded: !state.menuByUrl[url].expanded
+                    }
+                }
+            }
+
+        },
         receiveMenuItemChildren(state, action) {
             const { url, count, children } = action.payload
             return {
@@ -175,6 +189,12 @@ export const getMenuItem = (item) => (dispatch, getState) => {
     } else if (url) {
         dispatch(receiveMenuItem(item))
     }
+
+
+    /*
+
+
+    */
     
 }
 
@@ -269,7 +289,7 @@ export const getMenuTreeNode = (item) => (dispatch) => {
 
 }
 
-const getMenuTree = (item) => dispatch => {
+export const getMenuTree = (item) => dispatch => {
     dispatch(getMenuTreeParent(item))
 }
 
@@ -351,5 +371,10 @@ export const sortMenuTree = ({parent, child}) => dispatch => {
 
 }
 
-export const { requestFinder, receiveFinder, requestMenuByUrl, receiveMenuByUrl, requestMenuItem, receiveMenuItem, receiveMenuItemChildren, requestParents, receiveParents } = finderByIdSlice.actions
+export const { 
+    requestFinder, receiveFinder, 
+    requestMenuByUrl, receiveMenuByUrl, 
+    requestMenuItem, receiveMenuItem, receiveMenuItemChildren, 
+    toggleMenuItem, 
+    requestParents, receiveParents } = finderByIdSlice.actions
 export default finderByIdSlice.reducer

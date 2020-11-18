@@ -14,10 +14,8 @@ const useStyles = makeStyles(theme => ({
         alignItems: "flex-start",
         justifyContent: "flex-start",
 
-        width: "100%",
-
-        "& > *": {
-        },
+        border: "1px solid",
+        borderColor: theme.palette.divider,
 
         "& > * + *": {
             borderLeft: "1px solid",

@@ -20,8 +20,9 @@ const useStyles = makeStyles(theme => ({
         zIndex: 1,
         "& + *": {
             marginTop: theme.spacing(8),
-            marginLeft: theme.spacing(2),
             marginRight: theme.spacing(2),
+            marginBottom: theme.spacing(2),
+            marginLeft: theme.spacing(2),
         }
     },
     body: {

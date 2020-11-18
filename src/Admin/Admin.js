@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react"
 import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getAppLayout, toggleSearch, toggleSidebar, toggleMenuItem, getMenuItem } from '../redux/app';
-import { getFinder, getParents, getMenuByUrl } from '../redux/finder';
+import { getApp, getAppLayout, toggleSearch, toggleSidebar } from '../redux/app';
+import { getFinder, getParents, toggleMenuItem } from '../redux/finder';
 
 import _ from "lodash"
 import qs from 'query-string';
@@ -44,7 +44,7 @@ const Admin = (props) => {
         sidebar && dispatch(toggleSidebar())
         search && dispatch(toggleSearch())
         
-//        url && dispatch(toggleMenuItem({url}))
+        url && dispatch(toggleMenuItem({url}))
 
     }
 

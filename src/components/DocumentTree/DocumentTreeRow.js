@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { forwardRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Draggable } from 'react-beautiful-dnd';
 import IconButton from "@material-ui/core/IconButton"
 import SelectIcon from "@material-ui/icons/ChevronRight"
 import DragHandle from '@material-ui/icons/DragHandle';
@@ -12,6 +11,7 @@ import ModuleMetadata from "./ModuleMetadata"
 
 const useStyles = makeStyles(theme => ({
     module: {
+        position: "relative",
         display: "flex",
         alignItems: "center",
         maxWidth: "100%",
@@ -22,25 +22,34 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.action.selected,
         },
 
-        "&[data-drop-target=true]": {
-            backgroundColor: "red"
+        "&[data-is-dragging=true]": {
+            minWidth: 192,
+            maxWidth: 256,
+            backgroundColor: "white",
+            boxShadow: theme.shadows[2],
+        },
+
+        "&[data-is-target=true]": {
+            backgroundColor: theme.palette.divider
         },
     },
     dragHandle: {
 //        margin: theme.spacing(1)
     },
     content: {
-        position: "relative",
         flexBasis: 0,
         flexGrow: 1,
-        padddingRight: 48,
+
+        maxWidth: 256 - 48,
+
+        marginTop: 8,
+        marginBottom: 8,
 
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
 
-        margin: theme.spacing(1),
         color: "inherit",
 
         "& > *": {
@@ -58,55 +67,55 @@ const useStyles = makeStyles(theme => ({
     },
     select: {
         position: "absolute",
-
         right: 0,
     }
     
 }));
 
-const DocumentContent = ({url, uniqueId, title, documentType, children, onSelect}) => {
+const DocumentContent = ({url, uniqueId, title, documentType, onClick}) => {
     const classes = useStyles()
 
     return (
-        <div className={classes.content} onClick={onSelect}>
+        <div className={classes.content} onClick={onClick}>
             <ModuleTitle title={title} />
             <footer className={classes.footer}>
                 <ModuleLabel>{documentType}</ModuleLabel>
             </footer>
-            {children && 
-                <IconButton className={classes.select} onClick={onSelect}>
-                    <SelectIcon />
-                </IconButton>
-            }
         </div>
     )
 
 }
 
-const DocumentTreeRow = ({draggableId, index, selected, ...props}) => {
+const DocumentTreeRow = ({draggable, selected, children, onSelect, ...props}) => {
 
     const classes = useStyles()
 
-    if (draggableId) {
+    if (draggable) {
+        const { provided, snapshot } = draggable
+
+        const { isDragging, combineTargetFor } = snapshot
+
+        const isTarget = combineTargetFor && true
+
         return (
-            <Draggable index={index} draggableId={draggableId}>
-                {(provided, snapshot) => {
+            <div className={classes.module} 
+                {...provided.draggableProps}
+                aria-selected={selected}
+                data-is-dragging={isDragging}
+                data-is-target={isTarget} ref={provided.innerRef}>
+                <IconButton {...provided.dragHandleProps} className={classes.dragHandle}>
+                    <DragHandle />
+                </IconButton>
 
-                    const dropTarget = snapshot.combineTargetFor && true
+                <DocumentContent {...props} onClick={onSelect} />
+                {children && 
+                    <IconButton className={classes.select} onClick={onSelect}>
+                        <SelectIcon />
+                    </IconButton>
+                }
+            </div>
+        )   
 
-                    return (
-                        <div className={classes.module} aria-selected={selected} data-drop-target={dropTarget} {...provided.draggableProps} ref={provided.innerRef}>
-
-                            <IconButton className={classes.dragHandle} {...provided.dragHandleProps} >
-                                <DragHandle />
-                            </IconButton>
-
-                            <DocumentContent {...props} />
-                        </div>
-                    )   
-                }}
-            </Draggable>
-        )
     }
 
     return (

@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { forwardRef } from 'react';
 import PropTypes from "prop-types";
 import { makeStyles } from '@material-ui/core/styles';
-import { Droppable } from 'react-beautiful-dnd';
 
 const useStyles = makeStyles(theme => ({
     column: {
@@ -21,8 +20,10 @@ const useStyles = makeStyles(theme => ({
             backgroundColor: theme.palette.action.selected,
         },
 
-        "&[data-droppable=true]": {
-            backgroundColor: "yellow"
+        "&[data-is-dragging-over=true]": {
+            backgroundColor: theme.palette.divider
+
+            //            backgroundColor: "yellow"
         },
 
         "&[aria-expanded=true]": {
@@ -39,7 +40,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const DocumentTreeColumn = ({droppableProps, innerRef, droppableId, expanded, children}) => {
+const DocumentTreeColumn = ({droppable, expanded, children, ...props}) => {
 
     const classes = useStyles()
 
@@ -47,26 +48,20 @@ const DocumentTreeColumn = ({droppableProps, innerRef, droppableId, expanded, ch
         return false
     }
 
-    if (droppableId) {
+    if (droppable) {
+        const { provided, snapshot } = droppable
+        const { isDraggingOver } = snapshot
+
         return (
-            <Droppable droppableId={droppableId} isCombineEnabled={true}>
-                {(provided, snapshot) => {
-
-                    const droppable = snapshot.isDraggingOver
-
-                   return (
-                        <div data-droppable={droppable} className={classes.column} {...provided.droppableProps} ref={provided.innerRef}>
-                        {children}
-                        {provided.placeholder}
-                        </div>
-                    )
-                }}
-            </Droppable>
+            <div data-is-dragging-over={isDraggingOver} className={classes.column} {...provided.droppableProps} ref={provided.innerRef}>
+                {children}
+                {provided.placeholder}
+            </div>
         )
     }
 
     return (
-        <div {...droppableProps} ref={innerRef} className={classes.column} aria-expanded={expanded}>
+        <div className={classes.column} aria-expanded={expanded}>
             {children}
         </div>
     )
