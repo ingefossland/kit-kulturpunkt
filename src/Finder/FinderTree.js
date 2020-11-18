@@ -34,12 +34,12 @@ const FinderTree = (props) => {
             if (uniqueId && menuById[uniqueId]) {
                 parent = {
                     ...menuById[uniqueId],
-                    droppableId: droppableId
+                    droppableId: "drop-" + id
                 }
             } else if (url && menuByUrl[url]) {
                 parent = {
                     ...menuByUrl[url],
-                    droppableId: droppableId
+                    droppableId: "drop-" + url
                 }
             }
 
