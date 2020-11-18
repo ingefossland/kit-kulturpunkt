@@ -16,7 +16,7 @@ const templates = {
     "media": Gallery,
 }
 
-const FinderQuery = ({item: { query = {}, layout = "list"}, ...props}) => {
+const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
     const dispatch = useDispatch()
 
     const { pathname, search } = props.location

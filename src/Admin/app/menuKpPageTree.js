@@ -8,7 +8,7 @@ export default {
     query: {
         models: "documents",
         status: "NOT trash",
-        documentType: "pageHome",
+        documentType: "page*",
         q: "NOT parentId:*"
     },
 }

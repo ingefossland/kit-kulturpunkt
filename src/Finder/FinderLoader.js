@@ -62,7 +62,7 @@ const FinderLoader = (props) => {
             title={title}
             description={description}>
                 <Finder {...props}>
-                    <FinderTemplate item={menuItem} {...props} />
+                    <FinderTemplate menuItem={menuItem} {...props} />
                 </Finder>
         </AppLoader>
     )

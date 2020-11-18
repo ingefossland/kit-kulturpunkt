@@ -68,12 +68,12 @@ const SortableTree = ({pathname, parents = [], onSelect, onSort}) => {
             <DocumentTree>
                 { parents && parents.map((parent, px) => {
                     const { children } = parent;
-                    const droppableId = "drop-" + parent.uniqueId
+                    const droppableId = "menu-" + parent.uniqueId
 
                     return (
                         <DocumentTreeColumn droppableId={droppableId} key={droppableId}>
                             { children && children.map((child, cx) => {
-                                const draggableId = "drag-" + child.uniqueId 
+                                const draggableId = "menu-" + child.uniqueId 
                                 const selected = pathname.includes(child.url)
                                 return (
                                     <DocumentTreeRow {...child} key={draggableId} selected={selected} index={cx} draggableId={draggableId} onSelect={() => onSelect(child)} />

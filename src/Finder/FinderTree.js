@@ -1,86 +1,159 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { sortMenuTree, getParents } from '../redux/finder';
-import { getModel, saveModel } from '../redux/modelsById';
+import { getMenuItem, getParents } from '../redux/finder';
+import { saveModel } from '../redux/modelsById';
 
 import SortableTree from "../components/DocumentTree/SortableTree"
 
-const FinderTree = ({item = {}, layout = "list", ...props}) => {
+import {
+    DocumentTree,
+    DocumentTreeColumn,
+    DocumentTreeRow,
+} from "../components/DocumentTree/"
+
+
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
+
+const FinderTree = ({menuItem = {}, ...props}) => {
     const dispatch = useDispatch()
 
-    const pathname = props.location.pathname
-
     const finder = useSelector(state => state.finder)
-    const menuById = finder.menuById;
+
     const parents = finder.parents
+    const menuByUrl = finder.menuByUrl
+
+    const pathname = props.location.pathname
     
+    const [menuTree, setMenuTree] = useState([])
+    const [menuTreeById, setMenuTreeById] = useState({})
+    const [result, setResult] = useState(parents)
 
 
-    let sortableTree = {}
+    useEffect(() => {
 
-    parents.map((parent => {
-        const parentId = "drop-" + parent.uniqueId
+        const menuTree = parents.map(parent => {
 
-        parent.children && parent.children.map((child => {
-            const childId = "drag-" + child.uniqueId
-            sortableTree[childId] = child
-        }))
+            const droppableId = "drop-" + parent.id
 
-        sortableTree[parentId] = parent
+            parent = {
+                ...parent,
+                droppableId: droppableId,
+                children: parent.children && parent.children.map(child => {
+                    return {
+                        ...child,
+                        draggableId: "drag-" + child.id
+                    }
+                }) 
+            }
 
-    }))
+            return parent
+        })
 
+        let menuTreeById = {}
+
+        menuTree.map(parent => {
+            menuTreeById[parent.droppableId] = parent
+
+            parent.children && parent.children.map(child => {
+                menuTreeById[child.draggableId] = child
+            })
+        })
+
+        setMenuTree(menuTree)
+        setMenuTreeById(menuTreeById)
+
+    }, [parents])
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
     }
 
-    const _onSort = (result) => {
+    const _onDragEnd = (result) => {
+
+        setResult(result)
 
         const { draggableId, source, destination, combine } = result
 
-        const uniqueId = draggableId.replace("drag-", "")
-        const parentId = destination && destination.droppableId.replace("drop-", "") || combine && combine.draggableId.replace("drag-", "")
+        if (source && destination && source.droppableId !== destination.droppableId) {
 
-        const parent = parentId && menuById && menuById[parentId]
-        const child = uniqueId && menuById && menuById[uniqueId]
-
-        if (parent && child) {
-            child.id && parent.id && dispatch(saveModel({id: child.id, parentId: parent.id}))
-        }
-
-        if (source && destination) {
-            const sourceId = source && source.droppableId.replace("drop-", "")
-            const destinationId = destination && destination.droppableId.replace("drop-", "")
-
-            /*
-            sortableTree[destination.droppableId].children = [
-                ...sortableTree[destination.droppableId].children,
-                sortableTree[draggableId]
+            menuTreeById[destination.droppableId].children = [
+                ...menuTreeById[destination.droppableId].children,
+                menuTreeById[source.droppableId].children[source.index]
             ]
 
-            sortableTree[source.droppableId].children.splice(source.index, 1)
-            */
+            menuTreeById[source.droppableId].children.splice(source.index, 1)
 
-            const destinationUrl = menuById && menuById[destinationId] && menuById[destinationId].url
+            const parentId = menuTreeById[destination.droppableId].id || null
+            const id = menuTreeById[draggableId].id
+
+            if (id && parentId) {
+                dispatch(saveModel({id, parentId}))
+            } else if (id) {
+                dispatch(saveModel({id, parentId: null}))
+            }
+
+            const destinationUrl = menuTreeById[destination.droppableId].url
             destinationUrl && props.history.push(destinationUrl)
 
 
+            
         } else if (combine) {
 
-            const combineId = combine && combine.draggableId.replace("drag-", "")
-            const combineUrl = menuById && menuById[combineId] && menuById[combineId].url
+            if (!menuTreeById[combine.draggableId].children) {
+                menuTreeById[combine.draggableId].children = [menuTreeById[draggableId]]
+            } else {
+                menuTreeById[combine.draggableId].children = [
+                    ...menuTreeById[combine.draggableId].children,
+                    menuTreeById[draggableId]
+                ]
+            }
 
-            combineUrl && props.history.push(combineUrl)
+            menuTreeById[source.droppableId].children.splice(source.index, 1)
+
+            const parentId = menuTreeById[combine.draggableId].id
+            const id = menuTreeById[draggableId].id
+
+            if (id && parentId) {
+                dispatch(saveModel({id, parentId}))
+            }
+
+            const selectUrl = menuTreeById[combine.draggableId].parentUrl
+            selectUrl && props.history.push(selectUrl)
+            
 
         }
 
     }
 
-    return <div>
+    return (
+        <DragDropContext onDragEnd={_onDragEnd}>
+            <DocumentTree>
+                { menuTree && menuTree.map((parent, px) => {
+                    const { droppableId } = parent;
 
-        <SortableTree pathname={pathname} parents={parents} onSelect={_onSelect} onSort={_onSort} />
-        </div>
+                    const { children } = menuTreeById[droppableId]
+
+                    return (
+                        <DocumentTreeColumn droppableId={droppableId} key={droppableId}>
+                            { children && children.map((child, cx) => {
+                                const { draggableId } = child 
+                                const selected = pathname.includes(child.url)
+                                return (
+                                    <DocumentTreeRow {...child} key={draggableId} selected={selected} index={cx} draggableId={draggableId} onSelect={() => _onSelect(child)} />
+                                )
+                            })}
+                        </DocumentTreeColumn>
+                    )
+
+                })}
+
+                <DocumentTreeColumn>
+                    {JSON.stringify(result)}
+                </DocumentTreeColumn>
+            </DocumentTree>
+        </DragDropContext>        
+    )
+
 }
 
 FinderTree.defaultProps = {

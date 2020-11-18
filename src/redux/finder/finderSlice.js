@@ -298,6 +298,7 @@ const getMenuTreeParent = (parent) => dispatch => {
 
             child = {
                 ...child,
+                parentUrl: parent.url,
                 url: url,
                 type: "treeitem"
             }
