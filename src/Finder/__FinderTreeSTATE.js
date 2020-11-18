@@ -17,14 +17,84 @@ const FinderTree = (props) => {
     const finder = useSelector(state => state.finder)
 
     const pathname = props.location.pathname
+//    const parents = finder.parents
+//    const menuByUrl = finder.menuByUrl
+//    const menuById = finder.menuById
 
-    const menuTree = finder.menuTree
-    const menuTreeById = finder.menuTreeById
+//    const [menuTree, setMenuTree] = useState([])
+//    const [menuTreeById, setMenuTreeById] = useState({})
+
+    let menuTree = finder.menuTree
+    let menuTreeById = finder.menuTreeById
 
     const [result, setResult] = useState(menuTree)
 
     useEffect(() => {
+
         dispatch(getFinderTree({pathname}))
+
+        /*
+
+        const menuTree = parents.map(parent => {
+            const { id, uniqueId, url } = parent
+            const droppableId = "drop-" + id
+
+            if (uniqueId && menuById[uniqueId]) {
+                parent = {
+                    ...menuById[uniqueId],
+                    droppableId: droppableId
+                }
+            } else if (url && menuByUrl[url]) {
+                parent = {
+                    ...menuByUrl[url],
+                    droppableId: "drop-" + url
+                }
+            }
+
+            const children = parent.children && parent.children.map(child => {
+                const { id, uniqueId, url } = child
+                const draggableId = "drag-" + id
+
+                if (uniqueId && menuById[uniqueId]) {
+                    return {
+                        ...menuById[uniqueId],
+                        draggableId: draggableId,
+                    }
+                } else if (url && menuByUrl[url]) {
+                    return {
+                        ...menuByUrl[url],
+                        droppableId: "drag-" + url
+                    }
+                }
+    
+            }) 
+
+            if (children && children.length) {
+                return {
+                    ...parent,
+                    children: children
+                }
+            }
+
+            return parent
+
+        })
+
+        let menuTreeById = {}
+
+        menuTree.map(parent => {
+            menuTreeById[parent.droppableId] = parent
+
+            parent.children && parent.children.map(child => {
+                menuTreeById[child.draggableId] = child
+            })
+        })
+
+        setMenuTree(menuTree)
+        setMenuTreeById(menuTreeById)
+
+        */
+
     }, [pathname])
 
     const _onSelect = ({url}) => {

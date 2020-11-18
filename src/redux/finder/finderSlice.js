@@ -10,7 +10,9 @@ const finderByIdSlice = createSlice({
         isLoading: false,
         parents: [],
         menuByUrl: {},
-        menuById: {}
+        menuById: {},
+        menuTree: [],
+        menuTreeById: {}
     }, 
     reducers: {
         requestFinder(state, action) {
@@ -24,6 +26,18 @@ const finderByIdSlice = createSlice({
                 ...state,
                 isLoading: false,
             }
+        },
+        requestMenuTree(state, action) {
+
+        },
+        receiveMenuTree(state, action) {
+            const { menuTree, menuTreeById } = action.payload
+            return {
+                ...state,
+                menuTree: menuTree,
+                menuTreeById: menuTreeById
+            }
+
         },
         requestMenuByUrl(state, action) {
             return {
@@ -371,8 +385,76 @@ export const sortMenuTree = ({parent, child}) => dispatch => {
 
 }
 
+export const getFinderTree = ({pathname}) => (dispatch, getState) => {
+
+    const state = getState()
+    const finder = state.finder
+    const parents = finder.parents
+    const menuByUrl = finder.menuByUrl
+    const menuById = finder.menuById
+
+    const menuTree = parents.map(parent => {
+        const { id, uniqueId, url } = parent
+        const droppableId = "drop-" + id
+
+        if (uniqueId && menuById[uniqueId]) {
+            parent = {
+                ...menuById[uniqueId],
+                droppableId: droppableId
+            }
+        } else if (url && menuByUrl[url]) {
+            parent = {
+                ...menuByUrl[url],
+                droppableId: "drop-" + url
+            }
+        }
+
+        const children = parent.children && parent.children.map(child => {
+            const { id, uniqueId, url } = child
+            const draggableId = "drag-" + id
+
+            if (uniqueId && menuById[uniqueId]) {
+                return {
+                    ...menuById[uniqueId],
+                    draggableId: draggableId,
+                }
+            } else if (url && menuByUrl[url]) {
+                return {
+                    ...menuByUrl[url],
+                    droppableId: "drag-" + url
+                }
+            }
+
+        }) 
+
+        if (children && children.length) {
+            return {
+                ...parent,
+                children: children
+            }
+        }
+
+        return parent
+
+    })
+
+    let menuTreeById = {}
+
+    menuTree.map(parent => {
+        menuTreeById[parent.droppableId] = parent
+
+        parent.children && parent.children.map(child => {
+            menuTreeById[child.draggableId] = child
+        })
+    })    
+
+    dispatch(receiveMenuTree({menuTree,menuTreeById}))
+
+}
+
 export const { 
     requestFinder, receiveFinder, 
+    requestMenuTree, receiveMenuTree, 
     requestMenuByUrl, receiveMenuByUrl, 
     requestMenuItem, receiveMenuItem, receiveMenuItemChildren, 
     toggleMenuItem, 
