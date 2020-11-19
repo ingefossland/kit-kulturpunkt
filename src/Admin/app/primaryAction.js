@@ -5,17 +5,17 @@ const kpPages = {
         {
             icon: "home",
             title: "Ny forside",
-            url: "/admin/pageHome/new"
+            url: "/kp/pages/new?documentType=pageHome"
         },
         {
             icon: "event",
             title: "Nytt kart",
-            url: "/admin/pageMap/new"
+            url: "/kp/pages/new?documentType=pageMap"
         },
         {
             icon: "event",
             title: "Nytt tema",
-            url: "/admin/pageTopic/new"
+            url: "/kp/pages/new?documentType=pageTopic"
         },
     ]
 }
@@ -26,27 +26,27 @@ const kioskPages = {
         {
             icon: "event",
             title: "Ny mosaikkk",
-            url: "/admin/pageGrid/new"
+            url: "/kp/kiosk/new?documentType=pageGrid"
         },
         {
             icon: "event",
             title: "Ny tidslinje",
-            url: "/admin/pageTimeline/new"
+            url: "/kp/kiosk/new?documentType=pageTimeline"
         },
         {
             icon: "event",
             title: "Nytt bildekart",
-            url: "/admin/pageAnnotate/new"
+            url: "/kp/kiosk/new?documentType=pageAnnotate"
         },
         {
             icon: "event",
             title: "Ny media",
-            url: "/admin/pageMedia/new"
+            url: "/kp/kiosk/new?documentType=pageMedia"
         },
         {
             icon: "event",
             title: "Ny liste",
-            url: "/admin/pageList/new"
+            url: "/kp/kiosk/new?documentType=pageList"
         },
     ]
 }
@@ -57,7 +57,7 @@ const kioskDevice = {
         {
             icon: "bug_report",
             title: "Ny enhet",
-            url: "/admin/device/new"
+            url: "/kp/device/new?documentType=device"
         },
     ]
 }
@@ -68,7 +68,7 @@ export default {
         {
             icon: "event",
             title: "Ny artikkel",
-            url: "/admin/article/new"
+            url: "/kp/article/new?documentType=article"
         },
         kpPages,
         kioskPages,

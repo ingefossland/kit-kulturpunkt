@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
-import { editModel, saveModel } from '../redux/editor';
+import { getParents, editModel, saveModel } from '../redux/editor';
 import qs from 'query-string';
 
 import Editor from "../Editor/Editor"
@@ -14,6 +13,7 @@ const { getUiPreview, getDefaultFormState } = utils
 
 const DocumentEditor = (props) => {
     const { uniqueId, documentType } = props.match.params
+    const pathname = props.location.pathname
     const sq = props.location.search && qs.parse(props.location.search) || {}
 
     const dispatch = useDispatch()
@@ -108,10 +108,10 @@ const DocumentEditor = (props) => {
     const formContext = {
         isLoading: editor && editor.isLoading,
         isSaving: editor && editor.isSaving,
+        parents: editor && editor.parents,
         id: formData && formData.id,
         uniqueId: formData && formData.uniqueId,
         collectionId: formData && formData.collectionId,
-        parents: finder && finder.parents,
         languages: app && app.languages,
         onBack: _onBack,
         onSelect: _onSelect,

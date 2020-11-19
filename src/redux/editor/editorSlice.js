@@ -7,13 +7,44 @@ import schema from "../../schemas/article/section/schema"
 const editorSlide = createSlice({
     name: 'editor',
     initialState: {
-        isLoading: false,
-        isSaving: false,
+        isLoading: undefined,
+        isSaving: undefined,
+        pathname: undefined,
+        uniqueId: undefined,
+        parents: [],
         currentId: undefined,
+        schema: {},
         formData: {},
         dialog: {}
     }, 
     reducers: {
+        requestEditor(state, action) {
+            const { pathname } = action.payload
+            return {
+                ...state,
+                pathname: pathname,
+                isLoading: true,
+            }
+        },
+        receiveEditor(state, action) {
+            const { pathname, uniqueId } = action.payload
+            return {
+                ...state,
+                pathname: pathname,
+                uniqueId: uniqueId,
+                isLoading: false,
+            }
+        },
+        requestParents(state, action) {
+            return state            
+        },
+        receiveParents(state, action) {
+            const { parents } = action.payload
+            return {
+                ...state,
+                parents: parents
+            }
+        },
         requestEdit(state, action) {
             const { uniqueId } = action.payload
 
@@ -94,6 +125,44 @@ const editorSlide = createSlice({
     }
 })
 
+export const getEditor = ({pathname, uniqueId}) => (dispatch, getState) => {
+    dispatch(receiveEditor({pathname}))
+
+    const state = getState()
+    const app = state.app
+    const finder = state.finder
+
+    dispatch(getParents({url: pathname, uniqueId}))
+    dispatch(receiveEditor({pathname, uniqueId}))
+}
+
+export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
+
+    const state = getState()
+    const menuByUrl = state.finder.menuByUrl
+    const menuById = state.finder.menuById
+
+    const pathnames = url.split('/');
+    pathnames.pop()
+
+    const parentUrl = pathnames.join("/")
+
+    let parent = parentUrl && menuByUrl && menuByUrl[parentUrl] || menuById[pathnames.length-1]
+
+    let parents = [];
+
+    while (parent) {
+        parents.push(parent)
+        parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+    }
+
+    parents = parents.filter(parent => parent.uniqueId !== uniqueId)
+
+
+    dispatch(receiveParents({parents: parents.reverse()}))
+  
+}
+
 /** Edit model from uniqueId */
 
 export const editModel = ({modelName = "documents", uniqueId, ...formData}) => dispatch => {
@@ -150,5 +219,12 @@ export const saveModel = ({modelName = "documents", ...formData}) => dispatch =>
 
 }
 
-export const { requestEdit, receiveEdit, requestSave, receiveSave, receiveCurrentId, requestDialog, receiveDialog } = editorSlide.actions
+export const { 
+    requestEditor, receiveEditor, 
+    requestParents, receiveParents,
+    receiveCurrentId, 
+    requestEdit, receiveEdit, 
+    requestSave, receiveSave, 
+    requestDialog, receiveDialog
+} = editorSlide.actions
 export default editorSlide.reducer

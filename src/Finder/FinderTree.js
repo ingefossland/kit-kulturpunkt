@@ -7,7 +7,7 @@ import {
     DocumentInspector,
     DocumentTree,
     DocumentTreeColumn,
-    DocumentTreeRow,
+    DocumentTreeModule,
 } from "../components/DocumentTree/"
 
 import FinderPreview from "./FinderPreview"
@@ -25,6 +25,11 @@ const FinderTree = (props) => {
     const parents = finder.parents
 
     const [result, setResult] = useState(undefined)
+
+    const _onEdit = ({url}) => {
+        const editUrl = url + "/edit"
+        editUrl && props.history.push(editUrl)
+    }
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
@@ -99,7 +104,13 @@ const FinderTree = (props) => {
                                         return (
                                             <Draggable index={cx} draggableId={draggableId} key={draggableId}>
                                                 {(provided, snapshot) => (
-                                                    <DocumentTreeRow {...child} children={hasChildren} draggable={{provided, snapshot}} draggableRef={provided.innerRef} selected={selected} onSelect={() => _onSelect(child)} />
+                                                    <DocumentTreeModule {...child} 
+                                                        children={hasChildren}
+                                                        draggable={{provided, snapshot}}
+                                                        draggableRef={provided.innerRef}
+                                                        selected={selected}
+                                                        onEdit={() => _onEdit(child)}
+                                                        onSelect={() => _onSelect(child)} />
                                                 )}
                                             </Draggable>
                                         )

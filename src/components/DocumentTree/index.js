@@ -1,11 +1,11 @@
 import DocumentTree from "./DocumentTree"
 import DocumentTreeColumn from "./DocumentTreeColumn"
-import DocumentTreeRow from "./DocumentTreeRow"
+import DocumentTreeModule from "./DocumentTreeModule"
 import DocumentInspector from "./DocumentInspector"
 
 export {
     DocumentTree,
     DocumentTreeColumn,
-    DocumentTreeRow,
+    DocumentTreeModule,
     DocumentInspector
 }

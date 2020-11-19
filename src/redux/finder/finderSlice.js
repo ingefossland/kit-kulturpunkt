@@ -172,6 +172,8 @@ export const getParents = ({url}) => (dispatch, getState) => {
 
     let parent = url && menuByUrl && menuByUrl[url] 
 
+    /*
+
     if (!parent && url) {
         const pathnames = url.split('/');
   
@@ -187,6 +189,8 @@ export const getParents = ({url}) => (dispatch, getState) => {
         })
         
     }
+
+    */
 
     let parents = [];
 
