@@ -147,16 +147,18 @@ export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
 
     const parentUrl = pathnames.join("/")
 
-    let parent = parentUrl && menuByUrl && menuByUrl[parentUrl] || menuById[pathnames.length-1]
+    let parent = menuByUrl[parentUrl] || menuById[pathnames.length-1]
 
-    let parents = [];
+    let parents = []
 
     while (parent) {
         parents.push(parent)
         parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
     }
 
-    parents = parents.filter(parent => parent.uniqueId !== uniqueId)
+    if (uniqueId) {
+        parents = parents.filter(parent => parent.uniqueId !== uniqueId)
+    }
 
 
     dispatch(receiveParents({parents: parents.reverse()}))

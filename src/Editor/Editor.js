@@ -123,6 +123,7 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     const formContext = {
         isLoading: editor.isLoading,
         isSaving: editor.isSaving,
+        parents: editor.parents,
 
         languages: languages,
         currentLocale: currentLocale,

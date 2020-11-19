@@ -28,7 +28,7 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
 
     useEffect(() => {
         dispatch(getEditor({pathname, uniqueId}))
-    }, [isLoading])
+    }, [pathname, uniqueId])
 
     return (
         <AppLoader

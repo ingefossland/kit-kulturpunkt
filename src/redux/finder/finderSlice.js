@@ -9,7 +9,7 @@ const finderByIdSlice = createSlice({
         isLoading: false,
         pathname: undefined,
         parents: [],
-        menuByUrl: undefined,
+        menuByUrl: {},
         menuById: {},
     }, 
     reducers: {

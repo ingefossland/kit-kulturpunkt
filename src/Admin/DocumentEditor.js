@@ -106,9 +106,6 @@ const DocumentEditor = (props) => {
     }
 
     const formContext = {
-        isLoading: editor && editor.isLoading,
-        isSaving: editor && editor.isSaving,
-        parents: editor && editor.parents,
         id: formData && formData.id,
         uniqueId: formData && formData.uniqueId,
         collectionId: formData && formData.collectionId,
