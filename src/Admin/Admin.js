@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
 import { getApp, getAppLayout, toggleSearch, toggleSidebar } from '../redux/app';
-import { getFinder, getParents, toggleMenuItem } from '../redux/finder';
+import { getFinder, getParents, toggleMenuItem, getMenuItem } from '../redux/finder';
 
 import _ from "lodash"
 import qs from 'query-string';
@@ -10,6 +10,7 @@ import qs from 'query-string';
 import appData from "./app"
 import AdminRoutes from "./AdminRoutes"
 import AdminLayout from "./AdminLayout"
+import AdminLoader from "./AdminLoader"
 
 const Admin = (props) => {
     const { pathname } = props.location
@@ -18,15 +19,11 @@ const Admin = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getApp(appData))
+        dispatch(getApp({...appData, pathname: pathname}))
     }, [])
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
-
-    useEffect(() => {
-        dispatch(getParents({url: pathname}))
-    }, [pathname])
 
     // date + view
 
@@ -105,28 +102,30 @@ const Admin = (props) => {
     }
 
     return (
-        <AdminLayout
-            app={app}
-            theme={app && app.theme}
-            header={app && app.header}
+        <AdminLoader {...props}>
+            <AdminLayout
+                app={app}
+                theme={app && app.theme}
+                header={app && app.header}
 
-            search={search}
+                search={search}
 
-            sidebar={app && app.sidebar}
+                sidebar={app && app.sidebar}
 
-            primaryAction={app.primaryAction}
+                primaryAction={app.primaryAction}
 
-            menu={app && app.menu}
-            menuByUrl={finder && finder.menuByUrl}
-            currentUrl={pathname}
-            
-            parents={finder && finder.parents}
+                menu={app && app.menu}
+                menuByUrl={finder && finder.menuByUrl}
+                currentUrl={pathname}
+                
+                parents={finder && finder.parents}
 
-            onSelect={_onSelect}
-            onToggle={_onToggle}
-            >
-                <AdminRoutes {...props} />
-        </AdminLayout>
+                onSelect={_onSelect}
+                onToggle={_onToggle}
+                >
+                    <AdminRoutes {...props} />
+            </AdminLayout>
+        </AdminLoader>
     )
 }
 

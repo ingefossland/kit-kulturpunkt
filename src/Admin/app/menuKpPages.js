@@ -1,6 +1,7 @@
 export default {
     role: "group",
     hidden: true,
+    title: "Kiosk",
     pathname: "pages",
     children: [
         {

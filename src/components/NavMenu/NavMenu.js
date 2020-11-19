@@ -75,7 +75,7 @@ const NavMenu = ({className, menu = [], menuByUrl, currentUrl, onSelect, onToggl
 
         }
 
-        if (children) {
+        if (children && children.length) {
             return (
                 <NavMenuItem key={index} role={role || "treeitem"} selected={selected} expanded={expanded} onToggle={(event) => _onToggle(item, event)}>
                     { renderLink(item) }

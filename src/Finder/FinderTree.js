@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFinderTree, getMenuItem, getParents } from '../redux/finder';
-import { saveModel } from '../redux/modelsById';
+import { sortMenuTree, moveMenuItem } from '../redux/finder';
 
 import {
     DocumentTree,
@@ -12,110 +11,84 @@ import {
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const FinderTree = (props) => {
+    const pathname = props.location.pathname
+
     const dispatch = useDispatch()
 
     const finder = useSelector(state => state.finder)
+    const menuByUrl = finder.menuByUrl
+    const parents = finder.parents
 
-    const pathname = props.location.pathname
-
-    const menuTree = finder.menuTree
-    const menuTreeById = finder.menuTreeById
-
-    const [result, setResult] = useState(menuTree)
-
-    useEffect(() => {
-        dispatch(getFinderTree({pathname}))
-    }, [pathname])
+    const [result, setResult] = useState(undefined)
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
     }
 
-    const _onDragEnd = (result) => {
+    const _onDragEnd = (results) => {
 
-        setResult(result)
+        const { draggableId, source, destination, combine } = results
 
-        const { draggableId, source, destination, combine } = result
+        if (source && destination && 
+            source.droppableId !== destination.droppableId &&
+            draggableId !== destination.droppableId) {
 
-        if (source && destination && source.droppableId !== destination.droppableId) {
+            dispatch(sortMenuTree({
+                destination: {
+                    ...menuByUrl[destination.droppableId],
+                    ...destination,
+                },
+                source: {
+                    ...menuByUrl[source.droppableId],
+                    ...source,
+                },
+                item: menuByUrl[draggableId]
+            }))
 
-            /*
-
-            menuTreeById[destination.droppableId].children = [
-                ...menuTreeById[destination.droppableId].children,
-                menuTreeById[source.droppableId].children[source.index]
-            ]
-
-            menuTreeById[source.droppableId].children.splice(source.index, 1)
-
-            */
-
-
-
-            const parentId = menuTreeById[destination.droppableId].id || null
-            const id = menuTreeById[draggableId].id
-
-            if (id && parentId) {
-                dispatch(saveModel({id, parentId}))
-            } else if (id) {
-                dispatch(saveModel({id, parentId: null}))
-            }
-
-            const destinationUrl = menuTreeById[destination.droppableId].url
-            destinationUrl && props.history.push(destinationUrl)
-
-
-            
         } else if (combine) {
 
-            /*
-
-            if (!menuTreeById[combine.draggableId].children) {
-                menuTreeById[combine.draggableId].children = [menuTreeById[draggableId]]
-            } else {
-                menuTreeById[combine.draggableId].children = [
-                    ...menuTreeById[combine.draggableId].children,
-                    menuTreeById[draggableId]
-                ]
-            }
-
-            menuTreeById[source.droppableId].children.splice(source.index, 1)
-
-            */
-
-
-            const parentId = menuTreeById[combine.draggableId].id
-            const id = menuTreeById[draggableId].id
-
-            if (id && parentId) {
-                dispatch(saveModel({id, parentId}))
-            }
-
-            const selectUrl = menuTreeById[combine.draggableId].parentUrl
-            selectUrl && props.history.push(selectUrl)
-            
+            dispatch(sortMenuTree({
+                destination: {
+                    ...menuByUrl[combine.draggableId],
+                    ...destination,
+                },
+                source: {
+                    ...menuByUrl[source.droppableId],
+                    ...source,
+                },
+                item: menuByUrl[draggableId]
+            }))            
 
         }
 
-    }
+        setResult({results})
 
+       
+    }
+    
     return (
         <DragDropContext onDragEnd={_onDragEnd}>
             <DocumentTree>
-                { menuTree && menuTree.map((parent, px) => {
-                    const { children, droppableId } = parent;
+                { parents && parents.map((parent, px) => {
+                    const droppableId = parent.url
+
+                    const droppableParent = {
+                        ...menuByUrl[droppableId],
+                    }
 
                     return (
                         <Droppable index={px} droppableId={droppableId} isCombineEnabled={true} key={droppableId}>
                             {(provided, snapshot) => (
                                 <DocumentTreeColumn droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
-                                    { children && children.map((child, cx) => {
-                                        const { uniqueId, draggableId } = child 
+                                    { droppableParent.children && droppableParent.children.map((child, cx) => {
+                                        const draggableId = child.url
+                                        const hasChildren = menuByUrl[draggableId].children && menuByUrl[draggableId].children.length && true
                                         const selected = pathname.includes(child.url)
+
                                         return (
                                             <Draggable index={cx} draggableId={draggableId} key={draggableId}>
                                                 {(provided, snapshot) => (
-                                                    <DocumentTreeRow {...child} draggable={{provided, snapshot}} draggableRef={provided.innerRef} selected={selected} onSelect={() => _onSelect(child)} />
+                                                    <DocumentTreeRow {...child} children={hasChildren} draggable={{provided, snapshot}} draggableRef={provided.innerRef} selected={selected} onSelect={() => _onSelect(child)} />
                                                 )}
                                             </Draggable>
                                         )
@@ -133,6 +106,8 @@ const FinderTree = (props) => {
             </DocumentTree>
         </DragDropContext>        
     )
+
+
 
 }
 

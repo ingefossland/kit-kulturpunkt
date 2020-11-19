@@ -1,43 +1,43 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
-import { receiveSave } from "../modelsById/";
+import { saveModel } from "../modelsById/";
 
 const finderByIdSlice = createSlice({
     name: 'finder',
     initialState: {
-        isSorting: false,
         isLoading: false,
+        pathname: undefined,
         parents: [],
-        menuByUrl: {},
+        menuByUrl: undefined,
         menuById: {},
-        menuTree: [],
-        menuTreeById: {}
     }, 
     reducers: {
         requestFinder(state, action) {
+            const { pathname } = action.payload
             return {
                 ...state,
+                pathname: pathname,
                 isLoading: true,
             }
         },
         receiveFinder(state, action) {
+            const { pathname } = action.payload
             return {
                 ...state,
+                pathname: pathname,
                 isLoading: false,
             }
         },
-        requestMenuTree(state, action) {
-
+        requestParents(state, action) {
+            return state            
         },
-        receiveMenuTree(state, action) {
-            const { menuTree, menuTreeById } = action.payload
+        receiveParents(state, action) {
+            const { parents } = action.payload
             return {
                 ...state,
-                menuTree: menuTree,
-                menuTreeById: menuTreeById
+                parents: parents
             }
-
         },
         requestMenuByUrl(state, action) {
             return {
@@ -60,31 +60,39 @@ const finderByIdSlice = createSlice({
                     ...state.menuByUrl,
                     [url]: {
                         isLoading: true,
+                        url: url,
                         ...item,
                     }
                 }
             }
         },
         receiveMenuItem(state, action) {
-            const { uniqueId, url, ...item } = action.payload
+            const { id, url, ...item } = action.payload
 
-            const menuItem = {
-                isLoading: false,
-                uniqueId: uniqueId,
-                url: url,
-                ...item,
-            }
+            const count = item.children && item.children.length || null
 
-            if (uniqueId) {
+            if (id) {
                 return {
                     ...state,
-                    menuByUrl: {
-                        ...state.menuByUrl,
-                        [url]: menuItem
-                    },
                     menuById: {
                         ...state.menuById,
-                        [uniqueId]: menuItem
+                        [id]: {
+                            ...item,
+                            id: id,
+                            isLoading: false,
+                            url: url,
+                            count: count,
+                        }
+                    },
+                    menuByUrl: {
+                        ...state.menuByUrl,
+                        [url]: {
+                            ...item,
+                            id: id,
+                            isLoading: false,
+                            count: count,
+                            url: url,
+                        }
                     }
                 }
             }
@@ -93,35 +101,25 @@ const finderByIdSlice = createSlice({
                 ...state,
                 menuByUrl: {
                     ...state.menuByUrl,
-                    [url]: menuItem
-                }
-            }
-        },
-        toggleMenuItem(state, action) {
-            const { url } = action.payload
-            return {
-                ...state,
-                menuByUrl: {
-                    ...state.menuByUrl,
                     [url]: {
-                        ...state.menuByUrl[url],
-                        expanded: !state.menuByUrl[url].expanded
-                    }
-                }
-            }
-
-        },
-        receiveMenuItemChildren(state, action) {
-            const { url, count, children } = action.payload
-            return {
-                ...state,
-                menuByUrl: {
-                    ...state.menuByUrl,
-                    [url]: {
-                        ...state.menuByUrl[url],
+                        ...item,
+                        id: id,
                         count: count,
-                        children: children
+                        isLoading: false,
+                        url: url,
                     }
+                }
+            }
+        },
+        moveMenuItem(state, action) {
+            const { source, destination } = action.payload
+
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [source.url]: source,
+                    [destination.url]: destination  
                 }
             }
 
@@ -140,131 +138,142 @@ const finderByIdSlice = createSlice({
             }
 
         },
-        requestParents(state, action) {
-            return state            
-        },
-        receiveParents(state, action) {
-            const { parents } = action.payload
-            return {
-                ...state,
-                parents: parents
-            }
-        }
     }
 })
 
-export const getFinder = ({menu = []}) => dispatch => {
-    dispatch(requestFinder())
-    menu && dispatch(getMenuByUrl({menu}))
+export const getFinder = ({menu, pathname = undefined}) => (dispatch, getState) => {
+
+    const state = getState()
+    const menuByUrl = state.finder.menuByUrl
+    const menuItem = menuByUrl && menuByUrl[pathname]
+
+    !menuByUrl && dispatch(requestFinder({pathname}))
+
+    menu && menu.map(item => {
+        dispatch(getMenuItem({...item, level: 1}))
+    })
+
+    menuItem && dispatch(getParents(menuItem))
+
+    dispatch(receiveFinder({pathname}))
+
 }
 
-export const getParents = ({url}) => (dispatch, getState) => {
 
+export const getParents = ({id, url}) => (dispatch, getState) => {
     dispatch(requestParents())
 
     const state = getState()
     const menuByUrl = state.finder.menuByUrl
+    const menuById = state.finder.menuById
 
     let parents = [];
-  
-    const pathnames = url.split('/')
-    let urls = []
-  
-    pathnames.forEach((pathname) => {
-        urls.push(pathname)
-        const newUrl = urls.join('/')
-    
-        if (menuByUrl && menuByUrl[newUrl] && menuByUrl[newUrl].title) {
-            parents.push(menuByUrl[newUrl]);
-        }
 
-    });
+    let parent = menuByUrl[url]
 
-    dispatch(receiveParents({parents:parents}))
+    while (parent) {
+        parents.push(parent)
+        parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+    }
+
+    dispatch(receiveParents({parents: parents.reverse()}))
   
 }
 
-export const getMenuByUrl = ({menu = []}) => dispatch => {
-    dispatch(requestMenuByUrl())
-    dispatch(getMenuItem({children:menu}))
-}
-
-export const getMenuItem = (item) => (dispatch, getState) => {
-    const { type = "default", url, children, level = 0} = item
-
-    url && dispatch(requestMenuItem(item))
+export const getMenuItem = (item) => (dispatch) => {
+    const { type = "default", url, children} = item
 
     if (type === "tree") {
         dispatch(getMenuTree(item))
-    } else if (url && url.includes("/tree/")) {
-        dispatch(getMenuTreeItem(item))
     } else if (children) {
-        dispatch(getMenuChildren({children, level}))        
+        dispatch(getMenuParent(item))        
     } else if (url) {
-        dispatch(receiveMenuItem(item))
-    }
-
-
-    /*
-
-
-    */
+        dispatch(getMenuChild(item))
+    } 
     
 }
 
-const getMenuChildren = ({children = [], level = 0}) => dispatch => {
+const getMenuParent = ({children, level = 0, ...parent}) => dispatch => {
+    dispatch(requestMenuItem(parent))
 
-    children.forEach((child) => {
-
-        let item = {
+    children.map((child) => {
+        dispatch(getMenuItem({
             ...child,
-            level: level
-        }
-
-        if (item.children) {
-            dispatch(getMenuChildren({children: item.children, level: level++}))
-        }
-
-        dispatch(receiveMenuItem(item))
-
-    });
-
-}
-
-const getMenuTreeItem = ({url}) => (dispatch, getState) => {
-    const state = getState()
-    const menuByUrl = state.finder.menuByUrl
-
-    const pathnames = url.split('/')
-
-    let urls = []
-
-    // tree nodes
-
-    pathnames.map(pathname => {
-        urls.push(pathname)
-
-        const newUrl = urls.join('/')
-        const menuItem = menuByUrl[newUrl] || {}
-
-        if (menuItem && menuItem.type === "tree") {
-            dispatch(getMenuTree(menuItem))
-        } else if (menuItem && menuItem.children) {
-
-        } else if (pathname.length === 36) {
-
-            dispatch(getMenuTreeNode({
-                url: newUrl,
-                uniqueId: pathname,
-            }))
-        }
-
+            parentUrl: parent.url,
+            level: level + 1
+        }))
     })
 
+    dispatch(receiveMenuItem({
+        ...parent,
+        children: children,
+        level: level,
+    }))
+}
+
+const getMenuChild = ({level, ...child}) => dispatch => {
+    dispatch(requestMenuItem(child))
+    dispatch(receiveMenuItem({
+        ...child,
+        level: level
+    }))
+}
+
+export const getMenuTree = ({level = 0, ...parent}) => dispatch => {
+
+    dispatch(requestMenuItem(parent))
+
+    const { query } = parent
+    const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "modelName,documentType,id,title,uniqueId,parentId"});
+
+    fetch(fetchUrl, {
+        method: "GET",
+        headers: {
+        "Accept": "application/json",
+        },
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(results => {
+        const { models, count } = results
+
+        const parentUrl = parent.url
+
+        const children = models && models.map(child => {
+            const { uniqueId } = child;
+
+            child = {
+                ...child,
+                level: level + 1,
+                parentId: parentUrl,
+                parentUrl: parentUrl,
+                url: parentUrl + "/" + uniqueId,
+                type: "treeitem"
+            }
+
+            dispatch(getMenuTreeNode(child))
+
+            return child
+
+        })
+
+        dispatch(receiveMenuItem({
+            ...parent,
+            id: parentUrl,
+            level: level,
+            parentUrl: parentUrl,
+            children: children,
+            count
+        }))
+
+    })
 
 }
 
 export const getMenuTreeNode = (item) => (dispatch) => {
+
     const { url, uniqueId } = item
 
     const query = {
@@ -290,26 +299,30 @@ export const getMenuTreeNode = (item) => (dispatch) => {
             ...item,
             ...model,
             type: "treeitem",
-            root: url,
+            url: url,
             query: {
                 models: "documents",
                 parentId: model && model.id
             }
         }
 
-        dispatch(getMenuTreeParent(parent))
+        dispatch(getMenuTreeChildren(parent))
     
     })
 
 }
 
-export const getMenuTree = (item) => dispatch => {
-    dispatch(getMenuTreeParent(item))
-}
+export const getMenuTreeChildren = ({level = 0, ...parent}) => (dispatch) => {
 
-const getMenuTreeParent = (parent) => dispatch => {
+    dispatch(requestMenuItem(parent))
 
-    const { query } = parent
+    const { parentUrl } = parent
+
+    const query = {
+        models: "documents",
+        parentId: parent.id
+    }
+
     const fetchUrl = API + '/admin/api/documents/search?' + qs.stringify({...query, fl: "modelName,documentType,id,title,uniqueId,parentId"});
 
     fetch(fetchUrl, {
@@ -328,135 +341,97 @@ const getMenuTreeParent = (parent) => dispatch => {
         const children = models && models.map(child => {
             const { uniqueId } = child;
 
-            const url = parent.root && parent.root + "/" + uniqueId || parent.url + "/tree/" + uniqueId
-
             child = {
                 ...child,
-                parentUrl: parent.url,
-                url: url,
+                parentUrl: parentUrl,
+                level: level + 1,
+                url: parentUrl + "/" + uniqueId,
                 type: "treeitem"
             }
 
-            dispatch(getMenuTreeNode(child))
+            dispatch(receiveMenuItem(child))
 
             return child
 
         })
 
         if (children && children.length) {
-            dispatch(receiveMenuItem({
+            parent = {
                 ...parent,
+                level: level,
                 count: count,
                 children: children
-            }))
-        } else {
-            dispatch(receiveMenuItem(parent))
+            }
         }
-
+ 
+        dispatch(receiveMenuItem({
+            ...parent,
+            level: level
+        }))
+         
     })
 
 }
 
-export const sortMenuTree = ({parent, child}) => dispatch => {
-
-    const url = API + '/admin/api/documents';
-
-    const formData = {
-        uniqueId: child.uniqueId,
-        parentId: parent.id,
-    }
-
-    fetch(url, {
-        method: "POST",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json; charset=utf-8",
-        },
-        body: JSON.stringify(formData)
-    })
-    .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error)
-    )
-    .then(formData => {
-        dispatch(receiveSave(formData))
-        dispatch(getMenuTreeItem(parent))
-    })
-
-}
-
-export const getFinderTree = ({pathname}) => (dispatch, getState) => {
+export const sortMenuTree = ({source, destination, item}) => (dispatch, getState) => {
 
     const state = getState()
     const finder = state.finder
-    const parents = finder.parents
     const menuByUrl = finder.menuByUrl
     const menuById = finder.menuById
 
-    const menuTree = parents.map(parent => {
-        const { id, uniqueId, url } = parent
-        const droppableId = "drop-" + id
+    const itemNode = item.id && menuById[item.id]
 
-        if (uniqueId && menuById[uniqueId]) {
-            parent = {
-                ...menuById[uniqueId],
-                droppableId: droppableId
-            }
-        } else if (url && menuByUrl[url]) {
-            parent = {
-                ...menuByUrl[url],
-                droppableId: "drop-" + url
-            }
-        }
+    let sourceNode = source.url && {
+        ...menuByUrl[source.url],
+        children: [...menuByUrl[source.url].children]
+    }
 
-        const children = parent.children && parent.children.map(child => {
-            const { id, uniqueId, url } = child
-            const draggableId = "drag-" + id
+    sourceNode.children.splice(source.index, 1)
 
-            if (uniqueId && menuById[uniqueId]) {
-                return {
-                    ...menuById[uniqueId],
-                    draggableId: draggableId,
-                }
-            } else if (url && menuByUrl[url]) {
-                return {
-                    ...menuByUrl[url],
-                    droppableId: "drag-" + url
-                }
-            }
+    let destinationNode = destination.url && {
+        ...menuByUrl[destination.url],
+        children: menuByUrl[destination.url].children && [...menuByUrl[destination.url].children, itemNode] || [itemNode]
+    }
 
-        }) 
 
-        if (children && children.length) {
-            return {
-                ...parent,
-                children: children
-            }
-        }
+    dispatch(receiveMenuItem({
+        ...sourceNode,
+    }))
 
-        return parent
+    dispatch(receiveMenuItem({
+        ...destinationNode,
+    }))
 
-    })
+    dispatch(receiveMenuItem({
+        ...itemNode,
+        parentUrl: destinationNode.url,
+        parentId: destinationNode.id
+    }))
 
-    let menuTreeById = {}
+    const id = itemNode.id;
+    const parentId = destinationNode.id
 
-    menuTree.map(parent => {
-        menuTreeById[parent.droppableId] = parent
-
-        parent.children && parent.children.map(child => {
-            menuTreeById[child.draggableId] = child
-        })
-    })    
-
-    dispatch(receiveMenuTree({menuTree,menuTreeById}))
+    if (id && parentId === destinationNode.url) {
+        dispatch(saveModel({
+            id: id,
+            parentId: null
+        }))
+    } else if (id && parentId) {
+        dispatch(saveModel({
+            id: id,
+            parentId: parentId
+        }))
+    }
 
 }
 
 export const { 
     requestFinder, receiveFinder, 
-    requestMenuTree, receiveMenuTree, 
     requestMenuByUrl, receiveMenuByUrl, 
-    requestMenuItem, receiveMenuItem, receiveMenuItemChildren, 
-    toggleMenuItem, 
+    requestMenuTree, receiveMenuTree, 
+    requestMenuTreeItem, receiveMenuTreeItem, 
+    requestMenuItem, receiveMenuItem, 
+    toggleMenuItem, moveMenuItem,
     requestParents, receiveParents } = finderByIdSlice.actions
 export default finderByIdSlice.reducer
