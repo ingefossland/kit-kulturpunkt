@@ -28,10 +28,6 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
         dispatch(getAppLayout("editor"))
     }, [isLoading, isSaving])
 
-    useEffect(() => {
-        dispatch(getFinder({pathname}))
-    }, [pathname, menuItem.isLoading])
-
     return (
         <AppLoader
             isLoading={isLoading}

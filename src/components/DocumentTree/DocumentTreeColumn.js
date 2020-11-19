@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     column: {
+        position: "relative",
         flexBasis: 0,
         flewGrow: 1,
 
@@ -22,12 +23,9 @@ const useStyles = makeStyles(theme => ({
 
         "&[data-is-dragging-over=true]": {
             backgroundColor: theme.palette.divider
-
-            //            backgroundColor: "yellow"
         },
 
         "&[aria-expanded=true]": {
-//            width: theme.spacing(7),
 
             "&:hover": {
                 width: theme.spacing(32),

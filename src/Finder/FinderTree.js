@@ -10,6 +10,8 @@ import {
     DocumentTreeRow,
 } from "../components/DocumentTree/"
 
+import FinderPreview from "./FinderPreview"
+
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const FinderTree = (props) => {
@@ -112,7 +114,7 @@ const FinderTree = (props) => {
             </DragDropContext>        
 
             <DocumentTreeColumn>
-                <DocumentInspector {...menuItem} />
+                <FinderPreview model={menuItem} />
             </DocumentTreeColumn>
         </DocumentTree>
     )

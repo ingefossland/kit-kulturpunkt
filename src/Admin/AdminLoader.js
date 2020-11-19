@@ -8,6 +8,7 @@ const AdminLoader = ({children, ...props}) => {
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
+
     const menuByUrl = finder.menuByUrl
     const menuItem = menuByUrl && menuByUrl[pathname]
 

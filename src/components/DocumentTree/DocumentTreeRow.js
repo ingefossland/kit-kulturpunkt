@@ -2,6 +2,7 @@ import React, { forwardRef} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton"
 import SelectIcon from "@material-ui/icons/ChevronRight"
+import EditIcon from "@material-ui/icons/Edit"
 import DragHandle from '@material-ui/icons/DragHandle';
 
 import ModuleTitle from "./ModuleTitle"
@@ -20,6 +21,11 @@ const useStyles = makeStyles(theme => ({
         minWidth: theme.spacing(16),
         overflow: "hidden",
 
+        "& + $module": {
+            borderTop: "1px solid",
+            borderColor: theme.palette.divider
+        },
+
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected,
         },
@@ -29,14 +35,21 @@ const useStyles = makeStyles(theme => ({
             maxWidth: theme.spacing(32),
             backgroundColor: "white",
             boxShadow: theme.shadows[2],
+
+            "& $toolbar": {
+                display: "none"
+            }
+
         },
 
         "&[data-is-target=true]": {
-            backgroundColor: theme.palette.divider
+            backgroundColor: theme.palette.divider,
+
+            "& $toolbar": {
+                display: "none"
+            }
+
         },
-    },
-    dragHandle: {
-//        margin: theme.spacing(1)
     },
     content: {
         flexBasis: 0,
@@ -68,9 +81,18 @@ const useStyles = makeStyles(theme => ({
             marginLeft: theme.spacing(1)
         }
     },
-    select: {
+    dragHandle: {
+        margin: theme.spacing(.5)
+    },
+    toolbar: {
         position: "absolute",
         right: 0,
+        margin: theme.spacing(.5),
+
+        "& > * + *": {
+            marginLeft: theme.spacing(-1)
+        }
+
     }
     
 }));
@@ -89,7 +111,29 @@ const DocumentContent = ({url, uniqueId, title, documentType, onClick}) => {
 
 }
 
-const DocumentTreeRow = ({draggable, selected, children, onSelect, ...props}) => {
+const Toolbar = ({children, onSelect, onEdit}) => {
+
+    const classes = useStyles()
+
+    return (
+        <div className={classes.toolbar}>
+
+                <IconButton  onClick={onSelect}>
+                    <EditIcon />
+                </IconButton>
+
+                {children && 
+                    <IconButton  onClick={onSelect}>
+                        <SelectIcon />
+                    </IconButton>
+                }
+
+        </div>
+    )
+
+}
+
+const DocumentTreeRow = ({draggable, selected, ...props}) => {
 
     const classes = useStyles()
 
@@ -109,13 +153,8 @@ const DocumentTreeRow = ({draggable, selected, children, onSelect, ...props}) =>
                 <IconButton {...provided.dragHandleProps} className={classes.dragHandle}>
                     <DragHandle />
                 </IconButton>
-
-                <DocumentContent {...props} onClick={onSelect} />
-                {children && 
-                    <IconButton className={classes.select} onClick={onSelect}>
-                        <SelectIcon />
-                    </IconButton>
-                }
+                <DocumentContent {...props} />
+                <Toolbar {...props} />
             </div>
         )   
 
