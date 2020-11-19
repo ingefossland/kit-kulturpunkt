@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { sortMenuTree, moveMenuItem } from '../redux/finder';
+import qs from 'query-string';
 
 import {
+    DocumentInspector,
     DocumentTree,
     DocumentTreeColumn,
     DocumentTreeRow,
@@ -17,12 +19,19 @@ const FinderTree = (props) => {
 
     const finder = useSelector(state => state.finder)
     const menuByUrl = finder.menuByUrl
+    const menuItem = menuByUrl && menuByUrl[pathname]
     const parents = finder.parents
 
     const [result, setResult] = useState(undefined)
 
     const _onSelect = ({url}) => {
         url && props.history.push(url)
+    }
+
+    const _onCreateChild = ({url, id}) => {
+        const parentId = Number.isInteger(id) && id || null
+        const createUrl = url && url + "/new?" + qs.stringify({documentType: "pageTopic", parentId: parentId})
+        createUrl && props.history.push(createUrl)
     }
 
     const _onDragEnd = (results) => {
@@ -67,8 +76,8 @@ const FinderTree = (props) => {
     }
     
     return (
-        <DragDropContext onDragEnd={_onDragEnd}>
-            <DocumentTree>
+        <DocumentTree>
+            <DragDropContext onDragEnd={_onDragEnd}>
                 { parents && parents.map((parent, px) => {
                     const droppableId = parent.url
 
@@ -82,7 +91,7 @@ const FinderTree = (props) => {
                                 <DocumentTreeColumn droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
                                     { droppableParent.children && droppableParent.children.map((child, cx) => {
                                         const draggableId = child.url
-                                        const hasChildren = menuByUrl[draggableId].children && menuByUrl[draggableId].children.length && true
+                                        const hasChildren = menuByUrl[draggableId] && menuByUrl[draggableId].children && menuByUrl[draggableId].children.length && true
                                         const selected = pathname.includes(child.url)
 
                                         return (
@@ -93,18 +102,19 @@ const FinderTree = (props) => {
                                             </Draggable>
                                         )
                                     })}
+                                    <button onClick={() => _onCreateChild(parent)}>New child</button>
                                 </DocumentTreeColumn>
                             )}
                         </Droppable>
                     )
 
                 })}
+            </DragDropContext>        
 
-                <DocumentTreeColumn>
-                    {JSON.stringify(result)}
-                </DocumentTreeColumn>
-            </DocumentTree>
-        </DragDropContext>        
+            <DocumentTreeColumn>
+                <DocumentInspector {...menuItem} />
+            </DocumentTreeColumn>
+        </DocumentTree>
     )
 
 

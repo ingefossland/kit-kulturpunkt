@@ -17,6 +17,18 @@ const useStyles = makeStyles(theme => ({
         border: "1px solid",
         borderColor: theme.palette.divider,
 
+        "& > *": {
+            flexBasis: 0,
+            flexGrow: 1,
+            width: "auto",
+
+            "&:last-child": {
+                minWidth: "50%"
+            }
+
+
+        },
+
         "& > * + *": {
             borderLeft: "1px solid",
             borderColor: theme.palette.divider

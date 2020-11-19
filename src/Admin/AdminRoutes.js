@@ -11,7 +11,7 @@ const AdminRoutes = (props) => {
     return (
         <Switch>
             <Route path="/:appRoot/media/:parents*/:uniqueId/edit" component={ MediaEditor } />
-            <Route path="/:appRoot/:parents*/:documentType/new" component={ DocumentEditor } />
+            <Route path="/:appRoot/:parents*/new" component={ DocumentEditor } />
             <Route path="/:appRoot/:parents*/:uniqueId/edit" component={ DocumentEditor } />
             <Route path="/:appRoot/:parents*" component={ FinderLoader } />
             <Route path="/:appRoot" component={ FinderLoader } />

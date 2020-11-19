@@ -14,8 +14,10 @@ const useStyles = makeStyles(theme => ({
         position: "relative",
         display: "flex",
         alignItems: "center",
+        width: "auto",
+        width: "100%",
         maxWidth: "100%",
-        minWidth: 256,
+        minWidth: theme.spacing(16),
         overflow: "hidden",
 
         "&[aria-selected=true]": {
@@ -23,8 +25,8 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[data-is-dragging=true]": {
-            minWidth: 192,
-            maxWidth: 256,
+            minWidth: theme.spacing(16),
+            maxWidth: theme.spacing(32),
             backgroundColor: "white",
             boxShadow: theme.shadows[2],
         },
@@ -40,7 +42,8 @@ const useStyles = makeStyles(theme => ({
         flexBasis: 0,
         flexGrow: 1,
 
-        maxWidth: 256 - 48,
+        width: "100%",
+//        maxWidth: 256 - 48,
 
         marginTop: 8,
         marginBottom: 8,

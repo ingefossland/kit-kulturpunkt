@@ -54,7 +54,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const DocumentTreeModule = ({uniqueId, title, description, documentType, selectable, selected, onClick}) => {
+const FinderPreview = ({uniqueId, title, description, documentType, selectable, selected, onClick}) => {
 
     const classes = useStyles()
 
@@ -77,4 +77,4 @@ const DocumentTreeModule = ({uniqueId, title, description, documentType, selecta
     
 }
 
-export default DocumentTreeModule
+export default FinderPreview

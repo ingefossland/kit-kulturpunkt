@@ -14,6 +14,7 @@ const { getUiPreview, getDefaultFormState } = utils
 
 const DocumentEditor = (props) => {
     const { uniqueId, documentType } = props.match.params
+    const sq = props.location.search && qs.parse(props.location.search) || {}
 
     const dispatch = useDispatch()
 
@@ -25,17 +26,15 @@ const DocumentEditor = (props) => {
     // create new
 
     useEffect(() => {
-        const { search } = props.location
-        const sq = search && qs.parse(search) || {}
-
-        documentType && dispatch(editModel({
+        sq.documentType && dispatch(editModel({
             collectionId: app.collectionId,
             schemaId: 1,
             locale: "no",
-            documentType: documentType,
+            parentId: sq.parentId || null,
+            documentType: sq.documentType,
             content: sq.content && JSON.parse(sq.content) || {}
         }))
-    }, [documentType])
+    }, [sq.documentType])
 
     // load uniqueId
 
@@ -62,8 +61,8 @@ const DocumentEditor = (props) => {
           
             if (key === "uniqueId") {
                 value = uniqueId
-            } else if (key === "documentType") {
-                value = uniqueId
+            } else if (key === "new") {
+//                value = uniqueId + "/edit"
             } else {
                 value = params[key];
             }
@@ -80,7 +79,7 @@ const DocumentEditor = (props) => {
 
         }
 
-        location = location.replace("new", "edit");
+        location = location.replace("new", uniqueId + "/edit");
         props.history.replace(location);
 
     }
@@ -121,7 +120,8 @@ const DocumentEditor = (props) => {
 
     // get schemas based on documentType
 
-    const modelType = uniqueId && formData.documentType || documentType
+//    const modelType = uniqueId && formData.documentType || documentType
+    const modelType = formData.documentType // || documentType
     const documentModel = modelType && "documents/"+modelType 
     const model = schemasByName && schemasByName[documentModel]
 
@@ -146,7 +146,7 @@ const DocumentEditor = (props) => {
 
         dispatch(saveModel(formData))
 
-        if (documentType && !uniqueId && formData.uniqueId) {
+        if (!uniqueId && formData.uniqueId) {
             _onHistory(formData.uniqueId)
         }
 
@@ -154,7 +154,7 @@ const DocumentEditor = (props) => {
 
 
     return (
-        <EditorLoader formData={formData} schema={schema} uiSchema={uiSchema}>
+        <EditorLoader formData={formData} schema={schema} uiSchema={uiSchema} {...props}>
             <Editor {...props}
                 schema={schema}
                 uiSchema={uiSchema}

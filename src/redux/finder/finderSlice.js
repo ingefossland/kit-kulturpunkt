@@ -56,6 +56,7 @@ const finderByIdSlice = createSlice({
             const { url, ...item } = action.payload
             return {
                 ...state,
+                isLoading: true,
                 menuByUrl: {
                     ...state.menuByUrl,
                     [url]: {
@@ -74,6 +75,7 @@ const finderByIdSlice = createSlice({
             if (id) {
                 return {
                     ...state,
+                    isLoading: false,
                     menuById: {
                         ...state.menuById,
                         [id]: {
@@ -99,6 +101,7 @@ const finderByIdSlice = createSlice({
 
             return {
                 ...state,
+                isLoading: false,
                 menuByUrl: {
                     ...state.menuByUrl,
                     [url]: {
@@ -153,23 +156,39 @@ export const getFinder = ({menu, pathname = undefined}) => (dispatch, getState) 
         dispatch(getMenuItem({...item, level: 1}))
     })
 
-    menuItem && dispatch(getParents(menuItem))
+    menuItem && dispatch(getParents(menuItem)) || dispatch(getParents({url: pathname}))
 
     dispatch(receiveFinder({pathname}))
 
 }
 
 
-export const getParents = ({id, url}) => (dispatch, getState) => {
+export const getParents = ({url}) => (dispatch, getState) => {
     dispatch(requestParents())
 
     const state = getState()
     const menuByUrl = state.finder.menuByUrl
     const menuById = state.finder.menuById
 
-    let parents = [];
+    let parent = url && menuByUrl && menuByUrl[url] 
 
-    let parent = menuByUrl[url]
+    if (!parent && url) {
+        const pathnames = url.split('/');
+  
+        let path = [], parentUrl;
+
+        pathnames.forEach((pathname) => {
+            path.push(pathname)
+            parentUrl = path.join("/")
+        
+            if (menuByUrl && menuByUrl[parentUrl]) {
+                parent = menuByUrl[parentUrl]
+            }
+        })
+        
+    }
+
+    let parents = [];
 
     while (parent) {
         parents.push(parent)
