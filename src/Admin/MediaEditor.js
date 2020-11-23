@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
 import { editModel, saveModel } from '../redux/editor';
 
 import Editor from "../Editor/Editor"
@@ -17,10 +16,6 @@ const MediaEditor = (props) => {
     const { uniqueId } = props.match.params
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getAppLayout("editor"))
-    }, [])
 
     useEffect(() => {
         uniqueId && dispatch(editModel({modelName: "media", uniqueId: uniqueId}))
@@ -43,7 +38,6 @@ const MediaEditor = (props) => {
     const formContext = {
         isLoading: editor && editor.isLoading,
         isSaving: editor && editor.isSaving,
-        parents: useSelector(state => state.app.parents),
         onBack: _onBack,
         onSelect: _onSelect,
     }
@@ -79,7 +73,7 @@ const MediaEditor = (props) => {
 
 
     return (
-        <EditorLoader formData={formData} schema={schema} uiSchema={uiSchema}>
+        <EditorLoader formData={formData} schema={schema} uiSchema={uiSchema} {...props}>
             <Editor {...props}
                 schema={schema}
                 uiSchema={uiSchema}

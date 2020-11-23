@@ -17,9 +17,9 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const uniqueId = editor.formData && editor.formData.uniqueId
 
     const title = formData.title || app && app.title || "Editor"
-    const description = app.isLoading && "Loading app" || editor.isLoading && "Loading editor" || !schema && "Loading schema" || !uiSchema && "Loading uiSchema" || "Editor loaded"
-
+    const description = app.isLoading && "Loading app ..." || editor.isLoading && "Loading editor ..." || !schema && "Loading schema ..." || !uiSchema && "Loading uiSchema ..." || "Editor loaded"
     const isLoading = app.isLoading || finder.isLoading || !finder.menuById || editor.isLoading || false
+    const icon = app.isLoading && app.icon || finder.isLoading && app.icon || <EditorIcon color={app.theme.palette.primary.main} />
 
     const dispatch = useDispatch()
 
@@ -30,7 +30,7 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     return (
         <Loader
             isLoading={isLoading}
-            icon={<EditorIcon />}
+            icon={icon}
             title={title}
             description={description}>
                 {children}

@@ -19,12 +19,12 @@ const templates = {
 const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
     const dispatch = useDispatch()
 
-    const { pathname, search } = props.location
+    const app = useSelector(state => state.app)
+    const finder = useSelector(state => state.finder)
 
     // set query
 
-    const app = useSelector(state => state.app)
-
+    const pathname = props.location.pathname
     const sq = props.location.search && qs.parse(props.location.search)
 
     query = {
@@ -71,7 +71,7 @@ const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
 
     if (ResultsTemplate) {
         return (
-            <FinderLayout>
+            <FinderLayout {...finder}>
                 <ResultsTemplate {...props} {...currentSearch} onPage={_onPage} />
             </FinderLayout>
         )

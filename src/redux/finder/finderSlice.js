@@ -44,7 +44,7 @@ const finderByIdSlice = createSlice({
         requestMenuByUrl(state, action) {
             return {
                 ...state,
-//                menuByUrl: {}
+                menuByUrl: {}
             }
         },
         receiveMenuByUrl(state, action) {
@@ -176,17 +176,28 @@ export const getFinder = ({menu, pathname = undefined}) => (dispatch, getState) 
     const menuItem = menuByUrl && menuByUrl[pathname]
 
     !menuByUrl && dispatch(requestFinder({pathname}))
+    //dispatch(requestFinder({pathname}))
 
     menu && menu.map(item => {
         dispatch(getMenuItem({...item, level: 1}))
     })
 
     menuItem && dispatch(getParents(menuItem)) || dispatch(getParents({url: pathname}))
+//    dispatch(getParents({url: pathname}))
 
     dispatch(receiveFinder({pathname}))
 
 }
 
+export const getMenu = ({menu, pathname}) => (dispatch, getState) => {
+
+    dispatch(requestMenuByUrl())
+
+    menu && menu.map(item => {
+        dispatch(getMenuItem({...item, level: 1}))
+    })
+    
+}
 
 export const getParents = ({url}) => (dispatch, getState) => {
     dispatch(requestParents())

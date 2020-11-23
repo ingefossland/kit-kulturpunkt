@@ -1,13 +1,15 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import Admin from "./Admin"
+import KulturPunkt from "./KpApp"
+import Kiosk from "./KioskApp"
 
 const AppRoutes = (props) => {
 
     return (
         <Switch>
-            <Route path="/" component={Admin} />
+            <Route path="/kiosk" component={Kiosk} />
+            <Route path="/" component={KulturPunkt} />
         </Switch>
     )
 }

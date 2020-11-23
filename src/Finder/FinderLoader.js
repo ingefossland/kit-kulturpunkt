@@ -3,8 +3,6 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAppLayout } from '../redux/app';
 import { getFinder } from '../redux/finder';
 
-import AdminLoader from "../Admin/AdminLoader"
-
 import { Loader } from "../components/"
 import { EditorIcon } from "@kit-ui/icons"
 
@@ -20,7 +18,7 @@ const FinderLoader = ({children, ...props}) => {
     const title = menuItem && menuItem.title || app && app.title
     const description = menuItem.isLoading && "Loading menuItem ..." || finder.isLoading && "Loading finder ..." || "Finder loaded"
 
-    const isLoading = menuItem.isLoading || finder.isLoading || app.isLoading || false
+    const isLoading = app.isLoading || finder.isLoading || menuItem.isLoading || false
 
     const dispatch = useDispatch()
 
