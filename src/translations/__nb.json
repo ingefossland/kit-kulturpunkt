@@ -1,0 +1,102 @@
+{
+
+	"app.info.version": "Versjon",
+	"app.info.date": "Dato",
+
+	"button.action.login": "Logg inn",
+	"button.action.logout": "Logg ut",
+
+	"button.action.save": "Lagre",
+	"button.action.saving": "Lagrer ...",
+	"button.action.saveAsDraft": "Lagre som utkast",
+	"button.action.saveAndPublish": "Lagre og publiser",
+	"button.action.saveAs": "Lagre som ...",
+
+	"button.action.add": "Legg til",
+	"button.action.remove": "Ta bort",
+
+	"button.action.edit": "Rediger",
+	"button.action.delete": "Slett",
+	"button.action.restore": "Gjenopprett",
+	"button.action.select": "Legg til",
+	"button.action.unselect": "Ta bort",
+	"button.action.refs": "Lenker",
+
+	"editor.status.new": "Ny",
+	"editor.status.ok": "Ok",
+	"editor.status.error": "Feil",
+	"editor.status.general": "Generell",
+	"editor.status.draft": "Utkast",
+	"editor.status.publish": "Publisert",
+	"editor.status.trash": "Slettet",
+	
+	"sidebar.hits.today": "Oppdatert i dag",
+	"sidebar.hits.total": "{hits} treff totalt",
+
+	"ga.report.metrics": "Rapport",
+	"ga.report.metrics.24hours": "Dagsrapport",
+	"ga.report.metrics.7days": "Ukesrapport",
+	"ga.report.metrics.28days": "Månedsrapport",
+	"ga.report.metrics.90days": "90 dagers rapport",
+	"ga.report.metrics.quarter": "Kvartalsrapport",
+	"ga.report.metrics.year": "Årsrapport",
+
+	"ga.report.live": "Sanntidsrapport",
+	"ga.report.live.activeUsers": "Aktive brukere akkurat nå",
+	"ga.report.live.activePages": "Mest besøkte sider",
+	"ga.report.live.pageviewsPerMinute": "Sidevisninger per minutt",
+
+	"ga.widget.sessions.byOwner.7days": "Totalt besøk siste uke på tvers av eiere",
+	"ga.widget.sessions.byOwner.7days.title": "Totalt {total} besøkende siste uke",
+	"ga.widget.sessions.byOwner.7days.description": "{average} besøkende per dag på tvers av eiere",
+
+	"ga.report.sessions.byCountry": "Besøk etter land",
+	"ga.report.sessions.byCountry.title": "Besøk etter land",
+
+	"ga.widget.sessions.byOwner": "Besøk i går",
+	"ga.widget.sessions.byOwner.title": "{total} besøk i går",
+	"ga.widget.sessions.byOwner.up": "{change} flere enn dagen før",
+	"ga.widget.sessions.byOwner.down": "{change} færre enn dagen før",
+
+	"ga.widget.sessions.yesterday": "Besøk i går",
+	"ga.widget.sessions.yesterday.title": "{total} besøk i går",
+	"ga.widget.sessions.yesterday.up": "{change} flere enn dagen før",
+	"ga.widget.sessions.yesterday.down": "{change} færre enn dagen før",
+
+	"ga.widget.sessions.24hours": "Besøk siste døgn",
+	"ga.widget.sessions.24hours.title": "{total} besøk siste døgn",
+	"ga.widget.sessions.24hours.up": "{change} flere enn dagen før",
+	"ga.widget.sessions.24hours.down": "{change} færre enn dagen før",
+
+	"ga.widget.sessions.7days": "Besøk siste uke",
+	"ga.widget.sessions.7days.title": "{total} besøk siste uke",
+	"ga.widget.sessions.7days.up": "{percent} opp fra uken før",
+	"ga.widget.sessions.7days.down": "{percent} ned fra uken før",
+
+	"ga.widget.sessions.28days": "Besøk siste fire uker",
+	"ga.widget.sessions.28days.title": "{total} besøk siste fire uker",
+	"ga.widget.sessions.28days.up": "{percent} opp i forhold til forrige periode",
+	"ga.widget.sessions.28days.down": "{percent} ned i forhold til forrige periode",
+
+	"ga.widget.sessions.yearToDate": "Besøk så langt i år",
+	"ga.widget.sessions.yearToDate.title": "{total} besøk så langt i år",
+	"ga.widget.sessions.yearToDate.description": "I gjennomsnitt {average} besøk per måned",
+	
+	"ga.metric.users": "Brukere",
+	"ga.metric.newUsers": "Nye brukere",
+	"ga.metric.sessions": "Besøk",
+	"ga.metric.percentNewSessions": "Nye besøk",
+	"ga.metric.bounceRate": "Fluktfrekvens",
+	"ga.metric.pageviewsPerSession": "Sidevisninger/besøk",
+	"ga.metric.avgSessionDuration": "Tid/besøk",
+	
+	"ga.value.activeUsers": "{value} brukere",
+	"ga.value.users": "{value} brukere",
+	"ga.value.sessions": "{value} besøk",
+
+	"inbox.widget.title": "Innboks",
+	"inbox.widget.description": "{count} nye meldinger, viser {rows} siste",
+	"inbox.widget.button": "Gå til innboks"
+	
+	
+}

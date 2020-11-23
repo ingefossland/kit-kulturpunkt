@@ -14,7 +14,7 @@ const MasonryLayout = ({layout = "masonry", resultsLoaded, onPage, ...props}) =>
             <Masonry columns={4} spacing={2}>
                 {resultsLoaded && resultsLoaded.map((model, index) => {
                     return (
-                        <FinderModel model={model} layout={layout} {...props} key={index} />
+                        <FinderModel model={model} layout="masonry" {...props} key={index} />
                     )
                 })}
             </Masonry>

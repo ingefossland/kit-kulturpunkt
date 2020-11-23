@@ -11,13 +11,17 @@ const ListLayout = ({children}) => {
 }
 
 
-const DocumentsList = ({layout = "list", resultsLoaded, onPage, ...props}) => {
+const ListView = ({layout = "list", resultsLoaded, onPage, ...props}) => {
+
+    const { resultsByPage, page } = props
+
+    const pagedResults = resultsByPage && resultsByPage[page]
 
     return (
         <ResultsLoader {...props}>
             <ListViewHeader {...props} />
             <ListLayout padding={2}>
-                {resultsLoaded && resultsLoaded.map((model, index) => {
+                {pagedResults && pagedResults.map((model, index) => {
                     return (
                         <FinderModel model={model} layout={layout} {...props} key={index} />
                     )
@@ -29,4 +33,4 @@ const DocumentsList = ({layout = "list", resultsLoaded, onPage, ...props}) => {
 
 }
 
-export default DocumentsList
+export default ListView

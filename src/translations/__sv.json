@@ -1,0 +1,13 @@
+{
+	"button.action.save": "Spara",
+	"button.action.saving": "Spara ...",
+	"button.action.saveAsDraft": "Spara som utkast",
+	"button.action.saveAndPublish": "Spara och publicera",
+	"button.action.saveAs": "Spara som ...",
+
+	"editor.status.draft": "Utkast",
+	"editor.status.error": "Fel",
+	"editor.status.new": "Ny",
+	"editor.status.publish": "Publicerat",
+	"editor.status.trash": "Skrotade"
+}

@@ -44,6 +44,9 @@ const useStyles = makeStyles(theme => ({
     sort: {
         margin: theme.spacing(1)
     },
+    rows: {
+        margin: theme.spacing(1)
+    },
     view: {
         margin: theme.spacing(1)
     }
@@ -58,6 +61,9 @@ const FinderLayout = ({
     sortOptions,
     sort,
     onSort,
+    rowsOptions,
+    rows,
+    onRows,
     children,
     ...props
 }) => {
@@ -69,6 +75,7 @@ const FinderLayout = ({
             <header className={classes.header}>
                 { parents && <NavPath className={classes.path} parents={parents} onSelect={onSelect} /> }
                 { sortOptions && <NavSort className={classes.sort} options={sortOptions} value={sort} onChange={onSort} /> }
+                { rowsOptions && <NavSort className={classes.rows} options={rowsOptions} value={rows} onChange={onRows} /> }
                 { viewOptions && <NavView className={classes.view} options={viewOptions} value={view} onChange={onView} /> }
             </header>
             <div className={classes.body}>

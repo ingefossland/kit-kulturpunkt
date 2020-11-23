@@ -1,4 +1,5 @@
 import React, { useState, useRef } from 'react';
+import { useTranslation } from 'react-i18next';
 import PropTypes from "prop-types"
 import { Dropdown } from "@kit-ui/core"
 
@@ -11,6 +12,8 @@ const NavSort = ({
     options,
     onChange,
 }) => {
+
+    const { t, i18n } = useTranslation(['sort'])
 
     const [expanded, setExpanded] = useState(false);
     const anchorRef = useRef(null)
@@ -30,10 +33,10 @@ const NavSort = ({
 
     const sortOptions = options && options.map(option => {
         
-        if (typeof option === "string") {
+        if (typeof option === "string" || typeof option === "number") {
             return {
-                label: option,
-                value: option
+                label: t(option),
+                value: option.toString()
             }
         }
 

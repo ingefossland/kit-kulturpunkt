@@ -1,0 +1,7 @@
+{
+	"editor.status.draft": "Draft",
+	"editor.status.error": "Error",
+	"editor.status.new": "New",
+	"editor.status.publish": "Published",
+	"editor.status.trash": "Trash"
+}

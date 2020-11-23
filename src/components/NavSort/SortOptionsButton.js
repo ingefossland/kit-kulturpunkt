@@ -24,12 +24,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: 12,
         fontWeight: "bold",
         lineHeight: 1,
-        border: "1px solid",
-        borderColor: theme.palette.divider,
-        borderRadius: 2,
-        minWidth: 12,
-        padding: theme.spacing("3px", .5)
-
+        textTransform: "uppercase",
     }
 }));
 
@@ -40,7 +35,7 @@ const ListSettingsButton = forwardRef(({icon, label, children, onClick}, ref) =>
     return (
         <ButtonBase onClick={onClick} ref={ref}>
             <SortIcon className={classes.icon} />
-            {label}
+            <b className={classes.label}>{label}</b>
         </ButtonBase>
     )
 

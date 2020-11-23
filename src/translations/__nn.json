@@ -1,0 +1,27 @@
+{
+	"app.info.version": "Versjon",
+	"app.info.date": "Dato",
+
+	"button.action.login": "Logg inn",
+	"button.action.logout": "Logg ut",
+
+	"button.action.save": "Lagre",
+	"button.action.saving": "Lagrar ...",
+	"button.action.saveAsDraft": "Lagre som utkast",
+	"button.action.saveAndPublish": "Lagre og publiser",
+	"button.action.saveAs": "Lagre som ...",
+
+	"button.action.edit": "Rediger",
+	"button.action.delete": "Slett",
+	"button.action.restore": "Gjenopprett",
+	"button.action.select": "Legg til",
+	"button.action.unselect": "Ta bort",
+	"button.action.refs": "Lenker",
+
+	"editor.status.new": "Ny",
+	"editor.status.error": "Feil",
+	"editor.status.general": "Generell",
+	"editor.status.draft": "Utkast",
+	"editor.status.publish": "Publisert",
+	"editor.status.trash": "Slettet"
+}

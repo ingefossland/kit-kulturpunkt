@@ -39,6 +39,9 @@ const viewOptions = {
     "list": {
         "icon": "view_headline",
     },
+    "masonry": {
+        "icon": "view_module",
+    },
     "gallery": {
         "icon": "view_module",
     },

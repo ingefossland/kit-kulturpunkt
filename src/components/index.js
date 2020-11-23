@@ -9,3 +9,4 @@ export * from "./NavPreview/"
 
 export * from "./NavView/"
 export * from "./NavSort/"
+export * from "./NavPages/"

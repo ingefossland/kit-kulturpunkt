@@ -6,7 +6,7 @@ import qs from 'query-string';
 
 import FinderLayout from "./FinderLayout"
 
-import List from "./ListLayout"
+import List from "./ListView"
 import Masonry from "./MasonryLayout"
 import Gallery from "./GalleryLayout"
 import ColumnView from "./ColumnView"
@@ -19,7 +19,7 @@ const templates = {
     "column": ColumnView
 }
 
-const FinderQuery = ({query = {}, views = [], template, ...props}) => {
+const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
@@ -46,7 +46,7 @@ const FinderQuery = ({query = {}, views = [], template, ...props}) => {
 
     useEffect(() => {
         query && dispatch(getQuery(query))
-    }, [pathname, query.q, sq.sort])
+    }, [pathname, query.q, sq.sort, sq.rows])
 
     // search
 
@@ -72,12 +72,21 @@ const FinderQuery = ({query = {}, views = [], template, ...props}) => {
         url && props.history.push(url)
     }
 
+    const _onRows = (rows) => {
+        const sq = props.location.search && qs.parse(props.location.search)
+        const url = props.location.pathname + "?" + qs.stringify({...sq, rows: rows});
+        props.history.replace(url)
+
+//        dispatch(getSort({sort}))
+
+    }
+
     const _onSort = (sort) => {
         const sq = props.location.search && qs.parse(props.location.search)
         const url = props.location.pathname + "?" + qs.stringify({...sq, sort: sort});
         props.history.replace(url)
 
-        dispatch(getSort({sort}))
+//        dispatch(getSort({sort}))
 
     }
 
@@ -86,13 +95,13 @@ const FinderQuery = ({query = {}, views = [], template, ...props}) => {
         const url = props.location.pathname + "?" + qs.stringify({...sq, view: view});
         props.history.replace(url)
 
-        dispatch(getView({view}))
+//        dispatch(getView({view}))
 
     }
 
     // template
 
-    const layout = sq.view || views && views[0] || "list"
+    const layout = sq.view || viewOptions && viewOptions[0] || "list"
 
     if (!template && templates[layout]) {
         template = templates[layout]
@@ -100,9 +109,11 @@ const FinderQuery = ({query = {}, views = [], template, ...props}) => {
     
     const Template = template || List
 
+
+
     if (Template) {
         return (
-            <FinderLayout {...finder} onSelect={_onSelect} onView={_onView} onSort={_onSort}>
+            <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView} onSort={_onSort} onRows={_onRows}>
                 <Template {...props} {...currentSearch} layout={layout} onPage={_onPage} />
             </FinderLayout>
         )

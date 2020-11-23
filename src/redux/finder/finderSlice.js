@@ -10,6 +10,14 @@ const finderByIdSlice = createSlice({
         pathname: undefined,
         sortOptions: [],
         sort: undefined,
+        rowsOptions: [
+            10,
+            20,
+            30,
+            40,
+            50,
+        ],
+        rows: undefined,
         viewOptions: [],
         view: undefined,
         menu: [],
@@ -288,13 +296,13 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
         }
 
         if (query && query.models === "media") {
-            viewOptions = !viewOptions && ["gallery", "list"]
-            sortOptions = !sortOptions && ["title", "createdAt ASC", "updatedAt DESC"]
+            viewOptions = viewOptions || ["gallery", "list"]
+            sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 
         if (query && query.models === "documents") {
-            viewOptions = !viewOptions && ["list", "grid", "column"]
-            sortOptions = !sortOptions && ["title", "createdAt ASC", "updatedAt DESC"]
+            viewOptions = viewOptions || ["list", "grid", "column"]
+            sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 
         if (sortOptions) {
