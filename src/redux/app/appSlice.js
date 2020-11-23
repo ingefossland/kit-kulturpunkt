@@ -7,14 +7,13 @@ import { getFinder } from "../finder/"
 const appSlice = createSlice({
     name: 'app',
     initialState: {
-        isLoading: false,
+        isLoading: true,
         header: {
         },
         search: {
 //            expanded: false
         },
         sidebar: {
-            expanded: true
         }
     }, 
     reducers: {

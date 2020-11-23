@@ -7,13 +7,14 @@ import schema from "../../schemas/article/section/schema"
 const editorSlide = createSlice({
     name: 'editor',
     initialState: {
-        isLoading: undefined,
+        isLoading: true,
         isSaving: undefined,
         pathname: undefined,
         uniqueId: undefined,
         parents: [],
         currentId: undefined,
         schema: {},
+        uiSchema: {},
         formData: {},
         dialog: {}
     }, 
@@ -62,7 +63,6 @@ const editorSlide = createSlice({
             if (uniqueId) {
                 return {
                     ...state,
-                    isLoading: false,
                     formData: {
                         ...formData,
                         uniqueId: uniqueId
@@ -71,7 +71,6 @@ const editorSlide = createSlice({
             } else {
                 return {
                     ...state,
-                    isLoading: false,
                     formData: formData
                 }
             }
@@ -125,15 +124,17 @@ const editorSlide = createSlice({
     }
 })
 
-export const getEditor = ({pathname, uniqueId}) => (dispatch, getState) => {
-    dispatch(receiveEditor({pathname}))
+export const getEditor = ({pathname, uniqueId, schema, uiSchema}) => (dispatch, getState) => {
+    dispatch(requestEditor({pathname}))
 
     const state = getState()
     const app = state.app
     const finder = state.finder
 
     dispatch(getParents({url: pathname, uniqueId}))
-    dispatch(receiveEditor({pathname, uniqueId}))
+
+    schema && uiSchema && dispatch(receiveEditor({pathname, uniqueId}))
+
 }
 
 export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
@@ -147,21 +148,51 @@ export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
 
     const parentUrl = pathnames.join("/")
 
-    let parent = menuByUrl[parentUrl] || menuById[pathnames.length-1]
-
     let parents = []
 
-    while (parent) {
-        parents.push(parent)
-        parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+    let parent = menuByUrl[parentUrl] || menuById[pathnames.length-1]
+
+    // find parent by last child
+
+    if (parent) {
+
+        console.log('parents by last child', parent)
+
+        while (parent) {
+            parents.push(parent)
+            parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+        }
+
+        parents = parents.reverse()
+
+    } else {
+
+        let path = [], pathUrl
+
+        pathnames.map(pathname => {
+
+            path.push(pathname)
+            pathUrl = path.join('/')
+
+            console.log('parents by path', pathUrl)
+
+
+            if (menuByUrl[pathUrl]) {
+                parents.push(menuByUrl[pathUrl])
+            }
+
+        })
+
+
     }
+
 
     if (uniqueId) {
         parents = parents.filter(parent => parent.uniqueId !== uniqueId)
     }
 
 
-    dispatch(receiveParents({parents: parents.reverse()}))
+    dispatch(receiveParents({parents}))
   
 }
 

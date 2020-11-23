@@ -30,6 +30,10 @@ const useStyles = makeStyles(theme => ({
             cursor: "pointer"
         },
 
+        "&[aria-expanded=true]": {
+            backgroundColor: theme.palette.action.selected,
+        },
+
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected,
         },
@@ -154,7 +158,7 @@ const DragHandle = ({dragHandleProps}) => {
 
 }
 
-const DocumentTreeRow = ({draggable, selected, ...props}) => {
+const DocumentTreeRow = ({draggable, expanded, selected, ...props}) => {
 
     const classes = useStyles()
 
@@ -168,8 +172,9 @@ const DocumentTreeRow = ({draggable, selected, ...props}) => {
         return (
             <div className={classes.module} 
                 {...provided.draggableProps}
-                onClick={props.onSelect}
                 aria-selected={selected}
+                aria-expanded={expanded}
+                onClick={props.onSelect}
                 data-is-dragging={isDragging}
                 data-is-target={isTarget} ref={provided.innerRef}>
                     <DragHandle dragHandleProps={provided.dragHandleProps} />

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react"
-import { AppLayout} from "@kit-ui/admin"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getAppLayout, toggleSearch, toggleSidebar } from '../redux/app';
-import { getFinder, getParents, toggleMenuItem, getMenuItem } from '../redux/finder';
+import { toggleSearch, toggleSidebar } from '../redux/app';
+import { toggleMenuItem } from '../redux/finder';
 
 import _ from "lodash"
 import qs from 'query-string';
 
-import appData from "./app"
 import AdminRoutes from "./AdminRoutes"
 import AdminLayout from "./AdminLayout"
 import AdminLoader from "./AdminLoader"
@@ -17,10 +15,6 @@ const Admin = (props) => {
     const sq = props.location.search && qs.parse(props.location.search) || {}
 
     const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getApp({...appData, pathname: pathname}))
-    }, [])
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)

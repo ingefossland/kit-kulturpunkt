@@ -6,9 +6,10 @@ import { saveModel } from "../modelsById/";
 const finderByIdSlice = createSlice({
     name: 'finder',
     initialState: {
-        isLoading: false,
+        isLoading: true,
         pathname: undefined,
         parents: [],
+        parentsByUrl: {},
         menuByUrl: {},
         menuById: {},
     }, 
@@ -33,10 +34,11 @@ const finderByIdSlice = createSlice({
             return state            
         },
         receiveParents(state, action) {
-            const { parents } = action.payload
+            const { parents, parentsByUrl } = action.payload
             return {
                 ...state,
-                parents: parents
+                parents: parents,
+                parentsByUrl: parentsByUrl
             }
         },
         requestMenuByUrl(state, action) {
@@ -56,7 +58,6 @@ const finderByIdSlice = createSlice({
             const { url, ...item } = action.payload
             return {
                 ...state,
-                isLoading: true,
                 menuByUrl: {
                     ...state.menuByUrl,
                     [url]: {
@@ -75,7 +76,6 @@ const finderByIdSlice = createSlice({
             if (id) {
                 return {
                     ...state,
-                    isLoading: false,
                     menuById: {
                         ...state.menuById,
                         [id]: {
@@ -127,6 +127,32 @@ const finderByIdSlice = createSlice({
             }
 
         },
+        expandMenuItem(state, action) {
+            const { url } = action.payload
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [url]: {
+                        ...state.menuByUrl[url],
+                        expanded: true
+                    }
+                }
+            }
+        },
+        collapseMenuItem(state, action) {
+            const { url } = action.payload
+            return {
+                ...state,
+                menuByUrl: {
+                    ...state.menuByUrl,
+                    [url]: {
+                        ...state.menuByUrl[url],
+                        expanded: false
+                    }
+                }
+            }
+        },
         toggleMenuItem(state, action) {
             const { url } = action.payload
             return {
@@ -139,7 +165,6 @@ const finderByIdSlice = createSlice({
                     }
                 }
             }
-
         },
     }
 })
@@ -172,26 +197,6 @@ export const getParents = ({url}) => (dispatch, getState) => {
 
     let parent = url && menuByUrl && menuByUrl[url] 
 
-    /*
-
-    if (!parent && url) {
-        const pathnames = url.split('/');
-  
-        let path = [], parentUrl;
-
-        pathnames.forEach((pathname) => {
-            path.push(pathname)
-            parentUrl = path.join("/")
-        
-            if (menuByUrl && menuByUrl[parentUrl]) {
-                parent = menuByUrl[parentUrl]
-            }
-        })
-        
-    }
-
-    */
-
     let parents = [];
 
     while (parent) {
@@ -199,7 +204,17 @@ export const getParents = ({url}) => (dispatch, getState) => {
         parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
     }
 
-    dispatch(receiveParents({parents: parents.reverse()}))
+    parents = parents.reverse()
+
+    let parentsByUrl = {}
+
+    parents.map(parent => {
+        if (parent.url) {
+            parentsByUrl[parent.url] = parent
+        }
+    })
+
+    dispatch(receiveParents({parents, parentsByUrl}))
   
 }
 
@@ -455,6 +470,7 @@ export const {
     requestMenuTree, receiveMenuTree, 
     requestMenuTreeItem, receiveMenuTreeItem, 
     requestMenuItem, receiveMenuItem, 
-    toggleMenuItem, moveMenuItem,
+    moveMenuItem,
+    expandMenuItem, collapseMenuItem, toggleMenuItem, 
     requestParents, receiveParents } = finderByIdSlice.actions
 export default finderByIdSlice.reducer

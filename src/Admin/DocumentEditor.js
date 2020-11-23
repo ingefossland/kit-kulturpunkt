@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getParents, editModel, saveModel } from '../redux/editor';
+import { editModel, saveModel } from '../redux/editor';
 import qs from 'query-string';
 
 import Editor from "../Editor/Editor"
@@ -19,7 +19,6 @@ const DocumentEditor = (props) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
-    const finder = useSelector(state => state.finder)
     const editor = useSelector(state => state.editor)
     const formData = editor.formData
 

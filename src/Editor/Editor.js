@@ -2,6 +2,7 @@ import React, { useRef, useState, useEffect } from "react"
 import { SchemaBase } from "@kit-ui/schema"
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import { getAppLayout } from '../redux/app';
 import { receiveEdit, receiveCurrentId, requestDialog, receiveDialog } from '../redux/editor';
 
 import registry from "../components/registry"
@@ -16,6 +17,10 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     const editorRef = useRef(null)
 
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAppLayout("editor"))
+    }, [])
 
     const editor = useSelector(state => state.editor)
 

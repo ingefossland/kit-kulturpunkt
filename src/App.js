@@ -4,6 +4,7 @@ import {
     Switch,
 } from "react-router-dom";
 
+import "./css/reset.css"
 import "./css/Akkurat.css"
 import "./css/AkkuratMono.css"
 import "./css/MaterialIcons.css"
@@ -25,12 +26,6 @@ const App = (props) => {
 
     return (
         <Router>
-            <style jsx="true" global="true">{`
-                body {
-                    margin: 0px;
-                    padding: 0px;
-                }
-                `}</style>
             <AppRoutes {...props} />
         </Router>
     )

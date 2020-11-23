@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types"
 import { NavPath, NavSettings } from "@kit-ui/admin"
+import { NavView } from "../components"
+
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -48,6 +50,7 @@ const useStyles = makeStyles(theme => ({
 const FinderLayout = ({
     parents,
     settings,
+    views,
     children,
     ...props
 }) => {
@@ -57,6 +60,7 @@ const FinderLayout = ({
     return (
         <div className={classes.finder}>
             { settings && <NavSettings className={classes.settings} settings={settings} /> }
+            { views && <NavView className={classes.settings} settings={settings} /> }
             <header className={classes.header}>
                 { parents && <NavPath className={classes.path} parents={parents} /> }
             </header>

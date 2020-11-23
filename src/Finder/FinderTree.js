@@ -4,12 +4,12 @@ import { sortMenuTree, moveMenuItem } from '../redux/finder';
 import qs from 'query-string';
 
 import {
-    DocumentInspector,
     DocumentTree,
     DocumentTreeColumn,
     DocumentTreeModule,
 } from "../components/DocumentTree/"
 
+import FinderLayout from "./FinderLayout"
 import FinderPreview from "./FinderPreview"
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
@@ -23,6 +23,7 @@ const FinderTree = (props) => {
     const menuByUrl = finder.menuByUrl
     const menuItem = menuByUrl && menuByUrl[pathname]
     const parents = finder.parents
+    const parentsByUrl = finder.parentsByUrl
 
     const [result, setResult] = useState(undefined)
 
@@ -83,51 +84,55 @@ const FinderTree = (props) => {
     }
     
     return (
-        <DocumentTree>
-            <DragDropContext onDragEnd={_onDragEnd}>
-                { parents && parents.map((parent, px) => {
-                    const droppableId = parent.url
+        <FinderLayout {...finder}>
+            <DocumentTree>
+                <DragDropContext onDragEnd={_onDragEnd}>
+                    { parents && parents.map((parent, px) => {
+                        const droppableId = parent.url
 
-                    const droppableParent = {
-                        ...menuByUrl[droppableId],
-                    }
+                        const droppableParent = {
+                            ...menuByUrl[droppableId],
+                        }
 
-                    return (
-                        <Droppable index={px} droppableId={droppableId} isCombineEnabled={true} key={droppableId}>
-                            {(provided, snapshot) => (
-                                <DocumentTreeColumn droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
-                                    { droppableParent.children && droppableParent.children.map((child, cx) => {
-                                        const draggableId = child.url
-                                        const hasChildren = menuByUrl[draggableId] && menuByUrl[draggableId].children && menuByUrl[draggableId].children.length && true
-                                        const selected = pathname.includes(child.url)
+                        return (
+                            <Droppable index={px} droppableId={droppableId} isCombineEnabled={true} key={droppableId}>
+                                {(provided, snapshot) => (
+                                    <DocumentTreeColumn droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
+                                        { droppableParent.children && droppableParent.children.map((child, cx) => {
+                                            const draggableId = child.url
+                                            const hasChildren = menuByUrl[draggableId] && menuByUrl[draggableId].children && menuByUrl[draggableId].children.length && true
+                                            const expanded = parentsByUrl[child.url] && true
+                                            const selected = pathname == child.url
 
-                                        return (
-                                            <Draggable index={cx} draggableId={draggableId} key={draggableId}>
-                                                {(provided, snapshot) => (
-                                                    <DocumentTreeModule {...child} 
-                                                        children={hasChildren}
-                                                        draggable={{provided, snapshot}}
-                                                        draggableRef={provided.innerRef}
-                                                        selected={selected}
-                                                        onEdit={() => _onEdit(child)}
-                                                        onSelect={() => _onSelect(child)} />
-                                                )}
-                                            </Draggable>
-                                        )
-                                    })}
-                                    <button onClick={() => _onCreateChild(parent)}>New child</button>
-                                </DocumentTreeColumn>
-                            )}
-                        </Droppable>
-                    )
+                                            return (
+                                                <Draggable index={cx} draggableId={draggableId} key={draggableId}>
+                                                    {(provided, snapshot) => (
+                                                        <DocumentTreeModule {...child} 
+                                                            children={hasChildren}
+                                                            draggable={{provided, snapshot}}
+                                                            draggableRef={provided.innerRef}
+                                                            expanded={expanded}
+                                                            selected={selected}
+                                                            onEdit={() => _onEdit(child)}
+                                                            onSelect={() => _onSelect(child)} />
+                                                    )}
+                                                </Draggable>
+                                            )
+                                        })}
+                                        <button onClick={() => _onCreateChild(parent)}>New child</button>
+                                    </DocumentTreeColumn>
+                                )}
+                            </Droppable>
+                        )
 
-                })}
-            </DragDropContext>        
+                    })}
+                </DragDropContext>        
 
-            <DocumentTreeColumn>
-                <FinderPreview model={menuItem} />
-            </DocumentTreeColumn>
-        </DocumentTree>
+                <DocumentTreeColumn>
+                    <FinderPreview model={menuItem} />
+                </DocumentTreeColumn>
+            </DocumentTree>
+        </FinderLayout>
     )
 
 

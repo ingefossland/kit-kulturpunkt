@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
-import Finder from "./Finder"
+import FinderLayout from "./FinderLayout"
 
 import List from "./ListLayout"
 import Masonry from "./MasonryLayout"
@@ -70,7 +70,12 @@ const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
     const ResultsTemplate = templates && templates[layout] || templates["list"]
 
     if (ResultsTemplate) {
-        return <ResultsTemplate {...props} {...currentSearch} onPage={_onPage} />
+        return (
+            <FinderLayout>
+                <ResultsTemplate {...props} {...currentSearch} onPage={_onPage} />
+            </FinderLayout>
+        )
+        
     }
 
 

@@ -3,8 +3,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getAppLayout } from '../redux/app';
 import { getEditor } from '../redux/editor';
 
-import { AppLoader } from "@kit-ui/admin"
+import { Loader } from "../components/"
 import { EditorIcon } from "@kit-ui/icons"
+
+import FinderLoader from "../Finder/FinderLoader"
 
 const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => {
     const pathname = props.location.pathname
@@ -17,28 +19,23 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const title = formData.title || app && app.title || "Editor"
     const description = app.isLoading && "Loading app" || editor.isLoading && "Loading editor" || !schema && "Loading schema" || !uiSchema && "Loading uiSchema" || "Editor loaded"
 
-    const isLoading = app.isLoading || finder.isLoading || editor.isLoading || !schema || !uiSchema || false
-    const isSaving = editor.isSaving
+    const isLoading = app.isLoading || finder.isLoading || !finder.menuById || editor.isLoading || false
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAppLayout("editor"))
-    }, [isLoading, isSaving])
-
-    useEffect(() => {
-        dispatch(getEditor({pathname, uniqueId}))
-    }, [pathname, uniqueId])
+        dispatch(getEditor({pathname, uniqueId, schema, uiSchema}))
+    }, [pathname, uniqueId, schema, uiSchema])
 
     return (
-        <AppLoader
+        <Loader
             isLoading={isLoading}
             icon={<EditorIcon />}
             title={title}
             description={description}>
                 {children}
-        </AppLoader>
-)
+        </Loader>
+    )
 
 }
 

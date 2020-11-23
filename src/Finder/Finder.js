@@ -1,28 +1,47 @@
-import React, { useEffect, useState } from "react"
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAppLayout } from '../redux/app';
+import { getFinder, getMenuItem, getParents } from '../redux/finder';
 
-import FinderLayout from "./FinderLayout"
-import BulkLayout from "./BulkLayout"
-import BulkEditor from "./BulkEditor"
+import FinderLoader from "./FinderLoader"
+import FinderQuery from "./FinderQuery"
+import FinderTree from "./FinderTree"
+import FinderUpload from "./FinderUpload"
 
-const Finder = ({children, ...props}) => {
+const templates = {
+    "finder/query": FinderQuery,
+    "finder/tree": FinderTree,
+    "tree": FinderTree,
+    "treeitem": FinderTree,
+    "upload": FinderUpload
+}
 
+const Finder = (props) => {
+    const pathname = props.location.pathname
     const finder = useSelector(state => state.finder)
-    const bulk = useSelector(state => state.bulk)
+
+    const menuByUrl = finder.menuByUrl
+    const menuItem = pathname && menuByUrl && menuByUrl[pathname]
+
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(getAppLayout("finder"))
+    }, [])
+
+    const template = menuItem && menuItem.template || menuItem && menuItem.type
+
+    const FinderTemplate = templates && templates[template] || FinderQuery
 
     return (
-        <React.Fragment>
-            <BulkLayout {...bulk} expanded={bulk.count && true}>
-                <BulkEditor {...bulk} /> 
-            </BulkLayout>
-            <FinderLayout
-                parents={finder && finder.parents}>
-                    {children}
-            </FinderLayout>
-        </React.Fragment>
+        <FinderLoader {...props}>
+            <FinderTemplate menuItem={menuItem} {...props} />
+        </FinderLoader>
     )
 
+}
+
+Finder.defaultProps = {
 }
 
 export default Finder

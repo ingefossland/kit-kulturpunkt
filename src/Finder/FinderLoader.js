@@ -1,61 +1,41 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAppLayout } from '../redux/app';
-import { getFinder, getMenuItem, getParents } from '../redux/finder';
+import { getFinder } from '../redux/finder';
 
-import { AppLoader } from "@kit-ui/admin"
+import AdminLoader from "../Admin/AdminLoader"
+
+import { Loader } from "../components/"
 import { EditorIcon } from "@kit-ui/icons"
 
-import Finder from "./Finder"
-import FinderQuery from "./FinderQuery"
-import FinderTree from "./FinderTree"
-import FinderUpload from "./FinderUpload"
-
-const templates = {
-    "finder/query": FinderQuery,
-    "finder/tree": FinderTree,
-    "tree": FinderTree,
-    "treeitem": FinderTree,
-    "upload": FinderUpload
-}
-
-const FinderLoader = (props) => {
+const FinderLoader = ({children, ...props}) => {
     const pathname = props.location.pathname
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
 
     const menuByUrl = finder.menuByUrl
-    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || {}
+    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || { isLoading: true }
 
-    const title = menuItem.title || app && app.title || "Finder"
-    const description = app.isLoading && "Loading app" || finder.isLoading && "Loading finder" || menuItem.isLoading && "Loading menuItem" || "Finder loaded"
+    const title = menuItem && menuItem.title || app && app.title
+    const description = menuItem.isLoading && "Loading menuItem ..." || finder.isLoading && "Loading finder ..." || "Finder loaded"
 
-    const isLoading = app.isLoading; //  || finder.isLoading || menuItem.isLoading || false
+    const isLoading = menuItem.isLoading || finder.isLoading || app.isLoading || false
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAppLayout("finder"))
-    }, [isLoading])
-
-    useEffect(() => {
         dispatch(getFinder({pathname}))
-    }, [pathname, menuItem.isLoading])
-
-    const { type, template } = menuItem
-    const FinderTemplate = templates && templates[template] || templates && templates[type] || FinderQuery
+    }, [pathname])
 
     return (
-        <AppLoader
+        <Loader
             isLoading={isLoading}
             icon={<EditorIcon />}
             title={title}
             description={description}>
-                <Finder {...props}>
-                    <FinderTemplate menuItem={menuItem} {...props} />
-                </Finder>
-        </AppLoader>
+                {children}
+        </Loader>
     )
 
 }

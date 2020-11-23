@@ -1,7 +1,7 @@
 import React from 'react';
 import DocumentTree from './DocumentTree';
 import DocumentTreeSection from './DocumentTreeColumn';
-import DocumentTreeParent from './DocumentTreeParent';
+import DocumentTreeModule from './DocumentTreeModule';
 import DocumentInspector from './DocumentInspector';
 
 import document from "./document"
@@ -18,20 +18,20 @@ export default {
 
 const Template = (args) => <DocumentTree {...args}>
     <DocumentTreeSection expanded={true}>
-        <DocumentTreeParent children={true} selected={true} title="Parent 1" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent children={true} title="Parent 2" documentType="page"></DocumentTreeParent>
+        <DocumentTreeModule children={true} selected={true} title="Parent 1" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule children={true} title="Parent 2" documentType="page"></DocumentTreeModule>
     </DocumentTreeSection>
     <DocumentTreeSection expanded={true}>
-        <DocumentTreeParent children={true} title="Child 1" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent children={true} selected={true} title="Child 2" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent children={true} title="Child 3" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent title="Child 4" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent title="Child 5" documentType="page"></DocumentTreeParent>
+        <DocumentTreeModule children={true} title="Child 1" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule children={true} selected={true} title="Child 2" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule children={true} title="Child 3" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule title="Child 4" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule title="Child 5" documentType="page"></DocumentTreeModule>
     </DocumentTreeSection>
     <DocumentTreeSection expanded={true}>
-        <DocumentTreeParent title="Grandchild 1" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent children={true} title="Grandchild 2" documentType="page"></DocumentTreeParent>
-        <DocumentTreeParent selected={true} title="Grandchild 3" documentType="page"></DocumentTreeParent>
+        <DocumentTreeModule title="Grandchild 1" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule children={true} title="Grandchild 2" documentType="page"></DocumentTreeModule>
+        <DocumentTreeModule selected={true} title="Grandchild 3" documentType="page"></DocumentTreeModule>
     </DocumentTreeSection>
     <DocumentTreeSection>
         <DocumentInspector {...document} />
