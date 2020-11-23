@@ -8,12 +8,15 @@ import FinderQuery from "./FinderQuery"
 import FinderTree from "./FinderTree"
 import FinderUpload from "./FinderUpload"
 
+import CollectionSwitcher from "./CollectionSwitcher"
+
 const templates = {
     "finder/query": FinderQuery,
     "finder/tree": FinderTree,
     "tree": FinderTree,
     "treeitem": FinderTree,
-    "upload": FinderUpload
+    "upload": FinderUpload,
+    "collections": CollectionSwitcher
 }
 
 const Finder = (props) => {
@@ -35,7 +38,10 @@ const Finder = (props) => {
 
     return (
         <FinderLoader {...props}>
-            <FinderTemplate menuItem={menuItem} {...props} />
+            <FinderTemplate 
+                query={menuItem && menuItem.query}
+                views={menuItem && menuItem.views}
+                {...props} />
         </FinderLoader>
     )
 

@@ -12,7 +12,7 @@ const MediaGallery = ({layout = "gallery", resultsLoaded = [], onPage, mediaHeig
     return (
         <ResultsLoader {...props}>
             <ResultsHeader {...props} onPage={onPage} />
-            <Gallery width="100%" padding={0} spacing={2}>
+            <Gallery padding={0} spacing={2}>
                 { resultsLoaded && resultsLoaded.map((model, index) => {
 
                     let width, height;

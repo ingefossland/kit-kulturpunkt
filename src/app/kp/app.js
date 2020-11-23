@@ -1,5 +1,5 @@
 import AppIcon from "../../icons/KpAppIcon"
-import getMenuChildren from "../../utils/getMenuChildren"
+//import getMenuChildren from "../../utils/getMenuChildren"
 
 import menu from "./menu"
 import primaryAction from "../action"
@@ -7,13 +7,13 @@ import theme from "./theme"
 
 export default {
     theme: theme,
-    icon: AppIcon,
+    icon: AppIcon(),
     root: "/kp",
     siteId: 1,
     collectionId: 54,
     title: "KulturPunkt",
     subtitle: "Museum",
-    menu: getMenuChildren({root: "/kp", collectionId: 54, children: menu}),
+    menu: menu,
     primaryAction: primaryAction,
     languages: [
         "no", "sv", "en", "de", "es", "fr"

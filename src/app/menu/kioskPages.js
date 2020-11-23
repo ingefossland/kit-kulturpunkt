@@ -1,11 +1,11 @@
 export default {
     role: "group",
     hidden: true,
-    title: "Kiosk",
-    pathname: "kiosk",
+    title: "Sidetyper",
+    pathname: "pages",
     children: [
         {
-            role: "group",
+//            role: "group",
             title: "Mosaikk",
             icon: "view_stream",
             pathname: "grid",
@@ -16,7 +16,7 @@ export default {
             }
         },
         {
-            role: "group",
+//            role: "group",
             title: "Tidslinje",
             icon: "view_stream",
             pathname: "timeline",
@@ -27,7 +27,7 @@ export default {
             }
         },
         {
-            role: "group",
+//            role: "group",
             title: "Bildekart",
             icon: "view_stream",
             pathname: "annotate",
@@ -38,7 +38,7 @@ export default {
             }
         },
         {
-            role: "group",
+//            role: "group",
             title: "Media",
             icon: "view_stream",
             pathname: "media",
@@ -49,7 +49,7 @@ export default {
             }
         },
         {
-            role: "group",
+//            role: "group",
             title: "Liste",
             icon: "view_stream",
             pathname: "list",

@@ -2,7 +2,7 @@ import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
 
-import { getFinder } from "../finder/"
+import { getMenu } from "../finder/"
 
 const appSlice = createSlice({
     name: 'app',
@@ -149,7 +149,7 @@ export const getApp = (app) => dispatch => {
     dispatch(requestApp(app))
     dispatch(receiveApp(app))
 
-    dispatch(getFinder(app))
+    dispatch(getMenu(app))
 //    schemas && dispatch(getSchemasByName({schemas}))
     
 }

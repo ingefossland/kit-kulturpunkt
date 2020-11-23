@@ -1,6 +1,12 @@
 export default {
     role: "group",
-    type: "latest",
     title: "Latest",
-    pathname: "latest"
+    pathname: "latest",
+    icon: "access_time",
+    query: {
+        models: "documents",
+        status: "NOT trash",
+        models: "documents",
+        sort: "updatedAt DESC"
+    }
 }

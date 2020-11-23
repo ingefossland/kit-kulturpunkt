@@ -5,6 +5,8 @@ import { Loader } from "../components/"
 
 const AdminLoader = ({children, ...props}) => {
     const app = useSelector(state => state.app)
+    const collection = useSelector(state => state.collection)
+    const site = useSelector(state => state.site)
 
     /*
     const menu = app.menu

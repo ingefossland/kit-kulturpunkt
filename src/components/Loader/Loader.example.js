@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import AppLoader from "./AppLoader"
+import Loader from "./Loader"
 
-const AppLoaderExample = (props) => {
+const ExampleLoader = (props) => {
     const [isLoading, setIsLoading] = useState(props.isLoading || true)
 
     return (
         <React.Fragment>
-            <AppLoader {...props} isLoading={isLoading}>
+            <Loader {...props} isLoading={isLoading}>
                 App loaded
 
-            </AppLoader>
+            </Loader>
             <button style={{position: "fixed", zIndex: 2001, bottom: 0, right: 0}} onClick={() => setIsLoading(!isLoading)}>Toggle</button>
         </React.Fragment>
     )
@@ -17,4 +17,4 @@ const AppLoaderExample = (props) => {
 }
 
 
-export default AppLoaderExample
+export default ExampleLoader

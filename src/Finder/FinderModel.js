@@ -72,9 +72,9 @@ const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
     // model
 
     model = {
+        ...uniqueModel,
         ...model,
         ...bulkModel,
-        ...uniqueModel,
         ...uiPreview
     }
 
@@ -125,7 +125,7 @@ const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
     const toolbar = getToolbar()
 
     if (!moduleComponent) {
-        moduleComponent = layout && layouts[layout]
+        moduleComponent = layout && layouts[layout] || layouts["list"]
     }
 
     const ModuleComponent = moduleComponent

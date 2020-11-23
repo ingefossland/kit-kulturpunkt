@@ -3,12 +3,13 @@ export default {
     icon: "settings",
     title: "Settings",
     pathname: "settings",
+    hidden: true,
     children: [
         {
-            role: "group",
+            icon: "settings",
             title: "Collections",
             pathname: "collections",
-            layout: "masonry",
+            template: "collections",
             query: {
                 models: "collections",
                 collectionType: "kp",

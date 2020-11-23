@@ -1,6 +1,12 @@
 export default {
     role: "group",
-    type: "trash",
+    icon: "delete",
     title: "Trash",
-    pathname: "trash"
+    pathname: "trash",
+    query: {
+        models: "documents",
+        status: "trash",
+        models: "documents",
+        sort: "deletedAt DESC",
+    }
 }

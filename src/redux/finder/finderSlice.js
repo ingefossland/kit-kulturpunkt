@@ -8,6 +8,11 @@ const finderByIdSlice = createSlice({
     initialState: {
         isLoading: true,
         pathname: undefined,
+        sortOptions: [],
+        sort: undefined,
+        viewOptions: [],
+        view: undefined,
+        menu: [],
         parents: [],
         parentsByUrl: {},
         menuByUrl: {},
@@ -30,6 +35,51 @@ const finderByIdSlice = createSlice({
                 isLoading: false,
             }
         },
+        receiveView(state, action) {
+            const { view } = action.payload
+            return {
+                ...state,
+                view: view
+            }
+        },
+        requestViewOptions(state, action) {
+            return {
+                ...state,
+                viewOptions: undefined,
+                view: undefined
+            }
+        },
+        receiveViewOptions(state, action) {
+            const { viewOptions, view } = action.payload
+            return {
+                ...state,
+                viewOptions: viewOptions,
+                view: view
+            }
+        },
+        receiveSort(state, action) {
+            const { sort } = action.payload
+            return {
+                ...state,
+                sort: sort
+            }
+        },
+        requestSortOptions(state, action) {
+            return {
+                ...state,
+                sortOptions: undefined,
+                sort: undefined
+            }
+        },
+        receiveSortOptions(state, action) {
+            const { sortOptions, sort } = action.payload
+            return {
+                ...state,
+                sortOptions: sortOptions,
+                sort: sort
+            }
+        },
+ 
         requestParents(state, action) {
             return state            
         },
@@ -39,6 +89,19 @@ const finderByIdSlice = createSlice({
                 ...state,
                 parents: parents,
                 parentsByUrl: parentsByUrl
+            }
+        },
+        requestMenu(state, action) {
+            return {
+                ...state,
+                menu: []
+            }
+        },
+        receiveMenu(state, action) {
+            const { menu } = action.payload
+            return {
+                ...state,
+                menu: menu
             }
         },
         requestMenuByUrl(state, action) {
@@ -169,33 +232,123 @@ const finderByIdSlice = createSlice({
     }
 })
 
-export const getFinder = ({menu, pathname = undefined}) => (dispatch, getState) => {
+export const getFinder = ({pathname = undefined}) => (dispatch, getState) => {
 
     const state = getState()
     const menuByUrl = state.finder.menuByUrl
     const menuItem = menuByUrl && menuByUrl[pathname]
 
-    !menuByUrl && dispatch(requestFinder({pathname}))
-    //dispatch(requestFinder({pathname}))
-
-    menu && menu.map(item => {
-        dispatch(getMenuItem({...item, level: 1}))
-    })
-
     menuItem && dispatch(getParents(menuItem)) || dispatch(getParents({url: pathname}))
-//    dispatch(getParents({url: pathname}))
+    menuItem && dispatch(getOptions(menuItem))
 
     dispatch(receiveFinder({pathname}))
 
 }
 
-export const getMenu = ({menu, pathname}) => (dispatch, getState) => {
+export const getOptions = ({viewOptions, sortOptions}) => (dispatch) => {
+    dispatch(requestViewOptions())
+    dispatch(requestSortOptions())
+
+    viewOptions && dispatch(receiveViewOptions({viewOptions, view: viewOptions[0]}))
+    sortOptions && dispatch(receiveSortOptions({sortOptions, sort: sortOptions[0]}))
+}
+
+export const getView = ({pathname, view}) => (dispatch, getState) => {
+    const state = getState()
+    const menuByUrl = state.finder.menuByUrl
+    const menuItem = menuByUrl && menuByUrl[pathname]
+
+    dispatch(receiveView({view}))
+   
+}
+
+export const getSort = ({pathname, sort}) => (dispatch, getState) => {
+    const state = getState()
+    const menuByUrl = state.finder.menuByUrl
+    const menuItem = menuByUrl && menuByUrl[pathname]
+
+    dispatch(receiveSort({sort}))
+}
+
+export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
+
+    const getChild = ({parent, children, url, pathname, query, viewOptions, sortOptions, ...item}) => {
+
+        if (!url && parent.url) {
+            url = pathname && parent.url + "/" + pathname || parent.url + "/"
+        } else if (!url) {
+            url = pathname && parent.root + "/" + pathname
+        }
+
+        if (query) {
+            query = {
+                ...query,
+                collectionId: query.collectionId || parent.collectionId
+            }
+        }
+
+        if (query && query.models === "media") {
+            viewOptions = !viewOptions && ["gallery", "list"]
+            sortOptions = !sortOptions && ["title", "createdAt ASC", "updatedAt DESC"]
+        }
+
+        if (query && query.models === "documents") {
+            viewOptions = !viewOptions && ["list", "grid", "column"]
+            sortOptions = !sortOptions && ["title", "createdAt ASC", "updatedAt DESC"]
+        }
+
+        if (sortOptions) {
+            query.sort = sortOptions[0]
+        }
+        
+        const child = {
+            ...item,
+            root: parent.root,
+            url: url,
+            query: query,
+            viewOptions: viewOptions,
+            sortOptions: sortOptions
+        }
+
+        const menuItem = {
+            ...child,
+            children: children && children.length && getChildren({...child, children: children})
+        }
+
+        dispatch(getMenuItem(menuItem))
+
+        return menuItem
+
+    }
+
+    const getChildren = (parent) => {
+        let children = []
+  
+        parent.children.forEach((child) => {
+            child = getChild({...child, parent});
+            children.push(child);
+        });
+        
+        return children
+    }
+
+    const rootMenu = getChildren({
+        root: root,
+        children: menu,
+        collectionId: collectionId
+    })
+
+    dispatch(receiveMenu({menu: rootMenu}))
+
+
+    /*
 
     dispatch(requestMenuByUrl())
 
     menu && menu.map(item => {
         dispatch(getMenuItem({...item, level: 1}))
     })
+    */
     
 }
 
@@ -477,6 +630,9 @@ export const sortMenuTree = ({source, destination, item}) => (dispatch, getState
 
 export const { 
     requestFinder, receiveFinder, 
+    requestMenu, receiveMenu,
+    requestViewOptions, receiveViewOptions, receiveView,
+    requestSortOptions, receiveSortOptions, receiveSort,
     requestMenuByUrl, receiveMenuByUrl, 
     requestMenuTree, receiveMenuTree, 
     requestMenuTreeItem, receiveMenuTreeItem, 

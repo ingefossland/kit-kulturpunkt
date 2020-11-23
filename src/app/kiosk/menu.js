@@ -1,5 +1,20 @@
-import getMenuChildren from "../../utils/getMenuChildren"
-import { articles, kpLink, kioskHome, kioskPages, kioskDevices, media, latest, trash } from "../menu"
+import {
+    kpHome,
+    kpPages,
+    kpLink,
+
+    kioskHome,
+    kioskPages,
+    kioskDevices,
+    kioskLink,
+
+    ekultur,
+    articles,
+    media,
+    latest,
+    trash,
+    settings,
+} from "../menu/"
 
 export default [
     kioskHome,
@@ -10,4 +25,5 @@ export default [
     latest,
     trash,
     kpLink,
+    settings
 ]

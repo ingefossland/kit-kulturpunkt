@@ -1,6 +1,6 @@
 import React from 'react';
 import Loader from './Loader';
-import LoaderExample from './Loader.example';
+import ExampleLoader from './Loader.example';
 
 export default {
     title: 'App/Loader',
@@ -13,7 +13,7 @@ export default {
     }
 };
 
-const Template = (args) => <div style={{minHeight: '320px'}}><AppLoaderExample {...args}>{JSON.stringify(args)}</AppLoaderExample></div>;
+const Template = (args) => <div style={{minHeight: '320px'}}><ExampleLoader {...args}>{JSON.stringify(args)}</ExampleLoader></div>;
 
 export const Default = Template.bind({});
 Default.args = {

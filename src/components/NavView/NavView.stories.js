@@ -15,15 +15,22 @@ const Template = (args) => <NavView {...args} />
 
 export const Default = Template.bind({});
 Default.args = {
-    menu: [
+    options: [
         {
-            title: "Gallery"
+            icon: "view_column",
+            title: "Gallery",
+            value: "gallery"
         },
         {
-            title: "Grid"
+            icon: "view_module",
+            title: "Grid",
+            value: "grid"
         },
         {
-            title: "List"
+            icon: "view_headline",
+            title: "List",
+            value: "list"
         }
-    ]
+    ],
+    value: "grid"
 }

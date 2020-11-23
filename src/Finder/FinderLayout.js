@@ -1,8 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types"
-import { NavPath, NavSettings } from "@kit-ui/admin"
-import { NavView } from "../components"
+import { NavPath } from "@kit-ui/admin"
+import { NavView, NavSort } from "../components"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -20,6 +20,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         alignItems: "center",
         zIndex: 1,
+        padding: theme.spacing(0,1),
         "& + *": {
             marginTop: theme.spacing(8),
             marginRight: theme.spacing(2),
@@ -36,21 +37,27 @@ const useStyles = makeStyles(theme => ({
         overflowY: "scroll"
     },  
     path: {
-        margin: theme.spacing(0,2),
+        flexBasis: 0,
+        flexGrow: 1,
+        margin: theme.spacing(0,1),
     },
-    settings: {
-        position: "absolute",
-        zIndex: 2,
-        top: 0,
-        right: 0,
+    sort: {
+        margin: theme.spacing(1)
+    },
+    view: {
         margin: theme.spacing(1)
     }
 }));
 
 const FinderLayout = ({
     parents,
-    settings,
-    views,
+    onSelect,
+    viewOptions,
+    view,
+    onView,
+    sortOptions,
+    sort,
+    onSort,
     children,
     ...props
 }) => {
@@ -59,10 +66,10 @@ const FinderLayout = ({
 
     return (
         <div className={classes.finder}>
-            { settings && <NavSettings className={classes.settings} settings={settings} /> }
-            { views && <NavView className={classes.settings} settings={settings} /> }
             <header className={classes.header}>
-                { parents && <NavPath className={classes.path} parents={parents} /> }
+                { parents && <NavPath className={classes.path} parents={parents} onSelect={onSelect} /> }
+                { sortOptions && <NavSort className={classes.sort} options={sortOptions} value={sort} onChange={onSort} /> }
+                { viewOptions && <NavView className={classes.view} options={viewOptions} value={view} onChange={onView} /> }
             </header>
             <div className={classes.body}>
                 {children}

@@ -2,38 +2,92 @@ import React, { useRef, useState } from 'react';
 import { Dropdown } from "@kit-ui/core"
 
 import ButtonGroup from '@material-ui/core/ButtonGroup';
-import Button from '@material-ui/core/Button';
-import IconButton from "@material-ui/core/IconButton"
+import ButtonBase from '@material-ui/core/ButtonBase';
 import Icon from "@material-ui/core/Icon"
 
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    buttongroup: {
+        display: 'flex',
+        alignItems: 'center',
+        border: "1px solid",
+        borderColor: theme.palette.divider,
+        '& > * + *': {
+            borderLeft: "1px solid",
+            borderColor: theme.palette.divider,
+//            margin: theme.spacing(1),
+        },
+    },
+    button: {
+        padding: theme.spacing(.5)
+    },
+    label: {
+
+    },
+    icon: {
+        margin: theme.spacing(0, .5),
+
+        "& + $label": {
+            display: "none"
+        }
+        
+    }
+}));
+
+const viewOptions = {
+    "list": {
+        "icon": "view_headline",
+    },
+    "gallery": {
+        "icon": "view_module",
+    },
+    "grid": {
+        "icon": "view_module",
+    },
+    "column": {
+        "icon": "view_column",
+    }
+}
 
 
-const NavView = ({menu = [], currentView}) => {
-    const [expanded, setExpanded] = useState(false);
-    const anchorRef = useRef(null)
+const NavView = ({className, options = [], value, onChange}) => {
 
-    const _onToggle = (event) => {
-        setExpanded(prevExpanded => !prevExpanded);
+    const classes = useStyles()
+
+    const _onChange = (value) => {
+        onChange && onChange(value)
     }
 
-    const _onCollapse = (event) => {
-        setExpanded(false);
-    };
-
-    const ButtonView = ({title, icon}) => {
+    const ButtonView = ({title, value, icon, selected}) => {
         return (
-            <Button>{title}</Button>
+            <ButtonBase className={classes.button} aria-selected={selected} onClick={() => _onChange(value)}>
+                <Icon className={classes.icon}>{icon}</Icon>
+                <div className={classes.label}>{title}</div>
+            </ButtonBase>
         )
     }
 
     return (
-        <ButtonGroup color="primary">
-            { menu && menu.map((item, index) => <ButtonView {...item} key={index} />) }
-        </ButtonGroup>
+        <nav className={className}>
+            <div className={classes.buttongroup}>
+                { options && options.map((item, index) => {
+
+                    if (typeof item === "string") {
+                        item = {
+                            ...viewOptions[item],
+                            title: item,
+                            value: item
+                        }
+                    }
+                    
+                    return (
+                        <ButtonView {...item} selected={value === item.value} key={index}/>
+                    )
+                    
+                })}
+            </div>
+        </nav>
     )
 
         

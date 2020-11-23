@@ -1,5 +1,3 @@
-import getMenuChildren from "../../utils/getMenuChildren"
-
 import {
     kpHome,
     kpPages,
@@ -25,6 +23,6 @@ export default [
     media,
     latest,
     trash,
+    kioskLink,
     settings,
-    kioskHome
 ]

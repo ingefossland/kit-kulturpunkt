@@ -1,11 +1,10 @@
 export default {
     role: "group",
     hidden: true,
-    title: "Kiosk",
+    title: "Sidetyper",
     pathname: "pages",
     children: [
         {
-            role: "group",
             title: "Hjemmeside",
             icon: "view_stream",
             pathname: "home",
@@ -16,7 +15,6 @@ export default {
             }
         },
         {
-            role: "group",
             title: "Tema",
             icon: "view_stream",
             pathname: "topic",
@@ -27,7 +25,6 @@ export default {
             }
         },
         {
-            role: "group",
             title: "Kart",
             icon: "view_stream",
             pathname: "map",

@@ -1,31 +1,56 @@
 export default {
     role: "group",
-    type: "media",
+    icon: "photo",
     title: "Media",
+    pathname: "media",
+    query: {
+        models: "media",
+        status: "NOT trash"
+    },
     children: [
         {
-            type: "media/image",
-            title: "Images"
+            title: "Images",
+            pathname: "images",
+            query: {
+                models: "media",
+                mediaType: "image"
+            },
         },
         {
-            type: "media/video",
-            title: "Video"
+            title: "Video",
+            pathname: "video",
+            query: {
+                models: "media",
+                mediaType: "video"
+            },
         },
         {
-            type: "media/audio",
-            title: "Audio"
+            title: "Audio",
+            pathname: "audio",
+            query: {
+                models: "media",
+                mediaType: "audio"
+            },
         },
         {
-            type: "media/misc",
-            title: "Misc"
+            title: "Misc",
+            pathname: "misc",
+            query: {
+                models: "media",
+                mediaType: "misc"
+            },
         },
         {
-            type: "media/application",
-            title: "Apps"
+            title: "Apps",
+            pathname: "apps",
+            query: {
+                models: "media",
+                mediaType: "misc"
+            },
         },
         {
-            type: "media/upload",
-            title: "Upload"
+            title: "Upload",
+            pathname: "upload"
         }
     ]
 }

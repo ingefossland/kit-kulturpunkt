@@ -108,8 +108,9 @@ const Admin = (props) => {
 
                 primaryAction={app.primaryAction}
 
-                menu={app && app.menu}
+                menu={finder && finder.menu}
                 menuByUrl={finder && finder.menuByUrl}
+
                 currentUrl={pathname}
                 
                 parents={finder && finder.parents}

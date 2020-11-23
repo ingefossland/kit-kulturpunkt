@@ -4,7 +4,7 @@ export default {
     type: "tree",
     role: "group",
     title: "KulturPunkt",
-    icon: KpMenuIcon,
+    icon: KpMenuIcon(),
     url: "/kp",
     template: "finder/tree",
     query: {

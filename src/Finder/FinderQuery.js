@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getView, getSort } from '../redux/finder';
 import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
@@ -8,15 +9,17 @@ import FinderLayout from "./FinderLayout"
 import List from "./ListLayout"
 import Masonry from "./MasonryLayout"
 import Gallery from "./GalleryLayout"
+import ColumnView from "./ColumnView"
 
 const templates = {
     "list": List,
     "masonry": Masonry,
     "gallery": Gallery,
     "media": Gallery,
+    "column": ColumnView
 }
 
-const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
+const FinderQuery = ({query = {}, views = [], template, ...props}) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
@@ -43,7 +46,7 @@ const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
 
     useEffect(() => {
         query && dispatch(getQuery(query))
-    }, [pathname, query.q])
+    }, [pathname, query.q, sq.sort])
 
     // search
 
@@ -65,14 +68,42 @@ const FinderQuery = ({menuItem: { query = {}, layout = "list"}, ...props}) => {
         props.history.push(props.location.pathname + '/' + query.documentType + "/new")
     }
 
-    // layout
+    const _onSelect = ({url}) => {
+        url && props.history.push(url)
+    }
 
-    const ResultsTemplate = templates && templates[layout] || templates["list"]
+    const _onSort = (sort) => {
+        const sq = props.location.search && qs.parse(props.location.search)
+        const url = props.location.pathname + "?" + qs.stringify({...sq, sort: sort});
+        props.history.replace(url)
 
-    if (ResultsTemplate) {
+        dispatch(getSort({sort}))
+
+    }
+
+    const _onView = (view) => {
+        const sq = props.location.search && qs.parse(props.location.search)
+        const url = props.location.pathname + "?" + qs.stringify({...sq, view: view});
+        props.history.replace(url)
+
+        dispatch(getView({view}))
+
+    }
+
+    // template
+
+    const layout = sq.view || views && views[0] || "list"
+
+    if (!template && templates[layout]) {
+        template = templates[layout]
+    }
+    
+    const Template = template || List
+
+    if (Template) {
         return (
-            <FinderLayout {...finder}>
-                <ResultsTemplate {...props} {...currentSearch} onPage={_onPage} />
+            <FinderLayout {...finder} onSelect={_onSelect} onView={_onView} onSort={_onSort}>
+                <Template {...props} {...currentSearch} layout={layout} onPage={_onPage} />
             </FinderLayout>
         )
         
