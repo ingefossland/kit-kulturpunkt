@@ -10,7 +10,7 @@ import AdminRoutes from "./AdminRoutes"
 import AdminLayout from "./AdminLayout"
 import AdminLoader from "./AdminLoader"
 
-import icons from "../app/icons"
+import icons from "../icons"
 
 const Admin = (props) => {
     const { pathname } = props.location

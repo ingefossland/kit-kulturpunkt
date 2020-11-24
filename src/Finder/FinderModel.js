@@ -1,14 +1,29 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
+import { useTranslation } from 'react-i18next';
 
 import schemasByName from "../schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview } = utils;
 
-const FinderModel = ({model, children, ...props}) => {
-    const { modelName, uniqueId, mediaType, source, sourceId, } = model;
+const FinderModel = ({
+    model, 
+    viewable = false,
+    linkable = true,
+    selectable = true, 
+    editable = true, 
+    deletable = true, 
+    deleted = false,
+    restorable = true, 
+    eraseable = true,
+    erased = false,
+    children,
+    ...props
+}) => {
+  
+    const { modelName, id, uniqueId, mediaType, source, sourceId, } = model;
 
     const dispatch = useDispatch()
 
@@ -22,12 +37,16 @@ const FinderModel = ({model, children, ...props}) => {
 
     */
 
-    const _onLink = () => {
-        props.onLink || props.history && props.history.push('/checkout/' + uniqueId)
+    const _onView = () => {
+        props.onView || props.history && props.history.push(props.location.pathname + '/' + uniqueId)
     }
 
     const _onEdit = () => {
         props.onEdit || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
+    }
+
+    const _onLink = () => {
+        props.onLink || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/link")
     }
 
     const _onDelete = () => {
@@ -72,6 +91,23 @@ const FinderModel = ({model, children, ...props}) => {
 
     const { selected, status } = model
 
+    if (selected) {
+        editable = false
+        deletable = false
+    }
+
+    if (status === "trash") {
+        deleted = true
+        deletable = false
+    }
+
+    if (status === "erased") {
+        erased = true
+        selectable = false
+        editable = false
+        deletable = false
+    }
+
     const getToolbar = () => {
 
         if (selected) {
@@ -113,6 +149,8 @@ const FinderModel = ({model, children, ...props}) => {
 
     }
 
+    const { t, i18n } = useTranslation();
+
     const toolbar = getToolbar()
 
     const childrenWithProps = React.Children.map(children, (child, index) => {
@@ -120,9 +158,25 @@ const FinderModel = ({model, children, ...props}) => {
         if (React.isValidElement(child)) {
             return React.cloneElement(child, { 
                 ...model,
-                selectable: true,
+                documentLabel: t('documentType:'+documentType),
+                statusLabel: t('status:'+status),
+                editable: editable,
                 onEdit: _onEdit,
+                viewable: viewable,
+                onView: _onView,
+                linkable: linkable,
+                onLink: _onLink,
+                selectable: selectable,
+                selected: selected,
                 onSelect: _onSelect,
+                deletable: deletable,
+                deleted: deleted,
+                onDelete: _onDelete,
+                restorable: restorable,
+                onRestore: _onRestore,
+                eraseable: eraseable,
+                erased: erased,
+                onErase: _onErase,
                 toolbar: toolbar,
             });
         }

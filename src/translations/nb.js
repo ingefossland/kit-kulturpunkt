@@ -74,6 +74,21 @@ export default {
         "createdAt ASC": "Opprettet dato, først",
         "createdAt DESC": "Opprettet dato",
     },
+    mediaType: {
+        "image": "Bilde",
+        "video": "Video",
+        "audio": "Audio",
+    },
+    documentType: {
+        "article": "Artikkel",
+        "pageHome": "Hjemmeside",
+        "pageTopic": "Tema",
+        "pageMap": "Kart",
+        "pageGrid": "Mosaikk",
+        "pageList": "Liste",
+        "pageAnnotate": "Bildekart",
+        "pageMedia": "Media",
+    },
     status: {
         "error": "Feil",
         "general": "N/A",

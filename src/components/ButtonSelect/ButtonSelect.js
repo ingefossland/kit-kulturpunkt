@@ -5,6 +5,30 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     button: {
+        color: "inherit",
+    },
+    select: {
+        color: "inherit",
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        borderRadius: "100%",
+        border: "1px solid",
+        borderColor: "currentColor",
+        margin: -1,
+    },
+    selected: {
+        color: "inherit",
+        display: "block",
+        width: theme.spacing(3),
+        height: theme.spacing(3),
+        borderRadius: "100%",
+        border: "2px solid",
+        margin: -2,
+        borderColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.main,
+        color: theme.palette.primary.contrastText,
+        boxShadow: theme.shadows[2],
+
         "& svg": {
             width: theme.spacing(2.5),
             height: theme.spacing(2.5),
@@ -12,34 +36,9 @@ const useStyles = makeStyles(theme => ({
             top: "50%",
             left: "50%",
             transform: "translate(-50%,-50%)",
-            color: "currentColor"
+//            color: "currentColor"
         }        
-    },
-    select: {
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-        borderRadius: "100%",
-        border: "1px dotted",
-        margin: 1,
-        borderColor: "currentColor",
 
-        opacity: .5,
-
-        "&:hover": {
-            opacity: 1
-        }
-
-    },
-    selected: {
-        display: "block",
-        width: theme.spacing(3),
-        height: theme.spacing(3),
-        borderRadius: "100%",
-        border: "2px solid",
-        borderColor: theme.palette.primary.main,
-        backgroundColor: theme.palette.primary.main,
-        color: theme.palette.primary.contrastText,
-        boxShadow: theme.shadows[2],
     }
 }));
 
@@ -49,7 +48,7 @@ const ButtonSelectable = ({className, selected = false, onClick}) => {
     if (selected) {
 
         return (
-            <IconButton className={className || classes.button} aria-selected={selected} color="inherit" aria-label="select" onClick={onClick}>
+            <IconButton className={className || classes.button} aria-selected={selected} color="inherit" value="select" aria-label="select" onClick={onClick}>
                 <div className={classes.selected}>
                     <SelectIcon />
                 </div>
@@ -59,7 +58,13 @@ const ButtonSelectable = ({className, selected = false, onClick}) => {
     }
 
     return (
-        <IconButton className={className || classes.button} aria-selected={selected} color="inherit" aria-label="select" onClick={onClick}>
+        <IconButton className={className || classes.button} aria-selected={selected} color="inherit" value="select" aria-label="select" onClick={onClick}>
+            <SelectIcon />
+        </IconButton>
+    )
+
+    return (
+        <IconButton className={className || classes.button} aria-selected={selected} color="inherit" value="select" aria-label="select" onClick={onClick}>
             <div className={classes.select}>
                 <SelectIcon />
             </div>

@@ -26,13 +26,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ResultsHeader = ({models = [], count, start, rows, pages, page, resultsTitle}) => {
+const ResultsHeader = ({models = [], count, start, rows, pages, page, ...props}) => {
     const { t, i18n } = useTranslation('search');
 
     const from = start + 1;
     const to = start + models.length;
 
-    const title = resultsTitle || t('{{count}} hits', { pages, page, count, from, to, rows });
+    const title = props.title || t('{{count}} hits', { pages, page, count, from, to, rows });
     const description = t('{{page}} of {{pages}} pages', { pages, page, count, from, to, rows });
     
     const classes = useStyles()

@@ -12,7 +12,7 @@ import {
 import FinderPreview from "./FinderPreview"
 import FinderModel from "./FinderModel"
 
-import { ListViewList, ListViewHeader, ListViewFooter, ListViewItem } from "../components"
+import { ListViewList, ListViewHeader, ListViewFooter, ListViewModule } from "../components"
 
 
 const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
@@ -30,7 +30,7 @@ const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
                     {resultsLoaded && resultsLoaded.map((model, index) => {
                         return (
                             <FinderModel model={model} onEdit={_onEdit}>
-                                <ListViewItem  />
+                                <ListViewModule  />
                             </FinderModel>
                         )
                     })}

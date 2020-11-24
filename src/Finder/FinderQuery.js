@@ -26,7 +26,7 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
         page: sq.page || 1,
         rows: sq.rows || 10,
         sort: sq.sort || query.sort || undefined,
-        fl: "uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight",
+        fl: "id,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight",
         q: sq.q || undefined,
     };
 

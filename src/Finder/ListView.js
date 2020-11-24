@@ -2,7 +2,7 @@ import React from 'react';
 import ResultsLoader from "./ResultsLoader"
 import FinderModel from "./FinderModel"
 
-import { ListViewList, ListViewHeader, ListViewFooter, ListViewItem } from "../components"
+import { ListViewList, ListViewHeader, ListViewFooter, ListViewModule } from "../components"
 
 const ListView = ({resultsLoaded, onPage, ...props}) => {
 
@@ -17,8 +17,8 @@ const ListView = ({resultsLoaded, onPage, ...props}) => {
                 {pagedResults && pagedResults.map((model, index) => {
 
                     return (
-                        <FinderModel model={model}>
-                            <ListViewItem {...model} key={index} />
+                        <FinderModel {...props} model={model}>
+                            <ListViewModule {...model} key={index} />
                         </FinderModel>
                     )
                 })}

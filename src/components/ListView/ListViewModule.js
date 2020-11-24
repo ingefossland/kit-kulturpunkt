@@ -2,10 +2,9 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from "@material-ui/core/Icon"
 
-import { ButtonSelect } from "../"
+import { ButtonSelect, ButtonEdit, ButtonDelete, ButtonRestore, ButtonLink, ButtonView } from ".."
 
 import {
-    ModuleBase,
     ModuleTitle,
     ModuleLabel,
     ModuleMetadata,
@@ -15,7 +14,7 @@ import {
 } from "@kit-ui/admin"
 
 
-import { NavToolbar, NavSettings } from "@kit-ui/admin"
+import { NavSettings } from "@kit-ui/admin"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -27,63 +26,48 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         userSelect: "none",
 
+        "& button": {
+            opacity: 0,
+
+            "&:hover": {
+                opacity: 1,
+            },
+    
+        },
+
+        "&:hover": {
+
+            "& button": {
+                opacity: .5,
+            },
+
+        },
+
         "&[aria-selected=true]": {
-            backgroundColor: theme.palette.action.selected,
-        },
+            backgroundColor: "white",
 
-        "&[role=button]": {
-            cursor: "pointer",
-
-            "& *": {
-                pointerEvents: "none"
-            },
-
-            "&[aria-selected=true]": {
-            },
-
-        },
-
-        "&[data-elevated=true]": {
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1)
-        },
-
-
-        "&.sortable-helper": {
-            borderTopColor: "transparent",
-            boxShadow: theme.shadows[12],
-            zIndex: 2000,
-            "& $settings": {
-                display: "none"
-            },
-            "& $toolbar": {
-                display: "none"
-            }
-        },
-
-        "&[data-status=erased]": {
-
-            "& figure": {
-                opacity: "0.5"
-            },
-
-            "& $content": {
-                opacity: "0.5"
+            "& button[value=select]": {
+                opacity: 1,
             }
 
         },
 
-        "&[data-status=trash]": {
+        "&[data-deleted=true]": {
 
-            "& figure": {
-                opacity: "0.5"
+            "& button[value=restore]": {
+                opacity: .5,
+
+                "&:hover": {
+                    opacity: 1,
+                },
+    
             },
 
-            "& $content": {
-                opacity: "0.5"
+            "& $image, & $icon": {
+                opacity: .25
             }
 
-        },
+        }
 
     },
 
@@ -155,54 +139,75 @@ const useStyles = makeStyles(theme => ({
         "& > * + *": {
             marginLeft: theme.spacing(-1)
         },
-
-        "& button": {
-            opacity: .5,
-
-            "&:hover": {
-                opacity: 1
-            }
-
-        }        
     },
-
-    uploadProgress: {
-        position: "absolute",
-        zIndex: 2,
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-    },
-    progress: {
-        position: "absolute",
-        backgroundColor: theme.palette.primary.main,
-//        opacity: 0.25,
-        height: theme.spacing(.25),
-        top: "auto",
-        right: "auto",
-        bottom: 0,
-        left: 0,
-        width: props => { return props.uploadProgress + "%" }
-    }
-
 }));
 
-/** ListModule for listing documents */
+/** ListViewModule for listing documents */
 
 const ListModule = ({
+    status,
+    statusLabel,
+
+    documentType,
+    documentLabel,
+
     selectable,
     selected,
     onSelect,
-    uploadProgress, icon, imageUrl, untitled, typeLabel, type, title, description, metadata, status, statusLabel, author, datetime, onClick, ...props
+
+    editable,
+    onEdit,
+
+    viewable,
+    onView,
+
+    linkable,
+    onLink,
+
+    deletable,
+    deleted,
+    onDelete,
+
+    restorable,
+    onRestore,
+
+    erasable,
+    erased,
+    onErase,
+
+    icon,
+    imageUrl,
+
+    title,
+    untitled,
+    description,
+    metadata,
+    author,
+    datetime,
+
+    onClick,
+    ...props
 }) => {
 
-    const classes = useStyles({uploadProgress: uploadProgress})
+    const classes = useStyles()
+
+    const Toolbar = () => {
+        return (
+            <div className={classes.toolbar}>
+                { editable && <ButtonEdit className={classes.edit} onClick={onEdit} /> }
+                { viewable && <ButtonView className={classes.view} onClick={onView} /> }
+                { linkable && <ButtonLink className={classes.link} onClick={onLink} /> }
+                { deletable && <ButtonDelete className={classes.delete} onClick={onDelete} /> }
+                { deleted && restorable && <ButtonRestore className={classes.restore} onClick={onRestore} /> }
+            </div>
+        )
+    }
+
 
     return (
-        <ModuleBase {...props} className={classes.module} role={onClick && "button"} status={status} selected={selected} onClick={onClick}>
+        <article className={classes.module} data-status={status} aria-selected={selected} data-deleted={deleted} data-erased={erased}>
 
-            { selectable && <ButtonSelect selected={selected} onClick={onSelect} /> }
+            { selectable && <ButtonSelect className={classes.select} selected={selected} onClick={onSelect} /> }
 
             <div className={classes.media}>
                 { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
@@ -217,19 +222,14 @@ const ListModule = ({
                     <ModuleByline author={author} datetime={datetime} />
                 </header>
                 <footer className={classes.footer}>
-                    <ModuleLabel label={typeLabel || type} />
+                    <ModuleLabel label={documentLabel || documentType} />
                     <ModuleMetadata metadata={metadata} />
                     <ModuleDescription description={description} />
                 </footer>
             </div>
-            { uploadProgress && 
-                <div className={classes.uploadProgress}>
-                    <div className={classes.progress}></div>
-                </div>                
-            }
             <NavSettings {...props} className={classes.settings} />
-            <NavToolbar {...props} className={classes.toolbar} />
-        </ModuleBase>
+            <Toolbar />
+        </article>
     )    
 
 }

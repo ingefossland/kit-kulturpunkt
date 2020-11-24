@@ -3,7 +3,7 @@ export default {
     hidden: true,
     title: "Sider",
     pathname: "pages",
-    viewOptions: ["list","grid"],
+//    viewOptions: ["list","grid"],
     view: "grid",
     query: {
         models: "documents",

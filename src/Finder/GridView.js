@@ -1,9 +1,7 @@
 import React from 'react';
 import ResultsLoader from "./ResultsLoader"
 import FinderModel from "./FinderModel"
-
-import { GridViewHeader, GridViewFooter, GridViewList, GridViewItem } from "../components"
-import { GridModule } from "@kit-ui/admin"
+import { GridViewHeader, GridViewFooter, GridViewList, GridViewModule } from "../components"
 
 const ListView = ({resultsLoaded, onPage, ...props}) => {
 
@@ -18,8 +16,8 @@ const ListView = ({resultsLoaded, onPage, ...props}) => {
                 {pagedResults && pagedResults.map((model, index) => {
 
                     return (
-                        <FinderModel model={model}>
-                            <GridViewItem {...model} key={index} />
+                        <FinderModel {...props} model={model} key={index}>
+                            <GridViewModule />
                         </FinderModel>
                     )
                 })}

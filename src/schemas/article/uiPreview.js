@@ -1,4 +1,4 @@
-import icons from "../../app/icons"
+import icons from "../../icons"
 
 export default {
   "select": {

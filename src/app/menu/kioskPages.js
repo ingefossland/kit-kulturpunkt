@@ -3,10 +3,11 @@ export default {
     hidden: true,
     title: "Presentasjoner",
     pathname: "pages",
+    view: "grid",
     query: {
         models: "documents",
         documentType: "page*",
-        status: "NOT trash"
+//        status: "NOT trash"
     },
     children: [
         {

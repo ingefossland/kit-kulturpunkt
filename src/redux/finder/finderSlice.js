@@ -371,13 +371,38 @@ export const getParents = ({url}) => (dispatch, getState) => {
 
     let parents = [];
 
-    while (parent) {
-        parents.push(parent)
-        parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+    if (parent) {
+
+        while (parent) {
+            parents.push(parent)
+            parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
+        }
+    
+        parents = parents.reverse()
+    
+            
+    } else {
+
+        let path = [], pathUrl
+
+        const pathnames = url.split('/');
+
+        pathnames.map(pathname => {
+    
+            path.push(pathname)
+            pathUrl = path.join('/')
+    
+            console.log('parents by path', pathUrl)
+    
+    
+            if (menuByUrl[pathUrl]) {
+                parents.push(menuByUrl[pathUrl])
+            }
+    
+        })
+    
     }
-
-    parents = parents.reverse()
-
+ 
     let parentsByUrl = {}
 
     parents.map(parent => {
