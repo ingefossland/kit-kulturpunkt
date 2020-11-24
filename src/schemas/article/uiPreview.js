@@ -1,10 +1,13 @@
+import icons from "../../app/icons"
+
 export default {
   "select": {
-    "imageUrl" : "imageUrl",
-    "title" : "title",
-    "description" : "description",
-    "metadata" : "metadata",
-    "typeLabel": "typeLabel"
+        "icon": "icon",
+        "imageUrl" : "imageUrl",
+        "title" : "title",
+        "description" : "description",
+        "metadata" : "metadata",
+        "typeLabel": "typeLabel"
   },
   prepare({formData, formContext}) {
     let { documentType, title, content, description } = formData
@@ -48,6 +51,7 @@ export default {
     }
 
     return {
+        icon: icons["article"],
         imageUrl: imageUrl,
         untitled: "Ny artikkel",
         title: title || "Uten tittel",

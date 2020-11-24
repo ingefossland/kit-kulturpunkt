@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 
 import List from "./ListView"
+import Grid from "./GridView"
 import Masonry from "./MasonryLayout"
 import Gallery from "./GalleryLayout"
 import ColumnView from "./ColumnView"
@@ -16,6 +17,7 @@ const FinderView = ({view = "list", template, ...props}) => {
 
     const templates = {
         "list": List,
+        "grid": Grid,
         "masonry": Masonry,
         "gallery": Gallery,
         "media": Gallery,

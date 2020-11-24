@@ -88,7 +88,7 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
 
     }
 
-    const view = sq.view || viewOptions && viewOptions[0] || "list"
+    const view = sq.view || finder.view || viewOptions && viewOptions[0] || "list"
 
     return (
         <FinderBulk>

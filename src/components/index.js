@@ -12,3 +12,4 @@ export * from "./NavSort/"
 export * from "./NavPages/"
 
 export * from "./ListView/"
+export * from "./GridView/"

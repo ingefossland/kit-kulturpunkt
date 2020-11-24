@@ -253,11 +253,11 @@ export const getFinder = ({pathname = undefined}) => (dispatch, getState) => {
 
 }
 
-export const getOptions = ({viewOptions, sortOptions}) => (dispatch) => {
+export const getOptions = ({viewOptions, view, sortOptions, sort}) => (dispatch) => {
     dispatch(requestViewOptions())
     dispatch(requestSortOptions())
 
-    viewOptions && dispatch(receiveViewOptions({viewOptions, view: viewOptions[0]}))
+    viewOptions && dispatch(receiveViewOptions({viewOptions, view: view || viewOptions[0]}))
     sortOptions && dispatch(receiveSortOptions({sortOptions, sort: sortOptions[0]}))
 }
 

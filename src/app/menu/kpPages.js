@@ -1,8 +1,15 @@
 export default {
     role: "group",
     hidden: true,
-    title: "Sidetyper",
+    title: "Sider",
     pathname: "pages",
+    viewOptions: ["list","grid"],
+    view: "grid",
+    query: {
+        models: "documents",
+        documentType: "page*",
+        status: "NOT trash"
+    },
     children: [
         {
             title: "Hjemmeside",

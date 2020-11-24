@@ -1,5 +1,7 @@
 import React from "react"
 
+import ArticleIcon from "./ArticleIcon"
+
 import PageHomeIcon from "./PageHomeIcon"
 import PageGridIcon from "./PageGridIcon"
 import PageMediaIcon from "./PageMediaIcon"
@@ -16,6 +18,7 @@ import KpAppIcon from "./KpAppIcon"
 import KpMenuIcon from "./KpMenuIcon"
 
 export default {
+    "article": <ArticleIcon />,
     "kpApp": <KpAppIcon />,
     "kpMenu": <KpMenuIcon />,
     "kioskApp": <KioskAppIcon />,

@@ -1,7 +1,7 @@
 export default {
     role: "group",
     title: "Artikler",
-    icon: "view_stream",
+    icon: "article",
     pathname: "article",
     query: {
         models: "documents",
