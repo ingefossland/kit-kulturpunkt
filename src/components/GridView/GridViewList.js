@@ -5,31 +5,24 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     list: {
+        /*
         display: "flex",
         justifyContent: "center",
-//        width: "100%",
-
-
-        /*
-
+        flexWrap: "wrap",
+        
         justifyContent: "flex-start",
         alignItems: "flex-start",
 
-        "& > *": {
-            flexBasis: 0,
-            flexGrow: 1
-        }
-
+        margin: "0 auto",
         */
+
+       display: 'grid',
+       gridTemplateColumns: 'repeat(auto-fit, minmax(192px, max-content))',
+       gridGap: 0,
+       padding: 'initial',
+       justifyContent: 'center',
+
     },
-    grid: {
-
-        "& > *": {
-            float: "left",
-        }
-
-
-    }
 
 }));
 
@@ -39,8 +32,8 @@ const GridViewList = ({children}) => {
     const classes = useStyles()
 
     return (
-        <div className={classes.list}>
-            <div className={classes.grid}>
+        <div className={classes.grid}>
+            <div className={classes.list}>
                 {children}
             </div>
         </div>

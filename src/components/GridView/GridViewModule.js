@@ -20,11 +20,14 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     module: {
         position: "relative",
-        width: 256,
+        width: 192,
+        minWidth: 192,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         margin: theme.spacing(1),
+
+        overflow: "hidden",
 
         "& button": {
             opacity: 0,
