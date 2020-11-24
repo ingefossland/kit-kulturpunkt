@@ -5,19 +5,8 @@ import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
 import FinderLayout from "./FinderLayout"
-
-import List from "./ListView"
-import Masonry from "./MasonryLayout"
-import Gallery from "./GalleryLayout"
-import ColumnView from "./ColumnView"
-
-const templates = {
-    "list": List,
-    "masonry": Masonry,
-    "gallery": Gallery,
-    "media": Gallery,
-    "column": ColumnView
-}
+import FinderBulk from "./FinderBulk"
+import FinderView from "./FinderView"
 
 const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     const dispatch = useDispatch()
@@ -99,26 +88,17 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
 
     }
 
-    // template
+    const view = sq.view || viewOptions && viewOptions[0] || "list"
 
-    const layout = sq.view || viewOptions && viewOptions[0] || "list"
-
-    if (!template && templates[layout]) {
-        template = templates[layout]
-    }
-    
-    const Template = template || List
-
-
-
-    if (Template) {
-        return (
+    return (
+        <FinderBulk>
             <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView} onSort={_onSort} onRows={_onRows}>
-                <Template {...props} {...currentSearch} layout={layout} onPage={_onPage} />
+                <FinderView {...props} {...currentSearch} view={view} onPage={_onPage} />
             </FinderLayout>
-        )
-        
-    }
+        </FinderBulk>
+
+    )
+
 
 
 }

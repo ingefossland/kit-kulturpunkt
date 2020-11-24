@@ -2,6 +2,8 @@ import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
 
+import { getModels } from "../modelsById"
+
 const searchByIdSlice = createSlice({
     name: 'search',
     initialState: {
@@ -148,9 +150,14 @@ export const getQuery = ({models, id, page = 1, ...query}) => dispatch => {
     .then(results => {
         dispatch(receiveSearch({id, results}))
         dispatch(receivePage({id, page, results}))
+
+        results.models && dispatch(getModels(results))
+
     })
 
 }
+
+
 
 
 export const { requestSearch, receiveSearch, receivePage, receiveError } = searchByIdSlice.actions

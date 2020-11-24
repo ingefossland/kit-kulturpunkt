@@ -1,29 +1,18 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getModel, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
-
-import { ListModule, TableModule, GridModule, GalleryModule } from '@kit-ui/admin';
-
-import MasonryModule from "../components/Masonry/MasonryModule"
+import { deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 
 import schemasByName from "../schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview } = utils;
 
-const layouts = {
-    "table": TableModule,
-    "list": ListModule,
-    "grid": GridModule,
-    "masonry": MasonryModule,
-    "gallery": GalleryModule,
-}
-
-
-const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
+const FinderModel = ({model, children, ...props}) => {
     const { modelName, uniqueId, mediaType, source, sourceId, } = model;
 
     const dispatch = useDispatch()
+
+    /*
 
     useEffect(() => {
         if (modelName && uniqueId && !modelsById[uniqueId]) {
@@ -31,12 +20,14 @@ const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
         }
     }, [uniqueId])
 
+    */
+
     const _onLink = () => {
-        props.history.push('/checkout/' + uniqueId)
+        props.onLink || props.history && props.history.push('/checkout/' + uniqueId)
     }
 
     const _onEdit = () => {
-        props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
+        props.onEdit || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
     }
 
     const _onDelete = () => {
@@ -124,19 +115,24 @@ const FinderModel = ({moduleComponent, model, layout = "list", ...props}) => {
 
     const toolbar = getToolbar()
 
-    if (!moduleComponent) {
-        moduleComponent = layout && layouts[layout] || layouts["list"]
-    }
-
-    const ModuleComponent = moduleComponent
+    const childrenWithProps = React.Children.map(children, (child, index) => {
+        // checking isValidElement is the safe way and avoids a typescript error too
+        if (React.isValidElement(child)) {
+            return React.cloneElement(child, { 
+                ...model,
+                selectable: true,
+                onEdit: _onEdit,
+                onSelect: _onSelect,
+                toolbar: toolbar,
+            });
+        }
+        return child;
+    });
 
     return (
-        <ModuleComponent {...model} 
-            description={false}
-            selectable={true}
-            onEdit={_onEdit}
-            onSelect={_onSelect}
-            toolbar={toolbar} />
+        <>
+            {childrenWithProps}
+        </>
     )
 
 }

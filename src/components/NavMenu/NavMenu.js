@@ -8,7 +8,7 @@ const NavMenuCalendar = () => { return <p>cal</p>}
 
 /** Menu component. Takes */
 
-const NavMenu = ({className, menu = [], menuByUrl, currentUrl, onSelect, onToggle}) => {
+const NavMenu = ({className, icons = {}, menu = [], menuByUrl, currentUrl, onSelect, onToggle}) => {
 
     const _onSelect = (item, event) => {
         onSelect && onSelect(item)
@@ -33,6 +33,13 @@ const NavMenu = ({className, menu = [], menuByUrl, currentUrl, onSelect, onToggl
             item = {
                 ...item,
                 ...menuByUrl[item.url],
+            }
+        }
+
+        if (item.icon && icons[item.icon]) {
+            item = {
+                ...item,
+                icon: icons[item.icon]
             }
         }
 

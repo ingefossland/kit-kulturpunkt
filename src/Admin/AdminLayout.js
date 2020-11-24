@@ -99,6 +99,7 @@ const AppLayout = ({
     subview = undefined,
     calendar = undefined,
     primaryAction = undefined,
+    icons = {},
     menu, 
     menuByUrl = {},
     currentUrl = undefined,
@@ -141,7 +142,7 @@ const AppLayout = ({
                 <AppSidebar {...sidebar} className={classes.sidebar}>
                     { primaryAction && <NavAction className={classes.navAction} primaryAction={primaryAction} onSelect={onSelect} />}
                     { calendar && <NavCalendar className={classes.navCalendar} {...calendar} onChange={(date) => onSelect({type: "calendar", date: date})}  />}
-                    { menu && <NavMenu className={classes.navMenu} menu={menu} menuByUrl={menuByUrl} currentUrl={currentUrl} onSelect={onSelect} onToggle={onToggle} />}
+                    { menu && <NavMenu className={classes.navMenu} icons={icons} menu={menu} menuByUrl={menuByUrl} currentUrl={currentUrl} onSelect={onSelect} onToggle={onToggle} />}
                 </AppSidebar>
                 <AppContent className={classes.content}>
                     { children }

@@ -1,13 +1,17 @@
 export default {
     role: "group",
     hidden: true,
-    title: "Sidetyper",
+    title: "Presentasjoner",
     pathname: "pages",
+    query: {
+        models: "documents",
+        documentType: "page*",
+        status: "NOT trash"
+    },
     children: [
         {
-//            role: "group",
             title: "Mosaikk",
-            icon: "view_stream",
+            icon: "pageGrid",
             pathname: "grid",
             query: {
                 models: "documents",
@@ -16,9 +20,8 @@ export default {
             }
         },
         {
-//            role: "group",
             title: "Tidslinje",
-            icon: "view_stream",
+            icon: "pageTimeline",
             pathname: "timeline",
             query: {
                 models: "documents",
@@ -27,9 +30,8 @@ export default {
             }
         },
         {
-//            role: "group",
             title: "Bildekart",
-            icon: "view_stream",
+            icon: "pageAnnotate",
             pathname: "annotate",
             query: {
                 models: "documents",
@@ -38,9 +40,8 @@ export default {
             }
         },
         {
-//            role: "group",
             title: "Media",
-            icon: "view_stream",
+            icon: "pageMedia",
             pathname: "media",
             query: {
                 models: "documents",
@@ -49,9 +50,8 @@ export default {
             }
         },
         {
-//            role: "group",
             title: "Liste",
-            icon: "view_stream",
+            icon: "pageList",
             pathname: "list",
             query: {
                 models: "documents",

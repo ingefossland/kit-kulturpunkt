@@ -1,4 +1,4 @@
-import icons from "./icons"
+import icons from "../../app/icons"
 
 export default {
     "select": {
@@ -6,7 +6,8 @@ export default {
         "title" : "title",
         "description" : "description",
         "metadata" : "metadata",
-        "typeLabel": "typeLabel"
+        "typeLabel": "typeLabel",
+        "icon": "icon"
     },
     prepare({formData, formContext}) {
         const { parentId, documentType, content } = formData
@@ -19,20 +20,21 @@ export default {
 
         parentId && metadata.push("Parent: " + parentId)
 
-        const pageIcon = documentType && icons[documentType]
         const backgroundImage = content && content.backgroundImage
 
         const imageUrl = backgroundImage && backgroundImage.media && backgroundImage.media.imageUrl
 
+        const icon = documentType && icons[documentType]
         const title = content && content.title && content.title[localeId] || formData.title
         const description = content && content.description && content.description[localeId]
 
         return {
-            imageUrl: imageUrl || pageIcon,
+            icon: icon,
+            imageUrl: imageUrl,
             title: title || "Untitled",
             description: description,
             metadata: metadata,
-            typeLabel: documentType
+            typeLabel: documentType,
         }
     
     }

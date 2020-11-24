@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
-import { Gallery } from "@kit-ui/admin"
+import { Gallery, GalleryModule } from "@kit-ui/admin"
 
 import FinderModel from "./FinderModel"
 import ResultsLoader from "./ResultsLoader"
@@ -33,7 +33,9 @@ const MediaGallery = ({layout = "gallery", resultsLoaded = [], onPage, mediaHeig
                     }
 
                     return (
-                        <FinderModel {...props} layout="gallery" model={model} width={model.width} key={index} />
+                        <FinderModel {...props} layout="gallery" model={model} width={model.width} key={index}>
+                            <GalleryModule />
+                        </FinderModel>
                     )
                 })}
             </Gallery>

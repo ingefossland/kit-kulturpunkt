@@ -6,7 +6,7 @@ export default {
     children: [
         {
             title: "Hjemmeside",
-            icon: "view_stream",
+            icon: "pageHome",
             pathname: "home",
             query: {
                 models: "documents",
@@ -16,7 +16,7 @@ export default {
         },
         {
             title: "Tema",
-            icon: "view_stream",
+            icon: "pageParent",
             pathname: "topic",
             query: {
                 models: "documents",
@@ -26,7 +26,7 @@ export default {
         },
         {
             title: "Kart",
-            icon: "view_stream",
+            icon: "pageMap",
             pathname: "map",
             query: {
                 models: "documents",

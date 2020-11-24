@@ -10,6 +10,8 @@ import AdminRoutes from "./AdminRoutes"
 import AdminLayout from "./AdminLayout"
 import AdminLoader from "./AdminLoader"
 
+import icons from "../app/icons"
+
 const Admin = (props) => {
     const { pathname } = props.location
     const sq = props.location.search && qs.parse(props.location.search) || {}
@@ -95,6 +97,8 @@ const Admin = (props) => {
         onToggle: () => dispatch(toggleSearch())
     }
 
+    // menu
+
     return (
         <AdminLoader {...props}>
             <AdminLayout
@@ -108,6 +112,7 @@ const Admin = (props) => {
 
                 primaryAction={app.primaryAction}
 
+                icons={icons}
                 menu={finder && finder.menu}
                 menuByUrl={finder && finder.menuByUrl}
 

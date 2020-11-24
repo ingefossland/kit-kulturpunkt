@@ -4,7 +4,7 @@ import { getApp, getAppLayout, getParents } from '../redux/app';
 import { getUpload } from '../redux/uploadById';
 
 import FinderLayout from "./FinderLayout"
-import ListLayout from "./ListLayout"
+import ListLayout from "./ListView"
 import UploadDropzone from "../Upload/UploadDropzone"
 
 const MediaUpload = (props) => {

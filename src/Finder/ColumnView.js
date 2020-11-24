@@ -10,47 +10,39 @@ import {
 } from "../components/DocumentTree/"
 
 import FinderPreview from "./FinderPreview"
+import FinderModel from "./FinderModel"
+
+import { ListViewList, ListViewHeader, ListViewFooter, ListViewItem } from "../components"
+
 
 const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
 
-    const menuItem = {}
-
-    const _onEdit = ({url}) => {
-        const editUrl = url + "/edit"
-        editUrl && props.history.push(editUrl)
-    }
-
-    const _onSelect = ({url}) => {
-        url && props.history.push(url)
-    }
-
-    const _onCreateChild = ({url, id}) => {
-        const parentId = Number.isInteger(id) && id || null
-        const createUrl = url && url + "/new?" + qs.stringify({documentType: "pageTopic", parentId: parentId})
-        createUrl && props.history.push(createUrl)
+    const _onEdit = () => {
+        alert("edit")
     }
 
     return (
-            <DocumentTree>
-                <DocumentTreeColumn>
+        <DocumentTree>
+            <DocumentTreeColumn>
 
-                        {resultsLoaded && resultsLoaded.map((model, index) => {
+                <ListViewList>
 
-                            return (
-                                <DocumentTreeModule {...model} layout="list" {...props} key={index} />
-                            )
-
-                        })}
-
+                    {resultsLoaded && resultsLoaded.map((model, index) => {
+                        return (
+                            <FinderModel model={model} onEdit={_onEdit}>
+                                <ListViewItem  />
+                            </FinderModel>
+                        )
                     })}
-                </DocumentTreeColumn>
-                <DocumentTreeColumn>
-                    <FinderPreview model={menuItem} />
-                </DocumentTreeColumn>
-            </DocumentTree>
+
+                </ListViewList>
+
+            </DocumentTreeColumn>
+            <DocumentTreeColumn>
+                <FinderPreview model={{title: "Untitled"}} />
+            </DocumentTreeColumn>
+        </DocumentTree>
     )
-
-
 
 }
 

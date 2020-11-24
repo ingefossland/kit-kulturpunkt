@@ -105,6 +105,25 @@ const modelsByIdSlice = createSlice({
     }
 })
 
+/** Get models from a list of results */
+
+export const getModels = ({models}) => (dispatch, getState) => {
+
+    const state = getState()
+    const modelsById = state.modelsById
+
+    models && models.map(model => {
+        const { modelName, uniqueId } = model
+
+        if (modelName && uniqueId && !modelsById[uniqueId]) {
+            dispatch(getModel({modelName: modelName, uniqueId: uniqueId}))
+        }
+
+
+    })
+
+}
+
 /** Get model from uniqueId */
 
 export const getModel = ({modelName = "documents", uniqueId}) => dispatch => {

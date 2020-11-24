@@ -1,17 +1,10 @@
 import React from 'react';
 import ResultsLoader from "./ResultsLoader"
-import ResultsFooter from "./ResultsFooter"
 import FinderModel from "./FinderModel"
 
-import ListViewHeader from "./ListViewHeader"
-import ListViewFooter from "./ListViewFooter"
+import { ListViewList, ListViewHeader, ListViewFooter, ListViewItem } from "../components"
 
-const ListLayout = ({children}) => {
-    return <div>{children}</div>
-}
-
-
-const ListView = ({layout = "list", resultsLoaded, onPage, ...props}) => {
+const ListView = ({resultsLoaded, onPage, ...props}) => {
 
     const { resultsByPage, page } = props
 
@@ -19,15 +12,18 @@ const ListView = ({layout = "list", resultsLoaded, onPage, ...props}) => {
 
     return (
         <ResultsLoader {...props}>
-            <ListViewHeader {...props} />
-            <ListLayout padding={2}>
+            <ListViewList>
+                <ListViewHeader {...props} />
                 {pagedResults && pagedResults.map((model, index) => {
+
                     return (
-                        <FinderModel model={model} layout={layout} {...props} key={index} />
+                        <FinderModel model={model}>
+                            <ListViewItem {...model} key={index} />
+                        </FinderModel>
                     )
                 })}
-            </ListLayout>
-            <ListViewFooter {...props} onPage={onPage} />
+                <ListViewFooter {...props} onPage={onPage} />
+            </ListViewList>
         </ResultsLoader>
     )
 
