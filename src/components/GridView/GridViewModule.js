@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         margin: theme.spacing(1),
 
-        overflow: "hidden",
+//        overflow: "hidden",
 
         "& button": {
             opacity: 0,
@@ -52,6 +52,21 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[aria-selected=true]": {
+
+            "&:hover": {
+
+                "& $image, & $icon": {
+                    opacity: 1
+                },
+    
+            },
+
+            "& $figure": {
+//                backgroundColor: theme.palette.action.selected,
+                boxShadow: "none",
+                outline: "1px solid",
+                outlineColor: theme.palette.action.selected
+            },
 
             "& button[value=select]": {
                 opacity: 1,
@@ -261,6 +276,15 @@ const GridModule = ({
     const classes = useStyles()
 
     const Toolbar = () => {
+
+        if (selected) {
+            return (
+                <div className={classes.toolbar}>
+                    { selectable && <ButtonSelect className={classes.select} selected={selected} /> }
+                </div>
+            )
+        }
+
         return (
             <div className={classes.toolbar}>
                 { selectable && <ButtonSelect className={classes.select} selected={selected} onClick={onSelect} /> }
@@ -274,7 +298,7 @@ const GridModule = ({
     }
 
     return (
-        <article className={classes.module} data-status={status} aria-selected={selected} data-deleted={deleted} data-erased={erased}>
+        <article className={classes.module} data-status={status} aria-selected={selected} data-deleted={deleted} data-erased={erased} onClick={selected && onSelect}>
 
             <Paper className={classes.figure} square={true}>
                 { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
@@ -286,7 +310,7 @@ const GridModule = ({
 
             <div className={classes.content}>
                 <header className={classes.header}>
-                    <ModuleTitle status={status} untitled={untitled} title={title} onClick={!onClick && onEdit} />
+                    <ModuleTitle status={status} untitled={untitled} title={title} onClick={!selected && onEdit} />
                     <div className={classes.status}>
                         <ModuleLabel label={documentLabel || documentType} />
                         <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />

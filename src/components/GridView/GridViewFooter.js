@@ -5,7 +5,9 @@ import { NavPages } from ".."
 
 const useStyles = makeStyles(theme => ({
     footer: {
-        paddingTop: theme.spacing(1)
+        paddingTop: theme.spacing(1),
+        display: "flex",
+        justifyContent: "center"
     },
     title: {
         fontFamily: "Akkurat, sans-serif",
