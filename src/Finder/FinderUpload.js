@@ -3,8 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getApp, getAppLayout, getParents } from '../redux/app';
 import { getUpload } from '../redux/uploadById';
 
-import FinderLayout from "./FinderLayout"
-import ListLayout from "./ListView"
+import FinderView from "./FinderView"
 import UploadDropzone from "../Upload/UploadDropzone"
 
 const MediaUpload = (props) => {
@@ -46,11 +45,10 @@ const MediaUpload = (props) => {
 
 
     return (
-        <FinderLayout
-            parents={app && app.parents}>
-                <ListLayout {...currentUpload} {...props} />
-                <UploadDropzone onUpload={_onUpload} />
-        </FinderLayout>
+        <>
+            <FinderView {...currentUpload} {...props} />
+            <UploadDropzone onUpload={_onUpload} />
+        </>
     )
 
 }

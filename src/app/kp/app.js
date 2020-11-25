@@ -1,7 +1,8 @@
-import AppIcon from "../../icons/KpAppIcon"
+import AppIcon from "../icons/KpAppIcon"
 import menu from "./menu"
 import primaryAction from "../action"
 import theme from "./theme"
+import schemas from "./schemas"
 
 export default {
     theme: theme,

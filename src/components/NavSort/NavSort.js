@@ -4,7 +4,7 @@ import PropTypes from "prop-types"
 import { Dropdown } from "@kit-ui/core"
 
 import SortOptionsButton from './SortOptionsButton';
-import SortOptions from "./SortOptions"
+import SortOptions from "./SortOptionsList"
 
 const NavSort = ({
     className,

@@ -92,8 +92,8 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
 
     return (
         <FinderBulk>
-            <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView} onSort={_onSort} onRows={_onRows}>
-                <FinderView {...props} {...currentSearch} view={view} onPage={_onPage} />
+            <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView}>
+                <FinderView {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} onSort={_onSort} onRows={_onRows} />
             </FinderLayout>
         </FinderBulk>
 

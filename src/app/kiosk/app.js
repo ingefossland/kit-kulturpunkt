@@ -1,4 +1,4 @@
-import AppIcon from "../../icons/KioskAppIcon"
+import AppIcon from "../icons/KioskAppIcon"
 import menu from "./menu"
 import theme from "./theme"
 import primaryAction from "../action"

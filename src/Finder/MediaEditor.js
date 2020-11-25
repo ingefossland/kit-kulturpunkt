@@ -7,7 +7,7 @@ import EditorLoader from "../Editor/EditorLoader"
 
 import MediaPreview from "./MediaPreview"
 
-import schemasByName from "../schemas/schemasByName"
+import schemasByName from "../app/schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview, getDefaultFormState } = utils
@@ -40,6 +40,9 @@ const MediaEditor = (props) => {
         isSaving: editor && editor.isSaving,
         onBack: _onBack,
         onSelect: _onSelect,
+        preview: {
+            template: MediaPreview
+        }
     }
 
     // get schemas based on documentType
@@ -79,9 +82,6 @@ const MediaEditor = (props) => {
                 uiSchema={uiSchema}
                 formData={formData}
                 formContext={formContext}
-                preview={{
-                    template: MediaPreview
-                }}
                 onSubmit={_onSubmit} />
         </EditorLoader>
     )

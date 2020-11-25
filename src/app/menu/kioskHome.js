@@ -1,13 +1,12 @@
-import KioskMenuIcon from "../../icons/KioskMenuIcon"
-
 export default {
-    icon: KioskMenuIcon(),
+    icon: "kioskMenu",
     url: "/kiosk",
     title: "Kiosk",
-    viewOptions: ["masonry"],
+    view: "grid",
+    viewOptions: [],
     query: {
         models: "documents",
-        documentType: "page*",
+        documentType: "device*",
         status: "NOT trash"
     }
 }

@@ -1,11 +1,11 @@
 import ListViewHeader from "./ListViewHeader"
 import ListViewFooter from "./ListViewFooter"
-import ListViewList from "./ListViewList"
-import ListViewModule from "./ListViewModule"
+import List from "./List"
+import ListModule from "./ListModule"
 
 export {
     ListViewHeader,
     ListViewFooter,
-    ListViewList,
-    ListViewModule
+    List,
+    ListModule
 }

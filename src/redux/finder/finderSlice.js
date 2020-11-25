@@ -296,12 +296,12 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
         }
 
         if (query && query.models === "media") {
-            viewOptions = viewOptions || ["gallery", "list"]
+            viewOptions = viewOptions || ["gallery", "grid", "list", "table"]
             sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 
         if (query && query.models === "documents") {
-            viewOptions = viewOptions || ["list", "grid", "column"]
+            viewOptions = viewOptions || ["list", "table", "grid", "column"]
             sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 
@@ -481,6 +481,7 @@ export const getMenuTree = ({level = 0, ...parent}) => dispatch => {
 
             child = {
                 ...child,
+                template: parent.template,
                 level: level + 1,
                 parentId: parentUrl,
                 parentUrl: parentUrl,
@@ -578,6 +579,7 @@ export const getMenuTreeChildren = ({level = 0, ...parent}) => (dispatch) => {
 
             child = {
                 ...child,
+                template: parent.template,
                 parentUrl: parentUrl,
                 level: level + 1,
                 url: parentUrl + "/" + uniqueId,

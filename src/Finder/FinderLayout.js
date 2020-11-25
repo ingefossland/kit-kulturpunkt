@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types"
 import { NavPath } from "@kit-ui/admin"
-import { NavView, NavSort } from "../components"
+import { NavView } from "../components"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -41,12 +41,6 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         margin: theme.spacing(0,1),
     },
-    sort: {
-        margin: theme.spacing(1)
-    },
-    rows: {
-        margin: theme.spacing(1)
-    },
     view: {
         margin: theme.spacing(1)
     }
@@ -58,12 +52,6 @@ const FinderLayout = ({
     viewOptions,
     view,
     onView,
-    sortOptions,
-    sort,
-    onSort,
-    rowsOptions,
-    rows,
-    onRows,
     children,
     ...props
 }) => {
@@ -74,8 +62,6 @@ const FinderLayout = ({
         <div className={classes.finder}>
             <header className={classes.header}>
                 { parents && <NavPath className={classes.path} parents={parents} onSelect={onSelect} /> }
-                { sortOptions && <NavSort className={classes.sort} options={sortOptions} value={sort} onChange={onSort} /> }
-                { rowsOptions && <NavSort className={classes.rows} options={rowsOptions} value={rows} onChange={onRows} /> }
                 { viewOptions && <NavView className={classes.view} options={viewOptions} value={view} onChange={onView} /> }
             </header>
             <div className={classes.body}>

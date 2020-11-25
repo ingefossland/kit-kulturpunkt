@@ -66,10 +66,14 @@ export default {
         "{{page}} of {{pages}} pages": "Side {{page}} av {{pages}}",
         "More results": "Flere resultater",
         "Next page": "Neste side",
-        "Previous page": "Forrige side"
+        "Previous page": "Forrige side",
+        "Page {{page}}": "Side {{page}}"
+    },
+    view: {
+        "{{rows}} rows": "{{rows}} rader",
     },
     sort: {
-        "title": "Alfabetisk",
+        "title": "Sortert alfabetisk",
         "updatedAt DESC": "Sist oppdatert",
         "createdAt ASC": "Opprettet dato, først",
         "createdAt DESC": "Opprettet dato",
@@ -88,6 +92,7 @@ export default {
         "pageList": "Liste",
         "pageAnnotate": "Bildekart",
         "pageMedia": "Media",
+        "device": "Enhet",
     },
     status: {
         "error": "Feil",

@@ -32,8 +32,7 @@ const Finder = (props) => {
         dispatch(getAppLayout("finder"))
     }, [])
 
-    const template = menuItem && menuItem.template || menuItem && menuItem.type
-
+    const template = menuItem && menuItem.template
     const FinderTemplate = templates && templates[template] || FinderQuery
 
     return (

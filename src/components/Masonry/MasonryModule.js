@@ -51,6 +51,11 @@ const MasonryModule = ({uniqueId, title, imageUrl, documentType, selectable, sel
         onSelect && onSelect()
     }
 
+
+    if (!imageUrl) {
+        imageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+    }
+
     return (
         <ModuleBase className={classes.module} selected={selected} elevation={1} onClick={onEdit}>
             

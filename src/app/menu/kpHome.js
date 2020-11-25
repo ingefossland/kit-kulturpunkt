@@ -1,10 +1,8 @@
-import KpMenuIcon from "../../icons/KpMenuIcon"
-
 export default {
     type: "tree",
     role: "group",
     title: "KulturPunkt",
-    icon: KpMenuIcon(),
+    icon: "kpMenu",
     url: "/kp",
     template: "finder/tree",
     query: {

@@ -145,6 +145,7 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
 
         onSubmit: (status) => onSubmit && onSubmit({formData: {...formData, status: status || formData.status}}), // (e) => editorRef && editorRef.current && editorRef.current.onSubmit(e),
 
+        /*
         preview: {
             template: props.preview && props.preview.template || EditorPreview,
             formData: formData,
@@ -153,6 +154,7 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
                 onToggle: _onToggle
             }
         },
+        */
 
         ...props.formContext,
 

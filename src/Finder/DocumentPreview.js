@@ -1,34 +1,73 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
-import { getFinder, getMenuItem, getParents } from '../redux/finder';
+import { PreviewBase, PreviewOptions, PreviewJSON } from "../components"
 
-import FinderLoader from "./FinderLoader"
-import FinderQuery from "./FinderQuery"
-import FinderTree from "./FinderTree"
-import FinderUpload from "./FinderUpload"
+import schemasByName from "../app/schemas/schemasByName"
 
-const Finder = (props) => {
-    const pathname = props.location.pathname
-    const finder = useSelector(state => state.finder)
+const DocumentPreview = (props) => {
+    const editor = useSelector(state => state.editor)
 
-    const menuByUrl = finder.menuByUrl
-    const menuItem = pathname && menuByUrl && menuByUrl[pathname]
+    const { formData } = editor
+    const { documentType } = formData
 
-    const dispatch = useDispatch()
+    const modelType = documentType && "documents/"+documentType 
+    const model = schemasByName && schemasByName[modelType]
 
-    useEffect(() => {
-        dispatch(getAppLayout("finder"))
-    }, [])
+    const schema = model && model.schema
+    const uiSchema = model && model.uiSchema
 
+    let previewOptions = [
+        {
+            "title": "JSON",
+            "value": "formData",
+            "template": () => <PreviewJSON>{formData}</PreviewJSON> 
+        },
+        {
+            "title": "uiSchema",
+            "value": "uiSchema",
+            "template": () => <PreviewJSON>{uiSchema}</PreviewJSON> 
+        },
+        {
+            "title": "schema",
+            "value": "schema",
+            "template": () => <PreviewJSON>{schema}</PreviewJSON> 
+        },
+    ]    
 
+    if (model.preview && model.preview.template) {
+
+        previewOptions = [
+            {
+                ...model.preview,
+                title: "Preview",
+                value: "preview"
+            },
+            ...previewOptions
+        ]
+            
+    }
+
+    const [value, setValue] = useState(previewOptions[0].value)
+
+    const _onChange = (value) => {
+        setValue(value)
+    }
+
+    const currentPreview = previewOptions.find(option => option.value === value)
+    const PreviewTemplate = currentPreview && currentPreview.template
+    
     return (
-        <FinderQuery {...props} />
+
+        <PreviewBase>
+            <PreviewTemplate formData={formData} />
+            <PreviewOptions options={previewOptions} value={value} onChange={_onChange} />
+        </PreviewBase>
+
     )
 
 }
 
-Finder.defaultProps = {
+DocumentPreview.defaultProps = {
 }
 
-export default Finder
+export default DocumentPreview

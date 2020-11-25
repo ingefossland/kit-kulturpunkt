@@ -19,11 +19,17 @@ import {
 export default [
     kioskHome,
     articles,
+    media,
     kioskPages,
     kioskDevices,
-    media,
     latest,
     trash,
     kpLink,
-    settings
+    {
+        role: "section",
+        title: "Favoritter",
+        children: [
+            settings,
+        ]
+    }
 ]

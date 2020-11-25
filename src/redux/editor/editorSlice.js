@@ -1,8 +1,6 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
-
 import { requestModel, receiveModel } from "../modelsById"
-import schema from "../../schemas/article/section/schema"
 
 const editorSlide = createSlice({
     name: 'editor',
@@ -87,6 +85,7 @@ const editorSlide = createSlice({
             const { uniqueId, ...formData } = action.payload
 
             return {
+                ...state,
                 isSaving: false,
                 formData: {
                     ...formData,

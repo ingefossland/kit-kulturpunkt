@@ -1,6 +1,6 @@
 export default {
-    role: "group",
-    hidden: true,
+    role: "section",
+//    hidden: true,
     title: "Sider",
     pathname: "pages",
 //    viewOptions: ["list","grid"],

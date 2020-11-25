@@ -1,0 +1,31 @@
+@import "../../resources/sass/settings/all";
+@import "../../resources/sass/mixins/all";
+
+.admin-preview--code {
+    /*
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow-y: scroll;
+    */
+}
+
+.admin-preview--code {
+    font-family: $font-mono;
+    font-variant-ligatures: none;
+
+    font-size: 14px;
+    line-height: 1.5;
+
+    padding: 0.5em;
+
+    white-space: pre-wrap;       /* Since CSS 2.1 */
+    white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+    white-space: -pre-wrap;      /* Opera 4-6 */
+    white-space: -o-pre-wrap;    /* Opera 7 */
+    word-wrap: break-word;       /* Internet Explorer 5.5+ */
+
+
+}

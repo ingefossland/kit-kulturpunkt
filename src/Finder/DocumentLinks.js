@@ -9,7 +9,7 @@ import FinderQuery from "./FinderQuery"
 import FinderView from "./FinderView"
 
 import FinderModel from "./FinderModel"
-import { GridViewHeader, GridViewFooter, GridViewList, GridViewModule } from "../components"
+import { GridViewHeader, GridViewFooter, GridViewList, GridModule } from "../components"
 import { ListViewModule } from "../components"
 
 
@@ -86,7 +86,7 @@ const Finder = (props) => {
             
                 <GridViewList>
                     <FinderModel {...props} model={parentModel}>
-                        <GridViewModule />
+                        <GridModule />
                     </FinderModel>
                 </GridViewList>
             
@@ -96,7 +96,7 @@ const Finder = (props) => {
 
             <GridViewList>
                 <FinderModel {...props} model={uniqueModel}>
-                    <GridViewModule />
+                    <GridModule />
                 </FinderModel>
             </GridViewList>
 

@@ -3,6 +3,10 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import { useTranslation } from 'react-i18next';
 
+import { NavSort } from "../"
+
+import ListViewOptions from "./ListViewOptions"
+
 const useStyles = makeStyles(theme => ({
     header: {
         display: "flex",
@@ -26,7 +30,15 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ResultsHeader = ({models = [], count, start, rows, pages, page, ...props}) => {
+const ResultsHeader = ({
+    models = [], 
+    count, start, 
+    pages, page, 
+    sortOptions, sort, onSort, 
+    rowsOptions, rows, onRows, 
+    ...props
+}) => {
+
     const { t, i18n } = useTranslation('search');
 
     const from = start + 1;
@@ -40,6 +52,8 @@ const ResultsHeader = ({models = [], count, start, rows, pages, page, ...props})
     return (
         <header className={classes.header}>
             <Typography className={classes.title}>{title}</Typography>
+            { sortOptions && sort && <i>– <ListViewOptions options={sortOptions} value={sort} onChange={onSort} /></i> }
+            { rowsOptions && rows && <i>– <ListViewOptions options={rowsOptions} value={rows} onChange={onRows} /></i> }
             { pages > 1 && <i>–</i> }
             { pages > 1 && <Typography className={classes.description}>{description}</Typography> }
         </header>

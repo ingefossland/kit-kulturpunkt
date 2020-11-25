@@ -24,5 +24,11 @@ export default [
     latest,
     trash,
     kioskLink,
-    settings,
+    {
+        role: "section",
+        title: "Favoritter",
+        children: [
+            settings,
+        ]
+    }
 ]

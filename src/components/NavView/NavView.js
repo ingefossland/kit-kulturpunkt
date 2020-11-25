@@ -39,8 +39,11 @@ const viewOptions = {
     "list": {
         "icon": "view_headline",
     },
+    "table": {
+        "icon": "view_stream",
+    },
     "masonry": {
-        "icon": "view_module",
+        "icon": "view_quilt",
     },
     "gallery": {
         "icon": "view_module",

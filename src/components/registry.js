@@ -1,5 +1,6 @@
 
-import ParentIdField from "./ParentIdField/ParentIdField"
+import DocumentParentIdField from "./DocumentParentIdField/DocumentParentIdField"
+import DocumentChildrenField from "./DocumentChildrenField/DocumentChildrenField"
 
 import KpPageField from "./KpPage/KpPageField"
 import KpAnnotateArrayField from "./KpPage/KpAnnotateArrayField"
@@ -17,7 +18,8 @@ import pageEditor from "./PageEditor/registry"
 
 export default {
     "fields": {
-        "parentId": ParentIdField,
+        "documentParentId": DocumentParentIdField,
+        "documentChildren": DocumentChildrenField,
         "kpPage": KpPageField,
         "kpAnnotateArray": KpAnnotateArrayField,
         "kpAnnotateImage": KpAnnotateImageField,

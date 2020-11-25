@@ -6,7 +6,9 @@ import qs from 'query-string';
 import Editor from "../Editor/Editor"
 import EditorLoader from "../Editor/EditorLoader"
 
-import schemasByName from "../schemas/schemasByName"
+import DocumentPreview from "./DocumentPreview"
+
+import schemasByName from "../app/schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview, getDefaultFormState } = utils
@@ -111,7 +113,10 @@ const DocumentEditor = (props) => {
         languages: app && app.languages,
         onBack: _onBack,
         onSelect: _onSelect,
-        onEditReference: _onEditReference
+        onEditReference: _onEditReference,
+        preview: {
+            template: DocumentPreview
+        }
     }
 
     // get schemas based on documentType

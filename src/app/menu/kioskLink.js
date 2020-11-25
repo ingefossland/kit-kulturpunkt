@@ -1,7 +1,5 @@
-import KioskMenuIcon from "../../icons/KioskMenuIcon"
-
 export default {
-    icon: KioskMenuIcon(),
+    icon: "kioskMenu",
     url: "/kiosk",
     title: "Kiosk"
 }

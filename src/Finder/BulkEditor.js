@@ -5,7 +5,7 @@ import { SchemaBase } from '@kit-ui/schema';
 import { bulkChange, bulkSubmit } from '../redux/bulk';
 
 import registry from "../components/registry"
-import schemasByName from "../schemas/schemasByName"
+import schemasByName from "../app/schemas/schemasByName"
 
 
 const uiSchema = {

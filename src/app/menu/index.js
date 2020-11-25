@@ -13,6 +13,7 @@ import ekultur from "./ekultur"
 import latest from "./latest"
 import trash from "./trash"
 import settings from "./settings"
+import favourites from "./favourites"
 
 export {
     kpHome,
@@ -45,5 +46,6 @@ export default [
     latest,
     trash,
     settings,
-    kioskHome
+    kioskHome,
+    favourites
 ]

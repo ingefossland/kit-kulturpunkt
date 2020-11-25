@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import NavMenuList from "./NavMenuList"
 import NavMenuItem from "./NavMenuItem"
 import NavMenuLink from "./NavMenuLink"
+import NavMenuLabel from "./NavMenuLabel"
 
 const NavMenuCalendar = () => { return <p>cal</p>}
 
@@ -27,12 +28,21 @@ const NavMenu = ({className, icons = {}, menu = [], menuByUrl, currentUrl, onSel
 
     }
 
+    const renderLabel = (item) => {
+        const { selected, url, icon, title, label, count } = item;
+
+        return (
+            <NavMenuLabel selected={selected} url={url} icon={icon} label={label || title} count={count} onClick={(event) => _onSelect(item, event)} />
+        )
+
+    }
+
     const renderItem = (item, index) => {
 
         if (item.url && menuByUrl && menuByUrl[item.url]) {
             item = {
-                ...item,
                 ...menuByUrl[item.url],
+                ...item,
             }
         }
 
@@ -59,6 +69,24 @@ const NavMenu = ({className, icons = {}, menu = [], menuByUrl, currentUrl, onSel
         }
 
         const { role, calendar, children, hidden, selected, expanded } = item;
+
+        if (role === "section") {
+
+            return (
+                <NavMenuItem key={index} role="group">
+                    { renderLabel(item) }
+
+                    { children && 
+                        <NavMenuList role="group">
+                        { children && children.map((item, index) => renderItem({...item, role: ''}, index))}
+                        </NavMenuList>
+                    }
+
+                </NavMenuItem>
+            )
+
+            
+        }
 
         if (hidden) {
             return (
