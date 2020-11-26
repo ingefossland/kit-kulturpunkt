@@ -62,7 +62,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const FinderLayout = ({
+const BulkLayout = ({
     expanded = false,
     parents,
     settings,
@@ -74,7 +74,6 @@ const FinderLayout = ({
 
     return (
         <div className={classes.bulk} aria-expanded={expanded}>
-            { settings && <NavSettings className={classes.settings} settings={settings} /> }
             <header className={classes.header}>
                 { parents && <NavPath className={classes.path} parents={parents} /> }
             </header>
@@ -86,12 +85,12 @@ const FinderLayout = ({
 
 }
 
-FinderLayout.defaultProps = {
+BulkLayout.defaultProps = {
 
 }
 
-FinderLayout.propTypes = {
+BulkLayout.propTypes = {
 
 }
 
-export default FinderLayout;
+export default BulkLayout;

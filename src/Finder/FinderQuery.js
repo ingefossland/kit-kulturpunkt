@@ -4,9 +4,9 @@ import { getView, getSort } from '../redux/finder';
 import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
+import Bulk from "./Bulk"
 import FinderLayout from "./FinderLayout"
-import FinderBulk from "./FinderBulk"
-import FinderView from "./FinderView"
+import View from "./View"
 
 const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
         page: sq.page || 1,
         rows: sq.rows || 10,
         sort: sq.sort || query.sort || undefined,
-        fl: "id,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight",
+        fl: "id,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
         q: sq.q || undefined,
     };
 
@@ -91,11 +91,11 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     const view = sq.view || finder.view || viewOptions && viewOptions[0] || "list"
 
     return (
-        <FinderBulk>
+        <Bulk>
             <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView}>
-                <FinderView {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} onSort={_onSort} onRows={_onRows} />
+                <View {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} onSort={_onSort} onRows={_onRows} />
             </FinderLayout>
-        </FinderBulk>
+        </Bulk>
 
     )
 

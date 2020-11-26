@@ -7,6 +7,7 @@ import { bulkChange, bulkSubmit } from '../redux/bulk';
 import registry from "../components/registry"
 import schemasByName from "../app/schemas/schemasByName"
 
+import BulkPreview from "./BulkPreview"
 
 const uiSchema = {
     "ui:options": {
@@ -45,10 +46,7 @@ const BulkEditor = ({schema = {}, formData = {}, ...props}) => {
     return (
         <div>
 
-            {JSON.stringify(schema)}
-            <br></br>
-            {JSON.stringify(formData)}
-
+            <BulkPreview />
 
         <SchemaBase {...registry} 
             schema={schema}

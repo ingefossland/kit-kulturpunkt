@@ -6,7 +6,7 @@ import { getQuery } from '../redux/searchById';
 
 import FinderLayout from "./FinderLayout"
 import FinderQuery from "./FinderQuery"
-import FinderView from "./FinderView"
+import View from "./View"
 
 import FinderModel from "./FinderModel"
 import { GridViewHeader, GridViewFooter, GridViewList, GridModule } from "../components"
@@ -100,7 +100,7 @@ const Finder = (props) => {
                 </FinderModel>
             </GridViewList>
 
-            <FinderView {...props} {...children} view="list" title="Barn" />
+            <View {...props} {...children} view="list" title="Barn" />
         </FinderLayout>
     )
 

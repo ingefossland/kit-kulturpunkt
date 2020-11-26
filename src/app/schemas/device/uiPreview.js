@@ -17,7 +17,7 @@ export default {
         const locale = defaultLocale || currentLocale || formData.locale
         const localeId = "locale:" + locale;
   
-        let metadata = ["xxas"]
+        let metadata = []
 
         const backgroundImage = content && content.backgroundImage;
         const hasPages = content && content.hasPages;
