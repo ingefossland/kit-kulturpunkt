@@ -105,6 +105,7 @@ const TreeItem = ({collapsible, draggable, level, title, selected, expanded = fa
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
                     <div>{title}</div>
                 </div>
+                {snapshot.isDragging && JSON.stringify(snapshot)}
                 {children && <div className={classes.children}>{children}</div> }
             </div>
         )
