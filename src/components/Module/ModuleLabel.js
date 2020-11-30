@@ -4,7 +4,18 @@ import PropTypes from "prop-types"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { getContrastColor } from "../utils"
+const getContrastColor = (color) => {
+
+    color = Color(color);
+
+    if (color.isDark()) {
+        return "white"
+    } else {
+        return "black"
+    }
+
+}
+
 
 const useStyles = makeStyles(theme => ({
     root: {

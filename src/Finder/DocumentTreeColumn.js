@@ -3,11 +3,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { sortMenuTree, moveMenuItem } from '../redux/finder';
 import qs from 'query-string';
 
+import IconButton from "@material-ui/core/IconButton"
+import DragIcon from '@material-ui/icons/DragHandle';
+
 import {
     DocumentTree,
     DocumentTreeColumn,
     DocumentTreeModule,
-} from "../components/DocumentTree/"
+} from "../components/DocumentTree"
 
 import FinderLayout from "./FinderLayout"
 import FinderPreview from "./FinderPreview"
@@ -82,6 +85,64 @@ const FinderTree = (props) => {
 
        
     }
+
+    const DragHandle = ({dragHandleProps}) => {
+
+        return (
+            <IconButton {...dragHandleProps} >
+                <DragIcon />
+            </IconButton>
+        )
+    
+    }
+
+    const renderChildren = ({children}) => {
+
+        return (
+            <ul>
+                {children && children.map((child, index) => {
+
+                    const treeChild = {
+                        ...menuByUrl[child.url]
+                    }
+
+                    return (
+                        <Draggable index={index} draggableId={child.url} key={child.url}>
+                        {(provided, snapshot) => (
+                            <li {...provided.draggableProps} {...provided.dragHandleProps} ref={provided.innerRef}>
+                                {treeChild.title}
+                                {treeChild.children && renderChildren(treeChild)}
+                            </li>
+                        )}
+                        </Draggable>
+                    )
+                })}
+            </ul>
+        )
+        
+    }
+
+    return (
+        <DragDropContext onDragEnd={_onDragEnd}>
+            <ul>
+                {parents && parents.map((parent, index) => {
+                    const treeParent = {
+                        ...menuByUrl[parent.url]
+                    }
+                    return (
+                        <Droppable isCombineEnabled={true} index={index} droppableId={parent.url} key={parent.url}>
+                        {(provided, snapshot) => (
+                            <li {...provided.droppableProps} ref={provided.innerRef}>
+                                {treeParent.title}
+                                {treeParent.children && renderChildren(treeParent)}
+                            </li>
+                        )}
+                        </Droppable>
+                    )
+                })}
+            </ul>
+        </DragDropContext>        
+    )
     
     return (
         <FinderLayout {...finder}>

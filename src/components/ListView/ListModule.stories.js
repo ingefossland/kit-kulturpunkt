@@ -1,8 +1,6 @@
 import React from 'react';
 import ListModule from './ListModule';
 
-import { ColorSettings } from "../"
-
 export default {
     title: 'Module/Variant/ListModule',
     component: ListModule,

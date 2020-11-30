@@ -20,9 +20,13 @@ export * from "./NavView/"
 export * from "./NavSort/"
 export * from "./NavPages/"
 
+export * from "./View/"
+export * from "./Module/"
+
 export * from "./ListView/"
 export * from "./TableView/"
 export * from "./GridView/"
+export * from "./TreeView/"
 
 export * from "./Masonry/"
 export * from "./Gallery/"

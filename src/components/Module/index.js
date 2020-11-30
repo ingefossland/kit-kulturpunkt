@@ -1,5 +1,3 @@
-import Module from "./Module";
-
 import ModuleBase from "./ModuleBase";
 import ModuleHeader from "./ModuleHeader";
 import ModuleBody from "./ModuleBody";
@@ -26,7 +24,6 @@ import ModuleLayout from "./ModuleLayout";
 import EditableModule from "./EditableModule";
 import ExpandedModule from "./ExpandedModule";
 
-import ListModule from "./ListModule";
 import TableModule from "./TableModule";
 import GridModule from "./GridModule";
 import CardModule from "./CardModule";
@@ -34,7 +31,6 @@ import GalleryModule from "./GalleryModule";
 
 
 export {
-    Module,
     ModuleBase,
     ModuleFormat,
     ModuleHeader,
@@ -55,7 +51,6 @@ export {
 
     EditableModule,
     ExpandedModule,
-    ListModule,
     TableModule,
     GridModule,
     CardModule,

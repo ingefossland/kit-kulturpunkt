@@ -2,6 +2,7 @@ import React, { forwardRef, useState, useEffect, useRef } from 'react';
 import PropTypes from "prop-types"
 
 import Icon from "@material-ui/core/Icon"
+import CheckIcon from "@material-ui/icons/Check"
 
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
@@ -15,29 +16,29 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ListSettingsOptions = ({
+const ViewOptionsList = ({
     value, 
     options,
     onChange
 }) => {
 
-    const _onSelect = (value) => {
-        onChange && onChange(value)
+    const classes = useStyles()
+
+    const _onSelect = (option) => {
+        onChange && onChange(option.value)
     }
 
     const ListOption = (option) => {
-        const { icon, label, value } = option
+        const { icon, label } = option
 
         return (
-            <ListItem button onClick={() => _onSelect(value)}>
-                { icon && <ListItemIcon><Icon>{icon}</Icon></ListItemIcon> }
-                <ListItemText primary={label || value} />
+            <ListItem button onClick={() => _onSelect(option)}>
+                <ListItemIcon>{ value === option.value && <Icon><CheckIcon /></Icon>}</ListItemIcon>
+                <ListItemText primary={label || option.value} />
             </ListItem>
         )
 
     }
-
-    const classes = useStyles()
 
     return (
         <List>
@@ -49,10 +50,10 @@ const ListSettingsOptions = ({
 
 }
 
-ListSettingsOptions.defaultProps = {
+ViewOptionsList.defaultProps = {
 }
 
-ListSettingsOptions.propTypes = {
+ViewOptionsList.propTypes = {
 }
 
-export default ListSettingsOptions;
+export default ViewOptionsList;

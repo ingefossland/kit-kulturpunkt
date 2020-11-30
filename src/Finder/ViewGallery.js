@@ -2,22 +2,18 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { useTranslation } from 'react-i18next';
 
-import { Gallery, GalleryModule } from "../components"
-import { GridViewHeader } from "../components"
-
+import { GalleryView, GalleryModule } from "../components"
 import FinderModel from "./FinderModel"
-import ResultsLoader from "./ResultsLoader"
-import ResultsHeader from "./ResultsHeader"
-import ResultsFooter from "./ResultsFooter"
 
-const MediaGallery = ({layout = "gallery", resultsLoaded = [], onPage, mediaHeight = 180, mediaLayout = "cover", ...props}) => {
+const ViewGallery = ({resultsLoaded = [], mediaHeight = 180, mediaLayout = "cover", ...props}) => {
     const { t, i18n } = useTranslation(['search']);
+
+    const { count, page, pages, onPage } = props
 
     if (resultsLoaded && props.prevPage) {
 
         resultsLoaded = [
             {
-//                icon: "arrow_back",
                 role: "button",
                 title: t('Page {{page}}', { page:props.prevPage }) + " ...",
                 mediaWidth: mediaHeight,
@@ -33,7 +29,6 @@ const MediaGallery = ({layout = "gallery", resultsLoaded = [], onPage, mediaHeig
         resultsLoaded = [
             ...resultsLoaded,
             {
-//                icon: "arrow_forward",
                 role: "button",
                 title: t('Page {{page}}', { page:props.nextPage }) + " ...",
                 mediaWidth: mediaHeight,
@@ -43,45 +38,42 @@ const MediaGallery = ({layout = "gallery", resultsLoaded = [], onPage, mediaHeig
 
     }
 
+    const title = props.title || t('{{count}} hits', { count });
+    const description = t('{{page}} of {{pages}} pages', { pages, page });
+    const loadingTitle = t('Searching, please wait') + "...";
+    const emptyTitle = t('No hits')
+
+
     return (
-        <ResultsLoader {...props}>
-            <GridViewHeader {...props} />
-            <Gallery padding={0} spacing={2}>
+        <GalleryView {...props} padding={0} spacing={2} loadingTitle={loadingTitle} emptyTitle={emptyTitle} title={title} description={description}>
 
-                { resultsLoaded && resultsLoaded.map((model, index) => {
+            { resultsLoaded && resultsLoaded.map((model, index) => {
 
-                    let width, height;
-                        
-                    if (model.mediaWidth && model.mediaHeight) {
-                        width = model.mediaWidth
-                        height = model.mediaHeight
-                    } else if (model.imageWidth && model.imageHeight) {
-                        width = model.imageWidth
-                        height = model.imageHeight
-                    }
+                let width, height;
+                    
+                if (model.mediaWidth && model.mediaHeight) {
+                    width = model.mediaWidth
+                    height = model.mediaHeight
+                } else if (model.imageWidth && model.imageHeight) {
+                    width = model.imageWidth
+                    height = model.imageHeight
+                }
 
-                    model = {
-                        ...model,
-                        width: Math.floor(mediaHeight * (width / height)) || mediaHeight,
-                        mediaHeight: mediaHeight,
-                        mediaLayout: mediaLayout
-                    }
+                model = {
+                    ...model,
+                    width: Math.floor(mediaHeight * (width / height)) || mediaHeight,
+                    mediaHeight: mediaHeight,
+                    mediaLayout: mediaLayout
+                }
 
-                    return (
-                        <FinderModel {...props} layout="gallery" model={model} width={model.width} onClick={model && model.onClick} key={index}>
-                            <GalleryModule />
-                        </FinderModel>
-                    )
-                })}
-            </Gallery>
-        </ResultsLoader>
+                return (
+                    <FinderModel {...props} layout="gallery" model={model} width={model.width} onClick={model && model.onClick} key={index}>
+                        <GalleryModule />
+                    </FinderModel>
+                )
+            })}
+        </GalleryView>
     )    
 }
 
-MediaGallery.propTypes = {
-    spacing: PropTypes.number,
-    padding: PropTypes.number,
-    models: PropTypes.array 
-}
-
-export default MediaGallery;
+export default ViewGallery;

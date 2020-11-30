@@ -5,6 +5,7 @@ import Icon from "@material-ui/core/Icon"
 import { ButtonSelect, ButtonEdit, ButtonDelete, ButtonRestore, ButtonLink, ButtonView } from ".."
 
 import {
+    ModuleBase,
     ModuleTitle,
     ModuleLabel,
     ModuleMetadata,
@@ -210,7 +211,7 @@ const ListModule = ({
 
 
     return (
-        <article className={classes.module} data-status={status} aria-selected={selected} data-deleted={deleted} data-erased={erased}>
+        <ModuleBase className={classes.module} status={status} selected={selected} deleted={deleted} erased={erased}>
 
             { primaryButton && primaryButton || selectable && <ButtonSelect className={classes.select} selected={selected} onClick={onSelect} /> }
 
@@ -234,7 +235,7 @@ const ListModule = ({
             </div>
             <NavSettings {...props} className={classes.settings} />
             <Toolbar />
-        </article>
+        </ModuleBase>
     )    
 
 }

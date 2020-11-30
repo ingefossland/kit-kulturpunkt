@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { WidgetSearch, List, ListModule, ButtonAdd, ButtonRemove } from ".."
+import { WidgetSearch, ListView, ListModule, ButtonAdd, ButtonRemove } from ".."
 import _ from "lodash"
 
 const DocumentChildrenList = ({resultsLoaded}) => {
 
     return (
 
-        <List>
+        <ListView>
             {resultsLoaded && resultsLoaded.map(model => <ListModule {...model} primaryButton={<ButtonRemove />} />)}
-        </List>
+        </ListView>
 
     )
     

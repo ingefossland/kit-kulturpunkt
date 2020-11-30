@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import ExpandedModule from "./ExpandedModule"
-import ListModule from "./ListModule"
+import { ListModule } from "../"
 
 /** ModuleLayout, use for documents or media objects */
 

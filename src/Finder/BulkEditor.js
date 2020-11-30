@@ -46,9 +46,12 @@ const BulkEditor = ({schema = {}, formData = {}, ...props}) => {
     return (
         <div>
 
+            { renderDebug() }
+
             <BulkPreview />
 
         <SchemaBase {...registry} 
+            noValidate={true}
             schema={schema}
             uiSchema={uiSchema}
             formData={formData}

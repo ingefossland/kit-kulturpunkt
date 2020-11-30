@@ -1,7 +1,7 @@
 import React from 'react';
 //import { Masonry } from "@kit-ui/admin"
 import { Masonry, MasonryModule } from "../components/"
-import { GridViewHeader, GridViewFooter, GridViewList, GridViewModule } from "../components"
+import { ViewHeader, ViewPages } from "../components"
 
 import ResultsLoader from "./ResultsLoader"
 import ResultsFooter from "./ResultsFooter"
@@ -11,19 +11,17 @@ const MasonryLayout = ({layout = "masonry", resultsLoaded, onPage, ...props}) =>
 
     return (
         <ResultsLoader {...props}>
-
-            <GridViewHeader {...props} />
-
-            <Masonry columns={4} spacing={2}>
-                {resultsLoaded && resultsLoaded.map((model, index) => {
-                    return (
-                        <FinderModel model={model} {...props} key={index}>
-                            <MasonryModule />
-                        </FinderModel>
-                    )
-                })}
-            </Masonry>
-            <ResultsFooter {...props} onPage={onPage} />
+            <ViewHeader {...props} />
+                <Masonry columns={4} spacing={2}>
+                    {resultsLoaded && resultsLoaded.map((model, index) => {
+                        return (
+                            <FinderModel model={model} {...props} key={index}>
+                                <MasonryModule />
+                            </FinderModel>
+                        )
+                    })}
+                </Masonry>
+            <ViewPages {...props} onPage={onPage} />
         </ResultsLoader>
     )
 

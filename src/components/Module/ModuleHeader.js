@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-//import NavSettings from "../NavSettings/NavSettings"
-//import NavToolbar from "../NavToolbar/NavToolbar"
-import NavTabs from "../NavTabs/NavTabs"
+import ModuleTabs from "./ModuleTabs"
 import ModuleTitle from './ModuleTitle';
 
 import NavSettings from "../NavSettings/NavSettings"
@@ -69,7 +67,7 @@ const ModuleHeader = ({className, status, title, menu, settings, toolbar, childr
 
     return (
         <header className={className || classes.header}>
-            { menu && <NavTabs className={classes.tabs} tabs={menu} />}
+            { menu && <ModuleTabs className={classes.tabs} tabs={menu} />}
             { !menu && <ModuleTitle className={classes.title} status={status} title={title} /> }
             { settings && <NavSettings className={classes.settings} settings={settings} /> }
         </header>

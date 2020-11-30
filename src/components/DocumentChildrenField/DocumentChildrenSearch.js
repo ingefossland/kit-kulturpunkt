@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { WidgetSearch, List, ListModule, ButtonAdd, ButtonRemove } from ".."
+import { WidgetSearch, ListView, ListModule, ButtonAdd, ButtonRemove } from ".."
 import _ from "lodash"
 
 import { useSelector, useDispatch } from 'react-redux';
@@ -66,10 +66,10 @@ const DocumentChildrenSearch = (props) => {
 
     return (
 
-        <List>
+        <ListView>
             <WidgetSearch onChange={_onQuery} />
             {resultsLoaded && resultsLoaded.map(model => <ListModule {...model} primaryButton={<ButtonAdd />} />)}
-        </List>
+        </ListView>
 
     )
     

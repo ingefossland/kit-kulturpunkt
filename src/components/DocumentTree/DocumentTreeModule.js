@@ -164,7 +164,6 @@ const DocumentTreeRow = ({draggable, expanded, selected, ...props}) => {
 
     if (draggable) {
         const { provided, snapshot } = draggable
-
         const { isDragging, combineTargetFor } = snapshot
 
         const isTarget = combineTargetFor && true

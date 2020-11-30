@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import EditableModule from "./EditableModule"
 import ExpandedModule from "./ExpandedModule"
 
-import ListModule from "./ListModule"
+import { ListModule } from "../"
 import TableModule from "./TableModule"
 import GridModule from "./GridModule"
 import CardModule from "./CardModule"

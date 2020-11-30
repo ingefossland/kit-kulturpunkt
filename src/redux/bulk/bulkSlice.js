@@ -31,6 +31,18 @@ const bulkSlice = createSlice({
                     ],
                     "default": false
                 },
+                "parentId": {
+                    "type": "number",
+                    "enum": [
+                        false,
+                        "null",
+                    ],
+                    "enumNames": [
+                        "** Multiple values **",
+                        "Reset to null",
+                    ],
+                    "default": false
+                },
                 "documentType": {
                     "type": "string",
                     "enum": [
@@ -71,7 +83,7 @@ const bulkSlice = createSlice({
 
         },
         bulkAdd(state, action) {
-            const { uniqueId, status, documentType } = action.payload
+            const { uniqueId, parentId, status, documentType } = action.payload
 
             return {
                 ...state,
@@ -80,6 +92,7 @@ const bulkSlice = createSlice({
                     ...state.bulkById,
                     [uniqueId]: {
                         uniqueId: uniqueId,
+                        parentId: parentId,
                         documentType: documentType,
                         status: status,
                         selected: true
@@ -143,10 +156,30 @@ export const bulkSubmit = ({modelName = "documents", formData}) => (dispatch, ge
             return false
         }
 
+        let newFormData = {
+            ...uniqueModel
+        }
+
+        Object.keys(formData).map(key => {
+
+            if (formData[key]) {
+                newFormData[key] = formData[key]
+            }
+
+            if (formData[key] === "null") {
+                newFormData[key] = null
+            }
+
+
+        })
+
+        /*
+
         const newFormData = {
             ...uniqueModel,
             ...formData
         }
+        */
 
         fetch(url, {
             method: "POST",

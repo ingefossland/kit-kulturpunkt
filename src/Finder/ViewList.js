@@ -1,32 +1,32 @@
 import React from 'react';
-import ResultsLoader from "./ResultsLoader"
 import FinderModel from "./FinderModel"
+import { useTranslation } from 'react-i18next';
+import { ListView, ListModule } from "../components"
 
-import { ListViewHeader, ListViewFooter, List, ListModule } from "../components"
+const ViewList = ({resultsLoaded, ...props}) => {
+    const { t, i18n } = useTranslation('search');
 
-const ListView = ({resultsLoaded, onPage, ...props}) => {
+    const { resultsByPage, count, page, pages, onPage } = props
 
-    const { resultsByPage, page } = props
+    const title = props.title || t('{{count}} hits', { count });
+    const description = t('{{page}} of {{pages}} pages', { pages, page });
+    const loadingTitle = t('Searching, please wait') + "...";
+    const emptyTitle = t('No hits')
 
     const pagedResults = resultsByPage && resultsByPage[page]
 
     return (
-        <ResultsLoader {...props}>
-            <List>
-                <ListViewHeader {...props} />
-                {pagedResults && pagedResults.map((model, index) => {
-
-                    return (
-                        <FinderModel {...props} model={model}>
-                            <ListModule {...model} key={index} />
-                        </FinderModel>
-                    )
-                })}
-                <ListViewFooter {...props} onPage={onPage} />
-            </List>
-        </ResultsLoader>
+        <ListView {...props} loadingTitle={loadingTitle} emptyTitle={emptyTitle} title={title} description={description}>
+            {pagedResults && pagedResults.map((model, index) => {
+                return (
+                    <FinderModel {...props} model={model}>
+                        <ListModule {...model} key={index} />
+                    </FinderModel>
+                )
+            })}
+        </ListView>
     )
 
 }
 
-export default ListView
+export default ViewList

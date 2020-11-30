@@ -5,16 +5,17 @@ import { getFinder, getMenuItem, getParents } from '../redux/finder';
 
 import FinderLoader from "./FinderLoader"
 import FinderQuery from "./FinderQuery"
-import FinderTree from "./FinderTree"
 import FinderUpload from "./FinderUpload"
+
+import DocumentTree from "./DocumentTree"
 
 import CollectionSwitcher from "./CollectionSwitcher"
 
 const templates = {
     "finder/query": FinderQuery,
-    "finder/tree": FinderTree,
-    "tree": FinderTree,
-    "treeitem": FinderTree,
+    "finder/tree": DocumentTree,
+    "tree": DocumentTree,
+    "treeitem": DocumentTree,
     "upload": FinderUpload,
     "collections": CollectionSwitcher
 }

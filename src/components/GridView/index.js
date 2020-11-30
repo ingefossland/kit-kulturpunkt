@@ -1,11 +1,7 @@
-import GridViewHeader from "./GridViewHeader"
-import GridViewFooter from "./GridViewFooter"
-import GridViewList from "./GridViewList"
+import GridView from "./GridView"
 import GridModule from "./GridModule"
 
 export {
-    GridViewHeader,
-    GridViewFooter,
-    GridViewList,
+    GridView,
     GridModule
 }

@@ -6,6 +6,7 @@ export default {
     url: "/kp",
     template: "finder/tree",
     query: {
+        rows: 100,
         models: "documents",
         status: "NOT trash",
         documentType: "page*",

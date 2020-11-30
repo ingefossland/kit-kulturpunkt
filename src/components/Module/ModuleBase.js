@@ -25,6 +25,8 @@ const ModuleBase = ({
         component,
         status, 
         selected,
+        deleted,
+        erased,
         expanded, 
         elevation, 
         onClick, 
@@ -38,6 +40,8 @@ const ModuleBase = ({
             <tr id={id}
                 className={className || classes.root}
                 data-status={status}
+                data-deleted={deleted}
+                data-erased={erased}
                 aria-expanded={expanded}
                 aria-selected={selected}>
                     {children}
@@ -50,6 +54,8 @@ const ModuleBase = ({
             <article id={id}
                 className={className || classes.root}
                 data-status={status}
+                data-deleted={deleted}
+                data-erased={erased}
                 aria-expanded={expanded}
                 aria-selected={selected}
                 role={onClick && "button"}
@@ -65,6 +71,8 @@ const ModuleBase = ({
             component={component}
             className={className || classes.root}
             data-status={status}
+            data-deleted={deleted}
+            data-erased={erased}
             data-elevated={true}
             aria-expanded={expanded}
             aria-selected={selected}

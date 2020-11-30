@@ -19,6 +19,11 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     const pathname = props.location.pathname
     const sq = props.location.search && qs.parse(props.location.search)
 
+    let q = []
+
+    query.q && q.push(query.q)
+    sq.q && q.push(sq.q)
+
     query = {
         ...query,
         id: pathname,
@@ -26,8 +31,8 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
         page: sq.page || 1,
         rows: sq.rows || 10,
         sort: sq.sort || query.sort || undefined,
-        fl: "id,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
-        q: sq.q || undefined,
+        fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
+        q: q && q.join(" ") || undefined,
     };
 
 

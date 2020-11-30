@@ -1,24 +1,22 @@
 import React, { useState, useRef } from 'react';
-import { useTranslation } from 'react-i18next';
 import PropTypes from "prop-types"
 import { Dropdown } from "@kit-ui/core"
 
 import Link from '@material-ui/core/Link';
-import ButtonBase from '@material-ui/core/ButtonBase';
-import ListViewOptionsList from "./ListViewOptionsList"
+import ViewOptionsList from "./ViewOptionsList"
 
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     link: {
-        fontStyle: "normal",
+        "fontStyle": "normal",
         "&:hover": {
             "cursor": "pointer"
         }
     }
 }));
 
-const ListViewOptions = ({
+const ViewOptions = ({
     className,
     value, 
     options,
@@ -31,6 +29,8 @@ const ListViewOptions = ({
     const anchorRef = useRef(null)
 
     const _onChange = (value) => {
+        console.log('change', value)
+
         onChange && onChange(value)
         setExpanded(false)
     }
@@ -55,29 +55,27 @@ const ListViewOptions = ({
 
     const label = currentOption && currentOption.label || currentOption && currentOption.title 
 
-
-
     return (
         <>
             <Link className={className || classes.link } onClick={_onToggle} ref={anchorRef}>
                 <b className={classes.label}>{label}</b>
             </Link>
             <Dropdown expanded={expanded} anchorEl={anchorRef.current} onClickAway={_onCollapse}>
-                <ListViewOptionsList options={options} value={value} onChange={_onChange} />
+                <ViewOptionsList options={options} value={value} onChange={_onChange} />
             </Dropdown>
         </>
     )
 
 }
 
-ListViewOptions.defaultProps = {
+ViewOptions.defaultProps = {
 }
 
-ListViewOptions.propTypes = {
+ViewOptions.propTypes = {
     className: PropTypes.string,
     options: PropTypes.array,
     value: PropTypes.string,
     onChange: PropTypes.func
 }
 
-export default ListViewOptions
+export default ViewOptions

@@ -12,7 +12,7 @@ import {
 import FinderPreview from "./FinderPreview"
 import FinderModel from "./FinderModel"
 
-import { ListViewList, ListViewHeader, ListViewFooter, ListModule } from "../components"
+import { ListModule } from "../components"
 
 
 const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
@@ -25,8 +25,6 @@ const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
         <DocumentTree>
             <DocumentTreeColumn>
 
-                <ListViewList>
-
                     {resultsLoaded && resultsLoaded.map((model, index) => {
                         return (
                             <FinderModel model={model} onEdit={_onEdit}>
@@ -34,8 +32,6 @@ const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
                             </FinderModel>
                         )
                     })}
-
-                </ListViewList>
 
             </DocumentTreeColumn>
             <DocumentTreeColumn>
