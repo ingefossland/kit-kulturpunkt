@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     column: {
+        position: "relative",
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",

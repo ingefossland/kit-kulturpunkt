@@ -4,10 +4,10 @@ import { sortMenuTree, moveMenuItem } from '../redux/finder';
 import qs from 'query-string';
 
 import {
-    DocumentTree,
-    DocumentTreeColumn,
-    DocumentTreeModule,
-} from "../components/DocumentTree"
+    ColumnView,
+    ColumnList,
+    ColumnModule,
+} from "../components/"
 
 import FinderPreview from "./FinderPreview"
 import FinderModel from "./FinderModel"
@@ -15,34 +15,34 @@ import FinderModel from "./FinderModel"
 import { ListModule } from "../components"
 
 
-const ColumnView = ({layout = "list", resultsLoaded, onPage, ...props})  => {
+const ViewColumn = ({layout = "list", resultsLoaded, onPage, ...props})  => {
 
     const _onEdit = () => {
         alert("edit")
     }
 
     return (
-        <DocumentTree>
-            <DocumentTreeColumn>
+        <ColumnView>
+            <ColumnList>
 
                     {resultsLoaded && resultsLoaded.map((model, index) => {
                         return (
                             <FinderModel model={model} onEdit={_onEdit}>
-                                <ListModule  />
+                                <ColumnModule  />
                             </FinderModel>
                         )
                     })}
 
-            </DocumentTreeColumn>
-            <DocumentTreeColumn>
+            </ColumnList>
+            <ColumnList>
                 <FinderPreview model={{title: "Untitled"}} />
-            </DocumentTreeColumn>
-        </DocumentTree>
+            </ColumnList>
+        </ColumnView>
     )
 
 }
 
-ColumnView.defaultProps = {
+ViewColumn.defaultProps = {
 }
 
-export default ColumnView
+export default ViewColumn
