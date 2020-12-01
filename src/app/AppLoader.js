@@ -1,25 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMenu } from '../redux/finder';
 import { Loader } from "../components/"
+import icons from "../icons/"
 
 const AppLoader = ({children, ...props}) => {
     const app = useSelector(state => state.app)
-
-    /*
-    const menu = app.menu
-
-    const dispatch = useDispatch()
-
-    useEffect(() => {
-        dispatch(getMenu(app))
-    }, [menu])
-    */
+    const appIcon = app.icon && icons[app.icon]
 
     return (
         <Loader
             isLoading={app.isLoading}
-            icon={app.icon}
+            icon={appIcon}
             title={app.title || "App"}
             description={app.uniqueId && "App loaded ..."}>
                 {children}

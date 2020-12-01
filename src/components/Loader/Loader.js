@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from "prop-types"
 import { makeStyles } from '@material-ui/core/styles';
-import { AppIcon } from "@kit-ui/icons"
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
     loader: {
@@ -25,9 +25,13 @@ const useStyles = makeStyles(theme => ({
         }
     },
     icon: {
+        width: 64,
+        height: 64,
+
         "& > svg": {
-            fontSize: "64px"
+            fontSize: 64,
         },
+
         "& > img": {
             width: theme.spacing(8),
             height: theme.spacing(8)
@@ -67,12 +71,13 @@ const useStyles = makeStyles(theme => ({
 const Loader = ({className, isLoading = true, icon, imageUrl, title, description, children}) => {
     const classes = useStyles()
 
+
     return (
         <div data-is-loading={isLoading}>
             <div className={classes.loader}>
-                <div className={classes.icon}>
-                    { icon || imageUrl && <img src={imageUrl} /> || <AppIcon />}
-                </div>
+                <Icon className={classes.icon}>
+                    { icon }
+                </Icon>
                 <div className={classes.content}>
                     <h2 className={classes.title}>{title}</h2>
                     <p className={classes.description}>{description}</p>

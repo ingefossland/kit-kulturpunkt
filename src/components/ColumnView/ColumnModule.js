@@ -5,10 +5,7 @@ import SelectIcon from "@material-ui/icons/ChevronRight"
 import EditIcon from "@material-ui/icons/Edit"
 import DragIcon from '@material-ui/icons/DragHandle';
 
-import ModuleTitle from "./ModuleTitle"
-import ModuleLabel from "./ModuleLabel"
-import ModuleMetadata from "./ModuleMetadata"
-
+import { ModuleTitle, ModuleLabel, ModuleMetadata } from "../Module"
 
 const useStyles = makeStyles(theme => ({
     module: {
@@ -158,7 +155,7 @@ const DragHandle = ({dragHandleProps}) => {
 
 }
 
-const DocumentTreeRow = ({draggable, expanded, selected, ...props}) => {
+const ColumnModule = ({draggable, expanded, selected, ...props}) => {
 
     const classes = useStyles()
 
@@ -192,4 +189,4 @@ const DocumentTreeRow = ({draggable, expanded, selected, ...props}) => {
 
 }
 
-export default DocumentTreeRow;
+export default ColumnModule;

@@ -4,9 +4,10 @@ import ToggleIcon from '@material-ui/icons/ArrowDropDown';
 import DragIcon from '@material-ui/icons/DragHandle';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { ModuleTitle } from "../Module"
+
 const useStyles = makeStyles(theme => ({
-    module: {
-        paddingLeft: props => { return props.level * 48 },
+    treeItem: {
 
         "&[data-is-dragging=true]": {
             minWidth: theme.spacing(16),
@@ -35,12 +36,14 @@ const useStyles = makeStyles(theme => ({
 
     },
     children: {
-
+        borderTop: "1px solid",
+        borderColor: theme.palette.divider,
     },
     toolbar: {
 
     },
     content: {
+        marginLeft: props => { return props.level * 48 },
         position: "relative",
         display: "flex",
         alignItems: "center",
@@ -60,7 +63,7 @@ const useStyles = makeStyles(theme => ({
     }
 
 }));
-const TreeModule = ({draggable, hasChildren, level, title, selected, expanded = false, children, onToggle}) => {
+const TreeItem = ({collapsible, draggable, level, title, selected, expanded = false, children, onToggle}) => {
 
 
     const classes = useStyles({level});
@@ -93,17 +96,19 @@ const TreeModule = ({draggable, hasChildren, level, title, selected, expanded = 
         const isTarget = combineTargetFor && true
 
         return (
-            <div className={classes.treeModule}
+            <div className={classes.treeItem}
                 {...provided.draggableProps}
                 aria-selected={selected}
                 aria-expanded={expanded}
                 data-is-dragging={isDragging}
                 data-is-target={isTarget} ref={provided.innerRef}>
                 <div className={classes.content}>
-                    {hasChildren && <ButtonToggle onClick={onToggle} /> || "" }
+                    {collapsible && <ButtonToggle onClick={onToggle} /> || "" }
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
-                    <div>{title}</div>
+                    <ModuleTitle>{title}</ModuleTitle>
                 </div>
+                {snapshot.isDragging && JSON.stringify(snapshot)}
+                {children && <div className={classes.children}>{children}</div> }
             </div>
         )
     
@@ -112,14 +117,15 @@ const TreeModule = ({draggable, hasChildren, level, title, selected, expanded = 
 
 
     return (
-        <div className={classes.treeModule}>
+        <div className={classes.treeItem}>
             <div className={classes.content}>
-                {children && <ButtonToggle onClick={onToggle} /> }
-                <div>{title}</div>
+                {collapsible && <ButtonToggle onClick={onToggle} /> }
+                <ModuleTitle>{title}</ModuleTitle>
             </div>
+            {children && <div className={classes.children}>{children}</div> }
         </div>
     )
 
 }
 
-export default TreeModule
+export default TreeItem

@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     column: {
-        position: "relative",
+//        position: "relative",
         flexBasis: 0,
         flewGrow: 1,
 
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const DocumentTreeColumn = ({droppable, expanded, children, ...props}) => {
+const ColumnList = ({droppable, expanded, children, ...props}) => {
 
     const classes = useStyles()
 
@@ -66,4 +66,4 @@ const DocumentTreeColumn = ({droppable, expanded, children, ...props}) => {
 
 }
 
-export default DocumentTreeColumn;
+export default ColumnList;

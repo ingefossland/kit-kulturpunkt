@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 
-import IconButton from "@material-ui/core/IconButton"
-
-import { ListModule } from "../components"
 
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
-import { TreeList, TreeItem, TreeModule } from "../components"
+import { TreeList, TreeModule } from "../components"
 
-const TreeViewList = ({
+const DocumentTreeList = ({
     documentTree,
     onToggle,
     onDragEnd
 }) => {
 
-    const renderParent = ({children, index, level, ...parent}) => {
+    const DocumentTreeChildren = ({children, index, level, ...parent}) => {
 
         return (
             <Droppable isCombineEnabled={true} index={index} droppableId={parent.url} key={parent.url}>
@@ -28,9 +25,9 @@ const TreeViewList = ({
                             return (
                                 <Draggable index={index} draggableId={child.url} key={child.url}>
                                     {(provided, snapshot) => (
-                                        <TreeItem {...child} collapsible={collapsible} index={index} draggable={{provided, snapshot}} level={level} onToggle={() => onToggle(child)}>
-                                        {expanded && renderParent({...child, level: level+1})}
-                                        </TreeItem>
+                                        <TreeModule {...child} collapsible={collapsible} index={index} draggable={{provided, snapshot}} level={level} onToggle={() => onToggle(child)}>
+                                        { expanded && <DocumentTreeChildren {...child} level={level+1} /> }
+                                        </TreeModule>
                                     )}
                                 </Draggable>
                             )
@@ -45,9 +42,7 @@ const TreeViewList = ({
 
     return (
         <DragDropContext onDragEnd={onDragEnd}>
-            {documentTree && documentTree.map((parent, index) => {
-                return renderParent({...parent, index, level: 1})
-            })}
+            {documentTree && documentTree.map((parent, index) => (<DocumentTreeChildren {...parent} index={index} level={1} />))}
         </DragDropContext>        
     )
 
@@ -55,7 +50,7 @@ const TreeViewList = ({
 
 }
 
-TreeViewList.defaultProps = {
+DocumentTreeList.defaultProps = {
 }
 
-export default TreeViewList
+export default DocumentTreeList

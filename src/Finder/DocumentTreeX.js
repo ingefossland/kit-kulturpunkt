@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMenuItem, toggleMenuItem, sortMenuTree } from '../redux/finder';
-import { getQuery } from '../redux/searchById';
 import qs from 'query-string';
 
 import TreeListView from "./DocumentTreeList"
@@ -9,58 +8,21 @@ import TreeColumnView from "./DocumentTreeColumn"
 import FinderLayout from "./FinderLayout"
 
 const DocumentTree = ({query = {}, ...props}) => {
-    const dispatch = useDispatch()
-
-    const app = useSelector(state => state.app)
-    const finder = useSelector(state => state.finder)
-
-    const menuByUrl = finder && finder.menuByUrl
-
-    // set query
-
     const pathname = props.location.pathname
     const sq = props.location.search && qs.parse(props.location.search)
 
-    let q = []
+    const dispatch = useDispatch()
 
-    query.q && q.push(query.q)
-    sq.q && q.push(sq.q)
-
-    query = {
-        ...query,
-        id: pathname,
-        collectionId: app && app.collectionId,
-        page: sq.page || 1,
-        rows: sq.rows || 10,
-        sort: sq.sort || query.sort || undefined,
-        fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
-        q: q && q.join(" ") || undefined,
-    };
-
-
-    // query
+    const finder = useSelector(state => state.finder)
+    const menuByUrl = finder.menuByUrl
+    const menuItem = menuByUrl && menuByUrl[pathname]
 
     useEffect(() => {
-        query && dispatch(getQuery(query))
-    }, [pathname, query.q, sq.sort, sq.rows])
+        dispatch(getMenuItem(menuItem))
+    }, [pathname])
 
-    // search
 
-    const searchById = useSelector(state => state.searchById)
-    const currentSearch = searchById && searchById[query.id] || {}
-    const resultsLoaded = currentSearch && currentSearch.resultsLoaded
-
-    // setup documentTree
-
-    const documentTree = resultsLoaded && resultsLoaded.map((parent, index) => {
-        return {
-            ...parent,
-            index: index,
-//            children: parent.children && getChildren(parent)
-        }
-    })    
-
-    // actions
+    const [results, setResults] = useState(undefined)
 
     const _onEdit = ({url}) => {
         const editUrl = url + "/edit"
@@ -121,9 +83,39 @@ const DocumentTree = ({query = {}, ...props}) => {
 
         }
 
+        setResults({...results})
+       
     }
 
+    // setup documentTree
 
+    const parents = finder.parents
+    const parentsByUrl = finder.parentsByUrl
+
+    const getChildren = ({children}) => {
+        return children.map((child, index) => {
+            child = {
+                ...menuByUrl[child.url]
+            }
+
+            return {
+                ...child,
+                index: index,
+                children: child.children && getChildren(child)
+            }
+        })
+    }
+
+    const documentTree = parents && parents.map((parent, index) => {
+        parent = {
+            ...menuByUrl[parent.url],
+        }
+        return {
+            ...parent,
+            index: index,
+            children: parent.children && getChildren(parent)
+        }
+    })
 
     // viewOptions
 

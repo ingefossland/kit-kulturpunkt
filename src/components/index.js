@@ -27,6 +27,7 @@ export * from "./ListView/"
 export * from "./TableView/"
 export * from "./GridView/"
 export * from "./TreeView/"
+export * from "./ColumnView/"
 
 export * from "./Masonry/"
 export * from "./Gallery/"

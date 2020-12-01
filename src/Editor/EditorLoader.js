@@ -5,8 +5,7 @@ import { getEditor } from '../redux/editor';
 
 import { Loader } from "../components/"
 import { EditorIcon } from "@kit-ui/icons"
-
-import FinderLoader from "../Finder/FinderLoader"
+import icons from "../app/icons"
 
 const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => {
     const pathname = props.location.pathname
@@ -16,10 +15,12 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const editor = useSelector(state => state.editor)
     const uniqueId = editor.formData && editor.formData.uniqueId
 
+    const appIcon = icons[app.icon]
+
     const title = formData.title || app && app.title || "Editor"
     const description = app.isLoading && "Loading app ..." || editor.isLoading && "Loading editor ..." || !schema && "Loading schema ..." || !uiSchema && "Loading uiSchema ..." || "Editor loaded"
     const isLoading = app.isLoading || finder.isLoading || !finder.menuById || editor.isLoading || false
-    const icon = app.isLoading && app.icon || finder.isLoading && app.icon || <EditorIcon color={app.theme.palette.primary.main} />
+    const icon = app.isLoading && appIcon || finder.isLoading && appIcon || <EditorIcon color={app.theme.palette.primary.main} />
 
     const dispatch = useDispatch()
 

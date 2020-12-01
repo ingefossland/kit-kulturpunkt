@@ -1,11 +1,10 @@
-import AppIcon from "../icons/KioskAppIcon"
 import menu from "./menu"
 import theme from "./theme"
 import primaryAction from "../action"
 
 export default {
     theme: theme,
-    icon: AppIcon(),
+    icon: "kioskApp",
     root: "/kiosk",
     siteId: 1,
     collectionId: 54,
