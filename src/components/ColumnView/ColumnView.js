@@ -11,7 +11,20 @@ const useStyles = makeStyles(theme => ({
         left: 0,
         
         display: "flex",
-//        flexDirection: "column",
+
+        border: "1px solid",
+        borderColor: theme.palette.divider,
+
+        "& > *": {
+            flexBasis: 0,
+            flexGrow: 1
+        },
+
+        "& > * + *": {
+            borderLeft: "1px solid",
+            borderColor: theme.palette.divider
+        }
+
     },
 
 }));

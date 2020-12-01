@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MediaDialogExample = ({query, uploadById}) => {
+const MediaDialogExample = ({query, uploadByUrl}) => {
 
     const [formData, setFormData] = useState([])
 
@@ -71,7 +71,7 @@ const MediaDialogExample = ({query, uploadById}) => {
             </div>
             <Paper className={classes.results}>
                 {JSON.stringify(formData)}
-                {JSON.stringify(uploadById)}
+                {JSON.stringify(uploadByUrl)}
             </Paper>
         </div>
     )
@@ -80,8 +80,8 @@ const MediaDialogExample = ({query, uploadById}) => {
 
 const mapStateToProps = (state) => {
 	return {
-        searchById: state.searchById,
-        uploadById: state.uploadById
+        searchByUrl: state.searchByUrl,
+        uploadByUrl: state.uploadByUrl
 	};
 }
 

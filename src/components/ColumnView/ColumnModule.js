@@ -1,4 +1,5 @@
 import React, { forwardRef} from 'react';
+import Icon from "@material-ui/core/Icon"
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton"
 import SelectIcon from "@material-ui/icons/ChevronRight"
@@ -18,10 +19,6 @@ const useStyles = makeStyles(theme => ({
         minWidth: theme.spacing(16),
         overflow: "hidden",
 
-        "& + $module": {
-            borderTop: "1px solid",
-            borderColor: theme.palette.divider
-        },
 
         "&:hover": {
             cursor: "pointer"
@@ -61,13 +58,11 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
 
         width: "100%",
-//        maxWidth: 256 - 48,
 
         marginTop: 8,
         marginBottom: 8,
 
         display: "flex",
-        flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
 
@@ -78,7 +73,23 @@ const useStyles = makeStyles(theme => ({
         }
 
     },
-
+    media: {
+        minWidth: 48,
+        width: 48,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center"
+    },
+    icon: {
+        fontSize: 24,
+        "& > svg": {
+            fontSize: "inherit"
+        }
+    },
+    image: {
+        display: "block",
+        width: 48,
+    },
     footer: {
         display: "flex",
         overflow: "hidden",
@@ -102,62 +113,59 @@ const useStyles = makeStyles(theme => ({
     
 }));
 
-const DocumentContent = ({url, uniqueId, title, documentType, onClick}) => {
-    const classes = useStyles()
-
-    return (
-        <div className={classes.content} onClick={onClick}>
-            <ModuleTitle title={title} />
-            <footer className={classes.footer}>
-                <ModuleLabel>{documentType}</ModuleLabel>
-            </footer>
-        </div>
-    )
-
-}
-
-const Toolbar = ({children, onSelect, onEdit}) => {
+const ColumnModule = ({
+    collapsible, 
+    selected,
+    onSelect,
+    expanded = false,
+    onToggle,
+    draggable, 
+    level, 
+    title,
+    imageUrl,
+    icon, 
+    ...props}) => {
 
     const classes = useStyles()
 
-    const _onEdit = (event) => {
-        event.stopPropagation()
-        onEdit && onEdit()
+    const DragHandle = ({dragHandleProps}) => {
+
+        return (
+            <IconButton {...dragHandleProps} >
+                <DragIcon />
+            </IconButton>
+        )
+    
     }
 
-    return (
-        <div className={classes.toolbar}>
+    const ButtonToggle = ({onClick}) => {
+    
+        return (
+            <IconButton className={classes.toggleButton} onClick={onClick} aria-expanded={expanded}>
+                <SelectIcon className={classes.toggleIcon} />
+            </IconButton>
+        )
+    }
 
-                <IconButton onClick={_onEdit}>
-                    <EditIcon />
-                </IconButton>
+    const ModuleContent = () => {
 
-                {children && 
-                    <IconButton  onClick={onSelect}>
-                        <SelectIcon />
-                    </IconButton>
-                }
+        return (
+            <div className={classes.content}>
+                <div className={classes.media}>
+                    { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
+                    { imageUrl && <img className={classes.image} src={imageUrl} /> }
+                </div>
+                <ModuleTitle>{title}</ModuleTitle>
+            </div>
 
-        </div>
-    )
+        )
 
-}
+    }
 
-const DragHandle = ({dragHandleProps}) => {
-
-    const classes = useStyles()
-
-    return (
-        <IconButton {...dragHandleProps} className={classes.dragHandle}>
-            <DragIcon />
-        </IconButton>
-    )
-
-}
-
-const ColumnModule = ({draggable, expanded, selected, ...props}) => {
-
-    const classes = useStyles()
+    const _onSelect = (event) => {
+        event.stopPropagation()
+        onSelect && onSelect()
+    }
 
     if (draggable) {
         const { provided, snapshot } = draggable
@@ -172,10 +180,11 @@ const ColumnModule = ({draggable, expanded, selected, ...props}) => {
                 aria-expanded={expanded}
                 onClick={props.onSelect}
                 data-is-dragging={isDragging}
-                data-is-target={isTarget} ref={provided.innerRef}>
+                data-is-target={isTarget} ref={provided.innerRef} onClick={_onSelect}>
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
-                    <DocumentContent {...props} />
-                    <Toolbar {...props} />
+                    <ModuleContent />
+                    {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
+
             </div>
         )   
 
@@ -183,7 +192,8 @@ const ColumnModule = ({draggable, expanded, selected, ...props}) => {
 
     return (
         <div className={classes.module} aria-selected={selected}>
-            <DocumentContent {...props} />
+            <ModuleContent />
+            {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
         </div>
     )
 

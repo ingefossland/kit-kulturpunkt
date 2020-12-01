@@ -25,7 +25,7 @@ const FinderLoader = ({children, ...props}) => {
 
     useEffect(() => {
         dispatch(getFinder({pathname}))
-    }, [pathname])
+    }, [pathname, menuItem.isLoading])
 
     return (
         <Loader

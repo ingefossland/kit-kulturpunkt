@@ -19,8 +19,8 @@ const ViewList = ({resultsLoaded, ...props}) => {
         <ListView {...props} loadingTitle={loadingTitle} emptyTitle={emptyTitle} title={title} description={description}>
             {pagedResults && pagedResults.map((model, index) => {
                 return (
-                    <FinderModel {...props} model={model}>
-                        <ListModule {...model} key={index} />
+                    <FinderModel {...props} model={model} key={index}>
+                        <ListModule />
                     </FinderModel>
                 )
             })}

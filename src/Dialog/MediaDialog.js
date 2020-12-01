@@ -18,7 +18,7 @@ import SearchDialog from "./SearchDialog"
 import FavoritesDialog from './FavouritesDialog';
 import UploadDialog from "./UploadDialog"
 
-const MediaDialog = ({query, favourites, uploadById, ...props}) => {
+const MediaDialog = ({query, favourites, uploadByUrl, ...props}) => {
     const { t, i18n } = useTranslation(['dialog']);
 
     const [template, setTemplate] = useState("search")
@@ -59,7 +59,7 @@ const MediaDialog = ({query, favourites, uploadById, ...props}) => {
     })    
 
     const mediaFavourites = favourites && favourites["media"] && favourites["media"].length
-    const mediaUploads = uploadById && uploadById[upload.id] && uploadById[upload.id].models
+    const mediaUploads = uploadByUrl && uploadByUrl[upload.id] && uploadByUrl[upload.id].models
 
     const FavouriteBadge = () => {
         return (
@@ -121,7 +121,7 @@ dispatch);
 const mapStateToProps = (state) => {
 	return {
         favourites: state.favourites,
-        uploadById: state.uploadById
+        uploadByUrl: state.uploadByUrl
 	};
 }
 

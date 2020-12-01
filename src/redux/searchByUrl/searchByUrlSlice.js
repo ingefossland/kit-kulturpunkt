@@ -4,25 +4,24 @@ import qs from 'query-string';
 
 import { getModels } from "../modelsById"
 
-const searchByIdSlice = createSlice({
+const searchByUrlSlice = createSlice({
     name: 'search',
     initialState: {
     }, 
     reducers: {
         requestSearch(state, action) {
-            const { models, id, page, url, query } = action.payload
+            const { models, url, page, apiUrl, query } = action.payload
 
-            if (state[id] && state[id].page) {
+            if (state[url] && state[url].page) {
                 return {
                     ...state,
-                    [id]: {
-                        ...state[id],
+                    [url]: {
+                        ...state[url],
                         isLoading: true,
-                        url: url,
+                        apiUrl: apiUrl,
                         query: {
                             ...query,
                             models: models,
-                            id: id
                         }
                     }
                 }
@@ -30,23 +29,22 @@ const searchByIdSlice = createSlice({
 
             return {
                 ...state,
-                [id]: {
+                [url]: {
                     isLoading: true,
-                    url: url,
+                    apiUrl: apiUrl,
                     query: {
                         ...query,
                         models: models,
-                        id: id
                     }
                 }
             }
         },
         receiveError(state, action) {
-            const { id, error } = action.payload
+            const { url, error } = action.payload
 
             return {
                 ...state,
-                [id]: {
+                [url]: {
                     isLoading: false,
                     error: error.toString()
                 }
@@ -54,19 +52,19 @@ const searchByIdSlice = createSlice({
 
         },
         receiveSearch(state, action) {
-            const { id, results } = action.payload
+            const { url, results } = action.payload
 
             return {
                 ...state,
-                [id]: {
-                    ...state[id],
+                [url]: {
+                    ...state[url],
                     isLoading: false,
                     results: results
                 }
             }
         },
         receivePage(state, action) {
-            const { id, page, results } = action.payload
+            const { url, page, results } = action.payload
 
             const { start, rows, count } = results
 
@@ -74,7 +72,7 @@ const searchByIdSlice = createSlice({
             const currentPage = Math.ceil((start+rows)/rows)
 
             const resultsByPage = {
-                ...state[id].resultsByPage,
+                ...state[url].resultsByPage,
                 [page]: results.models
             }
 
@@ -102,8 +100,8 @@ const searchByIdSlice = createSlice({
 
             return {
                 ...state,
-                [id]: {
-                    ...state[id],
+                [url]: {
+                    ...state[url],
                     count: count,
                     start: start,
                     rows: rows,
@@ -120,8 +118,7 @@ const searchByIdSlice = createSlice({
     }
 })
 
-export const getQuery = ({models, id, page = 1, ...query}) => dispatch => {
-    let url = API + '/admin/api/' + models + '/search';
+export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
 
     if (page > 1 && query.rows) {
         query.start = query.rows * (page-1)
@@ -129,15 +126,17 @@ export const getQuery = ({models, id, page = 1, ...query}) => dispatch => {
     
     const sq = qs.stringify(query)
 
+    let apiUrl = API + '/admin/api/' + models + '/search';
+
     if (sq) {
-        url = url + '?' + sq;
+        apiUrl = apiUrl + '?' + sq;
     }
 
 //    if (page === 1) {
-        dispatch(requestSearch({models, id, page, url, query}))
+        dispatch(requestSearch({models, url, page, apiUrl, query}))
 //    }
     
-    fetch(url, {
+    fetch(apiUrl, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -148,8 +147,8 @@ export const getQuery = ({models, id, page = 1, ...query}) => dispatch => {
         error => console.log('An error occurred.', error)
     )
     .then(results => {
-        dispatch(receiveSearch({id, results}))
-        dispatch(receivePage({id, page, results}))
+        dispatch(receiveSearch({url, results}))
+        dispatch(receivePage({url, page, results}))
 
         results.models && dispatch(getModels(results))
 
@@ -160,5 +159,5 @@ export const getQuery = ({models, id, page = 1, ...query}) => dispatch => {
 
 
 
-export const { requestSearch, receiveSearch, receivePage, receiveError } = searchByIdSlice.actions
-export default searchByIdSlice.reducer
+export const { requestSearch, receiveSearch, receivePage, receiveError } = searchByUrlSlice.actions
+export default searchByUrlSlice.reducer

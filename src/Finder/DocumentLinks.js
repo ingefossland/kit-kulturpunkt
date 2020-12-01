@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getAppLayout } from '../redux/app';
 import { getModel } from '../redux/modelsById';
-import { getQuery } from '../redux/searchById';
+import { getQuery } from '../redux/searchByUrl';
 
 import FinderLayout from "./FinderLayout"
 import FinderQuery from "./FinderQuery"
@@ -18,13 +18,13 @@ const Finder = (props) => {
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
     const modelsById = useSelector(state => state.modelsById)
-    const searchById = useSelector(state => state.searchById)
+    const searchByUrl = useSelector(state => state.searchByUrl)
 
     const { uniqueId } = props.match.params
 
     useEffect(() => {
         uniqueId && dispatch(getQuery({
-            id: pathname,
+            url: pathname,
             models: "documents",
             collectionId: app && app.collectionId,
             uniqueId: uniqueId,
@@ -50,7 +50,7 @@ const Finder = (props) => {
     };
 
     const q1 = {
-        id: pathname + "/parents",
+        url: pathname + "/parents",
         models: "documents",
         collectionId: app && app.collectionId,
         q: "id:"+parentId,
@@ -58,7 +58,7 @@ const Finder = (props) => {
     };
 
     const q2 = {
-        id: pathname + "/children",
+        url: pathname + "/children",
         models: "documents",
         collectionId: app && app.collectionId,
         parentId: id,
@@ -71,11 +71,11 @@ const Finder = (props) => {
     }, [parentId])
 
 
-    const parents = searchById && searchById[q1.id] || {}
+    const parents = searchByUrl && searchByUrl[q1.url] || {}
     const parentUniqueId = parents && parents.resultsLoaded && parents.resultsLoaded[0]
     const parentModel = parentUniqueId && modelsById && modelsById[parentUniqueId]
 
-    const children = searchById && searchById[q2.id] || {}
+    const children = searchByUrl && searchByUrl[q2.url] || {}
     
     return (
         <FinderLayout parents={[...finder.parents, uniqueModel]}>

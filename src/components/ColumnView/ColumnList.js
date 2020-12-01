@@ -4,18 +4,15 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     column: {
-//        position: "relative",
-        flexBasis: 0,
-        flewGrow: 1,
-
         display: "flex",
         flexDirection: "column",
         justifyContent: "flex-start",
         alignItems: "flex-start",
-        height: "100%",
-        minWidth: theme.spacing(7),
-        minWidth: theme.spacing(32),
-        overflowY: "scroll",
+
+        "& > * + *": {
+            borderTop: "1px solid",
+            borderColor: theme.palette.divider
+        },
 
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected,
@@ -48,10 +45,11 @@ const ColumnList = ({droppable, expanded, children, ...props}) => {
 
     if (droppable) {
         const { provided, snapshot } = droppable
+        const { droppableProps, innerRef } = provided
         const { isDraggingOver } = snapshot
 
         return (
-            <div data-is-dragging-over={isDraggingOver} className={classes.column} {...provided.droppableProps} ref={provided.innerRef}>
+            <div data-is-dragging-over={isDraggingOver} className={classes.column} {...droppableProps} ref={innerRef}>
                 {children}
                 {provided.placeholder}
             </div>

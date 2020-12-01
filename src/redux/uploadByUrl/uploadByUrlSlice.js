@@ -6,7 +6,7 @@ import EXIF from 'exif-js';
 import * as mm from 'music-metadata-browser';
 
 
-const uploadByIdSlice = createSlice({
+const uploadByUrlSlice = createSlice({
     name: 'upload',
     initialState: {
     }, 
@@ -214,5 +214,5 @@ export const getUploadData = ({id, file, data}) => dispatch => {
 
 
 
-export const { requestUpload, requestUploadModel, receiveUploadModel, receiveUploadStatus, receiveUploadProgress } = uploadByIdSlice.actions
-export default uploadByIdSlice.reducer
+export const { requestUpload, requestUploadModel, receiveUploadModel, receiveUploadStatus, receiveUploadProgress } = uploadByUrlSlice.actions
+export default uploadByUrlSlice.reducer

@@ -20,7 +20,15 @@ const useStyles = makeStyles((theme) => ({
         },
     },
     button: {
-        padding: theme.spacing(.5)
+        padding: theme.spacing(.5),
+
+        "&[aria-selected=true]": {
+            "& > $icon": {
+                opacity: .5
+            }
+        }
+
+
     },
     label: {
 

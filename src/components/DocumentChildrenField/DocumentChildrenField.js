@@ -6,7 +6,7 @@ import DocumentChildrenList from "./DocumentChildrenList"
 import DocumentChildrenSearch from "./DocumentChildrenSearch"
 
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuery } from '../../redux/searchById';
+import { getQuery } from '../../redux/searchByUrl';
 import { utils } from '@kit-ui/schema';
 const { getUiOptions } = utils
 
@@ -31,7 +31,7 @@ const DocumentChildrenField = (props) => {
     // currentChildren
 
     const query = {
-        id: pathname + "/children",
+        url: pathname + "/children",
         models: "documents",
         collectionId: collectionId,
         parentId: formData.id,
@@ -44,8 +44,8 @@ const DocumentChildrenField = (props) => {
         uniqueId && dispatch(getQuery(query))
     }, [uniqueId])
 
-    const searchById = useSelector(state => state.searchById)
-    const currentSearch = searchById && searchById[query.id]
+    const searchByUrl = useSelector(state => state.searchByUrl)
+    const currentSearch = searchByUrl && searchByUrl[query.url]
 
     return (
         <div>

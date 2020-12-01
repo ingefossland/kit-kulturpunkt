@@ -9,8 +9,9 @@ import finderReducer from './finder/finderSlice'
 import editorReducer from './editor/editorSlice'
 import bulkReducer from './bulk/bulkSlice'
 
-import searchByIdReducer from './searchById/searchByIdSlice'
-import uploadByIdReducer from './uploadById/uploadByIdSlice'
+import searchByUrlReducer from './searchByUrl/searchByUrlSlice'
+
+import uploadByUrlReducer from './uploadByUrl/uploadByUrlSlice'
 import modelsByIdReducer from './modelsById/modelsByIdSlice'
 
 export default combineReducers({
@@ -22,6 +23,6 @@ export default combineReducers({
     finder: finderReducer,
     bulk: bulkReducer,
     modelsById: modelsByIdReducer,
-    searchById: searchByIdReducer,
-    uploadById: uploadByIdReducer,
+    searchByUrl: searchByUrlReducer,
+    uploadByUrl: uploadByUrlReducer,
 })

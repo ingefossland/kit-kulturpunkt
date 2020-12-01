@@ -42,31 +42,31 @@ const FinderModel = ({
     const _onClick = props.onClick
 
     const _onView = () => {
-        props.onView || props.history && props.history.push(props.location.pathname + '/' + uniqueId)
+        props.onView && props.onView() || props.history && props.history.push(props.location.pathname + '/' + uniqueId)
     }
 
     const _onEdit = () => {
-        props.onEdit || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
+        props.onEdit && props.onEdit() || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
     }
 
     const _onLink = () => {
-        props.onLink || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/link")
+        props.onLink && props.onLink() || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/link")
     }
 
     const _onDelete = () => {
-        dispatch(deleteModel({modelName: modelName, uniqueId: uniqueId}))
+        props.onDelete && props.onDelete() || dispatch(deleteModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
     const _onRestore = () => {
-        dispatch(restoreModel({modelName: modelName, uniqueId: uniqueId}))
+        props.onRestore && props.onRestore() || dispatch(restoreModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
     const _onErase = () => {
-        dispatch(eraseModel({modelName: modelName, uniqueId: uniqueId}))
+        props.onErase && props.onErase() || dispatch(eraseModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
     const _onSelect = () => {
-        dispatch(selectModel({modelName: modelName, uniqueId: uniqueId}))
+        props.onSelect && props.onSelect() || dispatch(selectModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
     // uniqueModel
@@ -92,8 +92,8 @@ const FinderModel = ({
 
     model = {
         ...uniqueModel,
-        ...model,
         ...bulkModel,
+        ...model,
         ...uiPreview
     }
 
@@ -170,18 +170,23 @@ const FinderModel = ({
     const author = model.deletedByName || model.updatedByName || model.createdByName || "N/A"
     const datetime = model.deletedAt || model.updatedAt || model.createdAt
 
+    model = {
+        ...model,
+        modelLabel: modelLabel,
+        mediaLabel: mediaLabel,
+        documentLabel: documentLabel,
+        statusLabel: statusLabel,
+        author: author,
+        datetime: datetime,
+    }
+
 
     const childrenWithProps = React.Children.map(children, (child, index) => {
         // checking isValidElement is the safe way and avoids a typescript error too
         if (React.isValidElement(child)) {
+
             return React.cloneElement(child, { 
                 ...model,
-                modelLabel: modelLabel,
-                mediaLabel: mediaLabel,
-                documentLabel: documentLabel,
-                statusLabel: statusLabel,
-                author: author,
-                datetime: datetime,
                 editable: editable,
                 onEdit: _onEdit,
                 viewable: viewable,
@@ -200,7 +205,9 @@ const FinderModel = ({
                 erased: erased,
                 onErase: _onErase,
                 toolbar: toolbar,
-                onClick: _onClick
+                onClick: _onClick,
+                ...props
+//                ...child.props
             });
         }
         return child;

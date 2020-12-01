@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuery } from '../redux/searchById';
+import { getQuery } from '../redux/searchByUrl';
 
 import DialogBase from "./DialogBase"
 import DialogSearch from "./DialogSearch"
@@ -18,7 +18,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
     const { t, i18n } = useTranslation(['dialog']);
     const dispatch = useDispatch()
 
-    const searchById = useSelector(state => state.searchById)
+    const searchByUrl = useSelector(state => state.searchByUrl)
 
     console.log('query', query)
 
@@ -75,7 +75,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
 
     query = {
         ...query,
-        id: "/dialog/search",
+        url: "/dialog/search",
         start: 0,
         rows: 20,
         sort: sort,
@@ -108,13 +108,13 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
 
 
     const getMediaSource = (source) => {
-        const queryId = query.id + "/" + source + "/" + query.q
+        const queryUrl = query.url + "/" + source + "/" + query.q
 
         return {
             title: "media/" + source,
             layout: "gallery",
             query: {
-                id: queryId,
+                url: queryUrl,
                 models: source,
                 siteId: query.siteId,
                 collectionId: query.collectionId,
@@ -126,7 +126,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
     }
 
     const getMediaType = (mediaType) => {
-        const queryId = query.id + "/" + mediaType + "/" + query.q
+        const queryUrl = query.url + "/" + mediaType + "/" + query.q
 
         return {
             title: "media/" + mediaType,
@@ -136,7 +136,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
             ],
             query: {
                 ...query,
-                id: queryId,
+                url: queryUrl,
                 mediaType: mediaType
             }
         }
@@ -176,7 +176,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
             ],
             query: {
                 models: source,
-                id: query.id + "/" + source + "/" + query.q,
+                url: query.url + "/" + source + "/" + query.q,
                 owner: dmOwner,
                 siteId: query.siteId,
                 collectionId: query.collectionId,
@@ -196,7 +196,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
             ],
             query: {
                 ...query,
-                id: query.id + "/" + documentType + "/" + query.q,
+                url: query.url + "/" + documentType + "/" + query.q,
                 documentType: documentType
             }
         }
@@ -239,7 +239,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
                 query: {
                     ...query,
                     models: query.models,
-                    id: query.id + "/" + query.models + "/" + query.q,
+                    url: query.url + "/" + query.models + "/" + query.q,
                 }
             }
         ]
@@ -276,7 +276,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
     const tabs = sections.map((section, index) => {
         const { title, query } = section;
 
-        const currentSearch = searchById && searchById[query.id]
+        const currentSearch = searchByUrl && searchByUrl[query.url]
         const resultsLoaded = currentSearch && currentSearch.resultsLoaded
         
         let count;
@@ -310,7 +310,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
     // current query and search 
 
     const currentQuery = currentTab && currentTab.query
-    const currentSearch = currentQuery.id && searchById && searchById[currentQuery.id];
+    const currentSearch = currentQuery.url && searchByUrl && searchByUrl[currentQuery.url];
 
     useEffect(() => {
         getSearchCount()

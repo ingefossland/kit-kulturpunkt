@@ -369,6 +369,8 @@ export const getParents = ({url}) => (dispatch, getState) => {
 
     let parent = url && menuByUrl && menuByUrl[url] 
 
+    console.log('getParents', parent)
+
     let parents = [];
 
     if (parent) {

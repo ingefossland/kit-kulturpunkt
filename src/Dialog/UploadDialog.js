@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuery } from '../redux/searchById';
+import { getQuery } from '../redux/searchByUrl';
 
 import DialogBase from "./DialogBase"
 import DialogSearch from "./DialogSearch"
@@ -18,8 +18,8 @@ const UploadDialog = ({schema, formData, onChange, onClose, query, upload, ...pr
     const { t, i18n } = useTranslation(['dialog']);
     const dispatch = useDispatch()
 
-    const searchById = useSelector(state => state.searchById)
-    const uploadById = {}
+    const searchByUrl = useSelector(state => state.searchByUrl)
+    const uploadByUrl = {}
 
     const [q, setQ] = useState("")
 
@@ -58,7 +58,7 @@ const UploadDialog = ({schema, formData, onChange, onClose, query, upload, ...pr
     
     // current uploads 
 
-    const currentUpload = upload.id && uploadById && uploadById[upload.id];
+    const currentUpload = upload.id && uploadByUrl && uploadByUrl[upload.id];
     const uploadModels = currentUpload && currentUpload.models 
 
     const uploadResults = uploadModels && q && uploadModels.filter((model) => { 

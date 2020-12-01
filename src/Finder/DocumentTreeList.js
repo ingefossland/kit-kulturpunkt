@@ -1,61 +1,78 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-
-
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-
-import { TreeList, TreeModule } from "../components"
+import FinderModel from "./FinderModel"
+import { TreeView, TreeList, TreeModule } from "../components"
 
 const DocumentTreeList = ({
+    parent,
     resultsLoaded,
     getChildren,
     onToggle,
+    onSelect,
     onDragEnd,
     ...props
 }) => {
 
-    const pathname = props.location.pathname
-
-    const searchById = useSelector(state => state.searchById)
+    const searchByUrl = useSelector(state => state.searchByUrl)
     const modelsById = useSelector(state => state.modelsById)
+
+    const finder = useSelector(state => state.finder)
+    const menuByUrl = finder.menuByUrl
+    const parents = finder.parents
 
     const DraggableChild = ({child, level, index}) => {
 
         child = {
             ...child,
             ...modelsById[child.uniqueId],
-            url: pathname + "/" + child.uniqueId
+            url: parent.url + "/" + child.uniqueId
         }
 
-        const childrenSearch = searchById[child.url]
-        const children = childrenSearch && childrenSearch.resultsLoaded
+        !searchByUrl[child.url] && getChildren(child)
+
+        const childrenSearch = searchByUrl[child.url]
+        const children = childrenSearch && childrenSearch.resultsLoaded && childrenSearch.resultsLoaded.map(child => {
+            return {
+                ...child,
+                url: parent.url + "/" + child.uniqueId
+            }
+        })
+
+        let selected = false
+
+        parents.map(parent => {
+            if (parent.url && parent.url === child.url) {
+                selected = true
+            }
+        })
+
+        let collapsible, expanded
+
+        if (menuByUrl[child.url]) {
+            expanded = menuByUrl[child.url].expanded
+        }
 
         if (children && children.length) {
-            child = {
-                ...child,
-                collapsible: true,
-                expanded: true,
-                children: children.map(child => {
-                    return {
-                        ...child,
-                        url: pathname + "/" + child.uniqueId
-                    }
-                })
-            }
+            collapsible = true
+//            expanded = true
         }
-        
-        !searchById[child.url] && getChildren(child)
 
-//        const collapsible = children && children.length
-//        const [expanded, setExpanded] = useState(false)
-
+        child = {
+            ...child,
+            selected: selected,
+            collapsible: collapsible,
+            expanded: selected || expanded,
+        }
 
         return (
             <Draggable index={index} draggableId={child.url} key={child.url}>
                 {(provided, snapshot) => (
-                    <TreeModule {...child} index={index} draggable={{provided, snapshot}} level={level}>
-                    { child.expanded && <DroppableChildren {...child} children={children} level={level+1} /> }
-                    </TreeModule>
+                    <FinderModel model={child} onSelect={() => onSelect(child)} onToggle={() => onToggle(child)}>
+                        <TreeModule {...child} index={index} draggable={{provided, snapshot}} level={level}>
+                        { child.expanded && <DroppableChildren {...child} children={children} level={level+1} /> }
+                        </TreeModule>
+                    </FinderModel>
                 )}
             </Draggable>
         )
@@ -81,16 +98,12 @@ const DocumentTreeList = ({
         
     }
 
-    const parent = resultsLoaded && resultsLoaded.length && {
-        url: pathname,
-        children: resultsLoaded
-    }
-
-
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-            { parent && <DroppableChildren {...parent} index={1} level={1} /> }
-        </DragDropContext>        
+        <TreeView>
+            <DragDropContext onDragEnd={onDragEnd}>
+                { parent && <DroppableChildren {...parent} index={0} level={1} /> }
+            </DragDropContext>        
+        </TreeView>
     )
 
 

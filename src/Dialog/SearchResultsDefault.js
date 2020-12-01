@@ -141,8 +141,8 @@ dispatch);
 
 const mapStateToProps = (state) => {
 	return {
-        searchById: state.searchById,
-        uploadById: state.uploadById
+        searchByUrl: state.searchByUrl,
+        uploadByUrl: state.uploadByUrl
 	};
 }
 

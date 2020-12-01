@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { getApp, getAppLayout, getParents } from '../redux/app';
-import { getUpload } from '../redux/uploadById';
+import { getUpload } from '../redux/uploadByUrl';
 
 import View from "./View"
 import UploadDropzone from "../Upload/UploadDropzone"
@@ -39,9 +39,9 @@ const MediaUpload = (props) => {
     }
 
 
-    const uploadById = useSelector(state => state.uploadById)
+    const uploadByUrl = useSelector(state => state.uploadByUrl)
 
-    const currentUpload = uploadById && uploadById[pathname] || {}
+    const currentUpload = uploadByUrl && uploadByUrl[pathname] || {}
 
 
     return (

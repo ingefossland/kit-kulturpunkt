@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getView, getSort } from '../redux/finder';
-import { getQuery } from '../redux/searchById';
+import { getQuery } from '../redux/searchByUrl';
 import qs from 'query-string';
 
 import Bulk from "./Bulk"
@@ -26,7 +26,7 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
 
     query = {
         ...query,
-        id: pathname,
+        url: pathname,
         collectionId: app && app.collectionId,
         page: sq.page || 1,
         rows: sq.rows || 10,
@@ -44,8 +44,8 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
 
     // search
 
-    const searchById = useSelector(state => state.searchById)
-    const currentSearch = searchById && searchById[query.id] || {}
+    const searchByUrl = useSelector(state => state.searchByUrl)
+    const currentSearch = searchByUrl && searchByUrl[query.url] || {}
     
     const _onPage = (page) => {
         const sq = props.location.search && qs.parse(props.location.search)

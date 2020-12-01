@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { sortMenuTree, moveMenuItem } from '../redux/finder';
-import qs from 'query-string';
 
-import IconButton from "@material-ui/core/IconButton"
-import DragIcon from '@material-ui/icons/DragHandle';
+import FinderModel from "./FinderModel"
 
 import {
     ColumnView,
@@ -15,7 +12,9 @@ import {
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 const TreeColumn = ({
-    documentTree,
+    resultsLoaded,
+    parent,
+    getChildren,
     onToggle,
     onSelect,
     onEdit,
@@ -24,31 +23,62 @@ const TreeColumn = ({
     ...props
 }) => {
 
+    const searchByUrl = useSelector(state => state.searchByUrl)
+    const modelsById = useSelector(state => state.modelsById)
+
     const finder = useSelector(state => state.finder)
-
     const parents = finder.parents
-    const menuByUrl = finder.menuByUrl
 
+    const DraggableChild = ({child = {}, level, index}) => {
 
-    const TreeColumn = ({children, index, level, ...parent}) => {
+        !searchByUrl[child.url] && getChildren(child)
+
+        const currentSearch = searchByUrl[child.url]
+        const children = currentSearch && currentSearch.resultsLoaded && currentSearch.resultsLoaded
+
+        let selected = false
+
+        parents.map(parent => {
+            if (parent.url && parent.url === child.url) {
+                selected = true
+            }
+        })
+
+        let collapsible = false
+
+        if (children && children.length) {
+            collapsible = true
+        }
+
+        child = {
+            ...child,
+            selected: selected,
+            collapsible: collapsible,
+        }
+
+        return (
+            <Draggable index={index} draggableId={child.url} key={child.url}>
+                {(provided, snapshot) => (
+                    <FinderModel model={child} onSelect={() => onSelect(child)}>
+                        <ColumnModule {...child} index={index} draggable={{provided, snapshot}} level={level}>
+                        </ColumnModule>
+                    </FinderModel>
+                )}
+            </Draggable>
+        )
+
+    }    
+    
+
+    const DroppableChildren = ({children, index, level, ...parent}) => {
 
         return (
             <Droppable isCombineEnabled={true} index={index} droppableId={parent.url} key={parent.url}>
                 {(provided, snapshot) => (
                     <ColumnList droppable={{provided, snapshot}}>
                         {children && children.map((child, index) => {
-
-                            const collapsible = child.children && child.children.length
-                            const expanded = child.expanded
-
                             return (
-                                <Draggable index={index} draggableId={child.url} key={child.url}>
-                                    {(provided, snapshot) => (
-                                        <ColumnModule {...child} collapsible={collapsible} index={index} draggable={{provided, snapshot}} level={level} onToggle={() => onToggle(child)}>
-                                        { /* expanded && <DocumentTreeChildren {...child} level={level+1} /> */ }
-                                        </ColumnModule>
-                                    )}
-                                </Draggable>
+                                <DraggableChild child={child} level={level} index={index} />
                             )
                         })}
                     </ColumnList>
@@ -60,56 +90,15 @@ const TreeColumn = ({
     }
 
     return (
-        <DragDropContext onDragEnd={onDragEnd}>
-
-            <ColumnView>
-
-            { documentTree && documentTree.map((parent, px) => {
-
-                parent = menuByUrl[parent.url]
-
-                return (
-                    <Droppable index={px} droppableId={parent.url} isCombineEnabled={true} key={parent.url}>
-                        {(provided, snapshot) => (
-
-                            <ColumnList droppable={{provided, snapshot}} droppableRef={provided.innerRef}>
-                        {parent.title}
-
-                                { parent.children && parent.children.map((child, cx) => {
-                                    const collapsible = child.children && child.children.length && true
-                                    const selected = false
-
-                                    return (
-                                        <Draggable index={cx} draggableId={child.url} key={child.url}>
-                                            {(provided, snapshot) => (
-                                                <ColumnModule {...child} 
-                                                    collapsible={collapsible}
-//                                                    expanded={selected}
-                                                    selected={selected}
-                                                    draggable={{provided, snapshot}}
-                                                    draggableRef={provided.innerRef}
-                                                    onEdit={() => onEdit(child)}
-                                                    onSelect={() => onSelect(child)} />
-                                            )}
-                                        </Draggable>
-                                    )
-                                })}
-                                <button onClick={() => onCreate(parent)}>New child</button>
-                            </ColumnList>
-                        )}
-                    </Droppable>
-                )
-
-            })}
-
-            <div>
-                {JSON.stringify(documentTree)}
-            </div>
-
-            </ColumnView>
-
-        </DragDropContext>    
+        <ColumnView>
+            <DragDropContext onDragEnd={onDragEnd}>
+                { parents && parents.map((parent, index) => {
+                    return <DroppableChildren {...parent} index={index} level={index+2} />
+                })}
+            </DragDropContext>
+        </ColumnView>
     )
+
 
 
 

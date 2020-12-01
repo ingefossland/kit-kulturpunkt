@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuery } from '../../redux/searchById';
+import { getQuery } from '../../redux/searchByUrl';
 import { utils } from '@kit-ui/schema';
 const { getUiOptions } = utils
 
@@ -14,7 +14,7 @@ const ParentIdField = (props) => {
     const uniqueId = formContext && formContext.uniqueId
 
     const query = {
-        id: "/editor/" + uniqueId + "/parentId",
+        url: "/editor/" + uniqueId + "/parentId",
         models: "documents",
         collectionId: collectionId,
         fl: "id,parentId,uniqueId,title",
@@ -31,8 +31,8 @@ const ParentIdField = (props) => {
     const [enumOptions, setEnumOptions] = useState([formData])
     const [enumNames, setEnumNames] = useState([formData])
 
-    const searchById = useSelector(state => state.searchById)
-    const currentSearch = searchById && searchById[query.id]
+    const searchByUrl = useSelector(state => state.searchByUrl)
+    const currentSearch = searchByUrl && searchByUrl[query.url]
 
     const getOptions = () => {
         const resultsLoaded = currentSearch && currentSearch.resultsLoaded || []
