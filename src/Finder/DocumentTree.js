@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getMenuItem, toggleMenuItem, sortMenuTree } from '../redux/finder';
 import { getQuery } from '../redux/searchById';
+import { receiveSave } from '../redux/modelsById';
+import { API } from "../redux/settings"
 import qs from 'query-string';
 
 import TreeListView from "./DocumentTreeList"
@@ -50,16 +52,25 @@ const DocumentTree = ({query = {}, ...props}) => {
     const currentSearch = searchById && searchById[query.id] || {}
     const resultsLoaded = currentSearch && currentSearch.resultsLoaded
 
-    // setup documentTree
+    // get children
 
-    const documentTree = resultsLoaded && resultsLoaded.map((parent, index) => {
-        return {
-            ...parent,
-            index: index,
-//            children: parent.children && getChildren(parent)
-        }
-    })    
+    const _getChildren = ({uniqueId, id, url}) => {
 
+        dispatch(getQuery({
+            models: query.models,
+            fl: query.fl,
+            q: sq.q || undefined,
+            id: url || pathname + "/" + uniqueId,
+            parentId: id,
+            fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
+        }))
+        
+    }
+
+    useEffect(() => {
+        resultsLoaded && resultsLoaded.map(parent => _getChildren(parent))
+    }, [resultsLoaded])
+    
     // actions
 
     const _onEdit = ({url}) => {
@@ -85,39 +96,95 @@ const DocumentTree = ({query = {}, ...props}) => {
         createUrl && props.history.push(createUrl)
     }
 
+    const [results, setResults] = useState({})
+
+    const _onSubmit = ({formData = {}, queries = []}) => {
+
+        const url = API + '/admin/api/documents';
+
+        fetch(url, {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
+            },
+            body: JSON.stringify(formData)
+        })
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(formData => {
+            dispatch(receiveSave(formData))
+            queries && queries.map(query => dispatch(getQuery(query)))
+        })
+
+    }
+
     const _onDragEnd = (results) => {
 
         const { draggableId, source, destination, combine } = results
 
         if (source && destination && source.droppableId !== destination.droppableId) {
 
-            dispatch(sortMenuTree({
-                ...results,
-                destination: {
-                    ...menuByUrl[destination.droppableId],
-                    ...destination,
+            const id = searchById[draggableId].query.parentId
+            const parentId = searchById[destination.droppableId].query.parentId || null
+
+            const queries = [
+                {
+                    ...searchById[source.droppableId].query,
+                    url: source.droppableId
                 },
-                source: {
-                    ...menuByUrl[source.droppableId],
-                    ...source,
+                {
+                    ...searchById[destination.droppableId].query,
+                    url: destination.droppableId
+                }
+            ]
+
+            setResults({
+                id: id,
+                parentId: parentId,
+                queries: queries
+            })
+
+            _onSubmit({
+                formData: {
+                    id: id,
+                    parentId: parentId
                 },
-                item: menuByUrl[draggableId]
-            }))
+                queries: queries
+            })
+
 
         } else if (combine && combine.draggableId !== source.droppableId && draggableId !== combine.draggableId) {
 
-            dispatch(sortMenuTree({
-                ...results,
-                destination: {
-                    ...menuByUrl[combine.draggableId],
-                    ...destination,
+            const id = searchById[draggableId].query.parentId
+            const parentId = searchById[combine.draggableId].query.parentId || null
+
+            const queries = [
+                {
+                    ...searchById[source.droppableId].query,
+                    url: source.droppableId
                 },
-                source: {
-                    ...menuByUrl[source.droppableId],
-                    ...source,
+                {
+                    ...searchById[combine.draggableId].query,
+                    url: combine.draggableId
+                }
+            ]
+
+            setResults({
+                id: id,
+                parentId: parentId,
+                queries: queries
+            })
+
+            _onSubmit({
+                formData: {
+                    id: id,
+                    parentId: parentId
                 },
-                item: menuByUrl[draggableId]
-            }))            
+                queries: queries
+            })
 
         }
 
@@ -157,12 +224,14 @@ const DocumentTree = ({query = {}, ...props}) => {
     return (
         <FinderLayout {...finder} viewOptions={viewOptions} view={view} onView={_onView}>
             <Template {...props} 
-                documentTree={documentTree}
+                {...currentSearch}
+                getChildren={_getChildren}
                 onToggle={_onToggle}
                 onSelect={_onSelect}
                 onEdit={_onEdit}
                 onCreate={_onCreate}
                 onDragEnd={_onDragEnd} />
+                {JSON.stringify(results)}
         </FinderLayout>
     )
 

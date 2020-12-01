@@ -30,6 +30,30 @@ const modelsByIdSlice = createSlice({
             }
 
         },
+        requestChildren(state, action) {
+            const { uniqueId } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    children: []
+                }
+            }
+
+        },
+        receiveChildren(state, action) {
+            const { uniqueId, children } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    children: children
+                }
+           }
+
+        },
         requestReferences(state, action) {
             const { uniqueId } = action.payload
 
@@ -144,6 +168,30 @@ export const getModel = ({modelName = "documents", uniqueId}) => dispatch => {
         )
         .then(formData => {
             dispatch(receiveModel(formData))
+        })
+
+}
+
+/** Get children from uniqueId */
+
+export const getChildren = ({modelName = "documents", uniqueId}) => dispatch => {
+
+    const url = API + '/admin/api/' + modelName + '/' + uniqueId;
+
+    dispatch(requestChildren({uniqueId}))
+
+    fetch(url, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+        }})
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(formData => {
+            dispatch(receiveChildren(formData))
         })
 
 }
@@ -447,6 +495,7 @@ export const addMediaSource = (model, callback = undefined) => dispatch => {
 
 export const { 
     requestModel, receiveModel, 
+    requestChildren, receiveChildren, 
     requestReferences, receiveReferences, 
     receiveStatus, receiveParentId,
     requestSave, receiveSave
