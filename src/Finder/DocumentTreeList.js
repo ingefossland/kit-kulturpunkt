@@ -18,10 +18,6 @@ const DocumentTreeList = ({
 
     const searchById = useSelector(state => state.searchById)
     const modelsById = useSelector(state => state.modelsById)
-    const menuByUrl = useSelector(state => state.finder.menuByUrl)
-
-
-    let expandedByUrl = {}
 
     const DraggableChild = ({child, level, index}) => {
 
