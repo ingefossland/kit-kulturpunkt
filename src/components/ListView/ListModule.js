@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from "@material-ui/core/Icon"
 
-import { ButtonSelect, ButtonEdit, ButtonDelete, ButtonRestore, ButtonLink, ButtonView } from ".."
+import { NavToolbar, NavSettings, ButtonSelect } from "../"
 
 import {
     ModuleBase,
     ModuleTitle,
+    ModuleImage,
     ModuleLabel,
     ModuleMetadata,
     ModuleDescription,
     ModuleStatus,
     ModuleByline
-} from "@kit-ui/admin"
+} from "../"
 
-
-import { NavSettings } from "@kit-ui/admin"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -37,11 +36,9 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&:hover": {
-
             "& button": {
                 opacity: .5,
             },
-
         },
 
         "&[aria-selected=true]": {
@@ -66,15 +63,34 @@ const useStyles = makeStyles(theme => ({
 
             "& $image, & $icon": {
                 opacity: .25
+            },
+
+            "& [data-name=title]": {
+                color: theme.palette.text.disabled,
+                textDecoration: "line-through"
+            }
+
+        },
+
+        "&[data-erased=true]": {
+
+            "& $image, & $icon": {
+                opacity: .25
+            },
+
+            "& [data-name=title]": {
+                color: theme.palette.text.disabled,
+                textDecoration: "line-through"
             }
 
         }
 
+
     },
 
     media: {
-        minWidth: 48,
         width: 48,
+        height: 48,
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
@@ -88,8 +104,10 @@ const useStyles = makeStyles(theme => ({
 
     },
     image: {
+        position: "relative",
         display: "block",
         width: 48,
+        height: 48,
     },
     content: {
         flexGrow: 1,
@@ -146,68 +164,59 @@ const useStyles = makeStyles(theme => ({
 /** ListViewModule for listing documents */
 
 const ListModule = ({
-    primaryButton,
-
-    status,
-    statusLabel,
-
-    mediaType,
-    mediaLabel,
-
-    documentType,
-    documentLabel,
-
     selectable,
     selected,
     onSelect,
-
-    editable,
-    onEdit,
-
-    viewable,
-    onView,
-
-    linkable,
-    onLink,
-
-    deletable,
-    deleted,
-    onDelete,
-
-    restorable,
-    onRestore,
-
-    erasable,
-    erased,
-    onErase,
-
-    icon,
-    imageUrl,
-
-    title,
-    untitled,
-    description,
-    metadata,
-    author,
-    datetime,
-
-    onClick,
     ...props
 }) => {
 
-    const classes = useStyles()
+    const {
+        primaryButton,
+    
+        status,
+        statusLabel,
+    
+        mediaType,
+        mediaLabel,
+    
+        documentType,
+        documentLabel,
+    
+    
+        editable,
+        onEdit,
+    
+        viewable,
+        onView,
+    
+        linkable,
+        onLink,
+    
+        deletable,
+        deleted,
+        onDelete,
+    
+        restorable,
+        onRestore,
+    
+        erasable,
+        erased,
+        onErase,
+    
+        icon,
+        imageUrl,
+    
+        title,
+        untitled,
+        description,
+        metadata,
+        author,
+        datetime,
+    
+        onClick,
+    } = props
 
-    const Toolbar = () => {
-        return (
-            <div className={classes.toolbar}>
-                { editable && <ButtonEdit className={classes.edit} onClick={onEdit} /> }
-                { viewable && <ButtonView className={classes.view} onClick={onView} /> }
-                { linkable && <ButtonLink className={classes.link} onClick={onLink} /> }
-                { deletable && <ButtonDelete className={classes.delete} onClick={onDelete} /> }
-                { deleted && restorable && <ButtonRestore className={classes.restore} onClick={onRestore} /> }
-            </div>
-        )
-    }
+    const classes = useStyles()
 
 
     return (
@@ -217,7 +226,7 @@ const ListModule = ({
 
             <div className={classes.media}>
                 { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                { imageUrl && <img className={classes.image} src={imageUrl} /> }
+                { imageUrl && <ModuleImage className={classes.image} imageUrl={imageUrl} width={48} height={48} /> }
             </div>
 
 
@@ -234,7 +243,7 @@ const ListModule = ({
                 </footer>
             </div>
             <NavSettings {...props} className={classes.settings} />
-            <Toolbar />
+            <NavToolbar {...props} className={classes.toolbar} />
         </ModuleBase>
     )    
 
@@ -265,7 +274,6 @@ ListModule.propTypes = {
 }
 
 ListModule.defaultProps = {
-//    size: "small",
     editable: false,
     selectable: false,
     selected: false,

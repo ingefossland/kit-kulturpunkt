@@ -17,7 +17,7 @@ const FinderModel = ({
     deletable = true, 
     deleted = false,
     restorable = true, 
-    eraseable = true,
+    erasable = true,
     erased = false,
     children,
     ...props
@@ -117,6 +117,8 @@ const FinderModel = ({
         deletable = false
     }
 
+    /*
+
     const getToolbar = () => {
 
         if (selected) {
@@ -161,6 +163,8 @@ const FinderModel = ({
 
     const toolbar = getToolbar()
 
+    */
+
     const mediaLabel = mediaType && t('mediaType:'+mediaType)
     const documentLabel = documentType && t('documentType:'+documentType)
 
@@ -201,10 +205,9 @@ const FinderModel = ({
                 onDelete: _onDelete,
                 restorable: restorable,
                 onRestore: _onRestore,
-                eraseable: eraseable,
+                erasable: erasable,
                 erased: erased,
                 onErase: _onErase,
-                toolbar: toolbar,
                 onClick: _onClick,
                 ...props
 //                ...child.props

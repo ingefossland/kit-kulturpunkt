@@ -53,7 +53,7 @@ const Admin = (props) => {
 
     // search
 
-    const [q, setQ] = useState(sq && sq.q)
+    const [q, setQ] = useState("")
 
     useEffect(() => {
         if (q) {
@@ -72,18 +72,22 @@ const Admin = (props) => {
         if (props.history) {
             props.history.replace(url)
         }
+
     }, [q])
 
-    const _onSearchQuery = _.debounce((q, event) => {
+    const _onSearchQuery = _.debounce((q) => {
         setQ(q)
     }, 500)
 
     const _onSearchReset = () => {
+
         if (q) {
-            setQ('')
+            setQ("")
+            delete sq.q
         } else {
             dispatch(toggleSearch())
         }
+
     }
 
     // search
@@ -91,9 +95,8 @@ const Admin = (props) => {
     const search = {
         ...app.search,
 //        expanded: q && q.length && true,
-        q: q,
-        onChange: (q, event) => _onSearchQuery(q),
-        onReset: (q, event) => _onSearchReset(),
+        onChange: (q, event) => { _onSearchQuery(q) },
+        onReset: () => _onSearchReset(),
         onToggle: () => dispatch(toggleSearch())
     }
 
@@ -103,8 +106,10 @@ const Admin = (props) => {
         <AdminLoader {...props}>
             <AdminLayout
                 app={app}
+
                 theme={app && app.theme}
                 header={app && app.header}
+                subview={app && app.subview}
 
                 search={search}
 

@@ -165,7 +165,7 @@ const Gallery = ({width, spacing = 1, padding = 0, children, debug = false}) => 
     return (
         <section className={classes.gallery} data-layout="gallery">
             <div className={classes.list}>
-                {children.map((child, index) => {
+                {children && children.map((child, index) => {
 
                     const maxWidth = gallery[index] && gallery[index].maxWidth
 

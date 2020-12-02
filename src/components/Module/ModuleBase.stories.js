@@ -15,3 +15,8 @@ const Template = (args) => <ModuleBase {...args}>Content</ModuleBase>
 export const Default = Template.bind({});
 Default.args = {
 }
+
+export const Elevation = Template.bind({});
+Elevation.args = {
+    elevation: 1
+}

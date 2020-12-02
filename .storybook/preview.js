@@ -22,7 +22,7 @@ const alphaSort = (a, b) => a[1].kind === b[1].kind ? 0 : a[1].id.localeCompare(
 
 
 const storySort = {
-    order: ['About', "App", "Finder", "Calendar", "Editor", "Module", "Media", [alphaSort], "Widget"]
+    order: ['About', "App", "Finder", "View", "Views", "Module", "Modules", "Calendar", "Editor", "Media", [alphaSort], "Widget"]
 }
 
 

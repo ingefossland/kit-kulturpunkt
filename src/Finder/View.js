@@ -5,7 +5,7 @@ import { deleteModel, restoreModel, eraseModel, selectModel } from '../redux/mod
 
 import ViewList from "./ViewList"
 import ViewTable from "./ViewTable"
-import ViewGrid from "./ViewGrid"
+import ViewIcons from "./ViewIcons"
 import ViewMasonry from "./ViewMasonry"
 import ViewGallery from "./ViewGallery"
 import ViewColumn from "./ViewColumn"
@@ -17,7 +17,7 @@ const FinderView = ({view = "list", template, ...props}) => {
     const templates = {
         "list": ViewList,
         "table": ViewTable,
-        "grid": ViewGrid,
+        "icons": ViewIcons,
         "masonry": ViewMasonry,
         "gallery": ViewGallery,
         "column": ViewColumn

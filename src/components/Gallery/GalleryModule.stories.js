@@ -3,7 +3,7 @@ import Gallery from "../Gallery/Gallery"
 import GalleryModule from './GalleryModule';
 
 export default {
-    title: 'Module/Variant/GalleryModule',
+    title: 'Modules/GalleryModule',
     component: GalleryModule,
     args: {
         imageUrl: "https://dms-test.dimu.org/image/012uNXVpKSZo?mediaType=image/png",
@@ -17,7 +17,10 @@ export default {
     },
 };
 
-const Template = (args) => <GalleryModule {...args} />
+const Template = (args) => <Gallery>
+    <GalleryModule {...args} />
+    <GalleryModule {...args} />
+</Gallery>
 
 export const Default = Template.bind({});
 Default.args = {

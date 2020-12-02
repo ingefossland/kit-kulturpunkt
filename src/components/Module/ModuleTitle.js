@@ -13,14 +13,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: "bold",
         maxWidth: "100%",
         color: theme.palette.text.primary,
-        "&[data-status=trash]": {
-            color: theme.palette.text.disabled,
-            textDecoration: "line-through"
-        },
-        "&[data-status=erased]": {
-            color: theme.palette.text.disabled,
-            textDecoration: "line-through"
-        },
     },
     link: {
         color: "inherit",
@@ -43,14 +35,14 @@ const ModuleTitle = ({className, title, untitled = "Untitled", status, onClick, 
 
     if (onClick) {
         return (
-            <Typography data-status={status} className={className || classes.root} component="h2" noWrap={true}>
+            <Typography data-name="title" className={className || classes.root} component="h2" noWrap={true}>
                 <Link className={classes.link} onClick={onClick}>{title}</Link>
             </Typography>
         )
     }
 
     return (
-        <Typography data-status={status} className={className || classes.root} component="h2" noWrap={true}>{title}</Typography>
+        <Typography data-name="title" className={className || classes.root} component="h2" noWrap={true}>{title}</Typography>
     )
 }
 

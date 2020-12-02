@@ -67,7 +67,9 @@ export default {
         "More results": "Flere resultater",
         "Next page": "Neste side",
         "Previous page": "Forrige side",
-        "Page {{page}}": "Side {{page}}"
+        "Page {{page}}": "Side {{page}}",
+        "Searching, please wait": "Søker, vennligst vent",
+        "Loading page {{page}}": "Henter side {{page}}",
     },
     view: {
         "{{rows}} rows": "{{rows}} rader",

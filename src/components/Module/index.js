@@ -1,3 +1,5 @@
+import Module from "./Module";
+
 import ModuleBase from "./ModuleBase";
 import ModuleHeader from "./ModuleHeader";
 import ModuleBody from "./ModuleBody";
@@ -9,10 +11,12 @@ import ModuleFormat from "./ModuleFormat"
 import ModuleByline from "./ModuleByline";
 import ModuleDate from "./ModuleDate";
 
+import ModuleMedia from "./ModuleMedia";
+import ModuleImage from "./ModuleImage";
+
 import ModuleTitle from "./ModuleTitle";
 import ModuleDescription from "./ModuleDescription";
 import ModuleLabel from "./ModuleLabel";
-import ModuleMedia from "./ModuleMedia";
 import ModuleMetadata from "./ModuleMetadata";
 import ModuleStatus from "./ModuleStatus";
 
@@ -21,16 +25,13 @@ import ModuleActionbar from "./ModuleActionbar";
 
 import ModuleLayout from "./ModuleLayout";
 
-import EditableModule from "./EditableModule";
+import CollapsedModule from "./CollapsedModule";
 import ExpandedModule from "./ExpandedModule";
 
-import TableModule from "./TableModule";
-import GridModule from "./GridModule";
-import CardModule from "./CardModule";
-import GalleryModule from "./GalleryModule";
 
 
 export {
+    Module,
     ModuleBase,
     ModuleFormat,
     ModuleHeader,
@@ -42,17 +43,18 @@ export {
     ModuleTitle,
     ModuleDescription,
     ModuleLabel,
+
     ModuleMedia,
+    ModuleImage,
+
     ModuleMetadata,
     ModuleStatus,
     ModulePrefix,
     ModuleActionbar,
     ModuleLayout,
 
-    EditableModule,
+    CollapsedModule,
     ExpandedModule,
-    TableModule,
-    GridModule,
-    CardModule,
-    GalleryModule
+
+
 }

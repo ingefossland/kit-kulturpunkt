@@ -2,10 +2,8 @@
 import React from 'react';
 import PropTypes from "prop-types"
 
-import { AppBase, AppHeader, AppSidebar, AppContent, AppBody } from "@kit-ui/admin"
-import { NavAction, NavCalendar } from "@kit-ui/admin"
-
-import NavMenu from "../components/NavMenu/NavMenu"
+import { AppBase, AppHeader, AppSidebar, AppContent, AppBody } from "../components"
+import { NavAction, NavMenu } from "../components"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -141,7 +139,6 @@ const AppLayout = ({
             <AppBody className={classes.body}>
                 <AppSidebar {...sidebar} className={classes.sidebar}>
                     { primaryAction && <NavAction className={classes.navAction} primaryAction={primaryAction} onSelect={onSelect} />}
-                    { calendar && <NavCalendar className={classes.navCalendar} {...calendar} onChange={(date) => onSelect({type: "calendar", date: date})}  />}
                     { menu && <NavMenu className={classes.navMenu} icons={icons} menu={menu} menuByUrl={menuByUrl} currentUrl={currentUrl} onSelect={onSelect} onToggle={onToggle} />}
                 </AppSidebar>
                 <AppContent className={classes.content}>

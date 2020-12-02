@@ -10,8 +10,10 @@ const appSlice = createSlice({
         isLoading: true,
         header: {
         },
+        subview: {
+            expanded: false
+        },
         search: {
-//            expanded: false
         },
         sidebar: {
         }
@@ -30,12 +32,34 @@ const appSlice = createSlice({
                 ...action.payload
             }
         },
+        requestSubview(state, action) {
+            return {
+                ...state,
+                subview: undefined,
+            }
+        },
+        receiveSubview(state, action) {
+            const { subview } = action.payload
+            return {
+                ...state,
+                subview: {
+                    ...state.subview,
+                    ...subview
+                },
+            }
+        },
+        requestLayout(state, action) {
+            return {
+                ...state,
+            }
+        },
         receiveLayout(state, action) {
-            const { header, sidebar } = action.payload
+            const { header, sidebar, subview } = action.payload
             return {
                 ...state,
                 header: header,
-                sidebar: sidebar
+                sidebar: sidebar,
+                subview: subview
             }
         },
         toggleSearch(state, action) {
@@ -154,7 +178,16 @@ export const getApp = (app) => dispatch => {
     
 }
 
-export const getAppLayout = (layout = "default") => dispatch => {
+export const getSubview = (subview) => dispatch => {
+
+    dispatch(receiveSubview({
+        subview: subview
+    }))
+    
+
+}
+
+export const getLayout = (layout = "default") => dispatch => {
 
     if (layout === "editor") {
         dispatch(receiveLayout({
@@ -162,6 +195,9 @@ export const getAppLayout = (layout = "default") => dispatch => {
                 expanded: false
             },
             sidebar: {
+                expanded: false
+            },
+            subview: {
                 expanded: false
             }
         }))
@@ -173,6 +209,23 @@ export const getAppLayout = (layout = "default") => dispatch => {
                 expanded: true
             },
             sidebar: {
+                expanded: true
+            },
+            subview: {
+                expanded: false
+            }
+        }))
+    }
+
+    if (layout === "finder/subview") {
+        dispatch(receiveLayout({
+            header: {
+                expanded: true
+            },
+            sidebar: {
+                expanded: false
+            },
+            subview: {
                 expanded: true
             }
         }))
@@ -353,5 +406,18 @@ export const getMenuByUrl = ({menu = []}) => dispatch => {
 }*/
 
 
-export const { requestApp, receiveApp, receiveLayout, toggleHeader, toggleSearch, toggleSidebar, requestSchemasByName, receiveSchemasByName, requestMenu, receiveMenu, toggleMenuItem, requestMenuByUrl, receiveMenuByUrl, receiveMenuItemByUrl, requestParents, receiveParents } = appSlice.actions
+export const { 
+    requestApp, receiveApp, 
+    requestLayout, receiveLayout, 
+    requestSubview, receiveSubview, 
+    toggleHeader, 
+    toggleSearch, 
+    toggleSidebar, 
+    requestSchemasByName, 
+    receiveSchemasByName, 
+    requestMenu, receiveMenu, 
+    toggleMenuItem, requestMenuByUrl, 
+    receiveMenuByUrl, receiveMenuItemByUrl, 
+    requestParents, receiveParents
+} = appSlice.actions
 export default appSlice.reducer

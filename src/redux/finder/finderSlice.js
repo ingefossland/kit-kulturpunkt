@@ -296,12 +296,12 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
         }
 
         if (query && query.models === "media") {
-            viewOptions = viewOptions || ["gallery", "grid", "list", "table"]
+            viewOptions = viewOptions || ["gallery", "icons", "list", "table"]
             sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 
         if (query && query.models === "documents") {
-            viewOptions = viewOptions || ["list", "table", "grid", "column"]
+            viewOptions = viewOptions || ["list", "table", "icons", "column"]
             sortOptions = sortOptions || ["title", "createdAt ASC", "updatedAt DESC"]
         }
 

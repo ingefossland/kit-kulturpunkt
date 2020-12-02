@@ -47,6 +47,19 @@ const ViewOptions = ({
         return false
     }
 
+    options = options.map((option, index) => {
+
+        if (typeof option === "string" || typeof option === "number") {
+            option = {
+                title: option,
+                value: option
+            }
+        }
+
+        return option
+
+    })
+
     if (!value && options.length) {
         value = options[0].value
     }

@@ -3,7 +3,7 @@ import Loader from './Loader';
 import ExampleLoader from './Loader.example';
 
 export default {
-    title: 'App/Loader',
+    title: 'Loader/Loader',
     component: Loader,
     args: {
         title: "App title",

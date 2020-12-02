@@ -16,6 +16,25 @@ const Template = (args) => <NavView {...args} />
 export const Default = Template.bind({});
 Default.args = {
     options: [
+        "list",
+        "icons",
+        "grid",
+        "column",
+        "masonry",
+        "gallery",
+        "details",
+        "table",
+    ],
+    value: "grid"
+}
+
+export const WithIcons = Template.bind({});
+WithIcons.args = {
+    options: [
+        {
+            title: "Icons",
+            value: "icons"
+        },
         {
             icon: "view_column",
             title: "Gallery",

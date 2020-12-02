@@ -54,22 +54,28 @@ const NavToolbar = ({className, toolbar, ...props}) => {
 
 NavToolbar.propTypes = {
     toolbar: PropTypes.array,
+
     hideable: PropTypes.bool,
     hidden: PropTypes.bool,
     onHide: PropTypes.func,
     onUnhide: PropTypes.func,
+
     editable: PropTypes.bool,
     editing: PropTypes.bool,
     onEdit: PropTypes.func,
+
     deletable: PropTypes.bool,
     deleted: PropTypes.bool,
     onDelete: PropTypes.func,
+
     erasable: PropTypes.bool,
     erased: PropTypes.bool,
     onErase: PropTypes.func,
+
     restorable: PropTypes.bool,
     restored: PropTypes.bool,
     onRestore: PropTypes.func,
+
     removable: PropTypes.bool,
     removed: PropTypes.bool,
     onRemove: PropTypes.func,

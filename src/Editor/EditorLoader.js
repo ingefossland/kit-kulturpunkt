@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
+import { getLayout } from '../redux/app';
 import { getEditor } from '../redux/editor';
 
 import { Loader } from "../components/"

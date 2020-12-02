@@ -16,6 +16,8 @@ import KpDeviceLinkField from "./KpDevice/KpDeviceLinkField"
 
 import pageEditor from "./PageEditor/registry"
 
+import ModuleLayout from "./Module/ModuleLayout"
+
 export default {
     "fields": {
         "documentParentId": DocumentParentIdField,
@@ -28,6 +30,7 @@ export default {
         "kpLinkMediaLayout": KpLinkMediaLayout,
         "kpDevice": KpDeviceField,
         "kpDeviceLink": KpDeviceLinkField,
+        "moduleLayout": ModuleLayout,
         ...pageEditor.fields
     },
     "widgets": {

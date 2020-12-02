@@ -9,7 +9,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const ViewPages = ({className, pages, page, onPage}) => {
+const ViewPages = ({className, pages = 0, page, onPage}) => {
     const classes = useStyles()
 
     if (pages < 2) {

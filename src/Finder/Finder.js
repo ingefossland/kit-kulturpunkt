@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
+import { getLayout } from '../redux/app';
 import { getFinder, getMenuItem, getParents } from '../redux/finder';
 
 import FinderLoader from "./FinderLoader"
@@ -30,7 +30,7 @@ const Finder = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAppLayout("finder"))
+        dispatch(getLayout("finder"))
     }, [])
 
     const template = menuItem && menuItem.template

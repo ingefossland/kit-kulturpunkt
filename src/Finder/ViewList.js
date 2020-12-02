@@ -6,7 +6,7 @@ import { ListView, ListModule } from "../components"
 const ViewList = ({resultsLoaded, ...props}) => {
     const { t, i18n } = useTranslation('search');
 
-    const { resultsByPage, count, page, pages, onPage } = props
+    const { isLoading, resultsByPage, count, page, pages, onPage } = props
 
     const title = props.title || t('{{count}} hits', { count });
     const description = t('{{page}} of {{pages}} pages', { pages, page });
@@ -15,8 +15,14 @@ const ViewList = ({resultsLoaded, ...props}) => {
 
     const pagedResults = resultsByPage && resultsByPage[page]
 
+    if (isLoading) {
+        return <ListView title={loadingTitle} />
+    } else if (!count) {
+        return <ListView title={emptyTitle} />
+    }
+    
     return (
-        <ListView {...props} loadingTitle={loadingTitle} emptyTitle={emptyTitle} title={title} description={description}>
+        <ListView {...props} title={title} description={description}>
             {pagedResults && pagedResults.map((model, index) => {
                 return (
                     <FinderModel {...props} model={model} key={index}>

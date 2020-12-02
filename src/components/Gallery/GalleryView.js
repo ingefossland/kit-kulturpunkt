@@ -2,31 +2,23 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { ViewHeader, ViewPages } from "../"
 import Gallery from "./Gallery"
+import GalleryModule from "./GalleryModule"
 
 /** GalleryView */
 
 const GalleryView = ({
     spacing,
     padding,
-    isLoading,
-    loadingTitle,
-    count,
-    emptyTitle,
+    items = undefined,
     children,
 ...props}) => {
-
-    if (isLoading && loadingTitle) {
-        return <ViewHeader title={loadingTitle} />
-    } else if (!count && emptyTitle) {
-        return <ViewHeader title={emptyTitle} />
-    }
 
     return (
         <>
             <ViewHeader {...props} />
-            <Gallery spacing={spacing} padding={padding}>
-                {children}
-            </Gallery>
+                <Gallery spacing={spacing} padding={padding}>
+                    {items && items.map((item, index) => <GalleryModule {...item} key={index} />) || children }
+                </Gallery>
             <ViewPages {...props} />
         </>
     )    
@@ -35,18 +27,18 @@ const GalleryView = ({
 
 
 GalleryView.defaultProps = {
-    loadingTitle: "Loading ...",
-    emptyTitle: "No hits ...",
 }
 
 GalleryView.propTypes = {
     spacing: PropTypes.number,
     padding: PropTypes.number,
-    isLoading: PropTypes.bool,
-    loadingTitle: PropTypes.string,
-    emptyTitle: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
+    items: PropTypes.array,
+    children: PropTypes.oneOfType([
+        PropTypes.arrayOf(PropTypes.node),
+        PropTypes.node
+    ])
 }
 
 export default GalleryView;

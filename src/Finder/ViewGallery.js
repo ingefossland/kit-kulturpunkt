@@ -8,31 +8,33 @@ import FinderModel from "./FinderModel"
 const ViewGallery = ({resultsLoaded = [], mediaHeight = 180, mediaLayout = "cover", ...props}) => {
     const { t, i18n } = useTranslation(['search']);
 
-    const { count, page, pages, onPage } = props
+    const { query, start, isLoading, count, page, prevPage, nextPage, pages, onPage } = props
 
-    if (resultsLoaded && props.prevPage) {
+    // prev, next buttons
+    
+    if (resultsLoaded && prevPage) {
 
         resultsLoaded = [
             {
                 role: "button",
-                title: t('Page {{page}}', { page:props.prevPage }) + " ...",
+                title: t('Page {{page}}', { page:prevPage }) + " ...",
                 mediaWidth: mediaHeight,
-                onClick: () => onPage(props.prevPage)
+                onClick: () => onPage(prevPage)
             },
             ...resultsLoaded
         ]
 
     }
 
-    if (resultsLoaded && props.nextPage) {
+    if (resultsLoaded && nextPage) {
 
         resultsLoaded = [
             ...resultsLoaded,
             {
                 role: "button",
-                title: t('Page {{page}}', { page:props.nextPage }) + " ...",
+                title: t('Page {{page}}', { page:nextPage }) + " ...",
                 mediaWidth: mediaHeight,
-                onClick: () => onPage(props.nextPage)
+                onClick: () => onPage(nextPage)
             },
         ]
 
@@ -44,8 +46,40 @@ const ViewGallery = ({resultsLoaded = [], mediaHeight = 180, mediaLayout = "cove
     const emptyTitle = t('No hits')
 
 
+    if (resultsLoaded.length && isLoading && query.start > start) {
+
+        resultsLoaded.pop()
+
+        resultsLoaded = [
+            ...resultsLoaded,
+            {
+                role: "button",
+                title: t('Loading page {{page}}', { page:nextPage }) + " ...",
+                mediaWidth: mediaHeight,
+            }
+        ]
+    
+    } else if (resultsLoaded.length && isLoading) {
+
+        resultsLoaded.shift()
+
+        resultsLoaded = [
+            {
+                role: "button",
+                title: t('Loading page {{page}}', { page:prevPage }) + " ...",
+                mediaWidth: mediaHeight,
+            },
+            ...resultsLoaded,
+        ]
+
+    } else if (isLoading) {
+        return <GalleryView title={loadingTitle} />
+    } else if (!count) {
+        return <GalleryView title={emptyTitle} />
+    }
+
     return (
-        <GalleryView {...props} padding={0} spacing={2} loadingTitle={loadingTitle} emptyTitle={emptyTitle} title={title} description={description}>
+        <GalleryView {...props} pages={undefined} padding={0} spacing={2} title={title} description={description}>
 
             { resultsLoaded && resultsLoaded.map((model, index) => {
 

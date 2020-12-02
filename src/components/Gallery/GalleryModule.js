@@ -9,13 +9,13 @@ import Icon from "@material-ui/core/Icon"
 import {
     ModuleBase,
     ModulePrefix,
-    ModuleMedia,
+    ModuleImage,
     ModuleTitle,
     ModuleLabel,
     ModuleStatus,
     ModuleByline,
     NavToolbar
-} from "@kit-ui/admin"
+} from "../"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -24,6 +24,7 @@ const useStyles = makeStyles(theme => ({
         width: props => { return props.width },
 
         "& $media": {
+            backgroundColor: "white"
         }
 
     },
@@ -37,29 +38,54 @@ const useStyles = makeStyles(theme => ({
         width: props => { return props.width },
         userSelect: "none",
 
-        "& $toolbar": {
-            opacity: 0
+        "& button": {
+            opacity: 0,
+
+            "&:hover": {
+                opacity: 1,
+            },
+    
         },
 
         "&:hover": {
-            "& $toolbar": {
-                opacity: 1
+
+            "& button": {
+                opacity: .5,
+            },
+
+            "& $image, & $icon": {
+                opacity: .5
             }
-        }, 
-        "&[data-status=trash]": {
+
+        },
+
+        "&[data-deleted=true]": {
             "& $media": {
                 opacity: .5 
             },
-            "& $toolbar": {
+            "& button": {
                 opacity: 1
             }
         },        
-        "&[data-status=erased]": {
+
+        "&[data-erased=true]": {
             "& $media": {
                 opacity: .25 
             }
         },
-    
+
+        "&[aria-selected=true]": {
+
+            "& button[name=select]": {
+                opacity: 1,
+            },
+
+            "& $media": {
+//                backgroundColor: theme.palette.action.selected
+            }
+        }
+        
+
     },
     grid: {
         display: "block",
@@ -72,48 +98,20 @@ const useStyles = makeStyles(theme => ({
             cursor: "pointer",
         },
 
-        "&[aria-selected=true]": {
-            backgroundColor: theme.palette.action.selected,
-            color: "currentColor",
-
-            "& $primaryAction": {
-                opacity: 1,
-            },
-
-            "& $media": {
-//                opacity: .75
-            }
-        }
 
     },
     media: {
         display: "block",
+        backgroundColor: "grey",
         position: "relative",
         width: "100%",
         height: props => { return props.mediaHeight},
         margin: "0",
-
-
-
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
     },
     image: {
-        backgroundColor: "grey",
-
-    },
-    primaryAction: {
-        position: "absolute",
-        zIndex: 3,
-        top: 0,
-        right: 'auto',
-        bottom: "auto",
-        left: 0,
-
-        "& button": {
-            color: "white",
-        },
 
     },
     toolbar: {
@@ -127,29 +125,44 @@ const useStyles = makeStyles(theme => ({
         height: props => { return props.mediaHeight },
 
         display: "flex",
-        alignItems: "center",
         justifyContent: "center",
+        alignItems: "center",
 
         "& button": {
+            position: "absolute",
             color: "white",
-            opacity: .5,
+
+            "&[name=select]": {
+                top: 0,
+                left: 0,
+            },
+
+            "&[name=delete],&[name=restore]": {
+                top: 0,
+                right: 0,
+            },
+
+            "&[name=view]": {
+                bottom: 0,
+                left: 0,
+            },
+
+            "&[name=link]": {
+                bottom: 0,
+                right: 0,
+            },
+
+            "&[name=edit]": {
+//                bottom: 0,
+//                margin: theme.spacing(-1),
+            },
 
             "&:hover": {
                 opacity: 1
             }
 
-        },
-
-        "& button[name=select]": {
-            position: "absolute",
-            top: 0,
-            right: 0
-        },
-        "& button[name=toggle]": {
-            position: "absolute",
-            top: 0,
-            right: 0
-        }
+        }     
+        
     },
     content: {
         flexDirection: "column",
@@ -187,7 +200,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const GridModule = ({
+const GalleryModule = ({
     role = "media",
     placeholder,
     width = 180, 
@@ -195,23 +208,53 @@ const GridModule = ({
     mediaStyle, 
     mediaHeight = 180, 
     mediaLayout = "cover", 
-    selected, 
 
-    icon,
-    imageUrl, 
-    title, 
-    description, 
-    type,
-    typeLabel, 
-    status,
-    statusLabel,
-    author, 
-    datetime, 
-    onClick,
-//    onSelect,
-    onEdit, 
     ...props
 }) => {
+
+    const {
+        status,
+        statusLabel,
+    
+        documentType,
+        documentLabel,
+    
+        selectable,
+        selected,
+        onSelect,
+    
+        editable,
+        onEdit,
+    
+        viewable,
+        onView,
+    
+        linkable,
+        onLink,
+    
+        deletable,
+        deleted,
+        onDelete,
+    
+        restorable,
+        onRestore,
+    
+        erasable,
+        erased,
+        onErase,
+    
+        icon,
+        imageUrl,
+        untitled,
+    
+        title,
+        description,
+        metadata,
+        author,
+        datetime,
+    
+        onClick,
+    } = props
 
     if (maxWidth) {
         width = maxWidth
@@ -221,10 +264,6 @@ const GridModule = ({
         width: width,
         mediaHeight: mediaHeight,
     })
-
-    if (!imageUrl && !icon) {
-        imageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
-    }
 
     if (role === "button") {
         return (
@@ -237,33 +276,33 @@ const GridModule = ({
         )        
     }
 
+    const defaultImageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+
     return (
         <ModuleBase {...props} className={classes.module} selected={selected} status={status} onClick={onClick}>
             <figure className={classes.media} onClick={onClick} role={onClick && "button"} aria-selected={selected}>
-                { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                { imageUrl && <ModuleMedia elevation={1} selected={selected} layout="cover" imageUrl={imageUrl} className={classes.image} /> }
+                <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} />
             </figure>
-            {!onClick &&  <NavToolbar {...props} className={classes.toolbar} /> }
+            { selected && <NavToolbar selectable={selectable} selected={selected} className={classes.toolbar} /> || <NavToolbar className={classes.toolbar} {...props} /> }
             <div className={classes.content}>
                 <header className={classes.header}>
                     <ModuleTitle title={title} status={status} onClick={onClick && undefined || onEdit} />
                 </header>
                 <div className={classes.body}>
-                    <ModuleLabel label={typeLabel || type} />
+                    <ModuleLabel label={documentLabel || documentType} />
                     { status &&  <ModuleStatus status={statusLabel || status} /> }
                 </div>
                 <footer className={classes.footer}>
                     <ModuleByline author={author} datetime={datetime} />
                 </footer>
             </div>
-            {!onClick && <ModulePrefix className={classes.primaryAction} selected={selected} {...props} /> }
         </ModuleBase>
     )    
 
 }
 
 
-GridModule.propTypes = {
+GalleryModule.propTypes = {
     imageUrl: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
@@ -277,4 +316,4 @@ GridModule.propTypes = {
     onEdit: PropTypes.func
 }
 
-export default GridModule;
+export default GalleryModule;

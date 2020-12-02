@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getAppLayout } from '../redux/app';
+import { getLayout } from '../redux/app';
 import { getModel } from '../redux/modelsById';
 import { getQuery } from '../redux/searchByUrl';
 
@@ -9,7 +9,7 @@ import FinderQuery from "./FinderQuery"
 import View from "./View"
 
 import FinderModel from "./FinderModel"
-import { GridView, GridModule } from "../components"
+import { IconsView, IconsModule } from "../components"
 
 
 const Finder = (props) => {
@@ -41,7 +41,7 @@ const Finder = (props) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getAppLayout("finder"))
+        dispatch(getLayout("finder"))
     }, [])
 
     const parentQuery = {
@@ -83,21 +83,21 @@ const Finder = (props) => {
 
             {parentModel && 
             
-                <GridView>
+                <IconsView>
                     <FinderModel {...props} model={parentModel}>
-                        <GridModule />
+                        <IconsModule />
                     </FinderModel>
-                </GridView>
+                </IconsView>
             
             }
             
 
 
-            <GridView>
+            <IconsView>
                 <FinderModel {...props} model={uniqueModel}>
-                    <GridModule />
+                    <IconsModule />
                 </FinderModel>
-            </GridView>
+            </IconsView>
 
             <View {...props} {...children} view="list" title="Barn" />
         </FinderLayout>

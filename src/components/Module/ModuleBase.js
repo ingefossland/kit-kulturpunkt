@@ -104,10 +104,14 @@ ModuleBase.propTypes = {
     elevation: PropTypes.number,
     /** Status */
     status: PropTypes.string,
-    /** Selected or not */
-    selected: PropTypes.bool,
     /** Expanded or not */
     expanded: PropTypes.bool,
+    /** Selected or not */
+    selected: PropTypes.bool,
+    /** Deleted or not */
+    deleted: PropTypes.bool,
+    /** Erased or not */
+    erased: PropTypes.bool,
     /** onClick */
     onClick: PropTypes.func
 }

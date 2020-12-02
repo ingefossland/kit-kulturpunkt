@@ -95,9 +95,31 @@ const getVisibilityOptions = (props) => {
     
 }
 
-const getVisibilityToolbar = (props, toolbar) => {
-    const { hideable, hidden, deletable, deleted, restorable, restored, erasable, erased, addable, removable } = props
-    const { onHide, onUnhide, onDelete, onRestore, onErase, onRemove } = props
+const getToolbar = (props, toolbar = []) => {
+    const { selectable, selected, editable, editing, hideable, hidden, deletable, deleted, restorable, restored, erasable, erased, addable, removable } = props
+    const { onSelect, onEdit, onSave, onHide, onUnhide, onDelete, onRestore, onErase, onRemove } = props
+
+    // erased, no way back
+
+    if (erased) {
+        return toolbar
+    }
+
+    // editable
+
+    if (editable && editing) {
+        toolbar.unshift({
+            name: "save",
+            label: "Save",
+            onClick: onSave
+        })
+    } else if (editable) {
+        toolbar.unshift({
+            name: "edit",
+            icon: "edit",
+            onClick: onEdit
+        })
+    }
 
     // deleted
 
@@ -123,7 +145,7 @@ const getVisibilityToolbar = (props, toolbar) => {
 
         if (!toolbar.length) {
             toolbar.push({
-                name: "deleted",
+                name: "delete",
                 icon: "delete",
                 disabled: true
             });
@@ -161,7 +183,7 @@ const getVisibilityToolbar = (props, toolbar) => {
 
     } else if (deletable) {
         toolbar.push({
-            name: "remove",
+            name: "delete",
             icon: "delete",
             onClick: onDelete
         })
@@ -177,24 +199,21 @@ const getVisibilityToolbar = (props, toolbar) => {
         
     }
 
-    return toolbar
+    // selectable
 
-}
-
-
-const getEditableToolbar = (props, toolbar) => {
-    const { editable, editing } = props
-    const { onEdit, onSave } = props
-
-    if (editable && editing) {
-        toolbar.unshift({
-            label: "Save",
-            onClick: onSave
+    if (selectable && selected) {
+        toolbar.push({
+            name: "select",
+            selected: selected,
+            label: "Select",
+            onClick: onSelect
         })
-    } else if (editable) {
-        toolbar.unshift({
-            icon: "edit",
-            onClick: onEdit
+    } else if (selectable) {
+        toolbar.push({
+            name: "select",
+            selected: selected,
+            icon: "select",
+            onClick: onSelect
         })
     }
 
@@ -202,15 +221,6 @@ const getEditableToolbar = (props, toolbar) => {
 
 }
 
-export const getToolbar = (props) => {
 
-    let toolbar = []
-
-    toolbar = getEditableToolbar(props, toolbar)
-    toolbar = getVisibilityToolbar(props, toolbar)
-    
-    return toolbar;    
-  
-}
 
 export default getToolbar

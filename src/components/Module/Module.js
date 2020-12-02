@@ -1,73 +1,58 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import EditableModule from "./EditableModule"
+import CollapsedModule from "./CollapsedModule"
 import ExpandedModule from "./ExpandedModule"
 
-import { ListModule } from "../"
-import TableModule from "./TableModule"
-import GridModule from "./GridModule"
-import CardModule from "./CardModule"
-
-const templates = {
-    "list": ListModule,
-    "table": TableModule,
-    "grid": GridModule,
-    "card": CardModule,
-}
+/** Module, use for documents or media objects */
 
 const Module = ({
-    variant,
-    expanded,
     editable,
-    editing,
+    expanded,
+    buttons,
+    onSave,
     children,
     ...props
 }) => {
 
-    if (editable && editing) {
-        return (
-            <EditableModule {...props} editing={true}>
-                {children}
-            </EditableModule>
-        )
+    if (editable && expanded) {
+
+        if (!buttons || !buttons.length) {
+            buttons = [
+                {
+                    title: "Save",
+                    onClick: onSave
+                }
+            ]
+        }
+
     }
 
     if (expanded) {
         return (
-            <ExpandedModule {...props} editable={editable} editing={editing}>
+            <ExpandedModule {...props} buttons={buttons}>
                 {children}
             </ExpandedModule>
         )
     }
 
-    const ModuleTemplate = templates && templates[variant] || ListModule
-
     return (
-        <ModuleTemplate {...props} editable={editable} editing={editing} />
+        <CollapsedModule
+            {...props}
+            editable={editable}
+        />
     )
 
 }
 
 Module.defaultProps = {
-    variant: "list",
-    expanded: false,
-    editable: false,
-    editing: false,
+    padding: 2,
+    editable: false
 }
 
 Module.propTypes = {
-    variant: PropTypes.oneOf(["list","table","grid","card"]),
-    expanded: PropTypes.bool,
     editable: PropTypes.bool,
-    editing: PropTypes.bool,
-    title: PropTypes.string,
-    description: PropTypes.string,
-    label: PropTypes.any,
-    status: PropTypes.string,
-    datetime: PropTypes.string,
-    author: PropTypes.string,
-    status: PropTypes.string
+    editing: PropTypes.bool
 }
 
 export default Module;

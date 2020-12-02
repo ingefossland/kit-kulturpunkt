@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { sortMenuTree, moveMenuItem } from '../redux/finder';
-import qs from 'query-string';
 
 import {
     ColumnView,
@@ -11,9 +8,6 @@ import {
 
 import FinderPreview from "./FinderPreview"
 import FinderModel from "./FinderModel"
-
-import { ListModule } from "../components"
-
 
 const ViewColumn = ({layout = "list", resultsLoaded, onPage, ...props})  => {
 

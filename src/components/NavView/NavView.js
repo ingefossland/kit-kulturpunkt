@@ -43,25 +43,15 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const viewOptions = {
-    "list": {
-        "icon": "view_headline",
-    },
-    "table": {
-        "icon": "view_stream",
-    },
-    "masonry": {
-        "icon": "view_quilt",
-    },
-    "gallery": {
-        "icon": "view_module",
-    },
-    "grid": {
-        "icon": "view_module",
-    },
-    "column": {
-        "icon": "view_column",
-    }
+const icons = {
+    "list": "view_headline",
+    "icons": "apps",
+    "details": "view_stream",
+    "table": "view_stream",
+    "masonry": "view_quilt",
+    "gallery": "view_compact",
+    "grid": "view_module",
+    "column": "view_column",
 }
 
 
@@ -76,7 +66,7 @@ const NavView = ({className, options = [], value, onChange}) => {
     const ButtonView = ({title, value, icon, selected}) => {
         return (
             <ButtonBase className={classes.button} aria-selected={selected} onClick={() => _onChange(value)}>
-                <Icon className={classes.icon}>{icon}</Icon>
+                <Icon className={classes.icon}>{icon || icons[value]}</Icon>
                 <div className={classes.label}>{title}</div>
             </ButtonBase>
         )
@@ -89,7 +79,6 @@ const NavView = ({className, options = [], value, onChange}) => {
 
                     if (typeof item === "string") {
                         item = {
-                            ...viewOptions[item],
                             title: item,
                             value: item
                         }
