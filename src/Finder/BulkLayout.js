@@ -1,7 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types"
-import { NavPath, NavSettings } from "../components"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
@@ -75,7 +74,7 @@ const BulkLayout = ({
     return (
         <div className={classes.bulk} aria-expanded={expanded}>
             <header className={classes.header}>
-                { parents && <NavPath className={classes.path} parents={parents} /> }
+                #header
             </header>
             <div className={classes.body}>
                 {children}

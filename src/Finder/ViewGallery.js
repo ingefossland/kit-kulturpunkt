@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { useTranslation } from 'react-i18next';
 
-import { GalleryView, GalleryModule } from "../components"
+import { GalleryView, GalleryModule } from "@kit-ui/admin"
 import FinderModel from "./FinderModel"
 
 const ViewGallery = ({resultsLoaded = [], mediaHeight = 180, mediaLayout = "cover", ...props}) => {

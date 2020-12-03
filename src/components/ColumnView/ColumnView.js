@@ -1,7 +1,7 @@
 import React, { forwardRef } from 'react';
 import PropTypes from "prop-types";
 import { makeStyles } from '@material-ui/core/styles';
-import { ViewHeader, ViewPages } from "../"
+import { ViewHeader, ViewPages } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     columnView: {

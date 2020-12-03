@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFinder } from '../redux/finder';
-import { Loader } from "../components/"
-import { EditorIcon } from "@kit-ui/icons"
+import { Loader } from "@kit-ui/admin"
 import icons from "../app/icons"
 
 const FinderLoader = ({children, ...props}) => {

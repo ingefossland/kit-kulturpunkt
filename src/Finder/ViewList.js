@@ -1,7 +1,7 @@
 import React from 'react';
 import FinderModel from "./FinderModel"
 import { useTranslation } from 'react-i18next';
-import { ListView, ListModule } from "../components"
+import { ListView, ListModule } from "@kit-ui/admin"
 
 const ViewList = ({resultsLoaded, ...props}) => {
     const { t, i18n } = useTranslation('search');

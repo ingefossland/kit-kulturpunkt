@@ -1,6 +1,14 @@
 import React, { useState, useEffect } from 'react';
-import { WidgetSearch, ListView, ListModule, ButtonAdd, ButtonRemove } from ".."
 import _ from "lodash"
+
+import { 
+    ListSearch,
+    ListView, 
+    ListModule, 
+    ButtonAdd, 
+    ButtonRemove
+} from "@kit-ui/admin"
+
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuery } from '../../redux/searchByUrl';
@@ -67,7 +75,7 @@ const DocumentChildrenSearch = (props) => {
     return (
 
         <ListView>
-            <WidgetSearch onChange={_onQuery} />
+            <ListSearch onChange={_onQuery} />
             {resultsLoaded && resultsLoaded.map(model => <ListModule {...model} primaryButton={<ButtonAdd />} />)}
         </ListView>
 

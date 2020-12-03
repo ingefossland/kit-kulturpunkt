@@ -9,7 +9,7 @@ import FinderQuery from "./FinderQuery"
 import View from "./View"
 
 import FinderModel from "./FinderModel"
-import { IconsView, IconsModule } from "../components"
+import { IconsView, IconsModule } from "@kit-ui/admin"
 
 
 const Finder = (props) => {

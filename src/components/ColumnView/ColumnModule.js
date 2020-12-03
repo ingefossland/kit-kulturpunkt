@@ -6,7 +6,7 @@ import SelectIcon from "@material-ui/icons/ChevronRight"
 import EditIcon from "@material-ui/icons/Edit"
 import DragIcon from '@material-ui/icons/DragHandle';
 
-import { ModuleTitle, ModuleLabel, ModuleMetadata } from "../Module"
+import { ModuleTitle, ModuleLabel, ModuleMetadata } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     module: {

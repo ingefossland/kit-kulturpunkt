@@ -1,9 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import PropTypes from "prop-types"
-import { NavPath } from "@kit-ui/admin"
-import { NavView } from "../components"
-
+import { NavPath, NavView } from "@kit-ui/admin"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({

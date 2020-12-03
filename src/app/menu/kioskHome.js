@@ -2,8 +2,8 @@ export default {
     icon: "kioskMenu",
     url: "/kiosk",
     title: "Kiosk",
-    view: "grid",
-    viewOptions: [],
+    view: "icons",
+    viewOptions: ["list","icons"],
     query: {
         models: "documents",
         documentType: "device*",

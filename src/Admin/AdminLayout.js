@@ -2,8 +2,8 @@
 import React from 'react';
 import PropTypes from "prop-types"
 
-import { AppBase, AppHeader, AppSidebar, AppContent, AppBody } from "../components"
-import { NavAction, NavMenu } from "../components"
+import { AppBase, AppHeader, AppSidebar, AppContent, AppBody } from "@kit-ui/admin"
+import { NavAction, NavMenu } from "@kit-ui/admin"
 
 import { makeStyles } from '@material-ui/core/styles';
 

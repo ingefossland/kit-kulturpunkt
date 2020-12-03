@@ -5,7 +5,7 @@ import ToggleIcon from '@material-ui/icons/ArrowDropDown';
 import DragIcon from '@material-ui/icons/DragHandle';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ModuleBase, ModuleTitle } from "../Module"
+import { ModuleBase, ModuleTitle } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     module: {

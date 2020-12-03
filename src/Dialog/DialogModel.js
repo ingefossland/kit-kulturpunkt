@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { loadModel } from '../redux/modelsById';
 
-import { ListModule, TableModule, GridModule, GalleryModule } from '@kit-ui/admin';
+import { ListModule, TableModule, GalleryModule } from '@kit-ui/admin';
 import { getUiPreview } from '@kit-ui/schema/lib';
 
 import { useTranslation } from 'react-i18next';
@@ -11,7 +11,6 @@ import qs from 'query-string';
 const layouts = {
     "table": TableModule,
     "list": ListModule,
-    "grid": GridModule,     
     "gallery": GalleryModule,
 }
 

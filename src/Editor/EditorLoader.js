@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getLayout } from '../redux/app';
 import { getEditor } from '../redux/editor';
 
-import { Loader } from "../components/"
+import { Loader } from "@kit-ui/admin"
 import { EditorIcon } from "@kit-ui/icons"
 import icons from "../app/icons"
 

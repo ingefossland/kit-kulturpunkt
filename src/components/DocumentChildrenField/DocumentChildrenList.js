@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { WidgetSearch, ListView, ListModule, ButtonAdd, ButtonRemove } from ".."
 import _ from "lodash"
+
+import { 
+    ListView, 
+    ListModule, 
+    ButtonAdd, 
+    ButtonRemove
+} from "@kit-ui/admin"
 
 const DocumentChildrenList = ({resultsLoaded}) => {
 

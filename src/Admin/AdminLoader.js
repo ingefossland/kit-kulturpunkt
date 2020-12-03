@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Loader } from "../components/"
+import { Loader } from "@kit-ui/admin"
 import icons from "../app/icons/"
 
 const AdminLoader = ({children, ...props}) => {

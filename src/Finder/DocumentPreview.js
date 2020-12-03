@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { PreviewBase, PreviewOptions, PreviewJSON } from "../components"
+import { 
+    PreviewBase, 
+    PreviewOptions, 
+    PreviewJSON
+} from "@kit-ui/admin"
 
 import schemasByName from "../app/schemas/schemasByName"
 

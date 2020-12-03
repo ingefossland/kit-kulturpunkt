@@ -1,7 +1,7 @@
 import React from 'react';
 import FinderModel from "./FinderModel"
 import { useTranslation } from 'react-i18next';
-import { IconsView, IconsModule } from "../components"
+import { IconsView, IconsModule } from "@kit-ui/admin"
 
 const ViewGrid = ({resultsLoaded, ...props}) => {
     const { t, i18n } = useTranslation('search');
