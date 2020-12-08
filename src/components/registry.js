@@ -1,16 +1,9 @@
 
 
-import KpPageField from "./KpPage/KpPageField"
-import KpAnnotateArrayField from "./KpPage/KpAnnotateArrayField"
-import KpAnnotateImageField from "./KpPage/KpAnnotateImageField"
-
-import KpLinkField from "./KpLink/KpLinkField"
-import KpLinkLayout from "./KpLink/KpLinkLayout"
-
-import KpLinkMediaLayout from "./KpLink/KpLinkMediaLayout"
-
-import KpDeviceField from "./KpDevice/KpDeviceField"
-import KpDeviceLinkField from "./KpDevice/KpDeviceLinkField"
+import kpPage from "./KpPage/registry"
+import kpLink from "./KpLink/registry"
+import kpDevide from "./KpDevice/registry"
+import kpLocation from "./KpLocation/registry"
 
 import documentEditor from "./DocumentEditor/registry"
 import collectionEditor from "./CollectionEditor/registry"
@@ -19,14 +12,10 @@ import themeEditor from "./ThemeEditor/registry"
 
 export default {
     "fields": {
-        "kpPage": KpPageField,
-        "kpAnnotateArray": KpAnnotateArrayField,
-        "kpAnnotateImage": KpAnnotateImageField,
-        "kpLink": KpLinkField,
-        "kpLinkLayout": KpLinkLayout,
-        "kpLinkMediaLayout": KpLinkMediaLayout,
-        "kpDevice": KpDeviceField,
-        "kpDeviceLink": KpDeviceLinkField,
+        ...kpPage.foelds,
+        ...kpLink.fields,
+        ...kpDevide.fields,
+        ...kpLocation.fields,
         ...documentEditor.fields,
         ...collectionEditor.fields,
         ...pageEditor.fields,

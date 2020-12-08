@@ -19,6 +19,10 @@ const AdminRoutes = (props) => {
 
     return (
         <Switch>
+            <Route path="/:root*/collections/:parents*/:uniqueId/edit" component={ CollectionEditor } />
+            <Route path="/:root*/media/:parents*/:uniqueId/edit" component={ MediaEditor } />
+            <Route path="/:root*/documents/:parents*/:uniqueId/edit" component={ DocumentEditor } />
+
             <Route path="/:appRoot/:parents*/new" component={ FinderEditor } />
             <Route path="/:appRoot/:parents*/:uniqueId/edit" component={ FinderEditor } />
             <Route path="/:appRoot/:parents*/:uniqueId/view" component={ DocumentPreview } />

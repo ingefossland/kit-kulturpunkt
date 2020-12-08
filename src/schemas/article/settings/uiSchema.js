@@ -29,10 +29,9 @@ export default {
                 "ui:help": "Velg en lisens for dette innholdet.",
             },
             "location": {
-                "ui:layout": "thumbnail",
                 "ui:options": {
-                    "minWidth": 200,
-                    "minHeight": 200
+                    "grid": true,
+                    "spacing": 2,
                 },
                 "ui:fieldset": [
                     "map",
@@ -48,9 +47,16 @@ export default {
                         "minWidth": 200,
                         "minHeight": 200
                     },
-                    "ui:layout": "geopointPreview"
+                    "ui:field": "kpGeopoint",
+                    "ui:layout": "kpGeopoint",
+                    "ui:overlay": {
+                        "template": "kpGeocoder"
+                    }
                 },
                 "info": {
+                    "ui:options": {
+                        "spacing": 2,
+                    },
                     "ui:fieldset": [
                         "lat",
                         "lng",
@@ -77,8 +83,8 @@ export default {
                 "location"
             ],
             "location": {
-                "ui:field": "geopoint",
-                "ui:layout": "geocoder",
+                "ui:field": "kpGeopoint",
+                "ui:layout": "kpGeocoder",
             }
         }
     }

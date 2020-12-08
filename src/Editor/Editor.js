@@ -9,6 +9,8 @@ import { receiveEdit, receiveCurrentId, receiveCurrentLocale, requestDialog, rec
 import registry from "../components/registry"
 
 import EditorDialog from "./EditorDialog"
+import EditorOverlay from "./EditorOverlay"
+
 import EditorPreview from "./EditorPreview"
 
 const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
@@ -31,6 +33,31 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
 
     const currentId = editor.formContext.currentId
     const currentLocale = editor.formContext.currentLocale || formData.locale
+
+    // overlay
+
+    const [overlay, setOverlay] = useState({})
+
+    const _onOverlay = (props) => {
+        const {id, formData, schema, uiSchema, onChange, template} = props
+        console.log("Editor:onOverlay", props)
+
+        if (overlay && overlay.id) {
+            setOverlay({})
+        } else {
+            setOverlay({
+                ...props,
+                id: id,
+                formData: formData,
+                schema: schema,
+                uiSchema: uiSchema,
+                onChange: onChange,
+                template: template || EditorOverlay,
+                expanded: true,
+            })
+        }
+
+    }
 
     // dialog
 
@@ -160,6 +187,13 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
             ...dialog,
             onClose: () => _onDialog({}),
             template: EditorDialog
+        },
+
+        onOverlay: _onOverlay,
+
+        overlay: {
+            ...overlay,
+            onClose: () => _onOverlay({}),
         },
 
     }    

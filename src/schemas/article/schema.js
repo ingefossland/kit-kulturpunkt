@@ -21,7 +21,21 @@ export default {
                     "type": "string",
                 },
                 "location": {
-                    "type": "geopoint"
+                    "type": "object",
+                    "properties": {
+                        "lat": {
+                            "type": "number",
+                            "readonly": true
+                        },
+                        "lng": {
+                            "type": "number",
+                            "readonly": true
+                        },
+                        "zoom": {
+                            "type": "number",
+                            "readonly": true
+                        }
+                    }
                 },
                 "keywords": {
                     "type": "array",

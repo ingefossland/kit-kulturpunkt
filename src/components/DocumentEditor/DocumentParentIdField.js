@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuery } from '../../redux/searchByUrl';
-import { utils } from '@kit-ui/schema';
-const { getUiOptions } = utils
+import { utils } from "@rjsf/core";
+const { getUiOptions } = utils;
 
 const ParentIdField = (props) => {
     const { formData, formContext, schema, uiSchema } = props;

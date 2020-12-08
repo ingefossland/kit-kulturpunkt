@@ -27,6 +27,7 @@ export default [
     {
         role: "section",
         title: "Favoritter",
+        pathname: "favourites",
         children: [
             kpLink,
             adminLink,
