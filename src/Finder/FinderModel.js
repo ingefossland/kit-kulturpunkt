@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 import { useTranslation } from 'react-i18next';
 
-import schemasByName from "../app/schemas/schemasByName"
+import schemasByName from "../schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview } = utils;

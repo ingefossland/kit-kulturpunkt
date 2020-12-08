@@ -1,11 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getLayout } from '../redux/app';
 import { getEditor } from '../redux/editor';
 
 import { Loader } from "@kit-ui/admin"
 import { EditorIcon } from "@kit-ui/icons"
-import icons from "../app/icons"
+import icons from "../icons"
 
 const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => {
     const pathname = props.location.pathname

@@ -6,7 +6,7 @@ import {
     PreviewJSON
 } from "@kit-ui/admin"
 
-import schemasByName from "../app/schemas/schemasByName"
+import schemasByName from "../schemas/schemasByName"
 
 const DocumentPreview = (props) => {
     const editor = useSelector(state => state.editor)

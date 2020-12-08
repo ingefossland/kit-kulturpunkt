@@ -23,11 +23,11 @@ export default [
     media,
     latest,
     trash,
-    kioskLink,
     {
         role: "section",
         title: "Favoritter",
         children: [
+            kioskLink,
             settings,
         ]
     }

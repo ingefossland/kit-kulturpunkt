@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getFinder } from '../redux/finder';
 import { Loader } from "@kit-ui/admin"
-import icons from "../app/icons"
+import icons from "../icons"
 
 const FinderLoader = ({children, ...props}) => {
     const pathname = props.location.pathname

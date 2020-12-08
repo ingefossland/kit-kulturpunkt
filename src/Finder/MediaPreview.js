@@ -7,7 +7,7 @@ import {
     PreviewMedia
 } from "@kit-ui/admin"
 
-import schemasByName from "../app/schemas/schemasByName"
+import schemasByName from "../schemas/schemasByName"
 
 const MediaPreview = (props) => {
     const editor = useSelector(state => state.editor)

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getModel } from '../../../redux/modelsById';
+import { getModel } from '../../redux/modelsById';
 
 import PageLayout from "../Page/PageLayout"
 import PageHeader from "../Page/PageHeader"

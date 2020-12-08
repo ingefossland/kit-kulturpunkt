@@ -24,11 +24,11 @@ export default [
     kioskDevices,
     latest,
     trash,
-    kpLink,
     {
         role: "section",
         title: "Favoritter",
         children: [
+            kpLink,
             settings,
         ]
     }

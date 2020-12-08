@@ -8,7 +8,7 @@ import EditorLoader from "../Editor/EditorLoader"
 
 import DocumentPreview from "./DocumentPreview"
 
-import schemasByName from "../app/schemas/schemasByName"
+import schemasByName from "../schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview, getDefaultFormState } = utils
