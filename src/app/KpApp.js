@@ -8,8 +8,16 @@ const Kulturpunkt = ({children, ...props}) => {
   
     const dispatch = useDispatch()
 
+    const collection = useSelector(state => state.collection)
+    const site = useSelector(state => state.site)
+
     useEffect(() => {
-        dispatch(getApp(app))
+        dispatch(getApp({
+            ...app,
+            subtitle: site.title,
+            collectionId: collection.id,
+            siteId: site.id
+        }))
     }, [])
 
     return (

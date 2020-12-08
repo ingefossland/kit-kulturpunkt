@@ -1,3 +1,5 @@
+import kpCollection from './kpCollection';
+
 import article from './article';
 
 import pageHome from './pageHome';
@@ -13,6 +15,7 @@ import pageMedia from './pageMedia';
 import device from './device';
 
 export default [
+    kpCollection,
     article,
     pageHome,
     pageMap,

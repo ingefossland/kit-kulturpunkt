@@ -13,7 +13,7 @@ import {
     media,
     latest,
     trash,
-    settings,
+    adminLink,
 } from "../menu/"
 
 export default [
@@ -28,7 +28,7 @@ export default [
         title: "Favoritter",
         children: [
             kioskLink,
-            settings,
+            adminLink,
         ]
     }
 ]

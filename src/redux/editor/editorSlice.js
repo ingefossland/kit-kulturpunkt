@@ -6,7 +6,7 @@ const editorSlide = createSlice({
     name: 'editor',
     initialState: {
         isLoading: true,
-        isSaving: undefined,
+//        isSaving: undefined,
         pathname: undefined,
         uniqueId: undefined,
         parents: [],
@@ -14,6 +14,10 @@ const editorSlide = createSlice({
         schema: {},
         uiSchema: {},
         formData: {},
+        formContext: {
+            isLoading: true,
+            isSaving: undefined,
+        },
         dialog: {}
     }, 
     reducers: {
@@ -23,15 +27,24 @@ const editorSlide = createSlice({
                 ...state,
                 pathname: pathname,
                 isLoading: true,
+                formContext: {
+                    ...state.formContext,
+                    isLoading: true
+                }
             }
         },
         receiveEditor(state, action) {
-            const { pathname, uniqueId } = action.payload
+            const { pathname, uniqueId, languages } = action.payload
             return {
                 ...state,
                 pathname: pathname,
                 uniqueId: uniqueId,
                 isLoading: false,
+                formContext: {
+                    ...state.formContext,
+                    languages: languages,
+                    isLoading: false
+                }
             }
         },
         requestParents(state, action) {
@@ -41,7 +54,11 @@ const editorSlide = createSlice({
             const { parents } = action.payload
             return {
                 ...state,
-                parents: parents
+                parents: parents,
+                formContext: {
+                    ...state.formContext,
+                    parents: parents
+                }
             }
         },
         requestEdit(state, action) {
@@ -78,6 +95,10 @@ const editorSlide = createSlice({
            return {
                 ...state,
                 isSaving: true,
+                formContext: {
+                    ...state.formContext,
+                    isSaving: true
+                }
             }
 
         },
@@ -90,6 +111,10 @@ const editorSlide = createSlice({
                 formData: {
                     ...formData,
                     uniqueId: uniqueId
+                },
+                formContext: {
+                    ...state.formContext,
+                    isSaving: false
                 }
             }
         },
@@ -98,6 +123,21 @@ const editorSlide = createSlice({
             return {
                 ...state,
                 currentId: currentId,
+                formContext: {
+                    ...state.formContext,
+                    currentId: currentId,
+                }
+            }
+        },
+        receiveCurrentLocale(state, action) {
+            const { currentLocale } = action.payload
+            return {
+                ...state,
+                currentLocale: currentLocale,
+                formContext: {
+                    ...state.formContext,
+                    currentLocale: currentLocale,
+                }
             }
         },
         requestDialog(state, action) {
@@ -132,7 +172,7 @@ export const getEditor = ({pathname, uniqueId, schema, uiSchema}) => (dispatch, 
 
     dispatch(getParents({url: pathname, uniqueId}))
 
-    schema && uiSchema && dispatch(receiveEditor({pathname, uniqueId}))
+    schema && uiSchema && dispatch(receiveEditor({pathname, uniqueId, languages: app.languages}))
 
 }
 
@@ -255,6 +295,7 @@ export const {
     requestEditor, receiveEditor, 
     requestParents, receiveParents,
     receiveCurrentId, 
+    receiveCurrentLocale,
     requestEdit, receiveEdit, 
     requestSave, receiveSave, 
     requestDialog, receiveDialog

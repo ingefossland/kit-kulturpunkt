@@ -2,8 +2,9 @@ import React, { useRef, useState, useEffect } from "react"
 import { SchemaBase } from "@kit-ui/schema"
 import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import { getLayout } from '../redux/app';
-import { receiveEdit, receiveCurrentId, requestDialog, receiveDialog } from '../redux/editor';
+import { receiveEdit, receiveCurrentId, receiveCurrentLocale, requestDialog, receiveDialog } from '../redux/editor';
 
 import registry from "../components/registry"
 
@@ -11,6 +12,7 @@ import EditorDialog from "./EditorDialog"
 import EditorPreview from "./EditorPreview"
 
 const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
+    const { t, i18n } = useTranslation('schema');
 
     let history = useHistory();
 
@@ -22,25 +24,58 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
         dispatch(getLayout("editor"))
     }, [])
 
+    const app = useSelector(state => state.app)
+
     const editor = useSelector(state => state.editor)
+    const formData = editor.formData
 
-    const { formData, currentId } = editor
+    const currentId = editor.formContext.currentId
+    const currentLocale = editor.formContext.currentLocale || formData.locale
 
-//    const formData = useSelector(state => state.editor.formData)
-//    const currentId = useSelector(state => state.editor.currentId)
+    // dialog
 
-    const onChange = ({formData}) => {
-        console.log('onChange', formData)
+    const [dialog, setDialog] = useState({})
+
+    const _onDialog = (props) => {
+        const {id, formData, schema, uiSchema, onChange} = props
+        console.log("Editor:onDialog", props)
+
+        if (dialog && dialog.id) {
+            setDialog({})
+        } else {
+            setDialog({
+                id: id,
+                formData: formData,
+                schema: schema,
+                uiSchema: uiSchema,
+                onChange: onChange,
+                expanded: true
+            })
+        }
+
+    }
+    
+    // change
+
+    const _onChange = ({formData}) => {
         dispatch(receiveEdit(formData))
-
-        //        setFormData(formData)
     }
 
-    const [languages, setLanguages] = useState(["en"])
-    const [currentLocale, setCurrentLocale] = useState(null)
+    // submit
+
+    const _onSubmit = ({formData}) => {
+        onSubmit && onSubmit({formData})
+
+        if (dialog && dialog.id) {
+            _onDialog({})
+        }
+
+    }
+
+    // locale
 
     const _onLocale = (locale) => {
-
+        dispatch(receiveCurrentLocale({currentLocale: locale}))
     }
 
     // hashId toggling
@@ -52,11 +87,8 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     }, [hashId])
 
     const _onCurrentId = (currentId) => {
-        console.log('editor:onCurrentId', currentId);
-        dispatch(receiveCurrentId({currentId: currentId}))
         const hashUrl = props.location.pathname + "#" + currentId; 
         history.replace(hashUrl);
-
     }
 
     const _onToggle = ({id, ...props}) => {
@@ -78,10 +110,6 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
 
     }
     
-    const _onSelect = (props) => {
-        console.log("select", props)
-    }
-
     const _onExpand = ({id}) => {
         console.log('onExpand', props)
         _onCurrentId(id)
@@ -92,49 +120,27 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
         _onToggle({id})
     }
 
-//    const dialog = useSelector(state => state.editor.dialog)
-    const [dialog, setDialog] = useState({})
+    // navigation
 
-    const _onDialog = (props) => {
-
-        const {id, formData, schema, uiSchema, onChange} = props
-
-        console.log("Editor:onDialog", props)
-
-        if (dialog && dialog.id) {
-//            dispatch(requestDialog())
-            setDialog({})
-        } else {
-            setDialog({
-                id: id,
-                formData: formData,
-                schema: schema,
-                uiSchema: uiSchema,
-                onChange: onChange,
-                expanded: true
-            })
-            /*
-            dispatch(receiveDialog({
-                ...props,
-                expanded: true
-            }))
-            */
-        }
-
+    const _onBack = () => {
+        props.history.goBack()
     }
+
+    const _onSelect = ({url}) => {
+        url && props.history.push(url)
+    }
+
+
 
     // formContext
 
     const formContext = {
-        isLoading: editor.isLoading,
-        isSaving: editor.isSaving,
-        parents: editor.parents,
+        t: t,
 
-        languages: languages,
-        currentLocale: currentLocale,
+        ...editor.formContext,
+        ...props.formContext,
+
         onLocale: _onLocale,
-
-        currentId: currentId,
         onToggle: _onToggle,
 
         onExpand: _onExpand,
@@ -143,20 +149,10 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
         onEdit: _onExpand,
         onSave: _onCollapse,
 
-        onSubmit: (status) => onSubmit && onSubmit({formData: {...formData, status: status || formData.status}}), // (e) => editorRef && editorRef.current && editorRef.current.onSubmit(e),
+        onBack: _onBack,
+        onSelect: _onSelect,
 
-        /*
-        preview: {
-            template: props.preview && props.preview.template || EditorPreview,
-            formData: formData,
-            formContext: {
-                currentId,
-                onToggle: _onToggle
-            }
-        },
-        */
-
-        ...props.formContext,
+        onSubmit: (event) => _onSubmit(event), // (e) => editorRef && editorRef.current && editorRef.current.onSubmit(e),
 
         onDialog: _onDialog,
 
@@ -176,8 +172,8 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
             uiSchema={uiSchema}
             formData={formData}
             formContext={formContext}
-            onChange={onChange}
-            onSubmit={onSubmit}
+            onChange={_onChange}
+            onSubmit={_onSubmit}
             />
     )
 

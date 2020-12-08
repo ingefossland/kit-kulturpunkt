@@ -1,6 +1,4 @@
 
-import DocumentParentIdField from "./DocumentParentIdField/DocumentParentIdField"
-import DocumentChildrenField from "./DocumentChildrenField/DocumentChildrenField"
 
 import KpPageField from "./KpPage/KpPageField"
 import KpAnnotateArrayField from "./KpPage/KpAnnotateArrayField"
@@ -14,12 +12,13 @@ import KpLinkMediaLayout from "./KpLink/KpLinkMediaLayout"
 import KpDeviceField from "./KpDevice/KpDeviceField"
 import KpDeviceLinkField from "./KpDevice/KpDeviceLinkField"
 
+import documentEditor from "./DocumentEditor/registry"
+import collectionEditor from "./CollectionEditor/registry"
 import pageEditor from "./PageEditor/registry"
+import themeEditor from "./ThemeEditor/registry"
 
 export default {
     "fields": {
-        "documentParentId": DocumentParentIdField,
-        "documentChildren": DocumentChildrenField,
         "kpPage": KpPageField,
         "kpAnnotateArray": KpAnnotateArrayField,
         "kpAnnotateImage": KpAnnotateImageField,
@@ -28,15 +27,21 @@ export default {
         "kpLinkMediaLayout": KpLinkMediaLayout,
         "kpDevice": KpDeviceField,
         "kpDeviceLink": KpDeviceLinkField,
-        ...pageEditor.fields
+        ...documentEditor.fields,
+        ...collectionEditor.fields,
+        ...pageEditor.fields,
+        ...themeEditor.fields
     },
     "widgets": {
-//        "colorSettings": ColorSettingsWidget,
-//        "listSettings": ListSettingsWidget,
-//        "gridSettings": GridSettingsWidget,
-//        "sizeSettings": SizeSettingsWidget,
-//        "placementSettings": PlacementSettingsWidget
+        ...documentEditor.widgets,
+        ...collectionEditor.widgets,
+        ...pageEditor.widgets,
+        ...themeEditor.widgets
     },
     "models": {
+        ...documentEditor.models,
+        ...collectionEditor.models,
+        ...pageEditor.models,
+        ...themeEditor.models
     }
 }

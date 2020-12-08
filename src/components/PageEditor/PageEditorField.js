@@ -5,8 +5,8 @@ const { getUiOptions } = utils;
 
 const PageEditorField = (props) => {
     const { idSchema, schema, uiSchema, formData, formContext, registry } = props;
-    const { isLoading, isSaving, uniqueId, status, statusCode, statusMessage, title, createdAt, updatedAt, deletedAt } = formData;
-    const { currentId, onExpand, onCollapse, onSelect, onLocale, onSubmit } = formContext;
+    const { uniqueId, status, statusCode, statusMessage, title, createdAt, updatedAt, deletedAt } = formData;
+    const { isLoading, isSaving, currentId, currentLocale, onExpand, onCollapse, onSelect, onLocale, onSubmit } = formContext;
 
     const { t, i18n } = useTranslation(['editor'])
 
@@ -29,11 +29,11 @@ const PageEditorField = (props) => {
             children: [
                 {
                     label: t("Save as draft"),
-                    onClick: () => onSubmit('draft'),
+                    onClick: (event) => onSubmit({formData: {...formData, status: "draft"}}, event),
                 },
                 {
                     label: t("Save and publish"),
-                    onClick: () => onSubmit('publish'),
+                    onClick: (event) => onSubmit({formData: {...formData, status: "publish"}}, event),
                 },
             ]
         }
@@ -51,6 +51,7 @@ const PageEditorField = (props) => {
         if (uniqueId) {
             secondary.children.push({
                 label: t("Save as") + " ...",
+                onClick: (event) =>  onSubmit({formData: {...formData, status: "copy"}}, event),
             })
         }
         
@@ -58,7 +59,7 @@ const PageEditorField = (props) => {
         return {
             type: "save",
             label: t("Save"),
-            onClick: () => onSubmit(),
+            onClick: (event) => onSubmit({formData}, event),
             children: [
                 primary,
                 secondary
@@ -93,11 +94,13 @@ const PageEditorField = (props) => {
     }
 
     const defaultLocale = formContext.defaultLocale || formContext.languages && formContext.languages[0]
-    const [currentLocale, setCurrentLocale] = useState(defaultLocale)
+//    const [currentLocale, setCurrentLocale] = useState(defaultLocale)
 
     const _onLocale = (locale) => {
+
+
         onLocale && onLocale(locale)
-        setCurrentLocale(locale)
+//        setCurrentLocale(locale)
     }
 
     const newUiSchema = {

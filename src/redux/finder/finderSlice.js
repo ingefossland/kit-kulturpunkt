@@ -280,12 +280,16 @@ export const getSort = ({pathname, sort}) => (dispatch, getState) => {
 
 export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
 
-    const getChild = ({parent, children, url, pathname, query, viewOptions, sortOptions, ...item}) => {
+    const getChild = ({parent, children, url, pathname, search, query, viewOptions, sortOptions, ...item}) => {
 
         if (!url && parent.url) {
-            url = pathname && parent.url + "/" + pathname || parent.url + "/"
+            url = pathname && parent.url + "/" + pathname || parent.url
         } else if (!url) {
-            url = pathname && parent.root + "/" + pathname
+            url = pathname && parent.root + "/" + pathname || parent.root || root
+        }
+
+        if (search) {
+            url = url + "?" + search
         }
 
         if (query) {

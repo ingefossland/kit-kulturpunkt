@@ -12,8 +12,9 @@ import media from "./media"
 import ekultur from "./ekultur"
 import latest from "./latest"
 import trash from "./trash"
-import settings from "./settings"
 import favourites from "./favourites"
+
+import adminLink from "./adminLink"
 
 export {
     kpHome,
@@ -25,27 +26,13 @@ export {
     kioskDevices,
     kioskLink,
 
+    adminLink,
+
     articles,
     media,
     latest,
     trash,
-    settings,
 
     ekultur
 
 }
-
-export default [
-    kpHome,
-    articles,
-    kpPages,
-    kioskPages,
-    kioskDevices,
-    media,
-    ekultur,
-    latest,
-    trash,
-    settings,
-    kioskHome,
-    favourites
-]

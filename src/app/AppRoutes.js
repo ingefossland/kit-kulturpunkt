@@ -1,15 +1,19 @@
 import React from "react";
 import { Switch, Route } from "react-router-dom";
 
-import KulturPunkt from "./KpApp"
-import Kiosk from "./KioskApp"
+import KulturPunktApp from "./KpApp"
+import KioskApp from "./KioskApp"
+import AdminApp from "./AdminApp"
+
 
 const AppRoutes = (props) => {
 
     return (
         <Switch>
-            <Route path="/kiosk" component={Kiosk} />
-            <Route path="/" component={KulturPunkt} />
+            <Route path="/admin" component={AdminApp} />
+            <Route path="/kiosk" component={KioskApp} />
+            <Route path="/kp" component={KulturPunktApp} />
+            <Route path="/" component={KulturPunktApp} />
         </Switch>
     )
 }

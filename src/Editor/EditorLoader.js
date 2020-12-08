@@ -12,6 +12,7 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
     const editor = useSelector(state => state.editor)
+    
     const uniqueId = editor.formData && editor.formData.uniqueId
 
     const appIcon = icons[app.icon]
@@ -24,7 +25,12 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getEditor({pathname, uniqueId, schema, uiSchema}))
+        dispatch(getEditor({
+            pathname, 
+            uniqueId, 
+            schema, 
+            uiSchema
+        }))
     }, [pathname, uniqueId, schema, uiSchema])
 
     return (

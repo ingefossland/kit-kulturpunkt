@@ -6,16 +6,14 @@ import qs from 'query-string';
 import Editor from "../Editor/Editor"
 import EditorLoader from "../Editor/EditorLoader"
 
-import DocumentPreview from "./DocumentPreview"
-
+import CollectionPreview from "./CollectionPreview"
 import schemasByName from "../schemas/schemasByName"
 
 import { utils } from '@kit-ui/schema';
 const { getUiPreview, getDefaultFormState } = utils
 
-const DocumentEditor = (props) => {
-    const { uniqueId, documentType } = props.match.params
-    const pathname = props.location.pathname
+const CollectionEditor = (props) => {
+    const { uniqueId } = props.match.params
     const sq = props.location.search && qs.parse(props.location.search) || {}
 
     const dispatch = useDispatch()
@@ -24,23 +22,21 @@ const DocumentEditor = (props) => {
     const editor = useSelector(state => state.editor)
     const formData = editor.formData
 
-    // create new document
+    // create new
 
     useEffect(() => {
-        sq.documentType && dispatch(editModel({
-            collectionId: app.collectionId,
-            schemaId: 1,
-            locale: "no",
-            parentId: sq.parentId || null,
-            documentType: sq.documentType,
+        sq.collectionType && dispatch(editModel({
+            modelName: "collections",
+            collectionType: sq.collectionType,
+            defaultLocale: "no",
             content: sq.content && JSON.parse(sq.content) || {}
         }))
-    }, [sq.documentType])
+    }, [sq.collectionType])
 
     // load uniqueId
 
     useEffect(() => {
-        uniqueId && dispatch(editModel({uniqueId: uniqueId}))
+        uniqueId && dispatch(editModel({modelName: "collections", uniqueId: uniqueId}))
     }, [uniqueId])
 
     // uniqueId has changed, update location
@@ -87,57 +83,48 @@ const DocumentEditor = (props) => {
 
     // set formContext
 
-    const _onEditReference = ({id, formData: { referenceId, reference: { documentType } }}) => {
-
-        const referenceUrl = app.root + "/" + referenceId + "/edit/#" + id
-
-        props.history.push({
-            pathname: referenceUrl,
-            search: "?backUrl=" + props.location.pathname + "&backId=" + id
-        })
-        
-    }
-
     const formContext = {
-        onEditReference: _onEditReference,
         preview: {
-            template: DocumentPreview
+            template: CollectionPreview
         }
     }
 
-    // get schemas based on documentType
+    // get schemas based on collectionType
 
-//    const modelType = uniqueId && formData.documentType || documentType
-    const modelType = formData.documentType // || documentType
-    const documentModel = modelType && "documents/"+modelType 
-    const model = schemasByName && schemasByName[documentModel]
+    const modelType = formData.collectionType
+    const modelId = modelType && "collections/"+modelType 
+    const model = schemasByName && schemasByName[modelId]
 
     const schema = model && model.schema
     const uiSchema = model && model.uiSchema
 
     // submit
 
-    const collectionId = useSelector(state => state.app.collectionId)
-
     const _onSubmit = ({formData}) => {
+
+        const status = formData && formData.status
 
         const uiPreview = getUiPreview({schema, uiSchema, formData})
         
         formData = {
             ...formData,
             ...uiPreview,
-            collectionId: collectionId,
-            schemaId: 1,
-            locale: "no",
         }
+
+        if (status === "copy") {
+            formData.name = formData.name + " (copy)"
+            formData.status = "draft"
+            delete formData.id
+            delete formData.uniqueId
+        }
+
 
         dispatch(saveModel(formData))
-
-        if (!uniqueId && formData.uniqueId) {
-            _onHistory(formData.uniqueId)
-        }
-
     }
+
+    useEffect(() => {
+        editor.isSaving && formData.uniqueId && _onHistory(formData.uniqueId)
+    }, [editor.isSaving])
 
 
     return (
@@ -154,7 +141,7 @@ const DocumentEditor = (props) => {
 
 }
 
-DocumentEditor.defaultProps = {
+CollectionEditor.defaultProps = {
 }
 
-export default DocumentEditor
+export default CollectionEditor

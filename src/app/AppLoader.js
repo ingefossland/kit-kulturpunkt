@@ -1,19 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Loader } from "../components/"
-import icons from "../icons/"
+import { getCollection } from '../redux/collection';
+import { getSite } from '../redux/site';
+import { Loader } from "@kit-ui/admin"
 
 const AppLoader = ({children, ...props}) => {
-    const app = useSelector(state => state.app)
-    const appIcon = app.icon && icons[app.icon]
+
+    const dispatch = useDispatch()
+    const collection = useSelector(state => state.collection)
+    const site = useSelector(state => state.site)
+
+    useEffect(() => {
+        dispatch(getCollection({id: 54}))
+    }, [])
+
+    useEffect(() => {
+        collection.siteId && dispatch(getSite({id: collection.siteId}))
+    }, [collection.siteId])
+
+
+    const isLoading = collection.isLoading || site.isLoading
+    const title = site.isLoading && "Loading site" || collection.isLoading && "Loading collection" || "Loading"
+
 
     return (
         <Loader
-            isLoading={app.isLoading}
-            icon={appIcon}
-            title={app.title || "App"}
-            description={app.uniqueId && "App loaded ..."}>
-                {children}
+            isLoading={isLoading}
+            title={title}>
+                {collection.id && site.id && children}
         </Loader>
     )
 

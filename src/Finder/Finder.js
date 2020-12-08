@@ -11,6 +11,8 @@ import DocumentTree from "./DocumentTree"
 
 import CollectionSwitcher from "./CollectionSwitcher"
 
+
+
 const templates = {
     "finder/query": FinderQuery,
     "finder/tree": DocumentTree,
