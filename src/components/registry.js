@@ -10,6 +10,8 @@ import collectionEditor from "./CollectionEditor/registry"
 import pageEditor from "./PageEditor/registry"
 import themeEditor from "./ThemeEditor/registry"
 
+import localizedString from "./LocalizedString/registry"
+
 export default {
     "fields": {
         ...kpPage.foelds,
@@ -19,7 +21,8 @@ export default {
         ...documentEditor.fields,
         ...collectionEditor.fields,
         ...pageEditor.fields,
-        ...themeEditor.fields
+        ...themeEditor.fields,
+        ...localizedString.fields
     },
     "widgets": {
         ...documentEditor.widgets,

@@ -29,7 +29,7 @@ const Geopoint = (props) => {
 
     const [overlay, setOverlay] = useState(false)
 
-    const _onOverlay = () => {
+    const _onEdit = () => {
         setOverlay(true)
     }
 
@@ -41,7 +41,7 @@ const Geopoint = (props) => {
         <GeopointBase
             className={classes.root}
             googleMapsApiKey={googleMapsApiKey}>
-                <GeopointPreview {...props} onClick={_onOverlay} />
+                <GeopointPreview {...props} onClick={_onEdit} />
                 {overlay && <GeocoderEditor {...props} onClose={() => _onClose()} /> }
         </GeopointBase>
     )        
