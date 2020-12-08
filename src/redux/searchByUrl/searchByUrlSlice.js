@@ -150,7 +150,7 @@ export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
         dispatch(receiveSearch({url, results}))
         dispatch(receivePage({url, page, results}))
 
-        results.models && dispatch(getModels(results))
+//        results.models && dispatch(getModels(results))
 
     })
 

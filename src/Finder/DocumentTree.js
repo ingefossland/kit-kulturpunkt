@@ -76,6 +76,8 @@ const DocumentTree = (props) => {
 
     const [parent, setParent] = useState(null)
 
+
+
     useEffect(() => {
 
         resultsLoaded && setParent({
@@ -83,7 +85,7 @@ const DocumentTree = (props) => {
             children: resultsLoaded && resultsLoaded.map(child => {
                 return {
                     ...child,
-                    url: pathname + "/" + child.uniqueId
+                    url: child && child.uniqueId && pathname + "/" + child.uniqueId
                 }
             })
         })
@@ -110,11 +112,6 @@ const DocumentTree = (props) => {
     }, [parent])
     
     // actions
-
-    const _onEdit = ({url}) => {
-        const editUrl = url + "/edit"
-        editUrl && props.history.push(editUrl)
-    }
 
     const _onSelect = ({url}) => {
         if (sq) {
@@ -267,7 +264,6 @@ const DocumentTree = (props) => {
                 getChildren={_getChildren}
                 onToggle={_onToggle}
                 onSelect={_onSelect}
-                onEdit={_onEdit}
                 onCreate={_onCreate}
                 onDragEnd={_onDragEnd} />
         </FinderLayout>

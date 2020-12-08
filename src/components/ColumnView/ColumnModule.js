@@ -6,7 +6,7 @@ import SelectIcon from "@material-ui/icons/ChevronRight"
 import EditIcon from "@material-ui/icons/Edit"
 import DragIcon from '@material-ui/icons/DragHandle';
 
-import { ModuleTitle, ModuleLabel, ModuleMetadata } from "@kit-ui/admin"
+import { ModuleBase, ModuleTitle, NavToolbar } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     module: {
@@ -101,9 +101,6 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(.5)
     },
     toolbar: {
-        position: "absolute",
-        right: 0,
-        margin: theme.spacing(.5),
 
         "& > * + *": {
             marginLeft: theme.spacing(-1)
@@ -114,9 +111,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ColumnModule = ({
-    collapsible, 
+    selectable,
     selected,
     onSelect,
+    collapsible, 
     expanded = false,
     onToggle,
     draggable, 
@@ -183,6 +181,7 @@ const ColumnModule = ({
                 data-is-target={isTarget} ref={provided.innerRef} onClick={_onSelect}>
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
                     <ModuleContent />
+                    <NavToolbar {...props} className={classes.toolbar} />
                     {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
 
             </div>
@@ -193,6 +192,7 @@ const ColumnModule = ({
     return (
         <div className={classes.module} aria-selected={selected}>
             <ModuleContent />
+            <NavToolbar {...props} className={classes.toolbar} />
             {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
         </div>
     )

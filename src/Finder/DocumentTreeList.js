@@ -68,7 +68,7 @@ const DocumentTreeList = ({
         return (
             <Draggable index={index} draggableId={child.url} key={child.url}>
                 {(provided, snapshot) => (
-                    <FinderModel model={child} onSelect={() => onSelect(child)} onToggle={() => onToggle(child)}>
+                    <FinderModel {...props} model={child} onSelect={() => onSelect(child)} onToggle={() => onToggle(child)}>
                         <TreeModule {...child} index={index} draggable={{provided, snapshot}} level={level}>
                         { child.expanded && <DroppableChildren {...child} children={children} level={level+1} /> }
                         </TreeModule>

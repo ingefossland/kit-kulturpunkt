@@ -41,7 +41,8 @@ const FinderModel = ({
         props.onView && props.onView() || props.history && props.history.push(props.location.pathname + '/' + uniqueId)
     }
 
-    const _onEdit = () => {
+    const _onEdit = (event) => {
+        event.stopPropagation()
         props.onEdit && props.onEdit() || props.history && props.history.push(props.location.pathname + '/' + uniqueId + "/edit")
     }
 

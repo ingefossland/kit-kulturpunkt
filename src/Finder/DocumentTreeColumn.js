@@ -78,7 +78,7 @@ const TreeColumn = ({
                     <ColumnList droppable={{provided, snapshot}}>
                         {children && children.map((child, index) => {
                             return (
-                                <DraggableChild child={child} level={level} index={index} />
+                                <DraggableChild child={child} level={level} index={index} key={index} />
                             )
                         })}
                     </ColumnList>

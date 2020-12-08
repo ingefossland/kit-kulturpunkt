@@ -5,7 +5,7 @@ import ToggleIcon from '@material-ui/icons/ArrowDropDown';
 import DragIcon from '@material-ui/icons/DragHandle';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ModuleBase, ModuleTitle } from "@kit-ui/admin"
+import { ModuleBase, ModuleTitle, NavToolbar } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     module: {
@@ -66,6 +66,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "flex-start",
     },
     content: {
+        flexGrow: 1,
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
@@ -110,17 +111,19 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const TreeModule = ({
+    selectable,
+    selected,
+    onSelect,
     collapsible, 
     expanded = false,
     onToggle,
-    selected,
-    onSelect,
     draggable, 
     level, 
     title,
     imageUrl,
     icon, 
-    children}) => {
+    children,
+...props}) => {
 
     const classes = useStyles({level});
 
@@ -186,6 +189,7 @@ const TreeModule = ({
                     {collapsible && <ButtonToggle onClick={_onToggle} /> || "" }
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
                     <ModuleContent />
+                    <NavToolbar {...props} className={classes.toolbar} />
                 </div>
                 {children && <div className={classes.children}>{children}</div> }
             </div>

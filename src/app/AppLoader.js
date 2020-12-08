@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getCollection } from '../redux/collection';
 import { getSite } from '../redux/site';
 import { Loader } from "@kit-ui/admin"
+import qs from 'query-string';
 
 const AppLoader = ({children, ...props}) => {
 
@@ -10,8 +11,12 @@ const AppLoader = ({children, ...props}) => {
     const collection = useSelector(state => state.collection)
     const site = useSelector(state => state.site)
 
+    const sq = window.location.search && qs.parse(window.location.search) || {}
+
+    const collectionId = sq.collectionId || 54
+
     useEffect(() => {
-        dispatch(getCollection({id: 54}))
+        dispatch(getCollection({id: collectionId}))
     }, [])
 
     useEffect(() => {
