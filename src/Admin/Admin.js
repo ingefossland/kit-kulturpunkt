@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { toggleSearch, toggleSidebar } from '../redux/app';
+import { getLayout, toggleSearch, toggleSidebar } from '../redux/app';
 import { toggleMenuItem } from '../redux/finder';
 
 import _ from "lodash"
 import qs from 'query-string';
 
 import AdminRoutes from "./AdminRoutes"
-import AdminLayout from "./AdminLayout"
+// import AdminLayout from "./AdminLayout"
 import AdminLoader from "./AdminLoader"
+
+import { AppLayout } from "@kit-ui/admin"
 
 import icons from "../icons"
 
@@ -32,16 +34,13 @@ const Admin = (props) => {
 
     // select menu or calendar
 
-    const _onToggle = ({sidebar, search, url}) => {
-
-        sidebar && dispatch(toggleSidebar())
-        search && dispatch(toggleSearch())
-        
+    const _onToggle = ({url}) => {
         url && dispatch(toggleMenuItem({url}))
-
     }
 
     const _onSelect = ({url, date}) => {
+
+        console.log('onSelect', url)
 
         if (!url && date) {
             sq.date = date
@@ -90,48 +89,65 @@ const Admin = (props) => {
 
     }
 
+    // header
+
+    const header = {
+        ...app.header,
+        title: app.title,
+        subtitle: app.subtitle
+    }
+
     // search
 
     const search = {
         ...app.search,
-//        expanded: q && q.length && true,
         onChange: (q, event) => { _onSearchQuery(q) },
         onReset: () => _onSearchReset(),
         onToggle: () => dispatch(toggleSearch())
     }
 
-    // menu
+    // sidebar
+
+    const sidebar = {
+        ...app.sidebar,
+        collapsible: true,
+        onToggle: () => dispatch(toggleSidebar())
+    }
+
+    // subview
+
+    const subview = app.subview && {
+        ...app.subview,
+        onToggle: () => dispatch(getLayout('finder'))
+    }
 
     return (
         <AdminLoader {...props}>
-            <AdminLayout
-                app={app}
+            <AppLayout 
+                theme={app.theme}
+                icons={icons}
 
-                theme={app && app.theme}
-                header={app && app.header}
-                subview={app && app.subview}
-
+                header={header}
                 search={search}
-
-                sidebar={app && app.sidebar}
+                sidebar={sidebar}
+                subview={subview}
 
                 primaryAction={app.primaryAction}
 
-                icons={icons}
                 menu={finder && finder.menu}
                 menuByUrl={finder && finder.menuByUrl}
 
                 currentUrl={pathname}
-                
-                parents={finder && finder.parents}
 
                 onSelect={_onSelect}
                 onToggle={_onToggle}
-                >
-                    <AdminRoutes {...props} />
-            </AdminLayout>
+            >
+                <AdminRoutes {...props} />
+            </AppLayout>
         </AdminLoader>
     )
+
+    
 }
 
 export default Admin

@@ -66,7 +66,7 @@ export default {
     title: "Nytt innhold",
     "children": [
         {
-            icon: "event",
+            icon: "article",
             title: "Ny artikkel",
             url: "/kp/article/new?documentType=article"
         },
