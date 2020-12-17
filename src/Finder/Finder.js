@@ -9,17 +9,12 @@ import FinderUpload from "./FinderUpload"
 
 import DocumentTree from "./DocumentTree"
 
-import CollectionSwitcher from "./CollectionSwitcher"
-
-
-
 const templates = {
     "finder/query": FinderQuery,
     "finder/tree": DocumentTree,
     "tree": DocumentTree,
     "treeitem": DocumentTree,
     "upload": FinderUpload,
-    "collections": CollectionSwitcher
 }
 
 const Finder = (props) => {
@@ -27,7 +22,7 @@ const Finder = (props) => {
     const finder = useSelector(state => state.finder)
 
     const menuByUrl = finder.menuByUrl
-    const menuItem = pathname && menuByUrl && menuByUrl[pathname]
+    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || {}
 
     const dispatch = useDispatch()
 

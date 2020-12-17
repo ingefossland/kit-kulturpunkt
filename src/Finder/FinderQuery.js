@@ -5,10 +5,12 @@ import { getQuery } from '../redux/searchByUrl';
 import qs from 'query-string';
 
 import Bulk from "./Bulk"
+
+import FinderLoader from "./FinderLoader"
 import FinderLayout from "./FinderLayout"
 import View from "./View"
 
-const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
+const FinderQuery = ({query = {}, viewOptions = [], ...props}) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
@@ -27,11 +29,12 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     query = {
         ...query,
         url: pathname,
-        collectionId: app && app.collectionId,
+        collectionId: query.collectionId || app && app.collectionId,
+        siteId: query.siteId || app && app.siteId,
         page: sq.page || 1,
         rows: sq.rows || 10,
         sort: sq.sort || query.sort || undefined,
-        fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
+        fl: query.fl || "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
         q: q && q.join(" ") || undefined,
     };
 
@@ -39,8 +42,8 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
     // query
 
     useEffect(() => {
-        query && dispatch(getQuery(query))
-    }, [pathname, query.q, sq.sort, sq.rows])
+        query.models && dispatch(getQuery(query))
+    }, [pathname, query.models, query.q, sq.sort, sq.rows])
 
     // search
 
@@ -101,7 +104,6 @@ const FinderQuery = ({query = {}, viewOptions = [], template, ...props}) => {
                 <View {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} onSort={_onSort} onRows={_onRows} />
             </FinderLayout>
         </Bulk>
-
     )
 
 

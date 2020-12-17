@@ -14,6 +14,7 @@ import {
     latest,
     trash,
     adminLink,
+    collectionsLink
 } from "../menu/"
 
 export default [
@@ -26,8 +27,10 @@ export default [
     {
         role: "section",
         title: "Favoritter",
+        pathname: "favourites",
         children: [
             kioskLink,
+            collectionsLink,
             adminLink,
         ]
     }

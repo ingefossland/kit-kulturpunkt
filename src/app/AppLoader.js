@@ -1,38 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCollection } from '../redux/collection';
-import { getSite } from '../redux/site';
 import { Loader } from "@kit-ui/admin"
-import qs from 'query-string';
+import icons from "../icons/"
 
 const AppLoader = ({children, ...props}) => {
 
-    const dispatch = useDispatch()
-    const collection = useSelector(state => state.collection)
-    const site = useSelector(state => state.site)
+    const pathname = props.location.pathname
+    const app = useSelector(state => state.app)
 
-    const sq = window.location.search && qs.parse(window.location.search) || {}
+    const { root, icon, siteId, title, siteName, siteTitle, collectionType, collectionId } = app
 
-    const collectionId = sq.collectionId || 54
+    const isLoading = app.isLoading
+    const loadingTitle = title && title || "Loading app ..."
 
-    useEffect(() => {
-        dispatch(getCollection({id: collectionId}))
-    }, [])
+    let description = "Loading " + root + "..."
 
-    useEffect(() => {
-        collection.siteId && dispatch(getSite({id: collection.siteId}))
-    }, [collection.siteId])
+    if (siteId) {
+        description = "Site loaded: " + siteTitle
+    }
 
+    if (collectionId) {
+        description = "Collection loaded: " + collectionId
+    }
 
-    const isLoading = collection.isLoading || site.isLoading
-    const title = site.isLoading && "Loading site" || collection.isLoading && "Loading collection" || "Loading"
-
+    const appIcon = icon && icons[icon]
 
     return (
         <Loader
+            icon={appIcon}
             isLoading={isLoading}
-            title={title}>
-                {collection.id && site.id && children}
+            title={loadingTitle}
+            description={description}>
+                {collectionId && children}
         </Loader>
     )
 

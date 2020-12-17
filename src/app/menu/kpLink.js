@@ -1,5 +1,6 @@
 export default {
-    title: "KulturPunkt",
     icon: "kpMenu",
-    url: "/kp",
+    title: "KulturPunkt",
+    url: "/:siteName/kp",
+    search: "link=true"
 }

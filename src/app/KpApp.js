@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp } from "../redux/app"
+import { getSiteApp } from "../redux/app"
+import AppLoader from "./AppLoader"
 import Admin from "../Admin"
 import app from "./kp"
 
-const Kulturpunkt = ({children, ...props}) => {
+const KpApp = ({children, ...props}) => {
+    const { siteName } = props.match.params
   
     const dispatch = useDispatch()
 
-    const collection = useSelector(state => state.collection)
-    const site = useSelector(state => state.site)
-
+    const collectionType = "kp"
+    const root = "/" + siteName + "/kp"
+    
     useEffect(() => {
-        dispatch(getApp({
+        root && dispatch(getSiteApp({
             ...app,
-            subtitle: site.title,
-            collectionId: collection.id,
-            siteId: site.id
+            root: root,
+            siteName: siteName,
+            collectionType: collectionType,
         }))
-    }, [])
+    }, [root])
 
     return (
-        <Admin {...props} />
+        <AppLoader {...props}>
+            <Admin {...props} />
+        </AppLoader>
     )
 
+
 }
 
-Kulturpunkt.defaultProps = {
+KpApp.defaultProps = {
 }
 
-export default Kulturpunkt
+export default KpApp

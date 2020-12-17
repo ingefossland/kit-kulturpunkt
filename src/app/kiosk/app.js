@@ -1,6 +1,6 @@
 import menu from "./menu"
 import theme from "./theme"
-import primaryAction from "../action"
+import primaryAction from "./action"
 
 export default {
     theme: theme,

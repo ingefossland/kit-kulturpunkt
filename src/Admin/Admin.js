@@ -94,7 +94,7 @@ const Admin = (props) => {
     const header = {
         ...app.header,
         title: app.title,
-        subtitle: app.subtitle
+        subtitle: app.siteTitle
     }
 
     // search
@@ -120,6 +120,28 @@ const Admin = (props) => {
         ...app.subview,
         onToggle: () => dispatch(getLayout('finder'))
     }
+
+    return  (
+        <AppLayout 
+            theme={app.theme}
+            icons={icons}
+
+            header={header}
+            search={search}
+            sidebar={sidebar}
+            subview={subview}
+
+            primaryAction={finder.primaryAction}
+            menu={finder && finder.menu}
+            menuByUrl={finder && finder.menuByUrl}
+
+            currentUrl={pathname}
+
+            onSelect={_onSelect}
+            onToggle={_onToggle}>
+            <AdminRoutes {...props} />
+    </AppLayout>
+    )
 
     return (
         <AdminLoader {...props}>

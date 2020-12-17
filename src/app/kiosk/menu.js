@@ -13,6 +13,7 @@ import {
     media,
     latest,
     trash,
+    collectionsLink,
     adminLink,
 } from "../menu/"
 
@@ -30,6 +31,7 @@ export default [
         pathname: "favourites",
         children: [
             kpLink,
+            collectionsLink,
             adminLink,
         ]
     }

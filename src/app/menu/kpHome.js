@@ -3,7 +3,7 @@ export default {
     role: "group",
     title: "KulturPunkt",
     icon: "kpMenu",
-    url: "/kp",
+    url: "/:siteName/kp",
     template: "finder/tree",
     query: {
         rows: 100,

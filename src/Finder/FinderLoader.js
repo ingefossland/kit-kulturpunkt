@@ -13,18 +13,19 @@ const FinderLoader = ({children, ...props}) => {
     const appIcon = icons[app.icon]
 
     const menuByUrl = finder.menuByUrl
-    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || { isLoading: true }
+    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || { url: pathname }
+    const url = menuItem && menuItem.url 
 
     const title = menuItem && menuItem.title || app && app.title
-    const description = menuItem.isLoading && "Loading menuItem ..." || finder.isLoading && "Loading finder ..." || "Finder loaded"
+    const description = finder.isLoading && "Loading finder ..." || "Finder loaded"
 
-    const isLoading = app.isLoading || finder.isLoading || menuItem.isLoading || false
+    const isLoading = !url || app.isLoading || finder.isLoading || false
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getFinder({pathname}))
-    }, [pathname, menuItem.isLoading])
+        url && dispatch(getFinder(menuItem))
+    }, [url])
 
     return (
         <Loader

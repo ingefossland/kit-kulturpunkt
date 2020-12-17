@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMenuItem, toggleMenuItem, sortMenuTree } from '../redux/finder';
+import { getMenuTree, getMenuTreeNode, toggleMenuItem } from '../redux/finder';
 import { getQuery } from '../redux/searchByUrl';
 import { receiveSave } from '../redux/modelsById';
 import { API } from "../redux/settings"
@@ -19,6 +19,9 @@ const DocumentTree = (props) => {
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
     const menuByUrl = finder && finder.menuByUrl
+
+
+
     const menuItem = menuByUrl && menuByUrl[pathname]
     const parents = finder && finder.parents
 
@@ -131,7 +134,6 @@ const DocumentTree = (props) => {
         createUrl && props.history.push(createUrl)
     }
 
-    const [results, setResults] = useState({})
 
     const _onSubmit = ({formData = {}, queries = []}) => {
 
@@ -176,12 +178,6 @@ const DocumentTree = (props) => {
                 }
             ]
 
-            setResults({
-                id: id,
-                parentId: parentId,
-                queries: queries
-            })
-
             _onSubmit({
                 formData: {
                     id: id,
@@ -207,12 +203,6 @@ const DocumentTree = (props) => {
                 }
             ]
 
-            setResults({
-                id: id,
-                parentId: parentId,
-                queries: queries
-            })
-
             _onSubmit({
                 formData: {
                     id: id,
@@ -224,8 +214,6 @@ const DocumentTree = (props) => {
         }
 
     }
-
-
 
     // viewOptions
 

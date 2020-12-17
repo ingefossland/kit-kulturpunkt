@@ -1,6 +1,6 @@
 export default {
     icon: "kioskMenu",
-    url: "/kiosk",
+    url: "/:siteName/kiosk",
     title: "Kiosk",
     view: "icons",
     viewOptions: ["list","icons"],

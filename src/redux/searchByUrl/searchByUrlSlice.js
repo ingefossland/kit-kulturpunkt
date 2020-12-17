@@ -123,6 +123,14 @@ export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
     if (page > 1 && query.rows) {
         query.start = query.rows * (page-1)
     }
+
+    if (query.collectionId && query.collectionId === "*") {
+        delete query.collectionId
+    }
+
+    if (query.siteId && query.siteId === "*") {
+        delete query.siteId
+    }
     
     const sq = qs.stringify(query)
 

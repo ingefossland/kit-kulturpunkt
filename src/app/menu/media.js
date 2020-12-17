@@ -5,6 +5,8 @@ export default {
     pathname: "media",
     query: {
         models: "media",
+        mediaType: "*",
+        collectionId: "*",
         status: "NOT trash"
     },
     children: [

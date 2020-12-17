@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp } from "../redux/app"
+import { getAppProperties } from "../redux/app"
 import Admin from "../Admin"
 import app from "./admin/app"
 
@@ -9,7 +9,7 @@ const AdminApp = ({children, ...props}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(getApp(app))
+        dispatch(getAppProperties(app))
     }, [])
 
     return (

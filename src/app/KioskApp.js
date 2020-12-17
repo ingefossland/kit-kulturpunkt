@@ -1,32 +1,37 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp } from "../redux/app"
+import { getSiteApp } from "../redux/app"
+import AppLoader from "./AppLoader"
 import Admin from "../Admin"
 import app from "./kiosk/app"
 
-const Kiosk = ({children, ...props}) => {
+const KioskApp = ({children, ...props}) => {
+    const { siteName } = props.match.params
   
     const dispatch = useDispatch()
 
-    const collection = useSelector(state => state.collection)
-    const site = useSelector(state => state.site)
-
+    const collectionType = "kp"
+    const root = "/" + siteName + "/kiosk"
+    
     useEffect(() => {
-        dispatch(getApp({
+        root && dispatch(getSiteApp({
             ...app,
-            subtitle: site.title,
-            collectionId: collection.id,
-            siteId: site.id
+            root: root,
+            siteName: siteName,
+            collectionType: collectionType,
         }))
-    }, [])
+    }, [root])
 
     return (
-        <Admin {...props} />
+        <AppLoader {...props}>
+            <Admin {...props} />
+        </AppLoader>
     )
 
+
 }
 
-Kiosk.defaultProps = {
+KioskApp.defaultProps = {
 }
 
-export default Kiosk
+export default KioskApp

@@ -15,6 +15,7 @@ import trash from "./trash"
 import favourites from "./favourites"
 
 import adminLink from "./adminLink"
+import collectionsLink from "./collectionsLink"
 
 export {
     kpHome,
@@ -27,6 +28,7 @@ export {
     kioskLink,
 
     adminLink,
+    collectionsLink,
 
     articles,
     media,

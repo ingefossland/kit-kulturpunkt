@@ -25,14 +25,25 @@ const collectionSlice = createSlice({
     }
 })
 
-export const getCollection = ({modelName = "collections", id, uniqueId}) => dispatch => {
+export const getCollection = ({id, uniqueId, siteName, collectionType}) => dispatch => {
 
-    const collectionId = id || uniqueId
-    const url = API + '/admin/api/' + modelName + '/' + collectionId;
+    if (id) {
+        dispatch(getCollectionById({id}))
+    } else if (uniqueId) {
+        dispatch(getCollectionById({id: uniqueId}))
+    } else if (siteName && collectionType) {
+        dispatch(getCollectionByType({siteName, collectionType}))
+    }
 
-    dispatch(requestCollection({uniqueId}))
+}
 
-    fetch(url, {
+export const getCollectionById = ({id}) => dispatch => {
+
+    const apiUrl = API + '/admin/api/collections/' + id;
+
+    dispatch(requestCollection({id}))
+
+    fetch(apiUrl, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -43,12 +54,31 @@ export const getCollection = ({modelName = "collections", id, uniqueId}) => disp
             error => console.log('An error occurred.', error)
         )
         .then(collection => {
-            collection.siteId && dispatch(getSite({id: collection.siteId}))
             dispatch(receiveCollection(collection))
         })
-
+    
 }
 
+export const getCollectionByType = ({siteName, collectionType}) => dispatch => {
+
+    const apiUrl = API + '/admin/api/collections/search?siteName=' + siteName + "&collectionType="+ collectionType +"&fl=id";
+
+    fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+        },
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(results => {
+        results.models && results.models[0] && dispatch(getCollectionById(results.models[0]))
+    })
+
+
+}
 
 
 export const { requestCollection, receiveCollection } = collectionSlice.actions

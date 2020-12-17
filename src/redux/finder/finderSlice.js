@@ -7,7 +7,7 @@ const finderByIdSlice = createSlice({
     name: 'finder',
     initialState: {
         isLoading: true,
-        pathname: undefined,
+        url: undefined,
         sortOptions: [],
         sort: undefined,
         rowsOptions: [
@@ -20,6 +20,7 @@ const finderByIdSlice = createSlice({
         rows: undefined,
         viewOptions: [],
         view: undefined,
+        primaryAction: {},
         menu: [],
         parents: [],
         parentsByUrl: {},
@@ -28,18 +29,18 @@ const finderByIdSlice = createSlice({
     }, 
     reducers: {
         requestFinder(state, action) {
-            const { pathname } = action.payload
+            const { url } = action.payload
             return {
                 ...state,
-                pathname: pathname,
+                url: url,
                 isLoading: true,
             }
         },
         receiveFinder(state, action) {
-            const { pathname } = action.payload
+            const { url } = action.payload
             return {
                 ...state,
-                pathname: pathname,
+                url: url,
                 isLoading: false,
             }
         },
@@ -97,6 +98,19 @@ const finderByIdSlice = createSlice({
                 ...state,
                 parents: parents,
                 parentsByUrl: parentsByUrl
+            }
+        },
+        requestPrimaryAction(state, action) {
+            return {
+                ...state,
+                primaryAction: {}
+            }
+        },
+        receivePrimaryAction(state, action) {
+            const { primaryAction } = action.payload
+            return {
+                ...state,
+                primaryAction: primaryAction
             }
         },
         requestMenu(state, action) {
@@ -240,16 +254,16 @@ const finderByIdSlice = createSlice({
     }
 })
 
-export const getFinder = ({pathname = undefined}) => (dispatch, getState) => {
+export const getFinder = ({url = undefined, ...menuItem}) => (dispatch, getState) => {
 
-    const state = getState()
-    const menuByUrl = state.finder.menuByUrl
-    const menuItem = menuByUrl && menuByUrl[pathname]
+//    const state = getState()
+//    const menuByUrl = state.finder.menuByUrl
+//    const menuItem = menuByUrl && menuByUrl[url]
 
-    menuItem && dispatch(getParents(menuItem)) || dispatch(getParents({url: pathname}))
+    url && dispatch(getParents({url}))
     menuItem && dispatch(getOptions(menuItem))
 
-    dispatch(receiveFinder({pathname}))
+    dispatch(receiveFinder({url}))
 
 }
 
@@ -278,14 +292,22 @@ export const getSort = ({pathname, sort}) => (dispatch, getState) => {
     dispatch(receiveSort({sort}))
 }
 
-export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
+export const getMenu = ({siteName, menu, root, collectionId}) => (dispatch) => {
 
     const getChild = ({parent, children, url, pathname, search, query, viewOptions, sortOptions, ...item}) => {
+
+        if (pathname && pathname.startsWith("/")) {
+            url = root + pathname
+        }
 
         if (!url && parent.url) {
             url = pathname && parent.url + "/" + pathname || parent.url
         } else if (!url) {
-            url = pathname && parent.root + "/" + pathname || parent.root || root
+            url = pathname && root + "/" + pathname || root
+        }
+
+        if (url.includes(":siteName")) {
+            url = url.replace(":siteName", siteName)
         }
 
         if (search) {
@@ -315,7 +337,6 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
         
         const child = {
             ...item,
-            root: parent.root,
             url: url,
             query: query,
             viewOptions: viewOptions,
@@ -327,7 +348,12 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
             children: children && children.length && getChildren({...child, children: children})
         }
 
-        dispatch(getMenuItem(menuItem))
+        if (item.type === "tree") {
+            dispatch(getMenuTree(menuItem))
+        } else {
+            dispatch(receiveMenuItem(menuItem))
+        }
+
 
         return menuItem
 
@@ -351,16 +377,60 @@ export const getMenu = ({menu, root, collectionId}) => (dispatch) => {
     })
 
     dispatch(receiveMenu({menu: rootMenu}))
+    
+}
 
+export const getPrimaryAction = ({primaryAction, root, collectionId}) => (dispatch) => {
 
-    /*
+    const getChild = ({parent, children, url, pathname, search, query, viewOptions, sortOptions, ...item}) => {
 
-    dispatch(requestMenuByUrl())
+        if (pathname && pathname.startsWith("/")) {
+            url = root + pathname
+        }
 
-    menu && menu.map(item => {
-        dispatch(getMenuItem({...item, level: 1}))
+        if (!url && parent.url) {
+            url = pathname && parent.url + "/" + pathname || parent.url
+        } else if (!url) {
+            url = pathname && root + "/" + pathname || root
+        }
+
+        if (url && search) {
+            url = url + "?" + search
+        }
+
+        const child = {
+            ...item,
+            root: parent.root,
+            url: url,
+        }
+
+        const menuItem = {
+            ...child,
+            children: children && children.length && getChildren({...child, children: children})
+        }
+
+        return menuItem
+
+    }
+
+    const getChildren = (parent) => {
+        let children = []
+  
+        parent.children.forEach((child) => {
+            child = getChild({...child, parent});
+            children.push(child);
+        });
+        
+        return children
+    }
+
+    const rootMenu = getChildren({
+        root: root,
+        children: [primaryAction],
+        collectionId: collectionId
     })
-    */
+
+    dispatch(receivePrimaryAction({primaryAction: rootMenu[0]}))
     
 }
 
@@ -672,6 +742,7 @@ export const sortMenuTree = ({source, destination, item}) => (dispatch, getState
 export const { 
     requestFinder, receiveFinder, 
     requestMenu, receiveMenu,
+    requestPrimaryAction, receivePrimaryAction,
     requestViewOptions, receiveViewOptions, receiveView,
     requestSortOptions, receiveSortOptions, receiveSort,
     requestMenuByUrl, receiveMenuByUrl, 
@@ -681,4 +752,5 @@ export const {
     moveMenuItem,
     expandMenuItem, collapseMenuItem, toggleMenuItem, 
     requestParents, receiveParents } = finderByIdSlice.actions
+
 export default finderByIdSlice.reducer

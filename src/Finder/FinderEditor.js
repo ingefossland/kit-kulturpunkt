@@ -37,7 +37,11 @@ const FinderEditor = (props) => {
         )
 
     }
-    
+
+    return (
+        <DocumentEditor {...props} />
+    )
+
     return (
         <p>Unknown editor for { uniqueId } </p>
     )    

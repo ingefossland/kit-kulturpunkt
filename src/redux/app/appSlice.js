@@ -2,12 +2,18 @@ import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
 
-import { getMenu } from "../finder/"
+import { getMenu, getPrimaryAction } from "../finder/"
 
 const appSlice = createSlice({
     name: 'app',
     initialState: {
+        icon: undefined,
         isLoading: true,
+        title: undefined,
+        siteName: undefined,
+        siteTitle: undefined,
+        siteId: undefined,
+        collectionId: undefined,
         header: {
         },
         subview: {
@@ -20,9 +26,29 @@ const appSlice = createSlice({
     }, 
     reducers: {
         requestApp(state, action) {
+            const { root, icon, title, siteName, collectionType } = action.payload
+            return {
+                root: root,
+                icon: icon,
+                title: title,
+                siteName: siteName,
+                collectionType: collectionType,
+                isLoading: true,
+            }
+        },
+        receiveAppSite(state, action) {
+            const { id, title } = action.payload
             return {
                 ...state,
-                isLoading: true,
+                siteId: id,
+                siteTitle: title
+            }
+        },
+        receiveAppCollection(state, action) {
+            const { id } = action.payload
+            return {
+                ...state,
+                collectionId: id,
             }
         },
         receiveApp(state, action) {
@@ -169,14 +195,95 @@ const appSlice = createSlice({
 })
 
 export const getApp = (app) => dispatch => {
-
     dispatch(requestApp(app))
+    dispatch(getAppProperties(app))
+}
+
+export const getSiteApp = (app) => dispatch => {
+    dispatch(requestApp(app))
+    dispatch(getAppSite(app))
+}
+
+export const getAppSite = ({siteName, ...app}) => dispatch => {
+
+    const query = qs.stringify({
+        name: siteName,
+        fl: "id,name,title"
+    })
+
+    const apiUrl = API + '/admin/api/sites/search?' + query;
+
+    fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+        },
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(results => {
+        const site = results.models && results.models[0] || {}
+
+        dispatch(receiveAppSite(site))
+
+        dispatch(getAppCollection({
+            ...app,
+            siteId: site.id,
+            siteName: site.name,
+            siteTitle: site.title
+        }))
+
+    })
+
+}
+
+export const getAppCollection = ({siteId, collectionType, ...app}) => dispatch => {
+
+    const query = qs.stringify({
+        siteId: siteId,
+        collectionType: collectionType,
+        fl: "id,name,title"
+    })
+
+    const apiUrl = API + "/admin/api/collections/search?" + query;
+
+    fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+        },
+    })
+    .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error)
+    )
+    .then(results => {
+        const collection = results.models && results.models[0] || {}
+
+        dispatch(receiveAppCollection(collection))
+
+        dispatch(getAppProperties({
+            ...app,
+            collectionId: collection.id,
+        }))
+
+    })
+
+}
+
+export const getAppProperties = (app) => dispatch => {
+
     dispatch(receiveApp(app))
+//    dispatch(getMenu(app))
 
     dispatch(getMenu(app))
-//    schemas && dispatch(getSchemasByName({schemas}))
-    
+    dispatch(getPrimaryAction(app))
+
+
 }
+
 
 export const getSubview = (subview) => dispatch => {
 
@@ -408,6 +515,7 @@ export const getMenuByUrl = ({menu = []}) => dispatch => {
 
 export const { 
     requestApp, receiveApp, 
+    receiveAppSite, receiveAppCollection, 
     requestLayout, receiveLayout, 
     requestSubview, receiveSubview, 
     toggleHeader, 

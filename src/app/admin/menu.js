@@ -1,6 +1,4 @@
 import {
-    kpLink,
-    kioskLink,
     latest,
     trash,
 } from "../menu/"
@@ -53,6 +51,19 @@ const home = {
     ]
 }
 
+const loaders = {
+    role: "section",
+    title: "Favoritter",
+    pathname: "favourites",
+    children: [
+        {
+            icon: "folder",
+            title: "Swich collection",
+            url: "/",
+        }
+    ]
+
+}
 
 
 export default [
@@ -60,13 +71,5 @@ export default [
 //    collections,
 //    sites,
 //    users,
-    {
-        role: "section",
-        title: "Favoritter",
-        pathname: "favourites",
-        children: [
-            kioskLink,
-            kpLink,
-        ]
-    }
+    loaders
 ]
