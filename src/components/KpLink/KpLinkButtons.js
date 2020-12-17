@@ -34,27 +34,25 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const SectionButton = ({icon, title, color="primary", variant="outlined", size="large", ...props}) => {
-    const classes = useStyles()
-    
-    return (
-        <Button {...props} type="button" data-size={size} data-variant={variant} disableElevation={true} color={color} variant={variant} size={size} className={classes.button}>
-            { icon && <Icon className={classes.icon}>{icon}</Icon>}
-            <b className={classes.label}>{title}</b>
-        </Button>
-    )
-
-}
-
-
 const SectionButtons = ({className, spacing = 1, buttons = []}) => {
 
-    const classes = useStyles({spacing})
+    const classes = useStyles({spacing: 1})
 
     if (!buttons.length) {
         return null
     }
 
+    const SectionButton = ({icon, title, color="primary", variant="outlined", size="large", ...props}) => {
+        
+        return (
+            <Button {...props} type="button" data-size={size} data-variant={variant} disableElevation={true} color={color} variant={variant} size={size} className={classes.button}>
+                { icon && <Icon className={classes.icon}>{icon}</Icon>}
+                <b className={classes.label}>{title}</b>
+            </Button>
+        )
+    
+    }
+    
     return (
         <ButtonGroup color="primary" className={className || classes.buttongroup}>
             { buttons && buttons.map((button, index) => {

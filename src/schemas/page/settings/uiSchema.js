@@ -10,19 +10,41 @@ export default {
         "ui:title": "Metadata",
         "ui:fieldset": [
             "documentType",
+            "collectionId",
+            "locale",
             "parentId",
+            "parents",
             "children"
         ],
         "ui:options": {
             "spacing": 2
+        },
+        "collectionId": {
+            "ui:field": "documentCollectionId",
+            "ui:query": {
+                "collectionType": "kp"
+            }
+        },
+        "locale": {
+            "ui:field": "documentLocale"
         },
         "documentType": {
             "ui:title": "Sidetype"
         },
         "parentId": {
             "ui:field": "documentParentId",
-//            "ui:widget": "autocomplete",
             "ui:title": "ParentId",
+            "ui:query": {
+                "documentType": "page*",
+            }
+        },
+        "parents": {
+            "ui:fieldset": [
+                "parentId",
+                "uniqueId",
+                "id"
+            ],
+            "ui:field": "documentParents",
             "ui:query": {
                 "documentType": "page*",
             }

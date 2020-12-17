@@ -87,19 +87,7 @@ const DocumentEditor = (props) => {
 
     // set formContext
 
-    const _onEditReference = ({id, formData: { referenceId, reference: { documentType } }}) => {
-
-        const referenceUrl = app.root + "/" + referenceId + "/edit/#" + id
-
-        props.history.push({
-            pathname: referenceUrl,
-            search: "?backUrl=" + props.location.pathname + "&backId=" + id
-        })
-        
-    }
-
     const formContext = {
-        onEditReference: _onEditReference,
         preview: {
             template: DocumentPreview
         }
@@ -107,7 +95,6 @@ const DocumentEditor = (props) => {
 
     // get schemas based on documentType
 
-//    const modelType = uniqueId && formData.documentType || documentType
     const modelType = formData.documentType // || documentType
     const documentModel = modelType && "documents/"+modelType 
     const model = schemasByName && schemasByName[documentModel]
@@ -126,9 +113,9 @@ const DocumentEditor = (props) => {
         formData = {
             ...formData,
             ...uiPreview,
-            collectionId: collectionId,
+            locale: formData.locale || "no",
+            collectionId: formData.collectionId || collectionId,
             schemaId: 1,
-            locale: "no",
         }
 
         dispatch(saveModel(formData))

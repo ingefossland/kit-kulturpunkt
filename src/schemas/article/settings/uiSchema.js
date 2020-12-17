@@ -10,8 +10,25 @@ export default {
         "ui:icon": "label",
         "ui:title": "Metadata",
         "ui:fieldset": [
+            "documentType",
+            "collectionId",
+            "locale",
             "content"
         ],
+        "ui:options": {
+            "spacing": 2
+        },
+        "documentType": {
+        },
+        "collectionId": {
+            "ui:field": "documentCollectionId",
+            "ui:query": {
+                "collectionType": "kp"
+            }
+        },
+        "locale": {
+            "ui:field": "documentLocale"
+        },
         "content": {
             "ui:fieldset": [
                 "keywords",

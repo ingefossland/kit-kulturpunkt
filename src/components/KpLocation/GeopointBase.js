@@ -19,6 +19,7 @@ const useStyles = makeStyles(theme => ({
 const GeopointBase = ({className, googleMapsApiKey, children, onClick}) => {
     const classes = useStyles()
 
+
     return (
         <div className={className || classes.root} onClick={onClick}>
             <LoadScript

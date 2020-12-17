@@ -8,6 +8,7 @@ const editorSlide = createSlice({
         isLoading: true,
 //        isSaving: undefined,
         pathname: undefined,
+        collectionId: undefined,
         uniqueId: undefined,
         parents: [],
         currentId: undefined,
@@ -78,6 +79,7 @@ const editorSlide = createSlice({
             if (uniqueId) {
                 return {
                     ...state,
+                    uniqueId: uniqueId,
                     formData: {
                         ...formData,
                         uniqueId: uniqueId

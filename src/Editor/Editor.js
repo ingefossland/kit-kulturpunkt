@@ -154,10 +154,22 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     }
 
     const _onSelect = ({url}) => {
-        url && props.history.push(url)
+        props.history.push(url)
     }
 
+    // reference
 
+    const _onEditReference = ({id, referenceId, reference}) => {
+
+        const referenceUrl = app.root + "/documents/" + referenceId + "/edit"
+
+        props.history.push({
+            pathname: referenceUrl,
+            hash: id,
+//            search: "?backUrl=" + props.location.pathname + "&backId=" + currentId
+        })
+        
+    }
 
     // formContext
 
@@ -178,6 +190,8 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
 
         onBack: _onBack,
         onSelect: _onSelect,
+
+        onEditReference: _onEditReference,
 
         onSubmit: (event) => _onSubmit(event), // (e) => editorRef && editorRef.current && editorRef.current.onSubmit(e),
 

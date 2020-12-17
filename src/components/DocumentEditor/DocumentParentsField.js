@@ -11,7 +11,7 @@ import { utils } from "@rjsf/core";
 const { getUiOptions } = utils;
 
 
-const DocumentChildrenField = (props) => {
+const DocumentParentsField = (props) => {
     const { schema, idSchema, uiSchema, formContext } = props;
 
     const dispatch = useDispatch()
@@ -29,22 +29,20 @@ const DocumentChildrenField = (props) => {
     const uniqueId = formData && formData.uniqueId
     const collectionId = formData && formData.collectionId
 
-    // currentChildren
+    // currentParent
 
     const query = {
-        url: pathname + "/children",
+        url: pathname + "/parents",
         models: "documents",
         collectionId: collectionId,
-        parentId: formData.id,
         fl: "id,parentId,uniqueId,title",
-        q: "uniqueId:NOT " + uniqueId,
+        q: "id:"+parentId,
         ...uiQuery
     }
 
-
     useEffect(() => {
-        uniqueId && dispatch(getQuery(query))
-    }, [uniqueId, parentId])
+        parentId && dispatch(getQuery(query))
+    }, [parentId])
 
     const searchByUrl = useSelector(state => state.searchByUrl)
     const currentSearch = searchByUrl && searchByUrl[query.url]
@@ -63,12 +61,15 @@ const DocumentChildrenField = (props) => {
         onSelect && onSelect({url})
     }
 
+
     return (
         <div>
 
-            <DocumentListRemove {...currentSearch} title="Children" onRemove={_onRemove} onEdit={_onEdit} />
+            <DocumentListRemove {...currentSearch} title="Parents" onRemove={_onRemove} onEdit={_onEdit} />
 
-            <DocumentChildrenSearch {...props} />
+            {parentId}
+
+
 
         </div>
     )
@@ -78,4 +79,4 @@ const DocumentChildrenField = (props) => {
 
 }
 
-export default DocumentChildrenField
+export default DocumentParentsField

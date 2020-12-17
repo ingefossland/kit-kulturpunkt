@@ -21,9 +21,12 @@ const DocumentTree = (props) => {
     const menuByUrl = finder && finder.menuByUrl
 
 
-
     const menuItem = menuByUrl && menuByUrl[pathname]
     const parents = finder && finder.parents
+
+    useEffect(() => {
+        dispatch(getMenuTree(menuItem))
+    }, [pathname])
 
     const [treeParent, setTreeParent] = useState({})
     const [query, setQuery] = useState({})

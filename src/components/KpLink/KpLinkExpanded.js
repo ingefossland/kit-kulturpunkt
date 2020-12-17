@@ -56,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     footer: {
         borderTop: "1px solid",
         borderColor: theme.palette.divider,
-        padding: props => { return theme.spacing(props.padding) }
+//        padding: props => { return theme.spacing(props.padding) }
     }
 
 }));

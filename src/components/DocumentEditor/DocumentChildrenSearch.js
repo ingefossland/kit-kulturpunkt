@@ -74,7 +74,7 @@ const DocumentChildrenSearch = (props) => {
 
     return (
 
-        <ListView>
+        <ListView title="Add children">
             <ListSearch onChange={_onQuery} />
             {resultsLoaded && resultsLoaded.map(model => <ListModule {...model} primaryButton={<ButtonAdd />} />)}
         </ListView>

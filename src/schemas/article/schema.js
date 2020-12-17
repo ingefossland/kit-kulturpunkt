@@ -3,6 +3,13 @@ import section from './section/schema'
 export default {
     "type": "object",
     "properties": {
+        "documentType": {
+            "type": "string",
+            "default": "article"
+        },
+        "collectionId": {
+            "type": "number",
+        },
         "locale": {
             "type": "string",
             "default": "no"

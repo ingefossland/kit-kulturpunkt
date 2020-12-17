@@ -4,33 +4,25 @@ import { getQuery } from '../../redux/searchByUrl';
 import { utils } from "@rjsf/core";
 const { getUiOptions } = utils;
 
-const ParentIdField = (props) => {
-    const { formContext, schema, uiSchema } = props;
+const CollectionIdField = (props) => {
+    const { formData, formContext, schema, uiSchema } = props;
 
     const uiOptions = getUiOptions(uiSchema)
     const uiQuery = uiOptions.query || {}
 
-    const app = useSelector(state => state.app)
-    const editor = useSelector(state => state.editor)
-    const { pathname, formData } = editor;
-
-    const parentId = formData && formData.parentId
-    const uniqueId = formData && formData.uniqueId
-    const collectionId = formData && formData.collectionId
+    const pathname = useSelector(state => state.editor.pathname)
 
     const query = {
-        url: pathname + "/parentId",
-        models: "documents",
-        collectionId: collectionId,
-        fl: "id,parentId,uniqueId,title",
-        q: "uniqueId:NOT " + uniqueId,
+        url: pathname + "/collectionId",
+        models: "collections",
+        fl: "id,collectionType,uniqueId,title",
         ...uiQuery
     }
 
     const dispatch = useDispatch()
 
     useEffect(() => {
-        collectionId && pathname && dispatch(getQuery(query))
+        pathname && dispatch(getQuery(query))
     }, [pathname])
 
     const [enumOptions, setEnumOptions] = useState([formData])
@@ -44,14 +36,16 @@ const ParentIdField = (props) => {
         // const options = models.length && getOptionsTree(models) || []
 
         let optionsEnum = [
-            null
+            null,
+            formData,
         ], optionsNames = [
-            "No parentId"
+            "No collectionId",
+            "CollectionId " + formData,
         ]
 
 
         resultsLoaded && resultsLoaded.map(model => {
-            const label = model.title + " ("+model.id+")"
+            const label = model.title + " ("+model.collectionType+")"
             optionsEnum.push(model.id)
             optionsNames.push(label)
         })
@@ -85,4 +79,4 @@ const ParentIdField = (props) => {
 
 }
 
-export default ParentIdField
+export default CollectionIdField
