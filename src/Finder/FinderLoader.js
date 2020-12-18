@@ -13,7 +13,7 @@ const FinderLoader = ({children, ...props}) => {
 
     const appIcon = icons[app.icon]
 
-    const title = parent.title || app && app.title
+    const title = parent && parent.title || app && app.title
     const description = finder.isLoading && "Loading finder ..." || "Finder loaded"
 
     const isLoading = !pathname || finder.isLoading || false

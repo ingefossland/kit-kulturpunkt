@@ -205,7 +205,7 @@ export const getModel = ({modelName = "documents", id, uniqueId}) => dispatch =>
 
 /** Get parents from uniqueId */
 
-export const getParents = ({modelName = "documents", uniqueId, parentId, parents}) => dispatch => {
+export const getParents = ({modelName = "documents", uniqueId, id, parentId, parents}) => dispatch => {
 
     const apiUrl = API + '/admin/api/' + modelName + '/' + parentId;
     
@@ -214,7 +214,7 @@ export const getParents = ({modelName = "documents", uniqueId, parentId, parents
         parents = []
     }
 
-    if (parentId) {
+    if (parentId && parentId !== id) {
         fetch(apiUrl, {
             method: "GET",
             headers: {
@@ -228,15 +228,21 @@ export const getParents = ({modelName = "documents", uniqueId, parentId, parents
             .then(parent => {
 
                 parent && parent.uniqueId && parents.unshift(parent)
+
+                dispatch(getParents({parentId: parent.parentId, id, uniqueId, parents}))
+
+                /*
                 
                 if (parent && parent.parentId && parent.parentId !== parentId) {
-                    dispatch(getParents({parentId: parent.parentId, uniqueId, parents}))
+                    dispatch(getParents({parentId: parent.parentId, id, uniqueId, parents}))
                 }  else {
                     dispatch(receiveParents({uniqueId, parents}))
-                }
+                }*/
 
             })
     
+    } else {
+        dispatch(receiveParents({uniqueId, parents}))
     }
 
 }

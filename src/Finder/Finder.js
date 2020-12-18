@@ -37,7 +37,9 @@ const Finder = (props) => {
             <FinderTemplate 
                 url={parent && parent.url}
                 query={parent && parent.query}
-                views={parent && parent.views}
+                sortOptions={parent && parent.sortOptions}
+                view={parent && parent.view}
+                viewOptions={parent && parent.viewOptions}
                 {...props} />
         </FinderLoader>
     )

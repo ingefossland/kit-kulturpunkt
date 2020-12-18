@@ -117,12 +117,12 @@ const DocumentTree = ({url, query, ...props}) => {
         }
     })
 
-    const treeParent = {
+    const treeParent = treeRoot && {
         ...parent,
         children: treeChildren,
-        draggableId: query.url,
-        droppableId: query.url,
-        url: query.url
+        draggableId: treeRoot,
+        droppableId: treeRoot,
+        url: treeRoot
     }
 
     const _onSelect = ({url}) => {

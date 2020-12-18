@@ -10,7 +10,7 @@ import FinderLoader from "./FinderLoader"
 import FinderLayout from "./FinderLayout"
 import View from "./View"
 
-const FinderQuery = ({query = {}, viewOptions = [], ...props}) => {
+const FinderQuery = ({url, query = {}, sortOptions = [], viewOptions = [], ...props}) => {
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
@@ -28,7 +28,7 @@ const FinderQuery = ({query = {}, viewOptions = [], ...props}) => {
 
     query = {
         ...query,
-        url: pathname,
+        url: url,
         collectionId: query.collectionId || app && app.collectionId,
         siteId: query.siteId || app && app.siteId,
         page: sq.page || 1,
@@ -43,7 +43,7 @@ const FinderQuery = ({query = {}, viewOptions = [], ...props}) => {
 
     useEffect(() => {
         query.models && dispatch(getQuery(query))
-    }, [pathname, query.models, query.q, sq.sort, sq.rows])
+    }, [url, query.models, query.q, sq.sort, sq.rows])
 
     // search
 
@@ -96,12 +96,12 @@ const FinderQuery = ({query = {}, viewOptions = [], ...props}) => {
 
     }
 
-    const view = sq.view || finder.view || viewOptions && viewOptions[0] || "list"
+    const view = sq.view || props.view || viewOptions && viewOptions[0] || "list"
 
     return (
         <Bulk>
-            <FinderLayout {...finder} {...sq} onSelect={_onSelect} onView={_onView}>
-                <View {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} onSort={_onSort} onRows={_onRows} />
+            <FinderLayout {...finder} {...sq} onSelect={_onSelect} view={view} viewOptions={viewOptions} onView={_onView}>
+                <View {...finder} {...sq} {...props} {...currentSearch} view={view} onPage={_onPage} sortOptions={sortOptions} onSort={_onSort} onRows={_onRows} />
             </FinderLayout>
         </Bulk>
     )
