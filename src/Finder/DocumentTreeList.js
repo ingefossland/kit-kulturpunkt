@@ -1,62 +1,44 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
-import FinderModel from "./FinderModel"
 import { TreeView, TreeList, TreeModule } from "../components"
 
+import FinderModel from "./FinderModel"
+
 const DocumentTreeList = ({
-    parent,
-    resultsLoaded,
-    getChildren,
+    treeRoot,
+    treeParent,
+    treeChildren,
     onToggle,
     onSelect,
     onDragEnd,
     ...props
 }) => {
 
-    const searchByUrl = useSelector(state => state.searchByUrl)
     const modelsById = useSelector(state => state.modelsById)
 
-    const finder = useSelector(state => state.finder)
-    const menuByUrl = finder.menuByUrl
-    const parents = finder.parents
+    const _onSelect = ({url}) => {
+        onSelect && onSelect({url})
+    }
+
+    const _onToggle = () => {
+        
+    }
 
     const DraggableChild = ({child, level, index}) => {
 
         child = {
             ...child,
-            ...modelsById[child.uniqueId],
-            url: parent.url + "/" + child.uniqueId
+            draggableId: treeRoot + "/" + child.id,
+            droppableId: treeRoot + "/" + child.id,
+            url: treeRoot + "/" + child.uniqueId
         }
 
-        !searchByUrl[child.url] && getChildren(child)
-
-        const childrenSearch = searchByUrl[child.url]
-        const children = childrenSearch && childrenSearch.resultsLoaded && childrenSearch.resultsLoaded.map(child => {
-            return {
-                ...child,
-                url: parent.url + "/" + child.uniqueId
-            }
-        })
+        const uniqueModel = modelsById && modelsById[child.uniqueId]
+        const children = uniqueModel && uniqueModel.children
 
         let selected = false
-
-        parents.map(parent => {
-            if (parent.url && parent.url === child.url) {
-                selected = true
-            }
-        })
-
-        let collapsible, expanded
-
-        if (menuByUrl[child.url]) {
-            expanded = menuByUrl[child.url].expanded
-        }
-
-        if (children && children.length) {
-            collapsible = true
-//            expanded = true
-        }
+        let collapsible = true, expanded = true
 
         child = {
             ...child,
@@ -65,24 +47,35 @@ const DocumentTreeList = ({
             expanded: selected || expanded,
         }
 
+        const renderChildren = () => {
+
+            if (!children) {
+                return false
+            }
+
+            return (
+                <DroppableChildren parent={child} children={children} level={level+1} />
+            )
+
+        }
+
         return (
-            <Draggable index={index} draggableId={child.url} key={child.url}>
+            <Draggable index={index} draggableId={child.draggableId} key={child.draggableId}>
                 {(provided, snapshot) => (
-                    <FinderModel {...props} model={child} onSelect={() => onSelect(child)} onToggle={() => onToggle(child)}>
-                        <TreeModule {...child} index={index} draggable={{provided, snapshot}} level={level}>
-                        { child.expanded && <DroppableChildren {...child} children={children} level={level+1} /> }
-                        </TreeModule>
+                    <FinderModel {...props} model={child} onSelect={() => _onSelect(child)} onToggle={() => _onToggle(child)}>
+                        <TreeModule {...child} index={index} draggable={{provided, snapshot}} level={level} renderChildren={renderChildren} />
                     </FinderModel>
                 )}
             </Draggable>
         )
 
+
     }
 
-    const DroppableChildren = ({children, index, level, ...parent}) => {
+    const DroppableChildren = ({parent, children, index, level}) => {
 
         return (
-            <Droppable isCombineEnabled={true} index={index} droppableId={parent.url} key={parent.url}>
+            <Droppable isCombineEnabled={true} index={index} droppableId={parent.droppableId} key={parent.droppableId}>
                 {(provided, snapshot) => (
                     <TreeList droppable={{provided, snapshot}}>
                         {children && children.map((child, index) => {
@@ -101,7 +94,7 @@ const DocumentTreeList = ({
     return (
         <TreeView>
             <DragDropContext onDragEnd={onDragEnd}>
-                { parent && <DroppableChildren {...parent} index={0} level={1} /> }
+                { treeParent && treeChildren && <DroppableChildren parent={treeParent} children={treeChildren} index={0} level={1} /> }
             </DragDropContext>        
         </TreeView>
     )

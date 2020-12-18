@@ -101,6 +101,8 @@ const useStyles = makeStyles(theme => ({
         margin: theme.spacing(.5)
     },
     toolbar: {
+        display: "flex",
+        flexWrap: "nowrap",
 
         "& > * + *": {
             marginLeft: theme.spacing(-1)

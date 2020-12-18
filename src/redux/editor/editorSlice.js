@@ -1,6 +1,7 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
-import { requestModel, receiveModel } from "../modelsById"
+import { requestModel, receiveModel, getModel } from "../modelsById"
+import qs from 'query-string';
 
 const editorSlide = createSlice({
     name: 'editor',
@@ -62,6 +63,20 @@ const editorSlide = createSlice({
                 }
             }
         },
+        requestChildren(state, action) {
+            return state            
+        },
+        receiveChildren(state, action) {
+            const { children } = action.payload
+            return {
+                ...state,
+                children: children,
+                formContext: {
+                    ...state.formContext,
+                    children: children
+                }
+            }
+        },
         requestEdit(state, action) {
             const { uniqueId } = action.payload
 
@@ -120,6 +135,15 @@ const editorSlide = createSlice({
                 }
             }
         },
+        receiveChange(state, action) {
+            const { formData } = action.payload
+
+            return {
+                ...state,
+                formData: formData
+            }
+
+        },
         receiveCurrentId(state, action) {
             const { currentId } = action.payload
             return {
@@ -170,7 +194,6 @@ export const getEditor = ({pathname, uniqueId, schema, uiSchema}) => (dispatch, 
 
     const state = getState()
     const app = state.app
-    const finder = state.finder
 
     dispatch(getParents({url: pathname, uniqueId}))
 
@@ -178,7 +201,34 @@ export const getEditor = ({pathname, uniqueId, schema, uiSchema}) => (dispatch, 
 
 }
 
-export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
+export const getChildren = ({modelName = "documents", id}) => (dispatch, getState) => {
+
+    const query = qs.stringify({
+        parentId: id,
+    })
+
+    const apiUrl = API + '/admin/api/' + modelName + '/search?' + query;
+
+    dispatch(requestChildren())
+    
+    fetch(apiUrl, {
+        method: "GET",
+        headers: {
+            "Accept": "application/json",
+            "Content-Type": "application/json; charset=utf-8",
+        }})
+        .then(
+            response => response.json(),
+            error => console.log('An error occurred.', error)
+        )
+        .then(results => {
+            results.models && dispatch(receiveChildren({children: results.models}))
+        })
+
+
+}
+
+export const getParents = ({url, uniqueId, id, parentId, parents = []}) => (dispatch, getState) => {
 
     const state = getState()
     const menuByUrl = state.finder.menuByUrl
@@ -188,8 +238,6 @@ export const getParents = ({url, uniqueId}) => (dispatch, getState) => {
     pathnames.pop()
 
     const parentUrl = pathnames.join("/")
-
-    let parents = []
 
     let parent = menuByUrl[parentUrl] || menuById[pathnames.length-1]
 
@@ -257,12 +305,12 @@ export const editModel = ({modelName = "documents", uniqueId, ...formData}) => d
                 error => console.log('An error occurred.', error)
             )
             .then(formData => {
-                dispatch(receiveEdit(formData))
-                dispatch(receiveModel(formData))
+                dispatch(receiveEdit({...formData, modelName}))
+                dispatch(getModel({...formData, modelName}))
             })
 
     } else if (formData) {
-        dispatch(receiveEdit(formData))
+        dispatch(receiveEdit({...formData, modelName}))
     }
 
 }
@@ -287,8 +335,8 @@ export const saveModel = ({modelName = "documents", ...formData}) => dispatch =>
         error => console.log('An error occurred.', error)
     )
     .then(formData => {
-        dispatch(receiveSave(formData))
-        dispatch(receiveModel(formData))
+        dispatch(receiveSave({...formData, modelName}))
+        dispatch(getModel({...formData, modelName}))
     })
 
 }
@@ -296,6 +344,8 @@ export const saveModel = ({modelName = "documents", ...formData}) => dispatch =>
 export const { 
     requestEditor, receiveEditor, 
     requestParents, receiveParents,
+    requestChildren, receiveChildren,
+    receiveChange,
     receiveCurrentId, 
     receiveCurrentLocale,
     requestEdit, receiveEdit, 

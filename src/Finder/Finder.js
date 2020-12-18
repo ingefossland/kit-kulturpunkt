@@ -21,8 +21,7 @@ const Finder = (props) => {
     const pathname = props.location.pathname
     const finder = useSelector(state => state.finder)
 
-    const menuByUrl = finder.menuByUrl
-    const menuItem = pathname && menuByUrl && menuByUrl[pathname] || {}
+    const parent = finder.parent
 
     const dispatch = useDispatch()
 
@@ -30,14 +29,15 @@ const Finder = (props) => {
         dispatch(getLayout("finder"))
     }, [])
 
-    const template = menuItem && menuItem.template
+    const template = parent && parent.template
     const FinderTemplate = templates && templates[template] || FinderQuery
 
     return (
         <FinderLoader {...props}>
             <FinderTemplate 
-                query={menuItem && menuItem.query}
-                views={menuItem && menuItem.views}
+                url={parent && parent.url}
+                query={parent && parent.query}
+                views={parent && parent.views}
                 {...props} />
         </FinderLoader>
     )

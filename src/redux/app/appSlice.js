@@ -278,8 +278,8 @@ export const getAppProperties = (app) => dispatch => {
     dispatch(receiveApp(app))
 //    dispatch(getMenu(app))
 
-    dispatch(getMenu(app))
-    dispatch(getPrimaryAction(app))
+//    dispatch(getMenu(app))
+//    dispatch(getPrimaryAction(app))
 
 
 }

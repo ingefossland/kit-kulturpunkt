@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getMenuTree, getMenuTreeNode, toggleMenuItem } from '../redux/finder';
 import { getQuery } from '../redux/searchByUrl';
-import { receiveSave } from '../redux/modelsById';
+import { getModel } from '../redux/modelsById';
 import { API } from "../redux/settings"
 import qs from 'query-string';
 
@@ -10,125 +9,53 @@ import TreeListView from "./DocumentTreeList"
 import TreeColumnView from "./DocumentTreeColumn"
 import FinderLayout from "./FinderLayout"
 
-const DocumentTree = (props) => {
+const DocumentTree = ({url, query, ...props}) => {
     const dispatch = useDispatch()
-
-    const pathname = props.location.pathname
-    const sq = props.location.search && qs.parse(props.location.search)
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
-    const menuByUrl = finder && finder.menuByUrl
+    const parent = finder.parent
 
+    const modelsById = useSelector(state => state.modelsById)
 
-    const menuItem = menuByUrl && menuByUrl[pathname]
-    const parents = finder && finder.parents
+    // set query
 
-    useEffect(() => {
-        dispatch(getMenuTree(menuItem))
-    }, [pathname])
-
-    const [treeParent, setTreeParent] = useState({})
-    const [query, setQuery] = useState({})
-
-    useEffect(() => {
-
-        parents && parents.map(parent => {
-            if (parent.type === "tree") {
-                setTreeParent(parent) 
-            }
-        })
-
-
-    }, [parents])
-
-    // set top query from treeParent
-
-    useEffect(() => {
-
-        treeParent && treeParent.query && setQuery({
-            ...treeParent.query,
-            url: treeParent && treeParent.url,
-            collectionId: app && app.collectionId,
-            fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
-        })
-
-    }, [treeParent])
-
-    // query
+    const sq = props.location.search && qs.parse(props.location.search)
 
     let q = []
-    
+
     query.q && q.push(query.q)
     sq.q && q.push(sq.q)
 
+    query = {
+        ...query,
+        url: url,
+        collectionId: query.collectionId || app && app.collectionId,
+        siteId: query.siteId || app && app.siteId,
+        page: sq.page || 1,
+        rows: sq.rows || 10,
+        sort: sq.sort || query.sort || undefined,
+        fl: query.fl || "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
+        q: q && q.join(" ") || undefined,
+    };
+
+    // query
+
     useEffect(() => {
+        query.models && dispatch(getQuery(query))
+    }, [url, query.models, query.q, sq.sort, sq.rows])
 
-        query.url && dispatch(getQuery({
-            ...query, 
-            page: sq.page || 1,
-            rows: sq.rows || 10,
-            sort: sq.sort || query.sort || undefined,
-            q: q && q.join(" ") || undefined,
-        }))
-
-    }, [query.url, sq.q, sq.sort, sq.rows])
-
-    // get parent
+    // get search
 
     const searchByUrl = useSelector(state => state.searchByUrl)
     const currentSearch = searchByUrl && searchByUrl[query.url] || {}
     const resultsLoaded = currentSearch && currentSearch.resultsLoaded
 
-    const [parent, setParent] = useState(null)
 
 
-
-    useEffect(() => {
-
-        resultsLoaded && setParent({
-            ...treeParent,
-            children: resultsLoaded && resultsLoaded.map(child => {
-                return {
-                    ...child,
-                    url: child && child.uniqueId && pathname + "/" + child.uniqueId
-                }
-            })
-        })
-
-    }, [resultsLoaded])
-
-    // get children
-
-    const _getChildren = ({uniqueId, id}) => {
-
-        dispatch(getQuery({
-            url: query.url + "/" + uniqueId,
-            models: query.models,
-            fl: query.fl,
-            q: sq.q || undefined,
-            parentId: id,
-            fl: "id,parentId,uniqueId,title,imageUrl,documentType,mediaType,mediaWidth,mediaHeight,updatedByName",
-        }))
-        
-    }
-
-    useEffect(() => {
-        parent && parent.children && parent.children.map(child => _getChildren(child))
-    }, [parent])
-    
-    // actions
-
-    const _onSelect = ({url}) => {
-        if (sq) {
-            url = url + "?" + qs.stringify(sq);
-        }
-
-        url && props.history.push(url)
-    }
 
     const _onToggle = ({url}) => {
-        url && dispatch(toggleMenuItem({url}))
+//        url && dispatch(toggleMenuItem({url}))
     }    
 
     const _onCreate = ({url, id}) => {
@@ -138,7 +65,13 @@ const DocumentTree = (props) => {
     }
 
 
-    const _onSubmit = ({formData = {}, queries = []}) => {
+
+    const _onChange = ({id, parentId, sourceId, destinationId}) => {
+
+        const formData = {
+            id: id,
+            parentId: parentId
+        }
 
         const url = API + '/admin/api/documents';
 
@@ -155,9 +88,54 @@ const DocumentTree = (props) => {
             error => console.log('An error occurred.', error)
         )
         .then(formData => {
-            dispatch(receiveSave(formData))
-            queries && queries.map(query => dispatch(getQuery(query)))
+            id && dispatch(getModel({id}))
+            parentId && dispatch(getModel({id: parentId})) || dispatch(getQuery(query))
+            sourceId && dispatch(getModel({id: sourceId}))
+            destinationId && dispatch(getModel({id: destinationId}))
         })
+        
+    }
+
+    const treeRoot = query.url
+
+    const _getNodeId = (treeNode) => {
+        if (treeNode === treeRoot) {
+            return null
+        } else {
+            return treeNode.replace(treeRoot + "/", "")
+        }
+    }
+
+    // treeRoot
+
+    const treeChildren = resultsLoaded && resultsLoaded.map(child => {
+        return {
+            ...child,
+            draggableId: treeRoot + "/" + child.id,
+            droppableId: treeRoot + "/" + child.id,
+            url: treeRoot + "/" + child.uniqueId
+        }
+    })
+
+    const treeParent = {
+        ...parent,
+        children: treeChildren,
+        draggableId: query.url,
+        droppableId: query.url,
+        url: query.url
+    }
+
+    const _onSelect = ({url}) => {
+
+        if (sq) {
+            url = url + "?" + qs.stringify(sq);
+        }
+
+        url && props.history.push(url)
+
+        const uniqueId = _getNodeId(url)
+
+        uniqueId && getModel(uniqueId)
 
     }
 
@@ -165,53 +143,28 @@ const DocumentTree = (props) => {
 
         const { draggableId, source, destination, combine } = results
 
+        let id, parentId, sourceId, destinationId
+
         if (source && destination && source.droppableId !== destination.droppableId) {
 
-            const id = searchByUrl[draggableId].query.parentId
-            const parentId = searchByUrl[destination.droppableId].query.parentId || null
-
-            const queries = [
-                {
-                    ...searchByUrl[source.droppableId].query,
-                    url: source.droppableId
-                },
-                {
-                    ...searchByUrl[destination.droppableId].query,
-                    url: destination.droppableId
-                }
-            ]
-
-            _onSubmit({
-                formData: {
-                    id: id,
-                    parentId: parentId
-                },
-                queries: queries
-            })
-
+            id = _getNodeId(draggableId)
+            parentId = _getNodeId(destination.droppableId)
+            sourceId = _getNodeId(source.droppableId)
 
         } else if (combine && combine.draggableId !== source.droppableId && draggableId !== combine.draggableId) {
 
-            const id = searchByUrl[draggableId].query.parentId
-            const parentId = searchByUrl[combine.draggableId].query.parentId || null
+            id = _getNodeId(draggableId)
+            parentId = _getNodeId(combine.draggableId)
+            sourceId = _getNodeId(source.droppableId)
 
-            const queries = [
-                {
-                    ...searchByUrl[source.droppableId].query,
-                    url: source.droppableId
-                },
-                {
-                    ...searchByUrl[combine.draggableId].query,
-                    url: combine.draggableId
-                }
-            ]
+        }
 
-            _onSubmit({
-                formData: {
-                    id: id,
-                    parentId: parentId
-                },
-                queries: queries
+        if (id && id !== parentId) {
+
+            _onChange({
+                id: id,
+                parentId: parentId,
+                sourceId: sourceId,
             })
 
         }
@@ -246,13 +199,13 @@ const DocumentTree = (props) => {
     
     const Template = template
 
-
     return (
         <FinderLayout {...finder} viewOptions={viewOptions} view={view} onView={_onView}>
             <Template {...props} 
                 {...currentSearch}
-                parent={parent}
-                getChildren={_getChildren}
+                treeRoot={treeRoot}
+                treeParent={treeParent}
+                treeChildren={treeChildren}
                 onToggle={_onToggle}
                 onSelect={_onSelect}
                 onCreate={_onCreate}

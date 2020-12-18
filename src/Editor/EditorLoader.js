@@ -10,7 +10,11 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const pathname = props.location.pathname
 
     const app = useSelector(state => state.app)
+    const languages = app && app.languages
+
     const finder = useSelector(state => state.finder)
+    const parents = finder && finder.parents
+
     const editor = useSelector(state => state.editor)
     
     const uniqueId = editor.formData && editor.formData.uniqueId
@@ -18,9 +22,9 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
     const appIcon = icons[app.icon]
 
     const title = formData.title || app && app.title || "Editor"
-    const description = app.isLoading && "Loading app ..." || editor.isLoading && "Loading editor ..." || !schema && "Loading schema ..." || !uiSchema && "Loading uiSchema ..." || "Editor loaded"
-    const isLoading = app.isLoading || finder.isLoading || !finder.menuById || editor.isLoading || false
-    const icon = app.isLoading && appIcon || finder.isLoading && appIcon || <EditorIcon color={app.theme.palette.primary.main} />
+    const description = editor.isLoading && "Loading editor ..." || !schema && "Loading schema ..." || !uiSchema && "Loading uiSchema ..." || "Editor loaded"
+    const isLoading = editor.isLoading || false
+    const icon = <EditorIcon color={app.theme.palette.primary.main} />
 
     const dispatch = useDispatch()
 
@@ -29,9 +33,11 @@ const EditorLoader = ({formData = {}, schema, uiSchema, children, ...props}) => 
             pathname, 
             uniqueId, 
             schema, 
-            uiSchema
+            uiSchema,
+            languages,
+            parents
         }))
-    }, [pathname, uniqueId, schema, uiSchema])
+    }, [pathname, parents, uniqueId, schema, uiSchema])
 
     return (
         <Loader

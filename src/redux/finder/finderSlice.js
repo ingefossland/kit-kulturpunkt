@@ -1,7 +1,7 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
-import qs from 'query-string';
 import { saveModel } from "../modelsById/";
+import qs from 'query-string';
 
 const finderByIdSlice = createSlice({
     name: 'finder',
@@ -21,9 +21,10 @@ const finderByIdSlice = createSlice({
         viewOptions: [],
         view: undefined,
         primaryAction: {},
-        menu: [],
+        parent: {},
         parents: [],
         parentsByUrl: {},
+        menu: undefined,
         menuByUrl: {},
         menuById: {},
     }, 
@@ -97,7 +98,8 @@ const finderByIdSlice = createSlice({
             return {
                 ...state,
                 parents: parents,
-                parentsByUrl: parentsByUrl
+                parentsByUrl: parentsByUrl,
+                parent: parents && parents[parents.length-1]
             }
         },
         requestPrimaryAction(state, action) {
@@ -256,14 +258,20 @@ const finderByIdSlice = createSlice({
 
 export const getFinder = ({url = undefined, ...menuItem}) => (dispatch, getState) => {
 
-//    const state = getState()
-//    const menuByUrl = state.finder.menuByUrl
-//    const menuItem = menuByUrl && menuByUrl[url]
+    const state = getState()
+    const app = state.app
+    const finder = state.finder
 
-    url && dispatch(getParents({url}))
-    menuItem && dispatch(getOptions(menuItem))
+    if (!finder.menu) {
+        dispatch(requestFinder({url}))
+        dispatch(getMenu(app))
+        dispatch(getPrimaryAction(app))
 
-    dispatch(receiveFinder({url}))
+        finder.menu && dispatch(receiveFinder({url}))
+
+    } else {
+        dispatch(getParents({url}))
+    }
 
 }
 
@@ -348,12 +356,7 @@ export const getMenu = ({siteName, menu, root, collectionId}) => (dispatch) => {
             children: children && children.length && getChildren({...child, children: children})
         }
 
-        if (item.type === "tree") {
-            dispatch(getMenuTree(menuItem))
-        } else {
-            dispatch(receiveMenuItem(menuItem))
-        }
-
+        dispatch(receiveMenuItem(menuItem))
 
         return menuItem
 
@@ -441,7 +444,7 @@ export const getParents = ({url}) => (dispatch, getState) => {
     const menuByUrl = state.finder.menuByUrl
     const menuById = state.finder.menuById
 
-    let parent = url && menuByUrl && menuByUrl[url] 
+    let parent = false // url && menuByUrl && menuByUrl[url] 
 
     console.log('getParents', parent)
 
@@ -449,13 +452,16 @@ export const getParents = ({url}) => (dispatch, getState) => {
 
     if (parent) {
 
+        /*
+
         while (parent) {
             parents.push(parent)
             parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
         }
     
         parents = parents.reverse()
-    
+
+        */
             
     } else {
 

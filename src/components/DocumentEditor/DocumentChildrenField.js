@@ -3,7 +3,7 @@ import { WidgetSearch, List, ListModule, ButtonAdd, ButtonRemove } from "../"
 import _ from "lodash"
 
 import DocumentListRemove from "./DocumentListRemove"
-import DocumentChildrenSearch from "./DocumentChildrenSearch"
+import DocumentListSearch from "./DocumentListSearch"
 
 import { useSelector, useDispatch } from 'react-redux';
 import { getQuery } from '../../redux/searchByUrl';
@@ -68,7 +68,7 @@ const DocumentChildrenField = (props) => {
 
             <DocumentListRemove {...currentSearch} title="Children" onRemove={_onRemove} onEdit={_onEdit} />
 
-            <DocumentChildrenSearch {...props} />
+            <DocumentListSearch {...props} />
 
         </div>
     )

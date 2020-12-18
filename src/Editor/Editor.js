@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { getLayout } from '../redux/app';
-import { receiveEdit, receiveCurrentId, receiveCurrentLocale, requestDialog, receiveDialog } from '../redux/editor';
+import { receiveChange, receiveCurrentId, receiveCurrentLocale, requestDialog, receiveDialog } from '../redux/editor';
 
 import registry from "../components/registry"
 
@@ -27,6 +27,10 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     }, [])
 
     const app = useSelector(state => state.app)
+    const languages = app && app.languages
+
+    const finder = useSelector(state => state.finder)
+    const parents = finder && app.finder
 
     const editor = useSelector(state => state.editor)
     const formData = editor.formData
@@ -85,7 +89,7 @@ const Editor = ({schema, uiSchema, onSubmit, ...props}) => {
     // change
 
     const _onChange = ({formData}) => {
-        dispatch(receiveEdit(formData))
+        dispatch(receiveChange({formData}))
     }
 
     // submit

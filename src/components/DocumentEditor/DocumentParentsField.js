@@ -3,9 +3,9 @@ import { WidgetSearch, List, ListModule, ButtonAdd, ButtonRemove } from "../"
 import _ from "lodash"
 
 import DocumentListRemove from "./DocumentListRemove"
-import DocumentChildrenSearch from "./DocumentChildrenSearch"
 
 import { useSelector, useDispatch } from 'react-redux';
+import { getParents } from '../../redux/modelsById';
 import { getQuery } from '../../redux/searchByUrl';
 import { utils } from "@rjsf/core";
 const { getUiOptions } = utils;
@@ -47,6 +47,8 @@ const DocumentParentsField = (props) => {
     const searchByUrl = useSelector(state => state.searchByUrl)
     const currentSearch = searchByUrl && searchByUrl[query.url]
 
+    const uniqueModel = useSelector(state => state.modelsById[uniqueId])
+
     // actions
 
     const onSelect = formContext && formContext.onSelect
@@ -67,7 +69,7 @@ const DocumentParentsField = (props) => {
 
             <DocumentListRemove {...currentSearch} title="Parents" onRemove={_onRemove} onEdit={_onEdit} />
 
-            {parentId}
+            {JSON.stringify(uniqueModel.parents)}
 
 
 

@@ -122,7 +122,7 @@ const TreeModule = ({
     title,
     imageUrl,
     icon, 
-    children,
+    renderChildren,
 ...props}) => {
 
     const classes = useStyles({level});
@@ -191,7 +191,7 @@ const TreeModule = ({
                     <ModuleContent />
                     <NavToolbar {...props} className={classes.toolbar} />
                 </div>
-                {children && <div className={classes.children}>{children}</div> }
+                {renderChildren && <div className={classes.children}>{renderChildren()}</div> }
             </div>
         )
     
@@ -205,7 +205,7 @@ const TreeModule = ({
                 {collapsible && <ButtonToggle onClick={onToggle} /> }
                 <ModuleContent />
             </div>
-            {children && <div className={classes.children}>{children}</div> }
+            {renderChildren && <div className={classes.children}>{renderChildren()}</div> }
         </div>
     )
 

@@ -1,6 +1,7 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import { bulkToggle } from '../bulk/'
+import qs from 'query-string';
 
 const modelsByIdSlice = createSlice({
     name: 'modelsById',
@@ -26,6 +27,30 @@ const modelsByIdSlice = createSlice({
                 [uniqueId]: {
                     isLoading: false,
                     ...action.payload
+                }
+            }
+
+        },
+        requestParents(state, action) {
+            const { uniqueId } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    parents: []
+                }
+            }
+
+        },
+        receiveParents(state, action) {
+            const { uniqueId, parents } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    parents: parents
                 }
             }
 
@@ -150,13 +175,17 @@ export const getModels = ({models}) => (dispatch, getState) => {
 
 /** Get model from uniqueId */
 
-export const getModel = ({modelName = "documents", uniqueId}) => dispatch => {
+export const getModel = ({modelName = "documents", id, uniqueId}) => dispatch => {
 
-    const url = API + '/admin/api/' + modelName + '/' + uniqueId;
+    uniqueId && dispatch(requestModel({uniqueId}))
 
-    dispatch(requestModel({uniqueId}))
+    if (!uniqueId) {
+        uniqueId = id
+    }
 
-    fetch(url, {
+    const apiUrl = API + '/admin/api/' + modelName + '/' + uniqueId;
+
+    fetch(apiUrl, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -167,20 +196,64 @@ export const getModel = ({modelName = "documents", uniqueId}) => dispatch => {
             error => console.log('An error occurred.', error)
         )
         .then(formData => {
-            dispatch(receiveModel(formData))
+            dispatch(receiveModel({...formData, modelName}))
+            dispatch(getParents({...formData, modelName}))
+            dispatch(getChildren({...formData, modelName}))
         })
+
+}
+
+/** Get parents from uniqueId */
+
+export const getParents = ({modelName = "documents", uniqueId, parentId, parents}) => dispatch => {
+
+    const apiUrl = API + '/admin/api/' + modelName + '/' + parentId;
+    
+    if (!parents) {
+        dispatch(requestParents({uniqueId}))
+        parents = []
+    }
+
+    if (parentId) {
+        fetch(apiUrl, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
+            }})
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(parent => {
+
+                parent && parent.uniqueId && parents.unshift(parent)
+                
+                if (parent && parent.parentId && parent.parentId !== parentId) {
+                    dispatch(getParents({parentId: parent.parentId, uniqueId, parents}))
+                }  else {
+                    dispatch(receiveParents({uniqueId, parents}))
+                }
+
+            })
+    
+    }
 
 }
 
 /** Get children from uniqueId */
 
-export const getChildren = ({modelName = "documents", uniqueId}) => dispatch => {
+export const getChildren = ({modelName = "documents", uniqueId, id}) => (dispatch, getState) => {
 
-    const url = API + '/admin/api/' + modelName + '/' + uniqueId;
+    const query = qs.stringify({
+        parentId: id,
+    })
+
+    const apiUrl = API + '/admin/api/' + modelName + '/search?' + query;
 
     dispatch(requestChildren({uniqueId}))
-
-    fetch(url, {
+    
+    fetch(apiUrl, {
         method: "GET",
         headers: {
             "Accept": "application/json",
@@ -190,8 +263,8 @@ export const getChildren = ({modelName = "documents", uniqueId}) => dispatch => 
             response => response.json(),
             error => console.log('An error occurred.', error)
         )
-        .then(formData => {
-            dispatch(receiveChildren(formData))
+        .then(results => {
+            results.models && dispatch(receiveChildren({uniqueId, children: results.models}))
         })
 
 }
@@ -495,6 +568,7 @@ export const addMediaSource = (model, callback = undefined) => dispatch => {
 
 export const { 
     requestModel, receiveModel, 
+    requestParents, receiveParents, 
     requestChildren, receiveChildren, 
     requestReferences, receiveReferences, 
     receiveStatus, receiveParentId,
