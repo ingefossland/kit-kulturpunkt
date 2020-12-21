@@ -2,7 +2,7 @@ import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
 
-import { getMenu, getPrimaryAction } from "../finder/"
+import { getFinder } from "../finder/"
 
 const appSlice = createSlice({
     name: 'app',
@@ -276,7 +276,7 @@ export const getAppCollection = ({siteId, collectionType, ...app}) => dispatch =
 export const getAppProperties = (app) => dispatch => {
 
     dispatch(receiveApp(app))
-//    dispatch(getMenu(app))
+    dispatch(getFinder(app))
 
 //    dispatch(getMenu(app))
 //    dispatch(getPrimaryAction(app))

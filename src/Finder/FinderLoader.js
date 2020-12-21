@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getFinder } from '../redux/finder';
+import { getParents } from '../redux/finder';
 import { Loader } from "@kit-ui/admin"
 import icons from "../icons"
 
@@ -21,7 +21,7 @@ const FinderLoader = ({children, ...props}) => {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        pathname && dispatch(getFinder({url: pathname}))
+        pathname && dispatch(getParents({url: pathname}))
     }, [pathname, finder.isLoading])
 
     return (

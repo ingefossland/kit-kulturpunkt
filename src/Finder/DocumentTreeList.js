@@ -37,7 +37,7 @@ const DocumentTreeList = ({
         const uniqueModel = modelsById && modelsById[child.uniqueId]
         const children = uniqueModel && uniqueModel.children
 
-        let selected = false
+        let selected = props.location.pathname === child.url
         let collapsible = true, expanded = true
 
         child = {

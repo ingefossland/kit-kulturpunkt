@@ -5,6 +5,7 @@ import primaryAction from "./action"
 export default {
     theme: theme,
     icon: "kioskApp",
+    url: "/:siteName/kp",
     root: "/kiosk",
     siteId: 1,
     collectionId: 54,

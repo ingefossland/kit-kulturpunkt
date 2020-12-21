@@ -5,6 +5,7 @@ import theme from "./theme"
 export default {
     theme: theme,
     icon: "kpApp",
+    url: "/:siteName/kp",
     root: "/kp",
     siteId: 1,
     collectionId: 54,

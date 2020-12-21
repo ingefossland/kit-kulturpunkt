@@ -262,16 +262,11 @@ export const getFinder = ({url = undefined, ...menuItem}) => (dispatch, getState
     const app = state.app
     const finder = state.finder
 
-    if (!finder.menu) {
-        dispatch(requestFinder({url}))
-        dispatch(getMenu(app))
-        dispatch(getPrimaryAction(app))
+    dispatch(requestFinder({url}))
+    dispatch(getMenu(app))
+    dispatch(getPrimaryAction(app))
 
-        finder.menu && dispatch(receiveFinder({url}))
-
-    } else {
-        dispatch(getParents({url}))
-    }
+    finder.menu && dispatch(receiveFinder({url}))
 
 }
 

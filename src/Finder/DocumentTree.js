@@ -51,9 +51,6 @@ const DocumentTree = ({url, query, ...props}) => {
     const currentSearch = searchByUrl && searchByUrl[query.url] || {}
     const resultsLoaded = currentSearch && currentSearch.resultsLoaded
 
-
-
-
     const _onToggle = ({url}) => {
 //        url && dispatch(toggleMenuItem({url}))
     }    
@@ -63,8 +60,6 @@ const DocumentTree = ({url, query, ...props}) => {
         const createUrl = url && url + "/new?" + qs.stringify({documentType: "pageTopic", parentId: parentId})
         createUrl && props.history.push(createUrl)
     }
-
-
 
     const _onChange = ({id, parentId, sourceId, destinationId}) => {
 
@@ -125,20 +120,6 @@ const DocumentTree = ({url, query, ...props}) => {
         url: treeRoot
     }
 
-    const _onSelect = ({url}) => {
-
-        if (sq) {
-            url = url + "?" + qs.stringify(sq);
-        }
-
-        url && props.history.push(url)
-
-        const uniqueId = _getNodeId(url)
-
-        uniqueId && getModel(uniqueId)
-
-    }
-
     const _onDragEnd = (results) => {
 
         const { draggableId, source, destination, combine } = results
@@ -168,6 +149,19 @@ const DocumentTree = ({url, query, ...props}) => {
             })
 
         }
+
+    }
+
+    const _onSelect = ({url}) => {
+
+        if (sq) {
+            url = url + "?" + qs.stringify(sq);
+        }
+
+        url && props.history.push(url)
+
+        const uniqueId = _getNodeId(url)
+        uniqueId && getModel(uniqueId)
 
     }
 
