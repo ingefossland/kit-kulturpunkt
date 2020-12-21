@@ -20,8 +20,6 @@ const EditorDialog = (props) => {
 
     console.log("DIALOG", props)
 
-    
-
     const { schema = {}, uiSchema = {}, onChange, onClose } = props;
 
     const [formData, setFormData] = useState(props.formData)
@@ -33,6 +31,11 @@ const EditorDialog = (props) => {
     const _onChange = (formData) => {
         setFormData(formData)
         onChange(formData);
+    }
+
+    const _onClose = () => {
+        console.log('Dialog:onClose')
+        onClose && onClose()
     }
 
     const app = useSelector(state => state.app)
@@ -136,7 +139,7 @@ const EditorDialog = (props) => {
     }
 
     return (
-        <DialogTemplate query={query} schema={schema} formData={formData} onChange={_onChange} onClose={onClose} /> 
+        <DialogTemplate query={query} schema={schema} formData={formData} onChange={_onChange} onClose={_onClose} /> 
     )
 
 }

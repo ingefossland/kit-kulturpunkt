@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
-import { getQuery } from '../redux/searchByUrl';
+import { getUpload } from '../redux/uploadByUrl';
 
 import DialogBase from "./DialogBase"
 import DialogSearch from "./DialogSearch"
@@ -50,7 +50,15 @@ const UploadDialog = ({schema, formData, onChange, onClose, query, upload, ...pr
             status: "upload"
         }
 
-        props.getUpload({id: upload.id, session: uploadSession, acceptedFiles, uploadData})
+        dispatch(getUpload({
+            id: upload.id,
+            session: uploadSession,
+            acceptedFiles,
+            uploadData
+        }))
+
+
+//        props.getUpload({id: upload.id, session: uploadSession, acceptedFiles, uploadData})
 
         setUploadSession(true)
 

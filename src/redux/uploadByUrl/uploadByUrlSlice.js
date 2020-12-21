@@ -5,7 +5,6 @@ import qs from 'query-string';
 import EXIF from 'exif-js';
 import * as mm from 'music-metadata-browser';
 
-
 const uploadByUrlSlice = createSlice({
     name: 'upload',
     initialState: {

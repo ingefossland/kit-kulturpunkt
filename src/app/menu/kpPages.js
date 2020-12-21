@@ -4,7 +4,7 @@ export default {
     title: "Sider",
     pathname: "pages",
 //    viewOptions: ["list","grid"],
-    view: "grid",
+//    view: "grid",
     query: {
         models: "documents",
         documentType: "page*",

@@ -31,10 +31,13 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
     }, 500)
 
     const handleReset = () => {
+
         if (q) {
+            console.log("SearchDialog:reset")
             setUserQ("")
-        } else if (onClose) {
-            onClose()
+        } else {
+            console.log("SearchDialog:close")
+            onClose && onClose()
         }
     }
 
@@ -386,6 +389,7 @@ const SearchDialog = ({schema, formData, onChange, onClose, query = {}, ...props
                     {...search} 
                     expanded={true}
                     onChange={handleQuery}
+                    onClose={onClose}
                     onReset={handleReset} />
                 <DialogHeader 
                     tabs={tabs}
