@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { getLayout, toggleSearch, toggleSidebar } from '../redux/app';
+import { getLayout, toggleSidebar } from '../redux/app';
 import { toggleMenuItem } from '../redux/finder';
 
 import _ from "lodash"
@@ -8,6 +8,7 @@ import qs from 'query-string';
 
 import AdminRoutes from "./AdminRoutes"
 import AdminLoader from "./AdminLoader"
+import AdminSearch from "./AdminSearch"
 
 //import { AppLayout } from "@kit-ui/admin"
 import AppLayout from "../components/App/AppLayout"
@@ -50,44 +51,7 @@ const Admin = (props) => {
         url && props.history.push(url)
     }
 
-    // search
 
-    const [q, setQ] = useState("")
-
-    useEffect(() => {
-        if (q) {
-            sq.q = q.replace(' ', '+')
-        } else {
-            delete sq.q
-        }
-
-        let query = qs.stringify(sq)
-
-        const pathname = props.location.pathname + "?" + query;
-        const hash = props.location.hash;
-
-        const url = hash && pathname + hash || pathname
-        
-        if (props.history) {
-            props.history.replace(url)
-        }
-
-    }, [q])
-    
-    const _onSearchChange = _.debounce((q) => {
-        setQ(q)
-    }, 500)
-
-    const _onSearchReset = () => {
-
-        if (q) {
-            setQ("")
-            delete sq.q
-        } else {
-            dispatch(toggleSearch())
-        }
-
-    }
 
     // header
 
@@ -95,75 +59,6 @@ const Admin = (props) => {
         ...app.header,
         title: app.title,
         subtitle: app.siteTitle
-    }
-
-    // autocomplete
-
-    const [searchInput, setSearchInput] = useState("")
-
-    const searchScopes = [
-        {
-            title: "Søk etter {q} i " + pathname,
-            url: pathname
-        },
-        {
-            title: "Søk etter {q} i hele KulturPunkt",
-            url: "rootUrl"
-        }
-    ]
-
-    const filterOptions = (options, params) => {
-
-        const inputValue = params.inputValue
-
-        let filteredOptions = []
-
-        options.map(option => {
-            const { title } = option;
-
-            filteredOptions.push({
-                ...option,
-                title: title.replace("{q}", inputValue),
-                q: inputValue
-            })
-        })
-
-        return filteredOptions
-
-    }
-
-    const searchOptions = [
-        ...searchScopes
-    ]
-
-    const [value, setValue] = useState("")
-
-    const _onAutocompleteChange = (event, option, reason) => {
-        setQ(option.q)
-    }
-
-    const _onAutocompleteInputChange = (event, option, reason) => {
-        console.log("InputChange", value)
-    }
-
-    const autocompleteProps = {
-        options: searchOptions,
-        getOptionLabel: (option) => option.title,
-        filterOptions: filterOptions,
-        onChange: _onAutocompleteChange,
-        onInputChange: _onAutocompleteInputChange
-    }
-
-    // search
-
-    const search = {
-        ...app.search,
-        autocompleteProps: autocompleteProps,
-        value: searchInput,
-        onChange: _onSearchChange,
-        onChange: (q, event) => { _onSearchChange(q) },
-        onReset: () => _onSearchReset(),
-        onToggle: () => dispatch(toggleSearch())
     }
 
     // sidebar
@@ -182,51 +77,27 @@ const Admin = (props) => {
     }
 
     return  (
-        <AppLayout 
-            theme={app.theme}
-            icons={icons}
-
-            header={header}
-            search={search}
-            sidebar={sidebar}
-            subview={subview}
-
-            primaryAction={finder.primaryAction}
-            menu={finder && finder.menu}
-            menuByUrl={finder && finder.menuByUrl}
-
-            currentUrl={pathname}
-
-            onSelect={_onSelect}
-            onToggle={_onToggle}>
-            <AdminRoutes {...props} />
-    </AppLayout>
-    )
-
-    return (
-        <AdminLoader {...props}>
+        <AdminSearch {...props}>
             <AppLayout 
                 theme={app.theme}
                 icons={icons}
 
                 header={header}
-                search={search}
+    //            search={search}
                 sidebar={sidebar}
                 subview={subview}
 
-                primaryAction={app.primaryAction}
-
+                primaryAction={finder.primaryAction}
                 menu={finder && finder.menu}
                 menuByUrl={finder && finder.menuByUrl}
 
                 currentUrl={pathname}
 
                 onSelect={_onSelect}
-                onToggle={_onToggle}
-            >
+                onToggle={_onToggle}>
                 <AdminRoutes {...props} />
             </AppLayout>
-        </AdminLoader>
+        </AdminSearch>
     )
 
     

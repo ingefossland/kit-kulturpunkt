@@ -7,6 +7,8 @@ import NavSuggestItem from "./NavSuggestItem"
 
 const useStyles = makeStyles(theme => ({
     suggest: {
+        backgroundColor: "white",
+        boxShadow: theme.shadows[2],
         display: "flex",
         width: "100%",
     },
@@ -32,8 +34,9 @@ const NavSuggest = ({className, expanded = true, suggestions = [], children, onS
     }
 
     return (
-        <nav className={className || classes.suggest} aria-expanded={expanded}>
+        <nav className={classes.suggest} aria-expanded={expanded}>
             {suggestions && renderSuggestions()}
+            {children}
         </nav>
     )
 }
