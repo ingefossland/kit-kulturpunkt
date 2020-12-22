@@ -9,7 +9,8 @@ const FinderLoader = ({children, ...props}) => {
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
-    const parent = finder.parent
+    const menuByUrl = finder.menuByUrl
+    const parent = menuByUrl[pathname] || finder.parent
 
     const appIcon = icons[app.icon]
 
@@ -22,7 +23,7 @@ const FinderLoader = ({children, ...props}) => {
 
     useEffect(() => {
         pathname && dispatch(getParents({url: pathname}))
-    }, [pathname, finder.isLoading])
+    }, [pathname, finder.isLoading, parent])
 
     return (
         <Loader

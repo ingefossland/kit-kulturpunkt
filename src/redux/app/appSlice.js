@@ -278,19 +278,13 @@ export const getAppProperties = (app) => dispatch => {
     dispatch(receiveApp(app))
     dispatch(getFinder(app))
 
-//    dispatch(getMenu(app))
-//    dispatch(getPrimaryAction(app))
-
-
 }
-
 
 export const getSubview = (subview) => dispatch => {
 
     dispatch(receiveSubview({
         subview: subview
     }))
-    
 
 }
 

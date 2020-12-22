@@ -7,10 +7,10 @@ import _ from "lodash"
 import qs from 'query-string';
 
 import AdminRoutes from "./AdminRoutes"
-// import AdminLayout from "./AdminLayout"
 import AdminLoader from "./AdminLoader"
 
-import { AppLayout } from "@kit-ui/admin"
+//import { AppLayout } from "@kit-ui/admin"
+import AppLayout from "../components/App/AppLayout"
 
 import icons from "../icons"
 
@@ -73,8 +73,8 @@ const Admin = (props) => {
         }
 
     }, [q])
-
-    const _onSearchQuery = _.debounce((q) => {
+    
+    const _onSearchChange = _.debounce((q) => {
         setQ(q)
     }, 500)
 
@@ -97,11 +97,71 @@ const Admin = (props) => {
         subtitle: app.siteTitle
     }
 
+    // autocomplete
+
+    const [searchInput, setSearchInput] = useState("")
+
+    const searchScopes = [
+        {
+            title: "Søk etter {q} i " + pathname,
+            url: pathname
+        },
+        {
+            title: "Søk etter {q} i hele KulturPunkt",
+            url: "rootUrl"
+        }
+    ]
+
+    const filterOptions = (options, params) => {
+
+        const inputValue = params.inputValue
+
+        let filteredOptions = []
+
+        options.map(option => {
+            const { title } = option;
+
+            filteredOptions.push({
+                ...option,
+                title: title.replace("{q}", inputValue),
+                q: inputValue
+            })
+        })
+
+        return filteredOptions
+
+    }
+
+    const searchOptions = [
+        ...searchScopes
+    ]
+
+    const [value, setValue] = useState("")
+
+    const _onAutocompleteChange = (event, option, reason) => {
+        setQ(option.q)
+    }
+
+    const _onAutocompleteInputChange = (event, option, reason) => {
+        console.log("InputChange", value)
+    }
+
+    const autocompleteProps = {
+        options: searchOptions,
+        getOptionLabel: (option) => option.title,
+        filterOptions: filterOptions,
+        onChange: _onAutocompleteChange,
+        onInputChange: _onAutocompleteInputChange
+    }
+
     // search
 
     const search = {
         ...app.search,
-        onChange: (q, event) => { _onSearchQuery(q) },
+        autocompleteProps: autocompleteProps,
+        value: searchInput,
+        onChange: _onSearchChange,
+        onChange: (q, event) => { _onSearchChange(q) },
         onReset: () => _onSearchReset(),
         onToggle: () => dispatch(toggleSearch())
     }

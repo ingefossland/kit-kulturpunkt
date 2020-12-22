@@ -1,6 +1,6 @@
 import React from 'react';
 import LocalizedStringField from "./LocalizedStringField"
-import SchemaEditor from "../SchemaEditor/SchemaEditor";
+import { SchemaEditor as Schema } from "@kit-ui/schema";
 
 export default {
     title: 'Fields/LocalizedStringField',
@@ -29,7 +29,7 @@ export default {
     },
 };
 
-const Template = (args) => <SchemaEditor {...args} />
+const Template = (args) => <Schema {...args} />
 
 export const Default = Template.bind({});
 Default.args = {

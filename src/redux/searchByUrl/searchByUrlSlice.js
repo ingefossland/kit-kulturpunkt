@@ -140,9 +140,9 @@ export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
         apiUrl = apiUrl + '?' + sq;
     }
 
-//    if (page === 1) {
+    if (page === 1) {
         dispatch(requestSearch({models, url, page, apiUrl, query}))
-//    }
+    }
     
     fetch(apiUrl, {
         method: "GET",

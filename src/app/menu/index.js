@@ -12,7 +12,7 @@ import media from "./media"
 import ekultur from "./ekultur"
 import latest from "./latest"
 import trash from "./trash"
-import favourites from "./favourites"
+import search from "./search"
 
 import adminLink from "./adminLink"
 import collectionsLink from "./collectionsLink"
@@ -34,6 +34,7 @@ export {
     media,
     latest,
     trash,
+    search,
 
     ekultur
 

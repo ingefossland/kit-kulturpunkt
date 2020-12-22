@@ -1,27 +1,23 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { getApp, getLayout, getParents } from '../redux/app';
 import { getUpload } from '../redux/uploadByUrl';
+import qs from 'query-string';
 
+import Bulk from "./Bulk"
+import FinderLayout from "./FinderLayout"
 import View from "./View"
 import UploadDropzone from "../Upload/UploadDropzone"
 
 const MediaUpload = (props) => {
     const dispatch = useDispatch()
 
-    useEffect(() => {
-        dispatch(getLayout("finder"))
-    }, [])
-
     const app = useSelector(state => state.app)
-    const menuByUrl = app && app.menuByUrl
+    const finder = useSelector(state => state.finder)
 
-    const { pathname } = props.location
+    // set query
 
-    useEffect(() => {
-        menuByUrl && dispatch(getParents({menuByUrl, pathname: pathname}))
-    }, [menuByUrl, pathname])
-
+    const pathname = props.location.pathname
+    const sq = props.location.search && qs.parse(props.location.search)
 
     const _onUpload = (acceptedFiles = []) => {
 
@@ -38,17 +34,16 @@ const MediaUpload = (props) => {
 
     }
 
-
     const uploadByUrl = useSelector(state => state.uploadByUrl)
-
     const currentUpload = uploadByUrl && uploadByUrl[pathname] || {}
 
-
     return (
-        <>
-            <View {...currentUpload} {...props} />
-            <UploadDropzone onUpload={_onUpload} />
-        </>
+        <Bulk>
+            <FinderLayout {...finder} {...props}>
+                <View {...currentUpload} {...props} />
+                <UploadDropzone onUpload={_onUpload} />
+            </FinderLayout>
+        </Bulk>
     )
 
 }

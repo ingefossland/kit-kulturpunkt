@@ -1,0 +1,626 @@
+{
+    "type": "object",
+    "properties": {
+      "documentType": {
+        "type": "string",
+        "enum": [
+          "page/list",
+          "page/grid",
+          "page/timeline",
+          "page/annotate",
+          "page/media"
+        ],
+        "enumNames": [
+          "Liste",
+          "Mosaikk",
+          "Tidslinje",
+          "Bildekart",
+          "Media"
+        ]
+      },
+      "locale": {
+        "type": "string",
+        "default": "no"
+      },
+      "schemaId": {
+        "type": "number",
+        "default": 1
+      },
+      "title": {
+        "type": "string"
+      },
+      "content": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "object",
+            "properties": {
+              "locale:no": {
+                "title": "body:no",
+                "type": "string"
+              },
+              "locale:sv": {
+                "title": "body:sv",
+                "type": "string"
+              },
+              "locale:en": {
+                "title": "body:en",
+                "type": "string"
+              },
+              "locale:de": {
+                "title": "body:de",
+                "type": "string"
+              },
+              "locale:es": {
+                "title": "body:es",
+                "type": "string"
+              },
+              "locale:fr": {
+                "title": "body:fr",
+                "type": "string"
+              }
+            },
+            "_type": "localizedString"
+          },
+          "mediaLayout": {
+            "type": "string",
+            "enum": [
+              "gallery",
+              "autoplay"
+            ],
+            "default": "gallery"
+          },
+          "annotateLayout": {
+            "type": "string",
+            "enum": [
+              "imagemap",
+              "legends"
+            ],
+            "default": "imagemap"
+          },
+          "annotateColor": {
+            "type": "string",
+            "enum": [
+              "red",
+              "green",
+              "blue",
+              "black",
+              "white"
+            ],
+            "format": "color",
+            "default": "black",
+            "_type": "color"
+          },
+          "backgroundImage": {
+            "type": "object",
+            "properties": {
+              "uploadProgress": {
+                "type": "number",
+                "readonly": true,
+                "default": 100
+              },
+              "mediaId": {
+                "type": "string",
+                "readonly": true
+              },
+              "media": {
+                "type": "object",
+                "properties": {
+                  "mediaType": {
+                    "type": "string",
+                    "default": "image",
+                    "readonly": true
+                  },
+                  "uniqueId": {
+                    "type": "string",
+                    "readonly": true
+                  }
+                }
+              },
+              "imageCropdata": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "y": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "width": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "height": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "rotate": {
+                    "type": "number",
+                    "readonly": true
+                  }
+                }
+              },
+              "imageFilters": {
+                "type": "object",
+                "properties": {
+                  "saturation": {
+                    "type": "number"
+                  },
+                  "grayscale": {
+                    "type": "number"
+                  },
+                  "brightness": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "contrast": {
+                    "type": "number"
+                  },
+                  "blur": {
+                    "type": "number"
+                  },
+                  "invert": {
+                    "type": "number"
+                  }
+                }
+              },
+              "imageAnnotations": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "top": {
+                      "type": "number",
+                      "default": 50,
+                      "readonly": true
+                    },
+                    "left": {
+                      "type": "number",
+                      "default": 50,
+                      "readonly": true
+                    },
+                    "x": {
+                      "type": "number",
+                      "default": 0,
+                      "readonly": true
+                    },
+                    "y": {
+                      "type": "number",
+                      "default": 0,
+                      "readonly": true
+                    },
+                    "radius": {
+                      "type": "number",
+                      "minimum": 1,
+                      "maximum": 100,
+                      "default": 1
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "description": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            },
+            "_type": "image"
+          },
+          "parallaxImage": {
+            "type": "object",
+            "properties": {
+              "uploadProgress": {
+                "type": "number",
+                "readonly": true,
+                "default": 100
+              },
+              "mediaId": {
+                "type": "string",
+                "readonly": true
+              },
+              "media": {
+                "type": "object",
+                "properties": {
+                  "mediaType": {
+                    "type": "string",
+                    "default": "image",
+                    "readonly": true
+                  },
+                  "uniqueId": {
+                    "type": "string",
+                    "readonly": true
+                  }
+                }
+              },
+              "imageCropdata": {
+                "type": "object",
+                "properties": {
+                  "x": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "y": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "width": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "height": {
+                    "type": "number",
+                    "readonly": true
+                  },
+                  "rotate": {
+                    "type": "number",
+                    "readonly": true
+                  }
+                }
+              },
+              "imageFilters": {
+                "type": "object",
+                "properties": {
+                  "saturation": {
+                    "type": "number"
+                  },
+                  "grayscale": {
+                    "type": "number"
+                  },
+                  "brightness": {
+                    "type": "number"
+                  },
+                  "opacity": {
+                    "type": "number"
+                  },
+                  "contrast": {
+                    "type": "number"
+                  },
+                  "blur": {
+                    "type": "number"
+                  },
+                  "invert": {
+                    "type": "number"
+                  }
+                }
+              }
+            },
+            "_type": "image"
+          },
+          "linksLayout": {
+            "type": "string",
+            "enum": [
+              "list",
+              "mosaic",
+              "imagelegend",
+              "imagemap",
+              "gallery",
+              "autoplay",
+              "timeline"
+            ],
+            "enumNames": [
+              "Liste",
+              "Mosaikk",
+              "Bildeforklaring",
+              "Bildekart",
+              "Mediagalleri",
+              "Autoplay",
+              "Tidslinje"
+            ],
+            "default": "list"
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "referenceId": {
+                  "type": "string"
+                },
+                "referenceType": {
+                  "type": "string",
+                  "default": "pageLink"
+                },
+                "reference": {
+                  "type": "object",
+                  "properties": {
+                    "uniqueId": {
+                      "type": "string"
+                    },
+                    "documentType": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "mediaId": {
+                  "type": "string"
+                },
+                "media": {
+                  "type": "object",
+                  "properties": {
+                    "uniqueId": {
+                      "type": "string"
+                    }
+                  }
+                },
+                "imageFilters": {
+                  "type": "object",
+                  "properties": {
+                    "saturation": {
+                      "type": "number"
+                    },
+                    "grayscale": {
+                      "type": "number"
+                    },
+                    "brightness": {
+                      "type": "number"
+                    },
+                    "opacity": {
+                      "type": "number"
+                    },
+                    "contrast": {
+                      "type": "number"
+                    },
+                    "blur": {
+                      "type": "number"
+                    },
+                    "invert": {
+                      "type": "number"
+                    }
+                  },
+                  "_type": "imageFilters"
+                },
+                "imageCropdata": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "readonly": true
+                    },
+                    "y": {
+                      "type": "number",
+                      "readonly": true
+                    },
+                    "width": {
+                      "type": "number",
+                      "readonly": true
+                    },
+                    "height": {
+                      "type": "number",
+                      "readonly": true
+                    },
+                    "rotate": {
+                      "type": "number",
+                      "readonly": true
+                    }
+                  },
+                  "_type": "imageCropdata"
+                },
+                "imageFocalpoint": {
+                  "type": "object",
+                  "properties": {
+                    "x": {
+                      "type": "number",
+                      "readonly": true
+                    },
+                    "y": {
+                      "type": "number",
+                      "readonly": true
+                    }
+                  },
+                  "_type": "imageFocalpoint"
+                },
+                "runningHead": {
+                  "type": "object",
+                  "properties": {
+                    "locale:no": {
+                      "title": "undefined:no",
+                      "type": "string"
+                    },
+                    "locale:sv": {
+                      "title": "undefined:sv",
+                      "type": "string"
+                    },
+                    "locale:en": {
+                      "title": "undefined:en",
+                      "type": "string"
+                    },
+                    "locale:de": {
+                      "title": "undefined:de",
+                      "type": "string"
+                    },
+                    "locale:es": {
+                      "title": "undefined:es",
+                      "type": "string"
+                    },
+                    "locale:fr": {
+                      "title": "undefined:fr",
+                      "type": "string"
+                    }
+                  },
+                  "_type": "localizedString"
+                },
+                "title": {
+                  "type": "object",
+                  "properties": {
+                    "locale:no": {
+                      "title": "undefined:no",
+                      "type": "string"
+                    },
+                    "locale:sv": {
+                      "title": "undefined:sv",
+                      "type": "string"
+                    },
+                    "locale:en": {
+                      "title": "undefined:en",
+                      "type": "string"
+                    },
+                    "locale:de": {
+                      "title": "undefined:de",
+                      "type": "string"
+                    },
+                    "locale:es": {
+                      "title": "undefined:es",
+                      "type": "string"
+                    },
+                    "locale:fr": {
+                      "title": "undefined:fr",
+                      "type": "string"
+                    }
+                  },
+                  "_type": "localizedString"
+                },
+                "titleColor": {
+                  "type": "string",
+                  "format": "textColor",
+                  "enum": [
+                    "black",
+                    "white"
+                  ],
+                  "default": "black"
+                },
+                "titleSize": {
+                  "type": "string",
+                  "enum": [
+                    "small",
+                    "medium",
+                    "large"
+                  ],
+                  "default": "medium"
+                },
+                "description": {
+                  "type": "object",
+                  "properties": {
+                    "locale:no": {
+                      "title": "undefined:no",
+                      "type": "string"
+                    },
+                    "locale:sv": {
+                      "title": "undefined:sv",
+                      "type": "string"
+                    },
+                    "locale:en": {
+                      "title": "undefined:en",
+                      "type": "string"
+                    },
+                    "locale:de": {
+                      "title": "undefined:de",
+                      "type": "string"
+                    },
+                    "locale:es": {
+                      "title": "undefined:es",
+                      "type": "string"
+                    },
+                    "locale:fr": {
+                      "title": "undefined:fr",
+                      "type": "string"
+                    }
+                  },
+                  "_type": "localizedString"
+                },
+                "top": {
+                  "type": "string",
+                  "default": 50,
+                  "readonly": true
+                },
+                "left": {
+                  "type": "string",
+                  "default": 50,
+                  "readonly": true
+                },
+                "x": {
+                  "type": "number",
+                  "default": 0,
+                  "readonly": true
+                },
+                "y": {
+                  "type": "number",
+                  "default": 0,
+                  "readonly": true
+                },
+                "backgroundColor": {
+                  "type": "string",
+                  "format": "color",
+                  "enum": [
+                    "black",
+                    "#7f7f7f",
+                    "white"
+                  ],
+                  "default": "#7f7f7f"
+                },
+                "color": {
+                  "type": "string",
+                  "format": "textColor",
+                  "enum": [
+                    "black",
+                    "white"
+                  ],
+                  "default": "black"
+                },
+                "skin": {
+                  "type": "string",
+                  "enum": [
+                    "dark",
+                    "light",
+                    "dark/light",
+                    "light/dark"
+                  ],
+                  "default": "dark"
+                },
+                "placement": {
+                  "type": "string",
+                  "enum": [
+                    "top-left",
+                    "top",
+                    "top-right",
+                    "left",
+                    "center",
+                    "right",
+                    "bottom-left",
+                    "bottom",
+                    "bottom-right"
+                  ],
+                  "default": "top-left"
+                },
+                "grid": {
+                  "type": "string",
+                  "enum": [
+                    "1:1",
+                    "1:2",
+                    "1:3",
+                    "2:1",
+                    "2:2",
+                    "2:3",
+                    "3:1",
+                    "3:2",
+                    "3:3",
+                    "4:1",
+                    "4:2",
+                    "4:3",
+                    "5:1",
+                    "5:2",
+                    "5:3"
+                  ],
+                  "default": "1:1"
+                }
+              }
+            }
+          },
+          "isPartOf": {
+            "type": "array",
+            "items": {
+              "type": "reference",
+              "documentType": "presentation",
+              "referenceType": "pageIsPartOf",
+              "_reverseReferenceType": "presentationHasPages",
+              "_reverseReference": "hasPages[]"
+            }
+          }
+        }
+      }
+    }
+  }

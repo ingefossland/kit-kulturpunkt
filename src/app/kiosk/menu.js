@@ -13,6 +13,8 @@ import {
     media,
     latest,
     trash,
+    search,
+    
     collectionsLink,
     adminLink,
 } from "../menu/"
@@ -20,9 +22,10 @@ import {
 export default [
     kioskHome,
     articles,
-    media,
     kioskPages,
     kioskDevices,
+    media,
+    search,
     latest,
     trash,
     {

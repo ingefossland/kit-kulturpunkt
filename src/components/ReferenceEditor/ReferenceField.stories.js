@@ -1,6 +1,6 @@
 import React from 'react';
 import ReferenceField from "./ReferenceField"
-import Schema from "../SchemaEditor";
+import { SchemaEditor as Schema } from "@kit-ui/schema";
 
 export default {
     title: 'Fields/ReferenceField',

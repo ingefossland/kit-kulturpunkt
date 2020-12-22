@@ -13,6 +13,8 @@ import {
     media,
     latest,
     trash,
+    search,
+
     adminLink,
     collectionsLink
 } from "../menu/"
@@ -22,6 +24,7 @@ export default [
     articles,
     kpPages,
     media,
+    search,
     latest,
     trash,
     {

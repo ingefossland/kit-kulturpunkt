@@ -52,7 +52,8 @@ export default {
         },
         {
             title: "Upload",
-            pathname: "upload"
+            pathname: "upload",
+            template: "upload"
         }
     ]
 }

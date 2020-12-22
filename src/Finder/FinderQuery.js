@@ -5,8 +5,6 @@ import { getQuery } from '../redux/searchByUrl';
 import qs from 'query-string';
 
 import Bulk from "./Bulk"
-
-import FinderLoader from "./FinderLoader"
 import FinderLayout from "./FinderLayout"
 import View from "./View"
 
