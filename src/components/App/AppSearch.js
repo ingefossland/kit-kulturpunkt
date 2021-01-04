@@ -151,7 +151,7 @@ const AppSearch = ({
     const _onChange = (event) => {
         onChange && onChange(event.target.value, event)
     }
-
+    
     if (!autocompleteProps) {
         return (
             <div className={className || classes.search} aria-expanded={expanded}>

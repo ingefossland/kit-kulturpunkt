@@ -1,4 +1,24 @@
 export default {
+    search: {
+        "Fetching data, please wait": "Henter data, vennligst vent",
+        "No hits": "Ingen treff",
+        "{{count}} hits": "{{count}} treff",
+        "{{page}} of {{pages}} pages": "Side {{page}} av {{pages}}",
+        "More results": "Flere resultater",
+        "Next page": "Neste side",
+        "Previous page": "Forrige side",
+        "Page {{page}}": "Side {{page}}",
+        "Searching, please wait": "Søker, vennligst vent",
+        "Loading page {{page}}": "Henter side {{page}}",
+        "All documents": "Alle dokumenter",
+        "Search for {{q}} in all documents": "«{{q}}» i alle dokumenter",
+        "Everything in {{scope}}": "Alt i {{scope}}",
+        "Search everything": "Søk i alle dokumenter",
+        "Search for {{q}} in everything": "«{{q}}» i alle dokumenter",
+        "Search in {{scope}}": "Søk i {{scope}}",
+        "Search for {{q}} in {{scope}}": "«{{q}}» i {{scope}}",
+        "{{count}} suggestions": "{{count}} forslag",
+    },
     editor: {
         "Loading": "Laster",
         "Saving": "Lagrer",
@@ -59,18 +79,6 @@ export default {
         "No unprocessed uploads": "Ingen ubehandlede opplastninger",
         "{{count}} unprocessed uploads": "{{count}} ubehandlede opplastninger",
     },
-    search: {
-        "Fetching data, please wait": "Henter data, vennligst vent",
-        "No hits": "Ingen treff",
-        "{{count}} hits": "{{count}} treff",
-        "{{page}} of {{pages}} pages": "Side {{page}} av {{pages}}",
-        "More results": "Flere resultater",
-        "Next page": "Neste side",
-        "Previous page": "Forrige side",
-        "Page {{page}}": "Side {{page}}",
-        "Searching, please wait": "Søker, vennligst vent",
-        "Loading page {{page}}": "Henter side {{page}}",
-    },
     view: {
         "{{rows}} rows": "{{rows}} rader",
     },
@@ -97,6 +105,7 @@ export default {
         "device": "Enhet",
     },
     status: {
+        "undefined": "Ukjent",
         "error": "Feil",
         "general": "N/A",
         "draft": "Utkast",
@@ -105,7 +114,8 @@ export default {
         "erased": "Slettet",
         "restore": "Gjenopprettet",
         "upload": "Ubehandlet",
-        "new": "Ny"
+        "new": "Ny",
+        "copy": "Kopi"
     },
     uploadStatus: {
         "init": "Laster opp",

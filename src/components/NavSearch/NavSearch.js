@@ -60,6 +60,7 @@ const NavSearch = ({
     inputProps = {},
     inputClassName,
     placeholder = "Search",
+    value,
     onChange,
     onFocus,
     onBlur,
@@ -113,8 +114,8 @@ const NavSearch = ({
         )
     }
 
-    console.log("InputProps", InputProps)
-    console.log("inputProps", inputProps)
+//    console.log("InputProps", InputProps)
+//    console.log("inputProps", inputProps)
 
     const startAdornment = <ButtonToggle />
     const endAdornment = <ButtonReset />
@@ -128,7 +129,7 @@ const NavSearch = ({
             inputProps={{
                 ...inputProps,
                 className: inputClassName || classes.input,
-                'aria-label': 'search google maps',
+                'aria-label': 'Search',
             }}
             id={id}
             ref={ref}
@@ -137,6 +138,7 @@ const NavSearch = ({
             onFocus={onFocus}
             onBlur={onBlur}
             onChange={onChange}
+            value={value}
             startAdornment={startAdornment}
             endAdornment={endAdornment}
         />        

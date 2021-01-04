@@ -97,6 +97,15 @@ const appSlice = createSlice({
                 }
             }
         },
+        collapseSearch(state, action) {
+            return {
+                ...state,
+                search: {
+                    ...state.search,
+                    expanded: false,
+                }
+            }
+        },
         toggleHeader(state, action) {
             return {
                 ...state,
@@ -513,7 +522,7 @@ export const {
     requestLayout, receiveLayout, 
     requestSubview, receiveSubview, 
     toggleHeader, 
-    toggleSearch, 
+    toggleSearch, collapseSearch,
     toggleSidebar, 
     requestSchemasByName, 
     receiveSchemasByName, 
