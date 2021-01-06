@@ -1,3 +1,5 @@
+import mediaSchemas from "./media"
+
 import kpCollection from './kpCollection';
 
 import article from './article';
@@ -15,6 +17,7 @@ import pageMedia from './pageMedia';
 import device from './device';
 
 export default [
+    ...mediaSchemas,
     kpCollection,
     article,
     pageHome,

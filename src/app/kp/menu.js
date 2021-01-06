@@ -24,9 +24,9 @@ export default [
     articles,
     kpPages,
     media,
-    search,
     latest,
     trash,
+    search,
     {
         role: "section",
         title: "Favoritter",

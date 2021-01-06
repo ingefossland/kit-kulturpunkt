@@ -61,11 +61,45 @@ SearchExpanded.args = {
     }
 }
 
+
+export const SearchOptions = Template.bind({});
+SearchOptions.args = {
+    search: {
+        expanded: false,
+        placeholder: "Search app",
+        options: [
+            {
+                title: "Bla bla"
+            },
+            {
+                title: "Bla bla bla"
+            }
+        ]
+    }
+}
+
 export const GrowingSearch = Template.bind({});
 GrowingSearch.args = {
     search: {
         variant: "growing",
         expanded: false,
         placeholder: "Search app"
+    }
+}
+
+export const GrowingSearchOptions = Template.bind({});
+GrowingSearchOptions.args = {
+    search: {
+        variant: "growing",
+        expanded: false,
+        placeholder: "Search app",
+        options: [
+            {
+                title: "Bla bla"
+            },
+            {
+                title: "Bla bla bla"
+            }
+        ]
     }
 }

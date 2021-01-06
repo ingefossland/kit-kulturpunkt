@@ -80,7 +80,7 @@ const DocumentTreeList = ({
                     <TreeList droppable={{provided, snapshot}}>
                         {children && children.map((child, index) => {
                             return (
-                                <DraggableChild child={child} level={level} index={index} />
+                                <DraggableChild child={child} level={level} index={index} key={index} />
                             )
                         })}
                     </TreeList>

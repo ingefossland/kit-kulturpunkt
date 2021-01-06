@@ -10,9 +10,9 @@ export default {
         {
             title: "Søk i hele applikasjonen"
         },
-            {
-                title: "Søk i hele applikasjonen"
-          },
+        {
+            title: "Søk i hele applikasjonen"
+        },
       ]
   },
   argTypes: {

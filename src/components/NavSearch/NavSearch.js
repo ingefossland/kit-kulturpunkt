@@ -122,15 +122,14 @@ const NavSearch = ({
 
     const ref = InputProps.ref
 
+    if (inputProps.value) {
+        value = inputProps.value
+    }
+
     return (
         <InputBase
             aria-expanded={expanded}
             inputRef={inputRef}
-            inputProps={{
-                ...inputProps,
-                className: inputClassName || classes.input,
-                'aria-label': 'Search',
-            }}
             id={id}
             ref={ref}
             className={className || classes.field}
@@ -141,6 +140,11 @@ const NavSearch = ({
             value={value}
             startAdornment={startAdornment}
             endAdornment={endAdornment}
+            inputProps={{
+                ...inputProps,
+                className: inputClassName || classes.input,
+                'aria-label': 'Search',
+            }}
         />        
     )
 

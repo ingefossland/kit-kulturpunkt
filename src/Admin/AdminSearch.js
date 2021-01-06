@@ -5,8 +5,6 @@ import { useTranslation } from 'react-i18next';
 import { toggleSearch, collapseSearch } from '../redux/app';
 import { getQuery } from '../redux/searchByUrl';
 
-import { NavSuggest, NavSuggestGroup, NavSuggestGroupHeader, NavSuggestList, NavSuggestOption } from "../components/NavSuggest"
-
 import icons from "../icons/"
 
 import _ from "lodash"
@@ -31,15 +29,39 @@ const AdminSearch = ({children, ...props}) => {
 
     // search
 
-    const [q, setQ] = useState("")
+    const [inputValue, setInputValue] = useState(sq.q)
+    const [q, setQ] = useState(sq.q)
 
-    const _onSearchChange = _.debounce((q) => {
+    const _onQuery = _.debounce((q, event) => {
         setQ(q)
     }, 500)
 
-    const _onSearchReset = () => {
-
+    useEffect(() => {
         if (q) {
+            sq.q = q.replace(' ', '+')
+        } else {
+            delete sq.q
+        }
+
+        let query = qs.stringify(sq)
+
+        const pathname = props.location.pathname + "?" + query;
+        const hash = props.location.hash;
+
+        const url = hash && pathname + hash || pathname
+        
+        if (props.history) {
+            props.history.replace(url)
+        }
+        
+    }, [q])
+
+    const _onReset = () => {
+
+        console.log('onReset')
+
+        if (inputValue) {
+            setInputValue("")
             setQ("")
             delete sq.q
         } else {
@@ -48,172 +70,138 @@ const AdminSearch = ({children, ...props}) => {
 
     }
 
-    // scopes
+    const _onToggle = () => {
+        setInputValue(sq.q || "")
+        dispatch(toggleSearch())
+    }
 
-    const searchRoot = app.root + "/search"
-
-    let scopeOptions = [
-        {
-            group: "search",
-            placeholder: "All documents",
-            label: "Search for {{q}} in all documents",
-            url: searchRoot,
-            query: {
-                url: app && app.root && app.root + "?q=" + q,
-                collectionId: app && app.collectionId,
-                siteId: app && app.siteId,
-                models: "documents",
-                rows: 0,
-                fl: "id",
-            }
-        }
-    ]
-
-    parents && parents.map((parent, index) => {
-
-        if (parent.url && parent.url !== searchRoot) {
-            scopeOptions.push({
-                ...parent,
-                query: {
-                    url: parent.url + "/count",
-                    collectionId: app && app.collectionId,
-                    siteId: app && app.siteId,
-                    rows: 0,
-                    fl: "id",
-                },
-                group: "search",
-                placeholder: "Everything in {{scope}}",
-                label: "Search for {{q}} in {{scope}}",
-            })
-        }
-
-    })
+    const _onClickOutside = () => {
+        dispatch(toggleSearch())
+    }
 
     // suggest
 
-    const query = {
-        url: app && app.root && app.root + "?q=" + q,
+    const searchRoot = app.root + "/search"
+
+    const rootQuery = {
+        url: searchRoot,
         collectionId: app && app.collectionId,
         siteId: app && app.siteId,
         models: "documents",
         page: 1,
-        rows: 10,
+        rows: 100,
+    }
+
+    const documentsQuery = {
+        ...rootQuery,
+        url: searchRoot + "/documents",
+        models: "documents",
         fl: "uniqueId,title,documentType",
     }
 
+    const mediaQuery = {
+        ...rootQuery,
+        url: searchRoot + "/media",
+        models: "media",
+        fl: "uniqueId,title,mediaType",
+    }
 
     useEffect(() => {
-        q && dispatch(getQuery({
-            ...query,
-            q: q + "*"
-        })) || dispatch(getQuery(query))
-
-
-        scopeOptions.map(scope => {
-
-            if (scope.query) {
-                dispatch(getQuery({
-                    ...scope.query,
-                    q: q + "*"
-                }))
-            }
-
-        })
-
-    }, [q])
+        dispatch(getQuery(documentsQuery))
+        dispatch(getQuery(mediaQuery))
+    }, [])
 
     const searchByUrl = useSelector(state => state.searchByUrl)
-    const currentSearch = searchByUrl && searchByUrl[query.url] || {}
-    const resultsLoaded = currentSearch && currentSearch.resultsLoaded
 
-    const _filterOptions = (options, params) => {
+    const documentsSearch = searchByUrl && searchByUrl[documentsQuery.url] || {}
+    const documentsSuggest = documentsSearch && documentsSearch.resultsLoaded
 
-        const { inputValue } = params
+    const mediaSearch = searchByUrl && searchByUrl[mediaQuery.url] || {}
+    const mediaSuggest = mediaSearch && mediaSearch.resultsLoaded
 
+    let suggest = []
 
-        let filteredOptions = []
-
-
-        options.map(option => {
-            const { group, uniqueId, title, url } = option;
-
-            if (uniqueId) {
-                filteredOptions.push({
-                    ...option,
-                    group: "suggest",
-                    url: app.root + "/" + uniqueId + "/edit",
-                    label: title,
-                })
-            } else if (group === "search") {
-                filteredOptions.push({
-                    ...option,
-                    group: "search",
-                    q: inputValue
-                })
-            } else {
-                filteredOptions.push({
-                    ...option,
-                })
-            }
-
-        })
-
-        return filteredOptions
-
+    if (documentsSuggest) {
+        suggest = [
+            ...documentsSuggest,
+        ]
     }
 
+    if (mediaSuggest) {
+        suggest = [
+            ...suggest,
+            ...mediaSuggest,
+        ]
+    }
+    
+    // scopes
 
-    const [options, setOptions] = useState(null)
-    const [open, setOpen] = useState(false)
 
-    useEffect(() => {
+    let scopes = [
+        {
+            icon: "search",
+            placeholder: t("Search everything"),
+            title: t("Search for {{q}} in everything", {q: "[q]"}),
+            url: searchRoot,
+            query: {
+                ...rootQuery,
+                url: searchRoot,
+            }
+        }
+    ]
 
-        console.log('SUGGEST', resultsLoaded)
+    if (parent && parent.url && parent.url !== searchRoot) {
 
-        if (resultsLoaded) {
-            setOptions([
-                ...scopeOptions,
-                ...resultsLoaded,
-            ])
-        } else {
-            setOptions([
-                ...scopeOptions,
-            ])
+        const query = {
+            ...parent.query,
+            collectionId: app && app.collectionId,
+            siteId: app && app.siteId,
+            url: parent.url
         }
 
-
-    }, [resultsLoaded])
-
-    useEffect(() => {
-//        search.expanded && setOptions(defaultOptions) || setOptions([])
-    }, [expanded])
-
-
-    const _onOpen = () => {
-        setOpen(true)
-        setOptions(scopeOptions)
+        scopes.push({
+            ...parent,
+            query: query,
+            icon: "search",
+            placeholder: t("Everything in {{scope}}", {scope: parent.title}),
+            title: t("Search for {{q}} in {{scope}}", {q: "[q]", scope: parent.title}),
+        })
     }
 
-    const _onClose = () => {
-        setOpen(true)
-        setOptions([])
+    // options
+
+
+    let options = scopes.map(scope => {
+
+        const count = searchByUrl && searchByUrl[scope.query.url] && searchByUrl[scope.query.url].results && searchByUrl[scope.query.url].results.count || "-"
+
+        return {
+            ...scope,
+            count: count
+        }
+
+    })
+
+    if (suggest) {
+        options = [
+            ...options,
+            ...suggest
+        ]
     }
 
 
-    const _onOptionChange = (event, option = {}, reason) => {
+    const _onChange = (event, option = {}, reason) => {
         console.log("onChange", option)
         console.log("onChange", reason)
 
-        const q = event.target.value
+        const { query, uniqueId, url } = option
 
-        const { group, url } = option
+        const searchUrl = url && query && url + "?q=" + inputValue.replace(' ', '+')
 
-        const searchUrl = url && q && url + "?q=" + q.replace(' ', '+')
-
-        if (group === "search" && searchUrl) {
+        if (searchUrl) {
             props.history.replace(searchUrl)
-        } else if (url) {
-            props.history.replace(url)
+        } else if (uniqueId) {
+            props.history.replace(app.root + "/" + uniqueId + "/edit")
         }
 
         dispatch(collapseSearch())
@@ -221,93 +209,22 @@ const AdminSearch = ({children, ...props}) => {
     }
 
     const _onInputChange = (event, option, reason) => {
-        const q = event.target.value
-        console.log("InputChange", q)
-        _onSearchChange(q)
-    }
-
-    const _renderGroup = ({group, children}) => {
-
-        const groupTitle = group === "suggest" && t('{{count}} suggestions', { count:children.length })
-
-        if (groupTitle) {
-            return (
-                <li>
-                    <NavSuggestGroup>
-                        <NavSuggestGroupHeader>
-                            {groupTitle}
-                        </NavSuggestGroupHeader>
-                        <NavSuggestList>{children}</NavSuggestList>
-                    </NavSuggestGroup>
-                </li>
-            )
-        } else {
-            return <li><NavSuggestList>{children}</NavSuggestList></li>
-        }
-
-    }
-
-    const _renderOption = (option = {}, state) => {
-
-        let { group, documentType, title, label, placeholder, count, query, url } = option
-
-        const { inputValue, selected } = state
-
-        console.log("STATE", state)
-
-        const search = query && query.url && searchByUrl && searchByUrl[query.url] || {}
-
-
-        if (group === "search" && !inputValue) {
-            label = t(placeholder, {scope: title})
-            count = search && search.results && search.results.count
-        } else {
-            label = t(label, {scope: title, q: inputValue})
-            count = search && search.results && search.results.count
-        }
-
-        const icon = documentType && icons[documentType]
-
-        return <NavSuggestOption highlight={inputValue} label={label} count={count} icon={icon} />
-
-    }
-
-    const _getOptionLabel = (option) => {
-        return option.q
-    }
-
-    const _getOptionSelected = (option, value) => {
-
-        if (option.url === value.url) {
-            return true
-        }
-
-        return false
-
-    }
-
-    const PaperComponent = ({children}) => {
-        return <NavSuggest position="fixed" top={64} expanded={expanded}>{children}</NavSuggest>
+        const value = event && event.target.value || ""
+        value && setInputValue(event.target.value)
+//        value && _onQuery(value)
     }
 
     const autocompleteProps = {
         open: expanded,
-//        onOpen: _onOpen,
-//        onClose: _onClose,
         freeSolo: true,
         disableClearable: true,
-        options: options || scopeOptions,
+        options: options,
         autoHighlight: true,
         disablePortal: true,
-        PaperComponent: PaperComponent,
-//        ListboxComponent: NavSuggestList,
-        getOptionLabel: _getOptionLabel,
-        getOptionSelected: _getOptionSelected,
-        groupBy: (options) => options.group,
-        renderGroup: _renderGroup,
-        renderOption: _renderOption,
-        filterOptions: _filterOptions,
-        onChange: _onOptionChange,
+        inputValue: inputValue,
+        groupBy: (options) => options.modelName,
+//        filterOptions: _filterOptions,
+        onChange: _onChange,
         onInputChange: _onInputChange
     }
 
@@ -315,12 +232,9 @@ const AdminSearch = ({children, ...props}) => {
 
     const searchProps = {
         ...search,
-//        ...autocompleteProps,
-//        options: options,
         autocompleteProps: autocompleteProps,
-//        onChange: _onSearchChange,
-        onReset: () => _onSearchReset(),
-        onToggle: () => dispatch(toggleSearch())
+        onReset: () => _onReset(),
+        onToggle: () => _onToggle()
     }
 
     // merge with children

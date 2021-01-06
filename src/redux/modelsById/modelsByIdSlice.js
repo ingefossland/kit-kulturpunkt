@@ -197,7 +197,7 @@ export const getModel = ({modelName = "documents", id, uniqueId}) => dispatch =>
         )
         .then(formData => {
             dispatch(receiveModel({...formData, modelName}))
-            dispatch(getParents({...formData, modelName}))
+//            dispatch(getParents({...formData, modelName}))
             dispatch(getChildren({...formData, modelName}))
         })
 

@@ -123,7 +123,7 @@ const AppLayout = ({
 
     return (
         <AppBase theme={theme} className={classes.app}>
-            <AppHeader {...header} className={classes.header} />
+            <AppHeader {...header} icons={icons} className={classes.header} />
             <AppBody className={classes.body}>
                 <AppSidebar {...sidebar} className={classes.sidebar}>
                     { primaryAction && <NavAction className={classes.navAction} icons={icons} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={onSelect} />}

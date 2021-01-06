@@ -107,7 +107,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const AppHeader = ({className, expanded = true, elevation = 2, color = "primary", title, subtitle, sidebar, search, subview, children }) => {
+const AppHeader = ({className, icons, expanded = true, elevation = 2, color = "primary", title, subtitle, sidebar, search, subview, children }) => {
 
     const classes = useStyles({color, search})
 
@@ -139,7 +139,7 @@ const AppHeader = ({className, expanded = true, elevation = 2, color = "primary"
                 <AppIdentifier className={classes.identifier} title={title} subtitle={subtitle} />
                 { search && !growingSearch && <ButtonSearch onClick={search && search.onToggle} /> }
             </section>
-            { search && <AppSearch {...search} className={growingSearch && classes.growingSearch || classes.search} /> }
+            { search && <AppSearch {...search} icons={icons} className={growingSearch && classes.growingSearch || classes.search} /> }
             { children }
         </AppBar>
     )

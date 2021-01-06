@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import AppSearch from "./AppSearch"
 
-export const AppSearchExample = ({options, suggest, ...props}) => {
+export const AppSearchExample = (props) => {
 
     // search
 
@@ -15,7 +15,7 @@ export const AppSearchExample = ({options, suggest, ...props}) => {
         setQ(null)
     }
 
-    const [expanded, setExpanded] = useState(props.expanded)
+    const [expanded, setExpanded] = useState(props.expanded || false)
 
     const _onToggle = () => {
         setExpanded(expanded => !expanded)
@@ -32,7 +32,7 @@ export const AppSearchExample = ({options, suggest, ...props}) => {
 
     const searchState = {
         ...props,
-        expanded: expanded,
+//        expanded: expanded,
         onChange: _onChange,
         onToggle: _onToggle,
         onReset: _onReset,
@@ -40,46 +40,9 @@ export const AppSearchExample = ({options, suggest, ...props}) => {
     }
 
 
-    if (options || suggest) {
-
-
-        const filterOptions = (options, params) => {
-
-            const filtered = options
-        
-            // Suggest the creation of a new value
-            if (params.inputValue !== '') {
-              filtered.push({
-                inputValue: params.inputValue,
-                title: `Add "${params.inputValue}"`,
-              });
-            }
-    
-            return filtered;
-        
-        }
-
-
-        const autocompleteProps = {
-            options: options,
-            getOptionLabel: (option) => option.title,
-            filterOptions: (options, params) => options
-        }
-
-
-        return (
-            <AppSearch {...searchState} autocompleteProps={autocompleteProps} />
-        )
-
-
-    } else {
-
-        return (
-            <AppSearch {...searchState} />
-        )
-    
-
-    }
+    return (
+        <AppSearch {...searchState} expanded={expanded} />
+    )
 
 
 }
