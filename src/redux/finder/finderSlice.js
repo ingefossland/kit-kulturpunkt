@@ -297,7 +297,7 @@ export const getSort = ({pathname, sort}) => (dispatch, getState) => {
 
 export const getMenu = ({siteName, menu, root, collectionId}) => (dispatch) => {
 
-    const getChild = ({parent, children, url, pathname, search, query, viewOptions, sortOptions, ...item}) => {
+    const getChild = ({parent, sections, children, url, pathname, search, query, viewOptions, sortOptions, ...item}) => {
 
         if (pathname && pathname.startsWith("/")) {
             url = root + pathname
@@ -346,8 +346,20 @@ export const getMenu = ({siteName, menu, root, collectionId}) => (dispatch) => {
             sortOptions: sortOptions
         }
 
+        if (sections) {
+            sections = sections.map(section => {
+
+                return {
+                    ...section,
+                    url: section.url.replace(":siteName", siteName)
+                }
+
+            })
+        }
+
         const menuItem = {
             ...child,
+            sections: sections,
             children: children && children.length && getChildren({...child, children: children})
         }
 

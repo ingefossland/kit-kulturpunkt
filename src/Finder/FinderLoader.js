@@ -25,6 +25,8 @@ const FinderLoader = ({children, ...props}) => {
         pathname && dispatch(getParents({url: pathname}))
     }, [pathname, finder.isLoading, parent])
 
+    return children
+
     return (
         <Loader
             isLoading={isLoading}

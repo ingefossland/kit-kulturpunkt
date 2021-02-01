@@ -9,6 +9,7 @@ import ViewIcons from "./ViewIcons"
 import ViewMasonry from "./ViewMasonry"
 import ViewGallery from "./ViewGallery"
 import ViewColumn from "./ViewColumn"
+import ViewGroup from "./ViewGroup"
 
 const FinderView = ({view = "list", template, ...props}) => {
 
@@ -20,7 +21,10 @@ const FinderView = ({view = "list", template, ...props}) => {
         "icons": ViewIcons,
         "masonry": ViewMasonry,
         "gallery": ViewGallery,
-        "column": ViewColumn
+        "column": ViewColumn,
+        "group/icons": ViewGroup,
+        "group/landscape": ViewGroup,
+        "group/portrait": ViewGroup,
     }
 
     // actions
@@ -89,7 +93,7 @@ const FinderView = ({view = "list", template, ...props}) => {
 
     if (Template) {
         return (
-            <Template {...props} sortOptions={sortOptions} rowsOptions={rowsOptions} />
+            <Template {...props} view={view} sortOptions={sortOptions} rowsOptions={rowsOptions} />
         )
         
     }
