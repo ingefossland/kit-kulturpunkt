@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { getModel } from '../redux/modelsById';
 import { 
     PreviewBase, 
     PreviewOptions, 
@@ -9,10 +10,52 @@ import {
 import schemasByName from "../schemas/schemasByName"
 
 const DocumentPreview = (props) => {
+    const dispatch = useDispatch()
+
     const editor = useSelector(state => state.editor)
+    const modelsById = useSelector(state => state.modelsById)
 
     const { formData } = editor
-    const { documentType } = formData
+    const { documentType, content } = formData
+
+    const links = content && content.links
+
+    useEffect(() => {
+
+        links && links.map(link => {
+            const referenceId = link && link.referenceId;
+            const referenceModel = referenceId && modelsById[referenceId]
+
+            if (referenceId && !referenceModel) {
+                dispatch(getModel({modelName: "documents", uniqueId: referenceId}))
+            }
+        })
+
+    }, [links])
+
+
+    const newLinks = links && links.map(link => {
+        const referenceId = link && link.referenceId;
+        const referenceModel = referenceId && modelsById[referenceId]
+
+        const location = referenceModel && referenceModel.content && referenceModel.content.location
+
+        return {
+            ...link,
+            ...location,
+//            reference: referenceModel
+        }
+
+    })
+
+    const newFormData = {
+        ...formData,
+        content: {
+            ...formData.content,
+            links: newLinks
+        }
+    }
+
 
     const modelType = documentType && "documents/"+documentType 
     const model = schemasByName && schemasByName[modelType]
@@ -24,7 +67,7 @@ const DocumentPreview = (props) => {
         {
             "title": "JSON",
             "value": "formData",
-            "template": () => <PreviewJSON>{formData}</PreviewJSON> 
+            "template": () => <PreviewJSON>{newFormData}</PreviewJSON> 
         },
         {
             "title": "uiSchema",
@@ -63,7 +106,7 @@ const DocumentPreview = (props) => {
     return (
 
         <PreviewBase>
-            <PreviewTemplate formData={formData} />
+            <PreviewTemplate formData={newFormData} />
             <PreviewOptions options={previewOptions} value={value} onChange={_onChange} />
         </PreviewBase>
 

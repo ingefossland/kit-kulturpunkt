@@ -1,0 +1,29 @@
+{
+    "top": 50,
+    "referenceType": "pageLink",
+    "reference": {
+        "schemaId": 1,
+        "title": "Bergen stasjon",
+        "id": 1555,
+        "description": "",
+        "locale": "no",
+        "updatedAt": "2020-08-31T11:49:28",
+        "status": "trash",
+        "imageUrl": "https://dms-test.dimu.org/image/012uPWFJ8vop?mediaType=image/png",
+        "uniqueId": "99714182-77b5-4bac-94b7-276657b8fb45",
+        "createdAt": "2020-08-31T11:49:28",
+        "documentType": "article"
+    },
+    "backgroundColor": "#7f7f7f",
+    "placement": "top-left",
+    "skin": "dark",
+    "titleColor": "black",
+    "grid": "1:1",
+    "referenceId": "99714182-77b5-4bac-94b7-276657b8fb45",
+    "titleSize": "medium",
+    "color": "black",
+    "left": 50,
+    "x": 0,
+    "y": 0,
+    "media": {}
+}

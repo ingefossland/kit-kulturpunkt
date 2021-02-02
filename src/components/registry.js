@@ -15,7 +15,7 @@ import localizedString from "./LocalizedString/registry"
 
 export default {
     "fields": {
-        ...kpPage.foelds,
+        ...kpPage.fields,
         ...kpLink.fields,
         ...kpDevide.fields,
         ...kpLocation.fields,

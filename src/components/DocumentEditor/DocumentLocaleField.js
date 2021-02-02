@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
 import ISO6391 from 'iso-639-1'
 
 import { utils } from "@rjsf/core";
@@ -9,10 +8,8 @@ const LocaleField = (props) => {
     const { formData, formContext, schema, uiSchema } = props;
 
     const uiOptions = getUiOptions(uiSchema)
-    const uiQuery = uiOptions.query || {}
 
-    const pathname = useSelector(state => state.editor.pathname)
-    const languages = useSelector(state => state.app.languages)
+    const languages = formContext && formContext.languages || []
 
     const [enumOptions, setEnumOptions] = useState([formData])
     const [enumNames, setEnumNames] = useState([formData])

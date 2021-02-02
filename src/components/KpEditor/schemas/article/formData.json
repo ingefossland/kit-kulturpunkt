@@ -1,0 +1,957 @@
+{
+    "locale": "no",
+    "schemaId": 58,
+    "title": "1960-65: Fra nesten-nedrykk til ligagull",
+    "content": {
+      "location": {
+        "placeId": "ChIJaX_k53Kue0gR_lVE35YOk2w",
+        "lat": 53.46305889999999,
+        "lng": -2.2913401
+      },
+      "license": "none",
+      "headerImage": {
+        "uploadProgress": 100,
+        "mediaId": "159675df-223e-4fb7-81fc-c55598c052fe",
+        "media": {
+          "mediaType": "image",
+          "uniqueId": "159675df-223e-4fb7-81fc-c55598c052fe",
+          "createdAt": "2020-06-03T16:03:45",
+          "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=n69nGtiY6xvdS2ZrBXiN3GwY5fbWM9SnKTpTQrZACoDU4uZa8&public=true",
+          "mediaSize": 199296,
+          "filename": "FAC63_1536 × 1507.jpg",
+          "uploadStatus": "done",
+          "status": "upload",
+          "updatedAt": "2020-06-03T16:03:52",
+          "referenceCount": 0,
+          "imageWidth": 1533,
+          "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJSc",
+          "mediaWidth": 1533,
+          "identifier": "012uPWFDhJSc",
+          "mediaHeight": 1026,
+          "imageHeight": 1026,
+          "id": 1820,
+          "mimeType": "image/jpeg",
+          "resources": {
+            "original": {
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc?dimension=original"
+            },
+            "png": {
+              "mimeType": "image/png",
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc?mediaType=image%2Fpng"
+            },
+            "properties": {
+              "mimeType": "application/json",
+              "url": "https://dms-test.dimu.org/properties/012uPWFDhJSc"
+            },
+            "jpeg": {
+              "mimeType": "image/jpeg",
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc"
+            }
+          },
+          "collectionId": 146,
+          "imageSize": 199296,
+          "description": "",
+          "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJSc?mediaType=image/png",
+          "title": "FAC63_1536 × 1507.jpg",
+          "content": {
+            "iptcdata": {},
+            "filename": "FAC63_1536 × 1507.jpg",
+            "title": "FAC63_1536 × 1507.jpg",
+            "exifdata": {}
+          },
+          "imageType": "png"
+        }
+      },
+      "title": {
+        "locale:no": "1960-65: Fra nesten-nedrykk til ligagull",
+        "locale:sv": "",
+        "locale:en": "",
+        "locale:de": "",
+        "locale:es": "",
+        "locale:fr": ""
+      },
+      "leadtext": {
+        "locale:no": "Første halvdel av 1960-tallet ble noen innholdsrike år for Manchester United. Med et lag bestående av ungt og eldre, «grovsmeder» og superstjerner, gjeninntok klubben posisjonen som den ledende på De britiske øyer.\n",
+        "locale:sv": "",
+        "locale:en": "",
+        "locale:de": "",
+        "locale:es": "",
+        "locale:fr": ""
+      },
+      "bodytext": {},
+      "sections": [
+        {
+          "titleHidden": false,
+          "sectionLayout": "grid",
+          "sectionType": "ekultur",
+          "title": {
+            "locale:no": "DM innhold",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "bodytext": {
+            "locale:no": "123",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "references": [
+            {
+              "referenceType": "ekultur",
+              "referenceId": "021016880399",
+              "reference": {
+                "createdAt": "2020-06-08T11:18:13",
+                "status": "publish",
+                "locale": "no",
+                "updatedAt": "2020-06-08T11:18:13",
+                "documentType": "Photograph",
+                "description": "",
+                "schemaId": 1,
+                "id": 1422,
+                "title": "Herr E. Andersson, Tredje Tvärgatan 28. Den 28 oktober 1939\r\n\r\n",
+                "imageUrl": "https://dms09.dimu.org/image/022yjUhKG6nS",
+                "uniqueId": "021016880399"
+              }
+            },
+            {
+              "referenceType": "ekultur",
+              "referenceId": "455bcdb3-f9f1-4862-8979-73cea43a39cf",
+              "reference": {
+                "createdAt": "2020-06-16T07:30:38",
+                "status": "publish",
+                "locale": "no",
+                "updatedAt": "2020-06-16T07:30:38",
+                "documentType": "ekultur/photograph",
+                "description": "",
+                "schemaId": 1,
+                "id": 1458,
+                "title": "Porträtt av Gustaf Fredrik Lothigius, major vid Södermanlands regemente I 10. \r\nSe även bild AMA.0008000, AMA.0006716,  AMA.0007995 och AMA.0021806.",
+                "imageUrl": "https://dms01.dimu.org/image/022waWFbdo7b",
+                "uniqueId": "455bcdb3-f9f1-4862-8979-73cea43a39cf"
+              }
+            },
+            {
+              "referenceType": "ekultur",
+              "referenceId": "cddd9718-b9c9-4b0b-b65f-200955d9140e",
+              "reference": {
+                "createdAt": "2020-06-16T07:33:27",
+                "status": "publish",
+                "locale": "no",
+                "updatedAt": "2020-06-16T07:33:27",
+                "documentType": "ekultur/photograph",
+                "description": "",
+                "schemaId": 1,
+                "id": 1460,
+                "title": "gruppei4, familie, Ikke i protokoll.",
+                "imageUrl": "https://dms07.dimu.org/image/0331uxuv2uUC",
+                "uniqueId": "cddd9718-b9c9-4b0b-b65f-200955d9140e"
+              }
+            },
+            {
+              "referenceType": "ekultur",
+              "referenceId": "378ef8c4-2676-44d3-b54b-131be2f4ca99",
+              "reference": {
+                "createdAt": "2020-06-16T07:33:31",
+                "status": "publish",
+                "locale": "no",
+                "updatedAt": "2020-06-16T07:33:31",
+                "documentType": "ekultur/thing",
+                "description": "",
+                "schemaId": 1,
+                "id": 1461,
+                "title": "Betsel",
+                "imageUrl": "https://dms07.dimu.org/image/0231wTZPGivs",
+                "uniqueId": "378ef8c4-2676-44d3-b54b-131be2f4ca99"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "locale:no": "Tekst med lenker",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "bodytext": {
+            "locale:no": "Noe tekst som kan **boldes** eller settes i _kursiv_.",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "media": [
+            {
+              "mediaLayout": "frame",
+              "mediaId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+              "media": {
+                "createdAt": "2020-06-03T12:17:57",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=PCCd9A2vNhgiAcdvtpjeAuyAPuYbnQTyLX68jpdEhVssx4qSb&public=true",
+                "mediaSize": 41143,
+                "filename": "2013.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-16T06:46:55",
+                "referenceCount": 0,
+                "imageWidth": 985,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL",
+                "mediaWidth": 985,
+                "identifier": "012uPWFDhJNL",
+                "mediaHeight": 555,
+                "imageHeight": 555,
+                "id": 1818,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJNL"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL"
+                  }
+                },
+                "uniqueId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 41143,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image/png",
+                "title": "2013.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "filename": "2013.jpg",
+                  "exifdata": {},
+                  "title": "2013.jpg"
+                },
+                "imageType": "png"
+              },
+              "content": {
+                "size": "small"
+              },
+              "mediaFormat": "1:1"
+            }
+          ],
+          "sectionType": "text",
+          "links": [
+            {
+              "title": "VG",
+              "url": "http://vg.no"
+            },
+            {
+              "title": "Dagbladet",
+              "url": "http://db.no"
+            }
+          ]
+        },
+        {
+          "title": {
+            "locale:no": "Media grid",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "sectionType": "media",
+          "media": [
+            {
+              "layout": "frame",
+              "size": "medium",
+              "mediaId": "440954ab-912f-4865-8ca1-d5fb79948bc4",
+              "media": {
+                "createdAt": "2020-06-11T08:59:19",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=QsmTLuLoWwNcZb5Nw3j4Ufv4U61dWDbMuL8YLRsZEvyZjZ4Cj&public=true",
+                "mediaSize": 85336,
+                "filename": "best+elton.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-11T08:59:30",
+                "referenceCount": 0,
+                "imageWidth": 1200,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJX4",
+                "mediaWidth": 1200,
+                "identifier": "012uPWFDhJX4",
+                "mediaHeight": 800,
+                "imageHeight": 800,
+                "id": 1870,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJX4"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4"
+                  }
+                },
+                "uniqueId": "440954ab-912f-4865-8ca1-d5fb79948bc4",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 85336,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJX4?mediaType=image/png",
+                "title": "best+elton.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "filename": "best+elton.jpg",
+                  "exifdata": {
+                    "ColorSpace": 1,
+                    "Orientation": 1,
+                    "thumbnail": {},
+                    "YResolution": 72,
+                    "ResolutionUnit": 2,
+                    "PixelXDimension": 1200,
+                    "PixelYDimension": 800,
+                    "ExifIFDPointer": 90,
+                    "XResolution": 72
+                  },
+                  "title": "best+elton.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+              "media": {
+                "createdAt": "2020-06-03T12:17:57",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=PCCd9A2vNhgiAcdvtpjeAuyAPuYbnQTyLX68jpdEhVssx4qSb&public=true",
+                "mediaSize": 41143,
+                "filename": "2013.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-16T06:46:55",
+                "referenceCount": 0,
+                "imageWidth": 985,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL",
+                "mediaWidth": 985,
+                "identifier": "012uPWFDhJNL",
+                "mediaHeight": 555,
+                "imageHeight": 555,
+                "id": 1818,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJNL"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL"
+                  }
+                },
+                "uniqueId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 41143,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image/png",
+                "title": "2013.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "filename": "2013.jpg",
+                  "exifdata": {},
+                  "title": "2013.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "d1103202-dc3e-4633-a070-c915fe6fdc95",
+              "media": {
+                "createdAt": "2020-06-03T12:17:00",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=Pz6gPN9k8gNV7zBcXxwyEByQeMyHhPygeLfhbSypxz1nYDUXj&public=true",
+                "mediaSize": 69272,
+                "filename": "1999.jpg",
+                "uploadStatus": "done",
+                "status": "draft",
+                "updatedAt": "2020-06-12T11:05:30",
+                "referenceCount": 0,
+                "imageWidth": 2600,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJNJ",
+                "mediaWidth": 2600,
+                "identifier": "012uPWFDhJNJ",
+                "mediaHeight": 1671,
+                "imageHeight": 1671,
+                "id": 1816,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJNJ"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ"
+                  }
+                },
+                "uniqueId": "d1103202-dc3e-4633-a070-c915fe6fdc95",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 69272,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNJ?mediaType=image/png",
+                "title": "1999.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "title": "1999.jpg",
+                  "exifdata": {},
+                  "filename": "1999.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            }
+          ],
+          "sectionLayout": "grid"
+        },
+        {
+          "title": {
+            "locale:no": "Video grid",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "sectionType": "media",
+          "media": [
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "38b61182-750f-40cf-8f43-6a46451e8b2d",
+              "media": {
+                "createdAt": "2020-06-18T12:34:46",
+                "mediaHeight": 120,
+                "sourceId": "424182213",
+                "referenceCount": 0,
+                "mimeType": "video/vimeo",
+                "resources": {
+                  "original": {
+                    "url": "https://i.vimeocdn.com/video/900964260_1920x1080.jpg?r=pad"
+                  },
+                  "jpg": {
+                    "mimeType": "image/jpg",
+                    "url": "https://i.vimeocdn.com/video/900964260_640x360.jpg?r=pad"
+                  }
+                },
+                "imageUrl": "https://i.vimeocdn.com/video/900964260_640x360.jpg?r=pad",
+                "uniqueId": "38b61182-750f-40cf-8f43-6a46451e8b2d",
+                "uploadStatus": "init",
+                "content": {
+                  "resources": {
+                    "original": {
+                      "url": "https://i.vimeocdn.com/video/900964260_1920x1080.jpg?r=pad"
+                    },
+                    "jpg": {
+                      "mimeType": "image/jpg",
+                      "url": "https://i.vimeocdn.com/video/900964260_640x360.jpg?r=pad"
+                    }
+                  },
+                  "playerUrl": "https://vimeo.com/424182213",
+                  "imageUrl": "https://i.vimeocdn.com/video/900964260_640x360.jpg?r=pad"
+                },
+                "mediaType": "video/vimeo",
+                "status": "draft",
+                "updatedAt": "2020-06-18T12:34:46",
+                "duration": 303,
+                "description": "Sorry I turned off the commentary by accident in the second half lmao",
+                "source": "vimeo",
+                "id": 1880,
+                "title": "Marcus Rashford Vs Spurs 18-19 (Away)",
+                "collectionId": 146,
+                "mediaWidth": 640,
+                "identifier": "424182213"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "3f42114b-e1cd-4660-9919-516347652e2d",
+              "media": {
+                "createdAt": "2020-06-18T12:34:52",
+                "mediaHeight": 120,
+                "sourceId": "a3-ElL9Mru0",
+                "referenceCount": 0,
+                "mimeType": "video/youtube",
+                "resources": {
+                  "original": {
+                    "url": "https://i.ytimg.com/vi/a3-ElL9Mru0/hqdefault.jpg"
+                  },
+                  "jpg": {
+                    "mimeType": "image/jpg",
+                    "url": "https://i.ytimg.com/vi/a3-ElL9Mru0/mqdefault.jpg"
+                  }
+                },
+                "imageUrl": "https://i.ytimg.com/vi/a3-ElL9Mru0/mqdefault.jpg",
+                "uniqueId": "3f42114b-e1cd-4660-9919-516347652e2d",
+                "uploadStatus": "init",
+                "content": {
+                  "resources": {
+                    "original": {
+                      "url": "https://i.ytimg.com/vi/a3-ElL9Mru0/hqdefault.jpg"
+                    },
+                    "jpg": {
+                      "mimeType": "image/jpg",
+                      "url": "https://i.ytimg.com/vi/a3-ElL9Mru0/mqdefault.jpg"
+                    }
+                  },
+                  "playerUrl": "https://www.youtube.com/watch?v=a3-ElL9Mru0",
+                  "imageUrl": "https://i.ytimg.com/vi/a3-ElL9Mru0/mqdefault.jpg"
+                },
+                "mediaType": "video/youtube",
+                "status": "draft",
+                "updatedAt": "2020-06-18T12:34:52",
+                "description": "SUBSCRIBE ▻ http://bit.ly/SSFootballSub PREMIER LEAGUE HIGHLIGHTS ▻ http://bit.ly/SkySportsPLHighlights Marcus Rashford speaks exclusively to Sky ...",
+                "source": "youtube",
+                "id": 1881,
+                "title": "Marcus Rashford reacts to the government&#39;s u-turn on free school meals and returning to football (Sky Sports Football)",
+                "collectionId": 146,
+                "mediaWidth": 320,
+                "identifier": "a3-ElL9Mru0"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "fd99539b-8383-4af3-8294-e820c5baec99",
+              "media": {
+                "createdAt": "2020-05-13T07:20:49",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=QS2NCTqdDqaisekkcjAYAfuH39xbKT1hQBc44pRQ2Zt7n2qXr&public=true",
+                "mediaSize": 24645,
+                "filename": "Getting_Real_txt.m4v",
+                "uploadStatus": "done",
+                "status": "draft",
+                "updatedAt": "2020-06-12T10:53:12",
+                "referenceCount": 0,
+                "imageWidth": 0,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uP2PAnCEc",
+                "mediaWidth": 0,
+                "identifier": "012uP2PAnCEc",
+                "mediaHeight": 0,
+                "imageHeight": 0,
+                "id": 1742,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "ogv": {
+                    "mimeType": "video/ogv",
+                    "url": "https://dms-test.dimu.org/multimedia/012uP2PAnCEc.ogv?mmid=012uP2PAnCEc"
+                  },
+                  "webm": {
+                    "mimeType": "video/webm",
+                    "url": "https://dms-test.dimu.org/multimedia/012uP2PAnCEc.webm?mmid=012uP2PAnCEc"
+                  },
+                  "mp4": {
+                    "mimeType": "video/mp4",
+                    "url": "https://dms-test.dimu.org/multimedia/012uP2PAnCEc.mp4?mmid=012uP2PAnCEc"
+                  },
+                  "download": {
+                    "mimeType": "video/mp4",
+                    "url": "https://qdms-test.dimu.org/012uP2PAnCEc/012uP2PAnCEc.mp4"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uP2PAnCEc"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uP2PAnCEc"
+                  },
+                  "m3u8": {
+                    "mimeType": "application/x-mpegURL",
+                    "url": "https://qdms-test.dimu.org/012uP2PAnCEc/index.m3u8"
+                  }
+                },
+                "uniqueId": "fd99539b-8383-4af3-8294-e820c5baec99",
+                "collectionId": 146,
+                "mediaType": "video",
+                "imageSize": 24645,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uP2PAnCEc?mediaType=image/png",
+                "title": "Getting_Real_txt.m4v",
+                "content": {
+                  "title": "Getting_Real_txt.m4v",
+                  "duration": 170.01650793650794,
+                  "category": "movie",
+                  "description": "Desc",
+                  "filename": "Getting_Real_txt.m4v"
+                },
+                "duration": 170,
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            }
+          ],
+          "sectionLayout": "grid"
+        },
+        {
+          "title": {
+            "locale:no": "Media slideshow",
+            "locale:es": "",
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:de": "",
+            "locale:fr": ""
+          },
+          "sectionType": "media",
+          "media": [
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "d1103202-dc3e-4633-a070-c915fe6fdc95",
+              "media": {
+                "createdAt": "2020-06-03T12:17:00",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=Pz6gPN9k8gNV7zBcXxwyEByQeMyHhPygeLfhbSypxz1nYDUXj&public=true",
+                "mediaSize": 69272,
+                "filename": "1999.jpg",
+                "uploadStatus": "done",
+                "status": "draft",
+                "updatedAt": "2020-06-12T11:05:30",
+                "referenceCount": 0,
+                "imageWidth": 2600,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJNJ",
+                "mediaWidth": 2600,
+                "identifier": "012uPWFDhJNJ",
+                "mediaHeight": 1671,
+                "imageHeight": 1671,
+                "id": 1816,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJNJ"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNJ"
+                  }
+                },
+                "uniqueId": "d1103202-dc3e-4633-a070-c915fe6fdc95",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 69272,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNJ?mediaType=image/png",
+                "title": "1999.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "title": "1999.jpg",
+                  "exifdata": {},
+                  "filename": "1999.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "440954ab-912f-4865-8ca1-d5fb79948bc4",
+              "media": {
+                "createdAt": "2020-06-11T08:59:19",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=QsmTLuLoWwNcZb5Nw3j4Ufv4U61dWDbMuL8YLRsZEvyZjZ4Cj&public=true",
+                "mediaSize": 85336,
+                "filename": "best+elton.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-11T08:59:30",
+                "referenceCount": 0,
+                "imageWidth": 1200,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJX4",
+                "mediaWidth": 1200,
+                "identifier": "012uPWFDhJX4",
+                "mediaHeight": 800,
+                "imageHeight": 800,
+                "id": 1870,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJX4"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJX4"
+                  }
+                },
+                "uniqueId": "440954ab-912f-4865-8ca1-d5fb79948bc4",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 85336,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJX4?mediaType=image/png",
+                "title": "best+elton.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "filename": "best+elton.jpg",
+                  "exifdata": {
+                    "ColorSpace": 1,
+                    "Orientation": 1,
+                    "thumbnail": {},
+                    "YResolution": 72,
+                    "ResolutionUnit": 2,
+                    "PixelXDimension": 1200,
+                    "PixelYDimension": 800,
+                    "ExifIFDPointer": 90,
+                    "XResolution": 72
+                  },
+                  "title": "best+elton.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "89c44fa3-f186-4160-9877-47cd7d068582",
+              "media": {
+                "createdAt": "2020-06-03T11:48:26",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=PzJJc5BdYkfhx6novZ2Gi3QK8UEqyaSJH8WxwGVePdvEns2EZ&public=true",
+                "mediaSize": 151937,
+                "filename": "bruce_robson_93.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-03T11:48:34",
+                "referenceCount": 0,
+                "imageWidth": 1000,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJND",
+                "mediaWidth": 1000,
+                "identifier": "012uPWFDhJND",
+                "mediaHeight": 552,
+                "imageHeight": 552,
+                "id": 1811,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJND?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJND?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJND"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJND"
+                  }
+                },
+                "uniqueId": "89c44fa3-f186-4160-9877-47cd7d068582",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 151937,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJND?mediaType=image/png",
+                "title": "bruce_robson_93.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "title": "bruce_robson_93.jpg",
+                  "exifdata": {},
+                  "filename": "bruce_robson_93.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            },
+            {
+              "layout": "frame",
+              "size": "small",
+              "mediaId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+              "media": {
+                "createdAt": "2020-06-03T12:17:57",
+                "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=PCCd9A2vNhgiAcdvtpjeAuyAPuYbnQTyLX68jpdEhVssx4qSb&public=true",
+                "mediaSize": 41143,
+                "filename": "2013.jpg",
+                "uploadStatus": "done",
+                "status": "upload",
+                "updatedAt": "2020-06-16T06:46:55",
+                "referenceCount": 0,
+                "imageWidth": 985,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL",
+                "mediaWidth": 985,
+                "identifier": "012uPWFDhJNL",
+                "mediaHeight": 555,
+                "imageHeight": 555,
+                "id": 1818,
+                "mimeType": "image/jpeg",
+                "resources": {
+                  "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?dimension=original"
+                  },
+                  "png": {
+                    "mimeType": "image/png",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image%2Fpng"
+                  },
+                  "properties": {
+                    "mimeType": "application/json",
+                    "url": "https://dms-test.dimu.org/properties/012uPWFDhJNL"
+                  },
+                  "jpeg": {
+                    "mimeType": "image/jpeg",
+                    "url": "https://dms-test.dimu.org/image/012uPWFDhJNL"
+                  }
+                },
+                "uniqueId": "c0b24249-9e99-44f0-9109-03e4c3ca5590",
+                "collectionId": 146,
+                "mediaType": "image",
+                "imageSize": 41143,
+                "description": "",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNL?mediaType=image/png",
+                "title": "2013.jpg",
+                "content": {
+                  "iptcdata": {},
+                  "filename": "2013.jpg",
+                  "exifdata": {},
+                  "title": "2013.jpg"
+                },
+                "imageType": "png"
+              },
+              "format": "1:1",
+              "content": {}
+            }
+          ],
+          "sectionLayout": "slideshow"
+        }
+      ],
+      "image": {
+        "mediaId": "159675df-223e-4fb7-81fc-c55598c052fe",
+        "media": {
+          "createdAt": "2020-06-03T16:03:45",
+          "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=n69nGtiY6xvdS2ZrBXiN3GwY5fbWM9SnKTpTQrZACoDU4uZa8&public=true",
+          "mediaSize": 199296,
+          "filename": "FAC63_1536 × 1507.jpg",
+          "uploadStatus": "done",
+          "status": "upload",
+          "updatedAt": "2020-06-03T16:03:52",
+          "referenceCount": 0,
+          "imageWidth": 1533,
+          "mediaUrl": "https://dms-test.dimu.org/image/012uPWFDhJSc",
+          "mediaWidth": 1533,
+          "identifier": "012uPWFDhJSc",
+          "mediaHeight": 1026,
+          "imageHeight": 1026,
+          "id": 1820,
+          "mimeType": "image/jpeg",
+          "resources": {
+            "original": {
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc?dimension=original"
+            },
+            "png": {
+              "mimeType": "image/png",
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc?mediaType=image%2Fpng"
+            },
+            "properties": {
+              "mimeType": "application/json",
+              "url": "https://dms-test.dimu.org/properties/012uPWFDhJSc"
+            },
+            "jpeg": {
+              "mimeType": "image/jpeg",
+              "url": "https://dms-test.dimu.org/image/012uPWFDhJSc"
+            }
+          },
+          "uniqueId": "159675df-223e-4fb7-81fc-c55598c052fe",
+          "collectionId": 146,
+          "mediaType": "image",
+          "imageSize": 199296,
+          "description": "",
+          "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJSc?mediaType=image/png",
+          "title": "FAC63_1536 × 1507.jpg",
+          "content": {
+            "iptcdata": {},
+            "filename": "FAC63_1536 × 1507.jpg",
+            "title": "FAC63_1536 × 1507.jpg",
+            "exifdata": {}
+          },
+          "imageType": "png"
+        },
+        "uploadProgress": 100
+      }
+    },
+    "createdAt": "2020-06-03T16:03:47",
+    "uniqueId": "fe5963d4-6567-46f7-8782-31d0c13386fc",
+    "collectionId": 146,
+    "id": 1417,
+    "updatedAt": "2020-06-18T12:37:09",
+    "documentType": "article",
+    "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJSc?mediaType=image/png",
+    "referenceCount": 4,
+    "status": "new",
+    "parent": null,
+    "metadata": [
+      "Sted",
+      "5 seksjoner"
+    ],
+    "typeLabel": "article"
+  }
+  

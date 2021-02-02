@@ -22,6 +22,8 @@ const PageMap = ({formData, formContext, ...props}) => {
    
     const links = formData && formData.content && formData.content.links
 
+    /*
+
     const [newLinks, setNewLinks] = useState([])
 
     useEffect(() => {
@@ -58,22 +60,26 @@ const PageMap = ({formData, formContext, ...props}) => {
 
     }, [modelsById, links])
 
+    */
+
     const language = formContext && formContext.currentLocale
     const content = formData && formData.content
 
     const mapLayout = content && content.mapLayout
     const MapTemplate = mapLayout && mapTypes[mapLayout] || DefaultMap
 
-    if (!newLinks) {
+    console.log("NEW LINKS", links)
+
+    if (!links) {
         return <p>No links to display</p>
     }
 
-    return <MapTemplate links={newLinks} />
+    return <MapTemplate links={links} />
     
     return (
         <PageLayout>
             <PageHeader {...content} language={language}></PageHeader>
-            {newLinks && newLinks.length && <MapTemplate links={newLinks} /> }
+            {links && links.length && <MapTemplate links={links} /> }
             <PageBody {...content} language={language} />
         </PageLayout>
     )
