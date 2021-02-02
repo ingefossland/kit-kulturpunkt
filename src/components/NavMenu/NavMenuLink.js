@@ -28,7 +28,12 @@ const useStyles = makeStyles(theme => ({
     icon: {
         "&[aria-selected=true]": {
             color: theme.palette.text.primary,
+        },
+
+        "& + $label": {
+            marginLeft: 12
         }
+
     },
     label: {
         display: "block",
@@ -37,7 +42,6 @@ const useStyles = makeStyles(theme => ({
         fontFamily: "inherit",
         fontSize: "inherit",
         lineHeight: "inherit",
-        paddingLeft: "12px",
         paddingRight: "6px"
     },
     count: {

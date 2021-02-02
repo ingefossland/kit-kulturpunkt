@@ -1,0 +1,96 @@
+import { Meta, Story, Canvas, Preview } from '@storybook/addon-docs/blocks';
+
+import EditorBase from './EditorBase';
+import EditorHeader from './EditorHeader';
+import EditorFooter from './EditorFooter';
+import EditorBody from './EditorBody';
+import EditorSection from './EditorSection';
+import EditorContent from './EditorContent';
+import EditorPreview from './EditorPreview';
+import EditorSidebar from './EditorSidebar';
+import EditorOverlay from './EditorOverlay';
+
+<Meta title="About/Editor" />
+
+# Editor concept
+
+An editor is built of three main components:
+
+- EditorBase
+- EditorHeader
+- EditorBody
+
+<Preview>
+    <Story name="EditorBase">
+        <EditorBase>
+            <EditorHeader title="Title" parents={[{"title":"Parent"}]} primaryAction={{"title": "Save"}} />
+            <EditorBody>
+                #body
+            </EditorBody>
+        </EditorBase>
+    </Story>
+</Preview>
+
+## Editor with preview
+
+If an editor has a preview, body should be split in two using `EditorContent` and `EditorPreview`, wrapped with `EditorSection`.
+
+<Preview>
+    <Story name="EditorWithPreview">
+        <EditorBase>
+            <EditorHeader title="Title" parents={[{"title":"Parent"}]} primaryAction={{"title": "Save"}} />
+            <EditorBody>
+                <EditorSidebar expanded={false}>Sidebar</EditorSidebar>
+                <EditorSection>
+                    <EditorPreview>Preview</EditorPreview>
+                    <EditorContent>Content</EditorContent>
+                </EditorSection>
+            </EditorBody>
+        </EditorBase>
+    </Story>
+</Preview>
+
+## Editor with sidebar
+
+Sidebars can contain dialogs, for example containing a finder to add elements to content.
+
+Sidebars should be opened from the left, using `EditorSidebar` before `EditorSection`.
+
+<Preview>
+    <Story name="EditorWithSidebar">
+        <EditorBase>
+            <EditorHeader title="Title" parents={[{"title":"Parent"}]} primaryAction={{"title": "Save"}} />
+            <EditorBody>
+                <EditorSidebar expanded={true}>#sidebar</EditorSidebar>
+                <EditorSection>
+                    <EditorPreview>Preview</EditorPreview>
+                    <EditorContent>Content</EditorContent>
+                </EditorSection>
+            </EditorBody>
+        </EditorBase>
+    </Story>
+</Preview>
+
+
+## Editor with overlay
+
+An alternative to sidebars is using overlays. 
+
+Overlays will be opened on top of everything and must be closed before editing can continue.
+
+<Preview>
+    <Story name="EditorWithOverlay">
+        <EditorBase>
+            <EditorHeader title="Title" parents={[{"title":"Parent"}]} primaryAction={{"title": "Save"}} />
+            <EditorBody>
+                <EditorSection>
+                    <EditorPreview>Preview</EditorPreview>
+                    <EditorContent>Content</EditorContent>
+                </EditorSection>
+            </EditorBody>
+            <EditorOverlay expanded={true}>
+                Overlay
+            </EditorOverlay>
+        </EditorBase>
+    </Story>
+</Preview>

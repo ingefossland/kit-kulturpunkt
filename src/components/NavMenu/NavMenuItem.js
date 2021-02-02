@@ -15,20 +15,20 @@ const useStyles = makeStyles(theme => ({
         lineHeight: "24px",
 
         "&[role=group] + *": {
-            borderTop: "1px solid",
-            borderTopColor: theme.palette.divider,
+//            borderTop: "1px solid",
+//            borderTopColor: theme.palette.divider,
             marginTop: theme.spacing(1.5),
             paddingTop: theme.spacing(1.5),
         },
         "& + &[role=group]": {
-            borderTop: "1px solid",
-            borderTopColor: theme.palette.divider,
+//            borderTop: "1px solid",
+//            borderTopColor: theme.palette.divider,
             marginTop: theme.spacing(1.5),
             paddingTop: theme.spacing(1.5),
 
             "& + *": {
-                borderTop: "1px solid",
-                borderTopColor: theme.palette.divider,
+//                borderTop: "1px solid",
+//                borderTopColor: theme.palette.divider,
                 marginTop: theme.spacing(1.5),
                 paddingTop: theme.spacing(1.5),
             }

@@ -1,0 +1,40 @@
+import { Meta, Story, Canvas, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+
+import Gallery from "./Gallery"
+
+export const images = [
+    {
+        width: 324,
+        imageUrl: "https://w3bits.com/files/img/cherry-plant.jpg"
+    },
+    {
+        width: 324,
+        imageUrl: "https://w3bits.com/files/img/cherry-plant.jpg"
+    }
+]
+
+<Meta title="Layout/Gallery" />
+
+# Gallery layout
+
+Gallery layout will try to make a full width layout, while respecting the individual widths of it's children. Every child must have a width-property, the gallery will set a maxWidth property based on a calculated cutoff.
+
+<Props of={Gallery} />
+
+<Canvas>
+    <Story name="Gallery">
+        <Gallery spacing={1} padding={0} debug={true}>
+            <img width="130" src="https://w3bits.com/files/img/cherry-plant.jpg" />
+            <img width="290" src="https://w3bits.com/files/img/blueberries.jpg" />
+            <img width="130" src="https://w3bits.com/files/img/cherry-plant.jpg" />
+            <img width="290" src="https://w3bits.com/files/img/blueberries.jpg" />
+            <img width="130" src="https://w3bits.com/files/img/cherry-plant.jpg" />
+            <img width="290" src="https://w3bits.com/files/img/blueberries.jpg" />
+            <img width="130" src="https://w3bits.com/files/img/cherry-plant.jpg" />
+            <img width="290" src="https://w3bits.com/files/img/blueberries.jpg" />
+            <img width="130" src="https://w3bits.com/files/img/cherry-plant.jpg" />
+            <img width="290" src="https://w3bits.com/files/img/blueberries.jpg" />
+        </Gallery>
+    </Story>
+</Canvas>

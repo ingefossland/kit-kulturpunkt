@@ -1,0 +1,33 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+
+import FinderLayout from "./FinderLayout"
+
+<Meta title="Finder/FinderLayout" component={FinderLayout}/>
+
+# FinderLayout
+
+<Props of={FinderLayout} />
+
+<Preview>
+    <Story name="Single finder">
+        <FinderLayout parents={[{title: "GrandParent"}, {title: "Parent"}]}>
+            children
+        </FinderLayout>
+    </Story>
+</Preview>
+
+## Finder + Action
+
+<Preview>
+    <Story name="Finder + Action">
+        <React.Fragment>
+            <FinderLayout expanded={false} parents={[{title: "GrandParent"}, {title: "Parent"}]}>
+                children
+            </FinderLayout>
+            <FinderLayout backgroundColor="#ccc" expanded={false} title="Action">
+                children
+            </FinderLayout>
+        </React.Fragment>
+    </Story>
+</Preview>

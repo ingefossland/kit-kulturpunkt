@@ -17,6 +17,7 @@ const useStyles = makeStyles(theme => ({
         fontSize: "12px",
         lineHeight: "24px",
         color: theme.palette.text.secondary,
+
         "&[aria-selected=true]": {
 
             "& $label": {
@@ -25,7 +26,7 @@ const useStyles = makeStyles(theme => ({
             }
 
         },
-        marginBottom: theme.spacing(1.5),
+        marginBottom: theme.spacing(.5),
     },
     icon: {
         "&[aria-selected=true]": {
@@ -37,6 +38,7 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         flexBasis: "100%",
         fontFamily: "inherit",
+        fontWeight: "bold",
         fontSize: "inherit",
         lineHeight: "inherit",
 //        paddingLeft: "12px",
@@ -54,7 +56,7 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const MenuLink = ({className, url, selected, icon, label, title, count, onClick, children }) => {
+const NavMenuLabel = ({className, url, selected, icon, label, title, count, onClick, children }) => {
     const classes = useStyles()
 
     if (!label && title) {
@@ -81,14 +83,6 @@ const MenuLink = ({className, url, selected, icon, label, title, count, onClick,
         </ButtonBase>
     )
 
-    return (
-        <ButtonBase color={color} className={className || classes.root} aria-selected={selected} onClick={onClick}>
-            { icon && <Icon className={classes.icon} aria-selected={selected}>{icon}</Icon> }
-            { label && <Typography component="b" align="left" noWrap className={classes.label}>{label}</Typography> }
-            { count && <Typography component="i" align="right" nowrap="true" className={classes.count}>{count}</Typography> }
-            { children }
-        </ButtonBase>
-    )
 }
 
-export default MenuLink
+export default NavMenuLabel

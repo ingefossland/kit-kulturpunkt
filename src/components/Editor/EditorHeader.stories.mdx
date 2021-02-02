@@ -1,0 +1,325 @@
+import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
+import { action } from '@storybook/addon-actions';
+import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
+
+import EditorHeader from "./EditorHeader"
+import EditorTheme from "./EditorTheme"
+
+<Meta title="Editor/EditorHeader" component={EditorHeader}/>
+
+# EditorHeader
+
+EditorHeader is used to display the current object you're editing: title, parents, current language, status, date modified and a primary action (+ possible secondary actions) .
+
+## Properties
+
+<Props of={EditorHeader} />
+
+<Preview>
+    <Story name="Default, without title">
+        <EditorHeader />
+    </Story>
+</Preview>
+
+With title
+
+<Preview>
+    <Story name="Default, with title">
+        <EditorHeader title="My title" />
+    </Story>
+</Preview>
+
+
+With parents, but no title:
+
+<Preview>
+    <Story name="Parents and untitled">
+        <EditorHeader
+            untitled="No title"
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+        />
+    </Story>
+</Preview>
+
+With parents and title:
+
+<Preview>
+    <Story name="Parents and title">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+        />
+    </Story>
+</Preview>
+
+Collapsible:
+
+<Preview>
+    <Story name="Collapsible header">
+        <EditorHeader
+            collapsible={true}
+            expanded={true}
+            onToggle={action('onToggle')}
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+        />
+    </Story>
+</Preview>
+
+With languages:
+
+<Preview>
+     <Story name="Parents, title and languages">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+        />
+    </Story>
+</Preview>
+
+PrimaryAction
+
+<Preview>
+     <Story name="Primary action">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            status="draft"
+            statusLabel="Utkast"
+            statusDate="1999-05-26"
+            primaryAction={{
+                "label": "Save",
+                "onClick": action('onSave')
+            }}
+        />
+    </Story>
+</Preview>
+
+Toggle actions
+
+<Preview>
+     <Story name="Toggle actions">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            status="draft"
+            statusLabel="Utkast"
+            statusDate="1999-05-26"
+            primaryAction={{
+                "label": "Save",
+                "children": [
+                    {
+                        "label": "Save as",
+                        "onClick": action('onSaveAs')
+                    },
+                    {
+                        "label": "Save and close",
+                        "onClick": action('onSaveAndClose')
+                    },
+                    {
+                        "label": "Delete",
+                        "onClick": action('onDelete')
+                    }
+                ]
+            }} />
+    </Story>
+</Preview>
+
+Primary + secondary actions
+
+<Preview>
+     <Story name="Primary and secondary actions">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            status="draft"
+            statusLabel="Utkast"
+            statusDate="1999-05-26"
+            primaryAction={{
+                "label": "Save",
+                "onClick": action('onSave'),
+                "children": [
+                    {
+                        "label": "Save as",
+                        "onClick": action('onSaveAs')
+                    },
+                    {
+                        "label": "Save and close",
+                        "onClick": action('onSaveAndClose')
+                    },
+                    {
+                        "label": "Delete",
+                        "onClick": action('onDelete')
+                    }
+                ]
+            }}
+        />
+    </Story>
+</Preview>
+
+Error message
+
+<Preview>
+     <Story name="Error message">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            status="error"
+            statusLabel="Error"
+            statusMessage="Unable to save"
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            primaryAction={{
+                "type": "save",
+                "label": "Save"
+            }}
+        />
+    </Story>
+</Preview>
+
+View mode
+
+<Preview>
+     <Story name="View mode">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            status="draft"
+            statusLabel="Utkast"
+            statusDate="1999-05-26  "
+            primaryAction={{
+                "type": "view",
+                "onClick": action('onView'),
+            }}
+        />
+    </Story>
+</Preview>
+
+View mode + editable
+
+<Preview>
+     <Story name="View mode + click to edit">
+        <EditorHeader
+            parents={[
+                {
+                    "title": "Grandparent"
+                },
+                {
+                    "title": "Parent"
+                }
+            ]}
+            title="Title"
+            languages={["no","sv","dk"]}
+            onLocale={action('onLocale')}
+            status="draft"
+            statusLabel="Utkast"
+            statusDate="1999-05-26  "
+            primaryAction={{
+                "type": "edit",
+                "onClick": action('onEdit'),
+            }}
+        />
+    </Story>
+</Preview>
+
+Dark theme
+
+<Preview>
+     <Story name="Dark theme (Work-in-progress)">
+         <EditorTheme color="dark">
+            <EditorHeader
+                parents={[
+                    {
+                        "title": "Grandparent"
+                    },
+                    {
+                        "title": "Parent"
+                    }
+                ]}
+                title="Title"
+                languages={["no","sv","dk"]}
+                onLocale={action('onLocale')}
+                status="draft"
+                statusLabel="Utkast"
+                statusDate="1999-05-26  "
+                primaryAction={{
+                    "type": "view",
+                    "onClick": action('onView'),
+                }}
+            />
+        </EditorTheme>
+    </Story>
+</Preview>
