@@ -1,5 +1,5 @@
 import links from "./KpLinks.schema"
-import linksLayout from "./KpLinksLayout.schema"
+//import linksLayout from "./__KpLinksLayout.schema"
 
 export default {
     "type": "object",
@@ -83,7 +83,28 @@ export default {
                     "cropdata": true,
                     "filters": ["opacity"],
                 },
-                "linksLayout": linksLayout,
+                "linksLayout": {
+                    "type": "string",
+                    "enum": [
+                        "list",
+                        "mosaic",
+                        "imagelegend",
+                        "imagemap",
+                        "gallery",
+                        "autoplay",
+                        "timeline"
+                    ],
+                    "enumNames": [
+                        "Liste",
+                        "Mosaikk",
+                        "Bildeforklaring",
+                        "Bildekart",
+                        "Mediagalleri",
+                        "Autoplay",
+                        "Tidslinje"
+                    ],
+                    "default" : "list"
+                },
                 "links": links,
                 "isPartOf": {
                     "type": "array",

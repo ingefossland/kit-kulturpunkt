@@ -68,35 +68,7 @@ const NavSearch = ({
     onReset
 }) => {
 
-//    const {id = "nav-search", className, fieldClassName, inputRef, inputClassName, InputProps = {}, inputProps = {}, resetClassName, toggleClassName, expanded = true, placeholder = "Search", children, onFocus, onChange, onToggle, onReset} = props
-
     const classes = useStyles()
-
-
-    /*
-
-    const _onToggle = (event) => {
-        onToggle && onToggle(event)
-    }
-
-    useEffect(() => {
-        expanded && inputRef && inputRef.current.focus()
-    }, [expanded])
-
-    const _onChange = (event) => {
-        onChange && onChange(event.target.value, event);
-    }
-
-    const _onReset = () => {
-        if (inputRef && inputRef.current && inputRef.current.value) {
-            inputRef.current.value = ""
-            onReset && onReset()
-        } else if (onToggle) {
-            onToggle()
-        }
-   }
-
-   */
 
     const ButtonReset = () => {
         return (
@@ -113,9 +85,6 @@ const NavSearch = ({
             </IconButton>
         )
     }
-
-//    console.log("InputProps", InputProps)
-//    console.log("inputProps", inputProps)
 
     const startAdornment = <ButtonToggle />
     const endAdornment = <ButtonReset />

@@ -1,4 +1,4 @@
-import items from "./KpLinksItem.uiSchema"
+import items from "./KpLink.uiSchema"
 
 export default {
     "ui:title": "Lenker",

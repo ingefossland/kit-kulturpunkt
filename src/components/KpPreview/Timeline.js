@@ -2,6 +2,7 @@ import React from "react"
 import { makeStyles } from '@material-ui/core/styles';
 import { getPreviewItem } from "./utils"
 
+import PreviewFormat from "./PreviewFormat"
 import PageHeader from "./PageHeader"
 import TimelineModule from "./TimelineModule"
 
@@ -64,12 +65,14 @@ const PreviewTimeline = ({formData, formContext, width, height}) => {
     const classes = useStyles()
 
     return (
-        <div className={classes.root}>
-            <PageHeader title={pageTitle}  />
-            <div className={classes.body}>
-                <Timeline localeId={localeId} items={links} width={width} height={height} onCurrentId={onCurrentId} />
+        <PreviewFormat format="16:9">
+            <div className={classes.root}>
+                <PageHeader title={pageTitle}  />
+                <div className={classes.body}>
+                    <Timeline localeId={localeId} items={links} width={width} height={height} onCurrentId={onCurrentId} />
+                </div>
             </div>
-        </div>
+        </PreviewFormat>
     )
 
 }

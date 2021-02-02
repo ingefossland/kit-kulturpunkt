@@ -1,0 +1,152 @@
+{
+    "schemaId": 1,
+    "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCeG7?mediaType=image/png",
+    "id": 1544,
+    "status": "publish",
+    "locale": "no",
+    "updatedAt": "2020-11-11T19:16:11",
+    "content": {
+        "headerImage": {
+            "uploadProgress": 100,
+            "mediaId": "37acc1a8-999c-4124-9edf-4f08a16468d3",
+            "content": {},
+            "media": {
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCeG7",
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCeG7?mediaType=image/png",
+                "mediaType": "image",
+                "description": "",
+                "mimeType": "image/jpeg",
+                "resources": {
+                    "original": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCeG7?dimension=original"
+                    },
+                    "png": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCeG7?mediaType=image%2Fpng",
+                        "mimeType": "image/png"
+                    },
+                    "jpeg": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCeG7",
+                        "mimeType": "image/jpeg"
+                    },
+                    "properties": {
+                        "url": "https://dms-test.dimu.org/properties/012uPWFFCeG7",
+                        "mimeType": "application/json"
+                    }
+                },
+                "imageType": "png",
+                "title": "katti.jpeg",
+                "imageHeight": 4000,
+                "identifier": "012uPWFFCeG7",
+                "imageWidth": 2760,
+                "referenceCount": 0,
+                "imageSize": 36965,
+                "createdAt": "2020-08-25T07:51:47",
+                "mediaHeight": 4000,
+                "mediaSize": 36965,
+                "filename": "katti.jpeg",
+                "id": 3252,
+                "status": "upload",
+                "updatedAt": "2020-08-25T07:53:00",
+                "uploadUrl": "https://dms-test.dimu.org/upload?aId=n6FbGPLXSzEbNSrPHjXofYqyS1QEezTG8hsk4ynnrcmfVpSBJ&public=true",
+                "content": {
+                    "title": "katti.jpeg",
+                    "filename": "katti.jpeg",
+                    "iptcdata": {
+                        "caption": "no-nb_blds_01106 002",
+                        "dateCreated": "20050420",
+                        "byline": "foto"
+                    }
+                },
+                "uniqueId": "37acc1a8-999c-4124-9edf-4f08a16468d3",
+                "collectionId": 54,
+                "uploadStatus": "done",
+                "mediaWidth": 2760
+            }
+        },
+        "title": {
+            "locale:no": "Katti Anker Møller",
+            "locale:de": "",
+            "locale:sv": "",
+            "locale:fr": "",
+            "locale:es": "",
+            "locale:en": ""
+        },
+        "bodytext": {},
+        "location": {
+            "lat": 60.79209922457247,
+            "lng": 11.041835897375506,
+            "zoom": 15
+        },
+        "sections": [
+            {
+                "sectionType": "text",
+                "titleHidden": false,
+                "bodytext": {
+                    "locale:no": "Det er ganske fredelig her nå, her i hagen på gamle Sagatun. Men på slutten av 1800-tallet var det mange barn som sprang og lekte her! For grunnleggeren av landets første folkehøgskole, Hermann Anker, ville ha stort hus og hage da han skulle starte undervisning for ungdom, her like ovenfor domkirken. Det myldret av barn, både søsken, søskenbarn og venner. «Det var en lys og lykkelig barndom», skriver datteren Katti i et brev. Svermet gjorde de nok også, der bak syrinene. Ja det var der fetteren Kai Møller fridde til henne.\n\nDet var Sagatun og miljøet her som formet den unge jenta, som fikk henne til å forstå hva det vil si å være menneske med ansvar for livet omkring seg, og ikke minst - hva det vil si å være kvinne. Det eneste som formørket barndommen hennes var at moren, Mix Anker, alltid engstet seg for nye svangerskap og barnefødsler.\n\nKatti selv ble født i 1868 som den fjerde i en søskenflokk på ti.\n\n«Folkeopplysning og kvinnesak» var idealene i miljøet og i undervisningen på folkehøgskolen. Store personligheter som Bjørnstjerne Bjørnson, Ole Bull, og ikke minst juristen og politikeren Johan Castberg, var faste gjester her på Sagatun. Castberg giftet seg med søsteren til Katti, og det skulle komme til stor nytte for det Katti fikk utrettet senere i livet.\n\nFetteren Kai Møller var ti år eldre enn Katti, og hun hadde sett opp til ham gjennom hele barndommen, men hadde egentlig ikke lyst til å gifte seg. «Ekteskapet er en felle som stenger kvinnen inne og gjør henne til en fødemaskin! Det er misbruk av kvinnekraft!» skrev hun til en venninne. Men bryllup ble det likevel, og 20 år gammel ble hun husfrue på Torsø herregård ved Fredrikstad. Etter ti år og tre barnefødsler, mente hun det var på tide å engasjere seg i noe samfunnsnyttig, noe utenom livet på herregården. Som husfrue så hun at tjenestejentene kom i «uløkka»; de ble gravide, men flere ble sviktet av barnefedrene, og det ble et liv i elendighet for både mødrene og barna deres, som i tillegg fikk stemplet UEKTE. Dette ville Katti gjøre noe med. «Vi må få de viktige sakene over fra tanker og planer til handling» sa hun. For å få til det, måtte hun alliere seg med noen. Da var det viktig å kjenne menn med makt.\n\nEktemannen Kai Møller satt på Stortinget, og svogeren Johan Castberg var jurist, og de var begge sentrale i utformingen av nye lover. Katti drev intenst lobbyarbeid, holdt foredrag om prevensjon og seksualopplysning. Hun fikk etablert utdanning av jordmødre, og var med å stifte «Norske kvinners sanitetsforening». Etter en lang og krevende kamp ble «De Castbergske barnelover» vedtatt i Stortinget. «Uekte barn» fikk rett til farens navn, og faren pliktet å vedkjenne seg farskapet og betale bidrag. Disse barna fikk arverett på lik linje med de ektefødte.\n\nKatti arbeidet også for det hun kalte «mødrelønn», som ble forløperen til barnetrygden. Katti Anker Møller var en ressurssterk dame fra høyeste samfunnslag som kjempet de svakes sak. Og hun var selvfølgelig pådriver i arbeidet for at kvinner skulle få stemmerett.\nHun døde i 1945, 76 år gammel.",
+                    "locale:de": "",
+                    "locale:sv": "",
+                    "locale:fr": "",
+                    "locale:es": "",
+                    "locale:en": ""
+                },
+                "title": {
+                    "locale:no": "Biografi",
+                    "locale:de": "",
+                    "locale:sv": "",
+                    "locale:fr": "",
+                    "locale:es": "",
+                    "locale:en": ""
+                }
+            },
+            {
+                "sectionLayout": "grid",
+                "sectionType": "dm",
+                "references": [
+                    {
+                        "referenceId": "f8c5764b-d635-4452-b6f5-e02945ed68bf",
+                        "referenceType": "ekultur",
+                        "reference": {
+                            "schemaId": 1,
+                            "title": "Bildekart 1",
+                            "id": 1750,
+                            "description": "",
+                            "locale": "no",
+                            "updatedAt": "2020-11-11T09:24:10",
+                            "status": "trash",
+                            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xs?mediaType=image/png",
+                            "uniqueId": "f8c5764b-d635-4452-b6f5-e02945ed68bf",
+                            "createdAt": "2020-11-11T09:24:10",
+                            "documentType": "pageAnnotate"
+                        }
+                    },
+                    {
+                        "referenceId": "99714182-77b5-4bac-94b7-276657b8fb45",
+                        "referenceType": "ekultur",
+                        "reference": {
+                            "schemaId": 1,
+                            "title": "Bergen stasjon",
+                            "id": 1555,
+                            "description": "",
+                            "locale": "no",
+                            "updatedAt": "2020-08-31T11:49:28",
+                            "status": "trash",
+                            "imageUrl": "https://dms-test.dimu.org/image/012uPWFJ8vop?mediaType=image/png",
+                            "uniqueId": "99714182-77b5-4bac-94b7-276657b8fb45",
+                            "createdAt": "2020-08-31T11:49:28",
+                            "documentType": "article"
+                        }
+                    }
+                ]
+            }
+        ],
+        "author": {},
+        "leadtext": {}
+    },
+    "uniqueId": "028f35b5-055d-4921-9c1a-6719bca07c58",
+    "collectionId": 54,
+    "title": "Katti Anker Møller",
+    "parent": null,
+    "referenceCount": 2,
+    "documentType": "article",
+    "createdAt": "2020-08-25T07:52:20"
+}

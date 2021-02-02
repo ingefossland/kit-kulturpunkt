@@ -1,4 +1,4 @@
-import items from "./KpLinksItem.schema"
+import items from "./KpLink.schema"
 
 export default {
     "type": "array",

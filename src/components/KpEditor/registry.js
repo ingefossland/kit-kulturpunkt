@@ -1,9 +1,5 @@
-
-
-import kpPage from "../KpPage/registry"
-import kpLink from "../KpLink/registry"
-import kpDevide from "../KpDevice/registry"
-import kpLocation from "../KpLocation/registry"
+import kpDevide from "./KpDevice/registry"
+import kpLocation from "./KpLocation/registry"
 
 import documentEditor from "../DocumentEditor/registry"
 import referenceEditor from "../ReferenceEditor/registry"
@@ -15,8 +11,9 @@ import localizedString from "../LocalizedString/registry"
 
 export default {
     "fields": {
-        ...kpPage.fields,
-        ...kpLink.fields,
+//        "kpLink": KpLinkField,
+//        ...kpPage.fields,
+//        ...kpLink.fields,
         ...kpDevide.fields,
         ...kpLocation.fields,
         ...documentEditor.fields,

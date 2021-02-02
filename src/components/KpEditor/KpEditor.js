@@ -3,7 +3,9 @@ import { SchemaBase } from "@kit-ui/schema"
 
 import registry from "./registry"
 
-const PrimusEditor = (props) => {
+import KpEditorDialog from "./KpEditorDialog"
+
+const KpEditor = (props) => {
 
     const { schema, uiSchema } = props
 
@@ -50,13 +52,39 @@ const PrimusEditor = (props) => {
         _onToggle({id})
     }    
 
-    const preview = {
+    // dialog
+
+    const [dialog, setDialog] = useState({})
+
+    const _onDialog = (props) => {
+        const {id, formData, schema, uiSchema, onChange} = props
+        console.log("Editor:onDialog", props)
+
+        if (dialog && dialog.id) {
+            setDialog({})
+        } else {
+            setDialog({
+                id: id,
+                formData: formData,
+                schema: schema,
+                uiSchema: uiSchema,
+                onChange: onChange,
+                expanded: true
+            })
+        }
+
+    }
+    
+
+    // preview
+
+    const preview = props.preview && {
         ...props.preview,
         formData: formData,
         formContext: {
             onCurrentId: _onCurrentId
         }
-    }
+    } 
 
     const formContext = {
         ...props.formContext,
@@ -67,7 +95,15 @@ const PrimusEditor = (props) => {
         onExpand: _onExpand,
         onCollapse: _onCollapse,
         onEdit: _onExpand,
-        onSave: _onCollapse
+        onSave: _onCollapse,
+        onDialog: _onDialog,
+
+        sidebar: {
+            ...dialog,
+            onClose: () => _onDialog({}),
+            template: KpEditorDialog
+        },
+
     }
 
     return (
@@ -83,4 +119,4 @@ const PrimusEditor = (props) => {
 
 }
 
-export default PrimusEditor;
+export default KpEditor;

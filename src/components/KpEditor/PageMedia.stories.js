@@ -1,6 +1,6 @@
 import React from 'react';
 import KpEditor from "./KpEditor";
-import model from "./PageMap.model"
+import model from "./PageMedia.model"
 
 export default {
     title: 'KpEditor/PageMedia',

@@ -28,8 +28,8 @@ const useStyles = makeStyles(theme => ({
         left: props => { return props.left + "%" || "50%"},
     },
     label: {
-        width: props => { return theme.spacing(props.size) },
-        height: props => { return theme.spacing(props.size) },
+        width: props => { return props.size },
+        height: props => { return props.size },
         top: "0",
         left: "0",
         position: "absolute",
@@ -71,9 +71,9 @@ const ImagemapPreview = ({formData = {}, formContext}) => {
         )
     }
 
-    const MarkerTemplate = ({id, index, top = 50, left = 50, size = 4}) => {
+    const MarkerTemplate = ({id, index, top = 50, left = 50, size = 24}) => {
 
-        const classes = useStyles({size, zIndex: index, top, left, backgroundColor: annotateColor, color: contrastColor})
+        const classes = useStyles({size: size, zIndex: index, top, left, backgroundColor: annotateColor, color: contrastColor})
     
         return (
             <div className={classes.marker} onClick={() => onCurrentId(id)}>
@@ -89,7 +89,7 @@ const ImagemapPreview = ({formData = {}, formContext}) => {
         <div className={classes.root}>
             <PageHeader title={title} position="absolute" />
             <div className={classes.body}>
-                <ImageAnnotationsBase {...annotateImage} imageUrl={imageUrl} imageFilters={imageFilters} imageAnnotations={imageAnnotations}  markerTemplate={MarkerTemplate} />
+                <ImageAnnotationsBase {...annotateImage} imageUrl={imageUrl} imageFilters={imageFilters} imageAnnotations={imageAnnotations} markerTemplate={MarkerTemplate} />
             </div>
         </div>
     )
