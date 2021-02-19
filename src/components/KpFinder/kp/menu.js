@@ -14,6 +14,7 @@ import {
     latest,
     trash,
     search,
+    places,
 
     adminLink,
     collectionsLink
@@ -21,12 +22,17 @@ import {
 
 export default [
     kpHome,
-    articles,
+    {
+        role: "section",
+        title: "Innhold",
+        children: [
+
+            articles,
+        ]
+    },
     kpPages,
     media,
-    latest,
-    trash,
-    search,
+    places,
     {
         role: "section",
         title: "Favoritter",

@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit'
 import { bulkToggle } from '../bulk/'
 import qs from 'query-string';
 
+
 const modelsByIdSlice = createSlice({
     name: 'modelsById',
     initialState: {
@@ -27,6 +28,18 @@ const modelsByIdSlice = createSlice({
                 [uniqueId]: {
                     isLoading: false,
                     ...action.payload
+                }
+            }
+
+        },
+        receiveModelProps(state, action) {
+            const { uniqueId, ...props } = action.payload
+
+            return {
+                ...state,
+                [uniqueId]: {
+                    ...state[uniqueId],
+                    ...props
                 }
             }
 
@@ -173,13 +186,17 @@ export const getModels = ({models}) => (dispatch, getState) => {
 
 }
 
+
+
 /** Get model from uniqueId */
 
-export const getModel = ({modelName = "documents", id, uniqueId}) => dispatch => {
+export const getModel = ({modelName = "documents", id, uniqueId, source, sourceId}) => dispatch => {
 
     uniqueId && dispatch(requestModel({uniqueId}))
 
-    if (!uniqueId) {
+    if (!uniqueId && sourceId) {
+        uniqueId = sourceId
+    } else if (!uniqueId && id) {
         uniqueId = id
     }
 
@@ -196,9 +213,17 @@ export const getModel = ({modelName = "documents", id, uniqueId}) => dispatch =>
             error => console.log('An error occurred.', error)
         )
         .then(formData => {
-            dispatch(receiveModel({...formData, modelName}))
+
+            let { uniqueId, source, sourceId } = formData
+
+            if (!uniqueId && source && sourceId) {
+                uniqueId = source + "/" + sourceId
+            }
+
+
+            dispatch(receiveModel({...formData, uniqueId: uniqueId, modelName}))
 //            dispatch(getParents({...formData, modelName}))
-            dispatch(getChildren({...formData, modelName}))
+//            dispatch(getChildren({...formData, modelName}))
         })
 
 }
@@ -402,9 +427,19 @@ export const eraseModel = ({modelName, uniqueId}) => dispatch => {
 
 /** Select */
 
-export const selectModel = ({modelName, uniqueId}) => dispatch => {
-//    dispatch(toggleModel({modelName, uniqueId}))
+export const selectModel = ({modelName, uniqueId, selected, ...props}) => (dispatch, getState) => {
+
+    /*
+    dispatch(receiveModelProps({
+        modelName: modelName,
+        uniqueId: uniqueId,
+        selected: !selected
+    }))
+    */
+
     dispatch(bulkToggle({uniqueId}))
+
+
 }
 
 /** Set parentId */
@@ -413,7 +448,6 @@ export const setParentId = ({modelName = "documents", uniqueId, parentId}) => di
 //    dispatch(receiveParentId({uniqueId, parentId}))
 
     const url = API + '/admin/api/' + modelName;
-
 
     const formData = {
         uniqueId: uniqueId,
@@ -574,6 +608,7 @@ export const addMediaSource = (model, callback = undefined) => dispatch => {
 
 export const { 
     requestModel, receiveModel, 
+    receiveModelProps,
     requestParents, receiveParents, 
     requestChildren, receiveChildren, 
     requestReferences, receiveReferences, 

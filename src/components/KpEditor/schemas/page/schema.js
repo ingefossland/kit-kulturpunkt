@@ -1,11 +1,22 @@
-import documentType from "./documentType/schema"
-import links from "./links/schema"
-import linksLayout from "./linksLayout/schema"
+import registry from "../../../registry"
+const { models } = registry
 
 export default {
     "type": "object",
     "properties": {
-        "documentType": documentType,
+        "documentType": {
+            "type": "string",
+            "enum": [
+                "pageHome",
+                "pageTopic",
+                "pageMap"
+            ],
+            "enumNames": [
+                "Startside",
+                "Tema",
+                "Kart"
+            ]
+        },
         "locale": {
             "type": "string",
             "default": "no"
@@ -57,7 +68,8 @@ export default {
                     "default": "imagemap"
                 },
                 "annotateColor": {
-                    "type": "color",
+                    "type": "string",
+                    "format": "color",
                     "enum": ["red","green","blue","black","white"]
                 },
                 "backgroundImage": {
@@ -71,8 +83,32 @@ export default {
                     "cropdata": true,
                     "filters": ["opacity"],
                 },
-                "linksLayout": linksLayout,
-                "links": links,
+                "linksLayout": {
+                    "type": "string",
+                    "enum": [
+                        "list",
+                        "mosaic",
+                        "imagelegend",
+                        "imagemap",
+                        "gallery",
+                        "autoplay",
+                        "timeline"
+                    ],
+                    "enumNames": [
+                        "Liste",
+                        "Mosaikk",
+                        "Bildeforklaring",
+                        "Bildekart",
+                        "Mediagalleri",
+                        "Autoplay",
+                        "Tidslinje"
+                    ],
+                    "default" : "list"
+                },
+                "links": {
+                    "type": "array",
+                    "items": models.kpLink.schema
+                },
                 "isPartOf": {
                     "type": "array",
                     "items": {

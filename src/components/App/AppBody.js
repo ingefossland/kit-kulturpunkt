@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     body: {
+        flexGrow: 1,
         position: "relative",
         transition: ".125s ease-out",
     },

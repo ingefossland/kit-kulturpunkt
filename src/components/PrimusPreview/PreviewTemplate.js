@@ -1,20 +1,24 @@
 import React, { useEffect, useState } from "react"
-import ObjectPreview from "./ObjectPreview"
+import DocumentPreview from "./DocumentPreview"
+import EkulturPreview from "./EkulturPreview"
+import KnavPreview from "./KnavPreview"
 import PersonPreview from "./PersonPreview"
-//import ExhibitionPreview from "./ExhibitionPreview"
 
 const templates = {
-    "object": ObjectPreview,
+    "document": DocumentPreview,
+    "ekultur": EkulturPreview,
+    "knav": KnavPreview,
     "person": PersonPreview,
- //   "exhibition" ExhibitionPreview
 }
 
-const PreviewTemplate = ({documentType, ...props}) => {
+const PreviewTemplate = ({source, documentType, ...props}) => {
 
-    let template = templates["object"]
+    let template = templates["document"]
 
     if (templates[documentType]) {
         template = templates[documentType]
+    } else if (source && templates[source]) {
+        template = templates[source]
     }
 
     const Template = template

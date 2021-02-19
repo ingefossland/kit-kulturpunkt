@@ -5,8 +5,5 @@ export default {
     view: "icons",
     viewOptions: ["list","icons"],
     query: {
-        models: "documents",
-        documentType: "device*",
-        status: "NOT trash"
     }
 }

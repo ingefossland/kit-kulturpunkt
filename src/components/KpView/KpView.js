@@ -20,7 +20,8 @@ const useStyles = makeStyles(theme => ({
             "&::-webkit-scrollbar": {
                 width: 8,
                 height: 8,
-                backgroundColor: "#aaa"
+                backgroundColor: "transparent",
+                backgroundColor: theme.palette.divider
             },
     
             "&::-webkit-scrollbar-thumb": {
@@ -46,7 +47,7 @@ const templates = {
     "gallery": GalleryView
 }
 
-const PrimusView = ({items, models = [], ...props}) => {
+const PrimusView = ({items, ...props}) => {
 
 
     const { view } = props

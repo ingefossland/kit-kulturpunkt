@@ -4,7 +4,7 @@ import KpFinder from "./KpFinder";
 import kpSettings from "./kp"
 import kioskSettings from "./kiosk"
 
-import results from "../KpView/search/page"
+import results from "../KpView/search/kiosk"
 
 export default {
     title: 'App/Finder',

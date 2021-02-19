@@ -5,7 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     identifier: {
-        fontFamily: "Akkurat mono, monospace",
+        fontFamily: "Akkurat mono, monospace !important",
         fontSize: props => { return props.fontSize },
         color: props => { return props.color || theme.palette.text.secondary },
     }
@@ -15,7 +15,7 @@ const ModuleIdentifier = ({component = "h4", fontSize = 12, color, children}) =>
     const classes = useStyles({fontSize, color})
 
     return (
-        <div className={classes.identifier}>{children}</div>
+        <Typography className={classes.identifier} noWrap>{children}</Typography>
     )
 }
 

@@ -13,13 +13,13 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const NavActionButtongroup = ({className, color = "primary", variant = "contained", children}) => {
+const NavActionButtongroup = ({className, color = "primary", variant, children}) => {
     const classes = useStyles()
 
     return (
-        <div color={color} variant={variant} className={className || classes.buttongroup}>
+        <ButtonGroup color={color} variant={variant} className={className}>
             { children }
-        </div>
+        </ButtonGroup>
     )
 }
 

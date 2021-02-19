@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react"
 import { SchemaBase } from "@kit-ui/schema"
 
-import registry from "./registry"
+import registry from "../registry"
 
 import KpEditorDialog from "./KpEditorDialog"
 

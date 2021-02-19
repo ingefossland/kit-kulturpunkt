@@ -1,9 +1,10 @@
 import React from 'react';
 import PreviewRows from "./PreviewRows";
 import person from "./data/person"
-import artifact from "./data/artifact"
+import i1 from "./data/nixons-visions"
+import i2 from "./data/the-labours"
 
-const items = [artifact,artifact,artifact,artifact,artifact]
+const items = [i1,i2,i1,i2,i1,i2]
 
 export default {
     title: 'Preview/PreviewRows',

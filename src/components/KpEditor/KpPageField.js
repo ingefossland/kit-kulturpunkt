@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
 import { useTranslation } from 'react-i18next';
 import { utils } from "@rjsf/core";
-const { getUiOptions } = utils;
+const { getUiOptions, getDefaultFormState } = utils;
 
-const PageEditorField = (props) => {
+const KpPageField = (props) => {
     const { idSchema, schema, uiSchema, formData, formContext, registry } = props;
     const { uniqueId, status, statusCode, statusMessage, title, createdAt, updatedAt, deletedAt } = formData;
     const { isLoading, isSaving, currentId, currentLocale, onExpand, onCollapse, onSelect, onLocale, onSubmit } = formContext;
@@ -119,20 +119,60 @@ const PageEditorField = (props) => {
         "ui:onToggle": () => _onToggle()
     }
 
-    const { ObjectField } = registry.fields;
+    const _onChange = (formData) => {
+        const newFormData = getDefaultFormState(schema, formData, registry.definitions);
+        props.onChange(newFormData)
+    }
 
+
+    const _onAnnotateArrayChange = (links = []) => {
+        console.log('onAnnotateArrayChange', links)
+
+        _onChange({
+            ...formData,
+            content: {
+                ...formData.content,
+                links: links
+            }
+        })
+
+    }
+
+    const _onAnnotateImageChange = (links = []) => {
+        console.log('onAnnotateImageChange', links)
+
+        _onChange({
+            ...formData,
+            content: {
+                ...formData.content,
+                links: links
+            }
+        })
+ 
+    }
+
+    const annotateImage = formData && formData.content && formData.content.backgroundImage
+    const imageAnnotations = formData && formData.content && formData.content.links
+    
     const newRegistry = {
         ...registry,
         formContext: {
-            ...formContext,
-            currentLocale: currentLocale
+            ...registry.formContext,
+            currentLocale: currentLocale,
+            annotateImage: annotateImage,
+            imageAnnotations: imageAnnotations,
+            onAnnotateArrayChange: _onAnnotateArrayChange,
+            onAnnotateImageChange: _onAnnotateImageChange,
+
         }
     }
 
+    const { ObjectField } = registry.fields;
+
     return (
-        <ObjectField {...props} registry={newRegistry} uiSchema={newUiSchema} />
+        <ObjectField {...props} registry={newRegistry} formContext={newRegistry.formContext} uiSchema={newUiSchema} />
     )
 
 }
 
-export default PageEditorField;
+export default KpPageField;

@@ -3,7 +3,6 @@ import Color from 'color';
 import model from "./KpLink.model"
 
 import KpLinkContentField from "./KpLinkContentField"
-import KpLinkLayout from "./KpLinkLayout"
 
 import { utils } from "@rjsf/core"
 const { getUiOptions, getDefaultFormState } = utils
@@ -76,7 +75,8 @@ const KpLinkField = (props) => {
         let uiSchema = {
             ...model.uiSchema,
             ...props.uiSchema,
-            "ui:layout": KpLinkLayout
+            "ui:layout": "kpLink",
+            "ui:documentType": reference && reference.documentType,
         }
     
         const uiOptions = getUiOptions(uiSchema);
@@ -147,6 +147,7 @@ const KpLinkField = (props) => {
 
         return {
             ...uiSchema,
+            "ui:layout": "kpLink",
             "ui:options": uiOptions,
             "ui:fieldset": fieldset,
             "color": {

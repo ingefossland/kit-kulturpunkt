@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { ImagePreview } from "@kit-ui/admin"
 import { makeStyles } from '@material-ui/core/styles';
-import KpLinkButtons from './KpLinkButtons';
 
+import ButtonBase from '@material-ui/core/ButtonBase';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
     root: {
@@ -18,7 +19,7 @@ const useStyles = makeStyles(theme => ({
         }
 
     },
-    buttons: {
+    buttongroup: {
         zIndex: 2,
         position: "absolute",
         top: 0,
@@ -29,10 +30,28 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         justifyContent: "center",
     },
+    button: {
+        fontFamily: "Akkurat, sans-serif",
+        fontSize: "14px",
+        fontWeight: "bold",
+        textTransform: "none",
+        letterSpacing: 0,
+        borderRadius: 1,
+        minWidth: theme.spacing(12),
+        minHeight: theme.spacing(7),
+    },
+    icon: {
+        marginRight: theme.spacing(1),
+        "& + $label": {
+            marginRight: theme.spacing(1)
+        }
+    },
     preview: {
         margin: 0
     }
 }));
+
+
 
 const KpLinkMediaLayout = (props) => {
 
@@ -40,33 +59,61 @@ const KpLinkMediaLayout = (props) => {
 
     const classes = useStyles()
 
-    const mediaButtons = [
-        {
-            icon: "remove_circle",
-            title: "Remove",
-            variant: "text",
-            size: "small",
-            onClick: () => onChange({mediaId: undefined, media: {}})
-        }
-    ]
+    const Button = ({icon, title, color="primary", variant="outlined", size="large", ...props}) => {
+        
+        return (
+            <ButtonBase className={classes.button}>
+                { icon && <Icon className={classes.icon}>{icon}</Icon>}
+                <b className={classes.label}>{title}</b>
+            </ButtonBase>
+        )
+    
+    }
 
-    const buttons = [
-        {
-            icon: "search",
-            title: "Finn media",
-            color: "inherit",
-            size: "small",
-            onClick: () => onDialog(props)
-        }
-    ]
+    const Buttongroup = ({buttons = []}) => {
 
-    const imageUrl = mediaId && media && media.imageUrl || referenceId && reference && reference.imageUrl;
+        const classes = useStyles({spacing: 1})
+    
+        if (!buttons.length) {
+            return null
+        }
+    
+        return (
+            <div className={classes.buttongroup}>
+                { buttons && buttons.map((button, index) => {
+                    return (
+                        <Button {...button} key={index} />
+                    )
+                })}
+            </div>
+        )
+        
+    }
+
+    const removeMedia = {
+        icon: "remove_circle",
+        title: "Fjern bilde",
+        onClick: () => onChange({mediaId: undefined, media: {}})
+    }
+
+    const findMedia = {
+        icon: "search",
+        title: "Finn bilde",
+        onClick: () => onDialog(props)
+    }
+
+    const replaceMedia = {
+        icon: "search",
+        title: "Endre bilde",
+        onClick: () => onDialog(props)
+    }
+
 
     if (media && media.imageUrl) {
         return (
             <div className={classes.root} data-name="media">
                 <ImagePreview className={classes.preview} imageUrl={media.imageUrl} />
-                <KpLinkButtons className={classes.buttons} buttons={mediaButtons} />
+                <Buttongroup className={classes.buttons} buttons={[removeMedia]} />
             </div>
         )
     }
@@ -75,14 +122,14 @@ const KpLinkMediaLayout = (props) => {
         return (
             <div className={classes.root} data-name="media">
                 <ImagePreview className={classes.preview} imageUrl={reference.imageUrl} />
-                <KpLinkButtons className={classes.buttons} buttons={buttons} />
+                <Buttongroup className={classes.buttons} buttons={[replaceMedia]} />
             </div>
         )
     }
 
     return (
         <div className={classes.root} data-name="media">
-            <KpLinkButtons className={classes.buttons} buttons={buttons} />
+            <Buttongroup className={classes.buttons} buttons={[findMedia]} />
         </div>
     )
 

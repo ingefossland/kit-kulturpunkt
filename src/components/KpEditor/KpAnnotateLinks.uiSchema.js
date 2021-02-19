@@ -1,22 +1,12 @@
-import KpAnnotateLinksField from "./KpAnnotateLinksField"
-import links from "./KpLinks.uiSchema"
+import itemsUi from "./KpLink.uiSchema"
 
 export default {
-    ...links,
-    "ui:field": KpAnnotateLinksField,
-    "ui:title": "Markører",
-    "ui:preview": {
-        "select": {
-            "title": "title"
-        },
-        prepare({formData = []}) {
-            return {
-                title: formData.length + " markører"
-            }
-        }
+    "ui:field": "kpAnnotateLinks",
+    "ui:options": {
+        "sortable": true
     },
     "items": {
-        ...links.items,
+        ...itemsUi,
         "ui:preview": {
             "select": {
                 "badgeContent": "badgeContent",

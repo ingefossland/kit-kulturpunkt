@@ -1,6 +1,7 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
-import PreviewTemplate from "../../preview/KioskPreview"
+import formData from "./formData"
+import PreviewTemplate from "./PreviewTemplate"
 
 export default {
     id: 1,
@@ -8,6 +9,7 @@ export default {
     name: 'pageTimeline',
     schema: schema,
     uiSchema: uiSchema,
+    formData: formData,
     preview: {
         template: PreviewTemplate
     }

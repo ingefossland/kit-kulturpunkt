@@ -26,6 +26,9 @@ import ModuleSelect from "./ModuleSelect"
 import ModulePrefix from "./ModulePrefix";
 import ModuleActionbar from "./ModuleActionbar";
 
+import ModuleToolbar from "./ModuleToolbar"
+import ModuleSettings from "./ModuleSettings"
+
 import ModuleLayout from "./ModuleLayout";
 
 import CollapsedModule from "./CollapsedModule";
@@ -56,6 +59,10 @@ export {
     ModuleStatus,
     ModuleSelect,
     ModulePrefix,
+
+    ModuleToolbar,
+    ModuleSettings,
+    
     ModuleActionbar,
     ModuleLayout,
 

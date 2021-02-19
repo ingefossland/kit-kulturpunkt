@@ -15,20 +15,8 @@ import PageAnnotate from "./PageAnnotate"
 import PageMap from "./PageMap"
 import PageParent from "./PageParent"
 
-import KioskApp from "./KioskApp"
-import KioskMenu from "./KioskMenu"
-
-import KpApp from "./KpApp"
-import KpMenu from "./KpMenu"
-
 
 export {
-
-    KioskApp,
-    KioskMenu,
-    KpApp,
-    KpMenu,
-
     Article,
     Device,
     DeviceMac,
@@ -45,12 +33,6 @@ export {
 }
 
 export default {
-    "kpApp": <KpApp />,
-    "kpMenu": <KpMenu />,
-
-    "kioskApp": <KioskApp />,
-    "kioskMenu": <KioskMenu />,
-
     "article": <Article />,
 
     "pageHome": <PageHome />,

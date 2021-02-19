@@ -68,7 +68,8 @@ const useStyles = makeStyles(theme => ({
         flexGrow: 1,
         display: "flex",
         flexDirection: "column",
-        position: "relative"
+        position: "relative",
+        height: "100%"
     },
     navAction: {
         position: "relative",
@@ -121,6 +122,14 @@ const AppLayout = ({
 
     const classes = useStyles({header, sidebar})
 
+    return (
+        <AppBase theme={theme} className={classes.app}>
+            <AppHeader {...header} icons={icons} className={classes.header} />
+            <AppBody className={classes.body}>
+                {children}
+            </AppBody>
+        </AppBase>
+    )    
     return (
         <AppBase theme={theme} className={classes.app}>
             <AppHeader {...header} icons={icons} className={classes.header} />

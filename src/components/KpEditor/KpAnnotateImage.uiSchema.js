@@ -1,4 +1,4 @@
-import KpAnnotateImageField from "./KpAnnotateImageField"
+//import KpAnnotateImageField from "./KpAnnotateImageField"
 
 export default {
     "ui:fieldset": [
@@ -8,7 +8,7 @@ export default {
         "imageFilters"
     ],
     "imageAnnotations": {
-        "ui:field": KpAnnotateImageField,
+//        "ui:field": KpAnnotateImageField,
         "ui:title": "Markeringer",
     },
     "ui:minHeight": 512,

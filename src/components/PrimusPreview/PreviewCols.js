@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react"
 import PreviewTemplate from "./PreviewTemplate"
+import PreviewScroller from "./PreviewScroller"
 
 import { makeStyles } from '@material-ui/core/styles';
 
@@ -18,6 +19,8 @@ const useStyles = makeStyles(theme => ({
         overflow: "hidden",
         transition: ".125s ease-out",
 
+        position: "relative",
+
         "&:hover": {
             flexBasis: 96 * 2
         },
@@ -35,34 +38,49 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const PreviewCols = ({items = [], itemsById = {}, onSelect, ...props}) => {
+const PreviewCols = ({items = [], template = PreviewTemplate, onSelect}) => {
 
     const [cols, setCols] = useState(items)
     const [colIndex, setColIndex] = useState(items.length && items.length-1)
 
+    useEffect(() => {
+        console.log('items', items)
+        setCols(items)
+        setColIndex(items.length && items.length-1)
+    }, [items])
+
     const _onColIndex = (index) => {
         setColIndex(index)
+        onSelect && onSelect({
+            colIndex: index,
+            item: items[index]
+        })
     }
 
-    const _onExpandCol = (parents, child) => {
+    const _onSelectChild = (parents, item) => {
 
         const cols = [
             ...parents,
-            child
+            item
         ]
-
-        setCols([
-            ...parents,
-            child
-        ])
 
         setColIndex(cols.length-1)
 
-        onSelect && onSelect(child)
+        setCols([
+            ...parents,
+            item
+        ])
+
+        console.log('cols', cols)
+
+
+        onSelect && onSelect({parents, item})
 
     }
 
     const classes = useStyles()
+
+    const Template = template
 
     const PreviewCol = ({item, index}) => {
 
@@ -71,7 +89,18 @@ const PreviewCols = ({items = [], itemsById = {}, onSelect, ...props}) => {
 
         return (
             <div className={classes.col} aria-expanded={expanded} onClick={() => _onColIndex(index)}>
-                <PreviewTemplate {...item} expanded={expanded} onSelect={(child) => _onExpandCol(parents, child)} />
+                <PreviewScroller>
+                    <Template {...item} expanded={expanded} onSelect={(child) => _onSelectChild(parents, child)} />
+                </PreviewScroller>
+            </div>            
+        )
+
+        if (expanded) {
+        }
+
+        return (
+            <div className={classes.col} aria-expanded={expanded} onClick={() => _onColIndex(index)}>
+                <Template {...item} expanded={expanded} onSelect={(child) => _onSelectChild(parents, child)} />
             </div>            
         )
     }

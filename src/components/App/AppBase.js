@@ -13,6 +13,10 @@ const useStyles = makeStyles(theme => ({
         left: 0,
         bottom: 0,
         overflow: "hidden",
+
+        display: "flex",
+        flexDirection: "column",
+
     },
 }));
 

@@ -1,12 +1,12 @@
-import mediaSchemas from "./media"
-
-import kpCollection from './kpCollection';
+//import mediaSchemas from "./media"
+//import kpCollection from './kpCollection';
 
 import article from './article';
 
+import page from './page';
 import pageHome from './pageHome';
-import pageMap from './pageMap';
 import pageTopic from './pageTopic';
+import pageMap from './pageMap';
 
 import pageGrid from './pageGrid';
 import pageList from './pageList';
@@ -17,9 +17,8 @@ import pageMedia from './pageMedia';
 import device from './device';
 
 export default [
-    ...mediaSchemas,
-    kpCollection,
     article,
+    page,
     pageHome,
     pageMap,
     pageTopic,

@@ -9,13 +9,14 @@ const useStyles = makeStyles(theme => ({
     header: {
         width: "100%",
         display: "flex",
+        marginBottom: "1em"
     },
     icon: {
         marginRight: theme.spacing(1)
     },
     title: {
         fontFamily: "Akkurat, sans-serif",
-        fontSize: 27,
+        fontSize: "1.5em",
         lineHeight: 1.25,
         fontWeight: "bold",
     },

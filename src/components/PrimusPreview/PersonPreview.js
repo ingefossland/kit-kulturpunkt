@@ -26,11 +26,12 @@ const PersonPreview = ({
     birthDate,
     birthPlace,
     deathDate,
-    deathPlace
+    deathPlace,
+    ...props
 }) => {
 
-    const names = name.split(',')
-    const title = names.reverse().join(" ")
+    const names = name && name.split(',')
+    const title = names && names.reverse().join(" ")
 
     let metadata = []
 
@@ -86,6 +87,8 @@ const PersonPreview = ({
             </ArticleSection>
 
             <ArticleTypography>{biography}</ArticleTypography>
+
+            {JSON.stringify(props)}
 
         </ArticleBase>
     )

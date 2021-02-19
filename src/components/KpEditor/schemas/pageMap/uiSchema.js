@@ -1,27 +1,33 @@
-import uiPreview from "./uiPreview"
-import settings from "../page/settings/uiSchema"
-import header from "./header/uiSchema"
-import body from "./body/uiSchema"
+import uiSchema from "../page/uiSchema"
+import itemsUi from "./itemsUi"
 
 export default {
-    "ui:field": "pageEditor",
-    "ui:preview": uiPreview,
-    "ui:options": {
-        "collapsible": true
-    },
-    "ui:fieldset": [
-        "content",
-        "settings"
-    ],
+    ...uiSchema,
     "content": {
-        "ui:field": "kpPage",
-        "ui:layout": "pageContent",
+        ...uiSchema.content,
         "ui:fieldset": [
             "header",
             "body"
         ],
-        "header": header,
-        "body": body
-    },
-    "settings": settings
+        "body": {
+            ...uiSchema.content.body,
+            "ui:preview": {
+                "select": {
+                    "title": "title"
+                },
+                prepare({formData: {links = []}}) {
+                    return {
+                        title: links.length + " markører"
+                    }
+                }
+            },
+            "links": {
+                ...uiSchema.content.body.links,
+                "items": itemsUi
+            },
+            "ui:settings": [
+                "mapLayout",
+            ]
+        }
+    }
 }

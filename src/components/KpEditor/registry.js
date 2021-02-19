@@ -1,40 +1,32 @@
-import kpDevide from "./KpDevice/registry"
+import KpDeviceField from "./KpDeviceField"
+import KpDeviceLinkField from "./KpDeviceLinkField"
+
 import kpLocation from "./KpLocation/registry"
 
-import documentEditor from "../DocumentEditor/registry"
-import referenceEditor from "../ReferenceEditor/registry"
-import collectionEditor from "../CollectionEditor/registry"
-import pageEditor from "../PageEditor/registry"
-import themeEditor from "../ThemeEditor/registry"
+import KpPageField from "./KpPageField"
+import KpLinkField from "./KpLinkField"
+import KpLinkLayout from "./KpLinkLayout"
+import KpLinkModel from "./KpLink.model"
 
-import localizedString from "../LocalizedString/registry"
+import KpAnnotateImageField from "./KpAnnotateImageField"
+import KpAnnotateLinksField from "./KpAnnotateLinksField"
 
 export default {
     "fields": {
-//        "kpLink": KpLinkField,
-//        ...kpPage.fields,
-//        ...kpLink.fields,
-        ...kpDevide.fields,
+        "kpPage": KpPageField,
+        "kpLink": KpLinkField,
+        "kpLinkLayout": KpLinkLayout,
+        "kpAnnotateImage": KpAnnotateImageField,
+        "kpAnnotateLinks": KpAnnotateLinksField,
+
+        "kpDevice": KpDeviceField,
+        "kpDeviceLink": KpDeviceLinkField,
+
         ...kpLocation.fields,
-        ...documentEditor.fields,
-        ...referenceEditor.fields,
-        ...collectionEditor.fields,
-        ...pageEditor.fields,
-        ...themeEditor.fields,
-        ...localizedString.fields
     },
     "widgets": {
-        ...documentEditor.widgets,
-        ...referenceEditor.widgets,
-        ...collectionEditor.widgets,
-        ...pageEditor.widgets,
-        ...themeEditor.widgets
     },
     "models": {
-        ...documentEditor.models,
-        ...referenceEditor.models,
-        ...collectionEditor.models,
-        ...pageEditor.models,
-        ...themeEditor.models
+        "kpLink": KpLinkModel,
     }
 }

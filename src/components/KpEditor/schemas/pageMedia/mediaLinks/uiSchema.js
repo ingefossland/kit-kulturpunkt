@@ -1,4 +1,4 @@
-import links from "../../page/links/uiSchema"
+import links from "../../pageX/links/uiSchema"
 
 export default {
     ...links,

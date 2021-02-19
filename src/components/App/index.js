@@ -5,6 +5,7 @@ import AppContent from "./AppContent"
 import AppHeader from "./AppHeader"
 import AppSearch from "./AppSearch"
 import AppSubview from "./AppSubview"
+import AppInfo from "./AppInfo"
 
 import AppLayout from './AppLayout';
 
@@ -16,5 +17,6 @@ export {
     AppSubview,
     AppSidebar,
     AppContent,
-    AppLayout
+    AppLayout,
+    AppInfo
 }

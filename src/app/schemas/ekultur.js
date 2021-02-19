@@ -1,0 +1,9 @@
+{
+    uiSchema: {
+        "ui:preview": {
+            "select": {
+                
+            }
+        }
+    }
+}

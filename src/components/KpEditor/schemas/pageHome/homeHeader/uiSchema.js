@@ -1,4 +1,4 @@
-import uiSchema from "../../page/pageHeader/uiSchema"
+import uiSchema from "../../pageX/pageHeader/uiSchema"
 export default {
     ...uiSchema,
     "ui:fieldset": [

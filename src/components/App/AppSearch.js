@@ -274,8 +274,8 @@ const AppSearch = ({
 
         // keep query options
 
-        const scopeOptions = autocompleteProps.options.filter(option => option.query)
-        const suggestOptions = autocompleteProps.options.filter(option => !option.query)
+        const scopeOptions = autocompleteProps.options && autocompleteProps.options.filter(option => option.query)
+        const suggestOptions = autocompleteProps.options && autocompleteProps.options.filter(option => !option.query)
 
         const _filterOptions = (options, state) => {
             const { inputValue, selected } = state
@@ -442,6 +442,7 @@ const AppSearch = ({
                 id={id}
                 className={fieldClassName}
                 expanded={expanded}
+                placeholder={placeholder}
                 inputRef={inputRef}
                 inputClassName={inputClassName}
                 onFocus={_onFocus}

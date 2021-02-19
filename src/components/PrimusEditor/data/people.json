@@ -1,0 +1,783 @@
+[
+    {
+        "uuid": "6d30ac2d-039b-420b-a7f0-dea0738e5098",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "c6efd155-8433-4c58-adc9-72db80c6ce50_SHARED",
+        "createdAt": "Nov 18, 2015 10:39:02 AM",
+        "createdBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "updatedAt": "Feb 12, 2016 9:10:58 AM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch Andersen, Hans"
+        },
+        "caption": {
+            "sv": "Munch Andersen, Hans (1943 - )"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1943,
+        "dataset": {
+            "uuid": "c6efd155-8433-4c58-adc9-72db80c6ce50",
+            "displayValue": {
+                "sv": "Konstnärslistan (Nationalmuseum)"
+            }
+        }
+    },
+    {
+        "uuid": "06fc3e33-618e-4f81-8062-4ce9e66b76b7",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "c6efd155-8433-4c58-adc9-72db80c6ce50_SHARED",
+        "createdAt": "Nov 18, 2015 10:39:02 AM",
+        "createdBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "updatedAt": "Feb 12, 2016 9:10:58 AM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch-Petersen, Lisbet"
+        },
+        "caption": {
+            "sv": "Munch-Petersen, Lisbet (1909 - )"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1909,
+        "dataset": {
+            "uuid": "c6efd155-8433-4c58-adc9-72db80c6ce50",
+            "displayValue": {
+                "sv": "Konstnärslistan (Nationalmuseum)"
+            }
+        }
+    },
+    {
+        "uuid": "e9a06dd1-7116-4413-9150-15561765366b",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "c6efd155-8433-4c58-adc9-72db80c6ce50_SHARED",
+        "createdAt": "Nov 18, 2015 10:40:22 AM",
+        "createdBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "updatedAt": "Feb 12, 2016 9:10:58 AM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch-Petersen, Ursula"
+        },
+        "caption": {
+            "sv": "Munch-Petersen, Ursula (1937 - )"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1937,
+        "dataset": {
+            "uuid": "c6efd155-8433-4c58-adc9-72db80c6ce50",
+            "displayValue": {
+                "sv": "Konstnärslistan (Nationalmuseum)"
+            }
+        }
+    },
+    {
+        "uuid": "ad346dd5-46b0-464c-837f-1e4cd8030661",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "cb53fe8d-a166-4530-9d5b-e97428f68f80_SHARED",
+        "createdAt": "Sep 1, 2019 5:55:41 PM",
+        "createdBy": "e1540cf7-fc38-452d-a45f-a7eb2b436a03",
+        "updatedAt": "Oct 31, 2020 1:08:42 PM",
+        "updatedBy": "e1540cf7-fc38-452d-a45f-a7eb2b436a03",
+        "name": {
+            "no": "Munch-Søegaard, Peter"
+        },
+        "caption": {
+            "no": "Munch-Søegaard, Peter (1866 - 1923)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "04926abb-dda6-4239-9985-584af97ac543",
+                "displayValue": {
+                    "no": "Lege",
+                    "sv": "Läkare",
+                    "fi": "Lääkäri",
+                    "en": "Physician"
+                }
+            }
+        ],
+        "begin": 1866,
+        "end": 1923,
+        "dataset": {
+            "uuid": "cb53fe8d-a166-4530-9d5b-e97428f68f80",
+            "displayValue": {
+                "no": "Afrikaregisteret (Norsk Maritimt Museum)"
+            }
+        }
+    },
+    {
+        "uuid": "87e82f6c-21f5-433b-9958-29902fbc39b4",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "508197af-6e36-4e4f-927c-79f8f63654b2_SHARED",
+        "createdAt": "Oct 2, 2018 12:56:01 PM",
+        "createdBy": "dd5fb8ca-f314-4dbe-ae24-12a23bf57195",
+        "updatedAt": "Oct 21, 2020 7:32:34 AM",
+        "updatedBy": "01bf15d3-68a7-439a-8ced-8d2cd7c17baf",
+        "name": {
+            "no": "Munch, Aksel"
+        },
+        "caption": {
+            "no": "Munch, Aksel (1872 - 1910)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "d21f2818-5a80-45b0-9268-0fcb133417a0",
+                "displayValue": {
+                    "no": "Fotograf",
+                    "sv": "Fotograf",
+                    "fi": "Valokuvaaja",
+                    "en": "Photographer",
+                    "nl": "fotograaf",
+                    "es": "fotógrafo",
+                    "et": "Fotograaf"
+                }
+            }
+        ],
+        "begin": 1872,
+        "end": 1910,
+        "dataset": {
+            "uuid": "508197af-6e36-4e4f-927c-79f8f63654b2",
+            "displayValue": {
+                "no": "Fotografregisteret (Norge) (Preus museum)"
+            }
+        }
+    },
+    {
+        "uuid": "fad5b908-b64d-4feb-ac06-c175ea1f5128",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 1:14:01 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:49:39 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch, Edvard",
+            "no": "Munch, Edvard"
+        },
+        "caption": {
+            "no": "Munch, Edvard (1863 - 1944)",
+            "sv": "Munch, Edvard (1863 - 1944)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1863,
+        "end": 1944,
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    },
+    {
+        "uuid": "78cdd12a-c33f-4b07-91f9-6a04f14a6140",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "508197af-6e36-4e4f-927c-79f8f63654b2_SHARED",
+        "createdAt": "Apr 17, 2015 8:40:17 AM",
+        "createdBy": "6a07513b-ea00-4905-a0e5-5a4146647b3e",
+        "updatedAt": "Nov 10, 2020 7:22:07 AM",
+        "updatedBy": "01bf15d3-68a7-439a-8ced-8d2cd7c17baf",
+        "name": {
+            "no": "Munch, Edvard"
+        },
+        "caption": {
+            "no": "Munch, Edvard (1863 - 1944)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "d21f2818-5a80-45b0-9268-0fcb133417a0",
+                "displayValue": {
+                    "no": "Fotograf",
+                    "sv": "Fotograf",
+                    "fi": "Valokuvaaja",
+                    "en": "Photographer",
+                    "nl": "fotograaf",
+                    "es": "fotógrafo",
+                    "et": "Fotograaf"
+                }
+            },
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1863,
+        "end": 1944,
+        "dataset": {
+            "uuid": "508197af-6e36-4e4f-927c-79f8f63654b2",
+            "displayValue": {
+                "no": "Fotografregisteret (Norge) (Preus museum)"
+            }
+        }
+    },
+    {
+        "uuid": "e0e7f4e2-931b-42f0-a4e3-51352a204d7d",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 2:05:49 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:54:47 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch, Eggert",
+            "no": "Munch, Eggert"
+        },
+        "caption": {
+            "no": "Munch, Eggert ( - 1764)",
+            "sv": "Munch, Eggert ( - 1764)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "end": 1764,
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    },
+    {
+        "uuid": "f78c469a-b65b-4884-95fa-84288e04f74e",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 2:07:41 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:50:40 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch, Henning Sigvardssøn",
+            "no": "Munch, Henning Sigvardssøn"
+        },
+        "caption": {
+            "no": "Munch, Henning Sigvardssøn",
+            "sv": "Munch, Henning Sigvardssøn"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    },
+    {
+        "uuid": "8d551dd9-7ab3-4344-9c5e-10e139dcd094",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "508197af-6e36-4e4f-927c-79f8f63654b2_SHARED",
+        "createdAt": "Apr 17, 2015 8:38:03 AM",
+        "createdBy": "6a07513b-ea00-4905-a0e5-5a4146647b3e",
+        "updatedAt": "Jan 24, 2017 12:58:13 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "no": "Munch, Inger Marie"
+        },
+        "caption": {
+            "no": "Munch, Inger Marie (1868 - 1952)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "d21f2818-5a80-45b0-9268-0fcb133417a0",
+                "displayValue": {
+                    "no": "Fotograf",
+                    "sv": "Fotograf",
+                    "fi": "Valokuvaaja",
+                    "en": "Photographer",
+                    "nl": "fotograaf",
+                    "es": "fotógrafo",
+                    "et": "Fotograaf"
+                }
+            }
+        ],
+        "begin": 1868,
+        "end": 1952,
+        "dataset": {
+            "uuid": "508197af-6e36-4e4f-927c-79f8f63654b2",
+            "displayValue": {
+                "no": "Fotografregisteret (Norge) (Preus museum)"
+            }
+        }
+    },
+    {
+        "uuid": "b96f735b-a8d9-4e47-87e6-f5f5c92de2d2",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 2:04:45 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:52:26 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch, Jacob",
+            "no": "Munch, Jacob"
+        },
+        "caption": {
+            "no": "Munch, Jacob ( - 1839)",
+            "sv": "Munch, Jacob ( - 1839)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "end": 1839,
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    },
+    {
+        "uuid": "3803fdc0-6407-4783-9153-de4c9c504b2f",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 2:06:23 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:54:26 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Munch, Johan Storm",
+            "no": "Munch, Johan Storm"
+        },
+        "caption": {
+            "no": "Munch, Johan Storm (1862 - 1947)",
+            "sv": "Munch, Johan Storm (1862 - 1947)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1862,
+        "end": 1947,
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    },
+    {
+        "uuid": "5303bb67-a445-4a0d-92f0-8537d1b79209",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "cb53fe8d-a166-4530-9d5b-e97428f68f80_SHARED",
+        "createdAt": "Sep 20, 2019 8:16:15 AM",
+        "createdBy": "e1540cf7-fc38-452d-a45f-a7eb2b436a03",
+        "updatedAt": "Nov 1, 2020 10:53:26 AM",
+        "updatedBy": "e1540cf7-fc38-452d-a45f-a7eb2b436a03",
+        "name": {
+            "no": "Naur, Edvard Munch"
+        },
+        "caption": {
+            "no": "Naur, Edvard Munch (1876 - 1914)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "6eeb44d4-91bd-46be-abf9-d4d7608dceb3",
+                "displayValue": {
+                    "no": "Jurist",
+                    "sv": "Jurist",
+                    "fi": "Juristi",
+                    "en": "Lawyer",
+                    "et": "Jurist"
+                }
+            }
+        ],
+        "begin": 1876,
+        "end": 1914,
+        "dataset": {
+            "uuid": "cb53fe8d-a166-4530-9d5b-e97428f68f80",
+            "displayValue": {
+                "no": "Afrikaregisteret (Norsk Maritimt Museum)"
+            }
+        }
+    },
+    {
+        "uuid": "25cd28af-1796-4373-a79b-3a9edbf79731",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "4c1319c2-a30a-43e7-a3d5-05038935dcfb_SHARED",
+        "createdAt": "Jun 11, 2013 4:13:12 PM",
+        "createdBy": "root",
+        "updatedAt": "Jan 19, 2016 2:31:04 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Peter Andreas Munch"
+        },
+        "caption": {
+            "sv": "Peter Andreas Munch (1810 - 1863)"
+        },
+        "status": {
+            "uuid": "853a2d86-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Arkivert",
+                "sv": "Arkiverad",
+                "en": "Deprecated",
+                "et": "Arhiveeritud"
+            }
+        },
+        "specificType": [],
+        "begin": 1810,
+        "end": 1863,
+        "dataset": {
+            "uuid": "4c1319c2-a30a-43e7-a3d5-05038935dcfb",
+            "displayValue": {
+                "sv": "Personer från LSH (Livrustkammaren, Skokloster, Hallwylska) (Externa data)"
+            }
+        }
+    },
+    {
+        "uuid": "9b6252a3-e2c9-466f-8c5f-ae5bcdc61d3c",
+        "entityType": "Person",
+        "entityTypeHierarchy": [
+            "Person",
+            "Agent",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "6ac4876c-d570-4207-be9b-12690275d182_SHARED",
+        "createdAt": "Aug 17, 2016 1:38:04 PM",
+        "createdBy": "root",
+        "updatedAt": "Oct 13, 2017 2:55:06 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "sv": "Siebke, Signe Munch",
+            "no": "Siebke, Signe Munch"
+        },
+        "caption": {
+            "no": "Siebke, Signe Munch (1884 - 1945)",
+            "sv": "Siebke, Signe Munch (1884 - 1945)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "da7f057a-9ed6-4e92-b501-7aab7d8465cc",
+                "displayValue": {
+                    "nn": "Kunstnar",
+                    "no": "Kunstner",
+                    "sv": "Konstnär",
+                    "fi": "Taiteilija",
+                    "en": "Artist",
+                    "et": "Kunstnik"
+                }
+            }
+        ],
+        "begin": 1884,
+        "end": 1945,
+        "dataset": {
+            "uuid": "6ac4876c-d570-4207-be9b-12690275d182",
+            "displayValue": {
+                "no": "Norsk kunstnerleksikon (Nasjonalmuseet) (Eksterne data)",
+                "sv": "Konstnärer, Norskt konstnärslexikon (Nasjonalmuseet, Oslo) (Externa data)",
+                "en": "Artists, Norsk kunstnersleksikon (Nasjonalmuseet, Oslo) (External data)"
+            }
+        }
+    }
+]

@@ -15,7 +15,15 @@ const PrimusFinder = ({app = {}, results = {}}) => {
     const [items, setItems] = useState([])
     const [query, setQuery] = useState({})
 
-    const _onFilter = ({name, value, ...props}) => {
+    const [parents, setParents] = useState(undefined)
+
+    const _onFilter = ({name, value, title, ...props}) => {
+
+        title && setParents([
+            {
+                title: title
+            }
+        ])
 
         console.log(props)
 
@@ -272,6 +280,7 @@ const PrimusFinder = ({app = {}, results = {}}) => {
 
     const section = {
         ...results,
+        parents: parents,
         viewOptions: viewOptions,
         view: view,
         onViewChange: _onViewChange,

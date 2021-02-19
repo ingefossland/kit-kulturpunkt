@@ -5,7 +5,7 @@ import NavActionButton from "./NavActionButton"
 import NavActionDropdown from "./NavActionDropdown"
 import NavActionMenu from "./NavActionMenu"
 
-const NavActionItem = ({icons = {}, menuByUrl = {}, onSelect, ...props}) => {
+const NavActionItem = ({variant = "contained", icons = {}, menuByUrl = {}, onSelect, ...props}) => {
 
     const [expanded, setExpanded] = useState(false);
     const anchorRef = useRef(null);
@@ -27,7 +27,7 @@ const NavActionItem = ({icons = {}, menuByUrl = {}, onSelect, ...props}) => {
 
         return (
             <>
-                <NavActionButton {...props} onClick={() => _onSelect(props)} forwardedRef={anchorRef} onToggle={_onToggle} />
+                <NavActionButton {...props} variant={variant} onClick={() => _onSelect(props)} forwardedRef={anchorRef} onToggle={_onToggle} />
                 <NavActionDropdown open={expanded} anchorEl={anchorRef.current} onClickAway={_onToggle}>
                     <NavActionMenu icons={icons} menu={children} menuByUrl={menuByUrl} onSelect={_onSelect} />
                 </NavActionDropdown>
@@ -42,7 +42,7 @@ const NavActionItem = ({icons = {}, menuByUrl = {}, onSelect, ...props}) => {
 
         return (
             <>
-                <NavActionButton {...props} expanded={expanded} forwardedRef={anchorRef} onToggle={_onToggle} />
+                <NavActionButton {...props} variant={variant} expanded={expanded} forwardedRef={anchorRef} onToggle={_onToggle} />
                 <NavActionDropdown open={expanded} anchorEl={anchorRef.current} onClickAway={_onToggle}>
                     <NavActionMenu icons={icons} menu={children} menuByUrl={menuByUrl} onSelect={_onSelect} />
                 </NavActionDropdown>
@@ -54,7 +54,7 @@ const NavActionItem = ({icons = {}, menuByUrl = {}, onSelect, ...props}) => {
     // single
 
     return (
-        <NavActionButton {...props} onClick={() => _onSelect(props)} />
+        <NavActionButton {...props} variant={variant} onClick={() => _onSelect(props)} />
     )
 
     return null

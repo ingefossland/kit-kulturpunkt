@@ -1,9 +1,10 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
 import qs from 'query-string';
-
 import EXIF from 'exif-js';
 import * as mm from 'music-metadata-browser';
+
+import { receiveModel, receiveModelProps } from "../modelsById/"
 
 const uploadByUrlSlice = createSlice({
     name: 'upload',
@@ -11,11 +12,11 @@ const uploadByUrlSlice = createSlice({
     }, 
     reducers: {
         requestUpload(state, action) {
-            const { id, requested } = action.payload
+            const { url, requested } = action.payload
 
             return {
                 ...state,
-                [id]: {
+                [url]: {
 //                    acceptedFiles: acceptedFiles,
 //                    rejectedFiles: rejectedFiles,
                     requested: requested,
@@ -26,65 +27,65 @@ const uploadByUrlSlice = createSlice({
             }
         },
         receiveUpload(state, action) {
-            const { id, results } = action.payload
+            const { url, results } = action.payload
 
             return state
         },
         requestUploadModel(state, action) {
-            const { id, model } = action.payload
+            const { url, model } = action.payload
 
             return {
                 ...state,
-                [id]: {
-                    ...state[id],
+                [url]: {
+                    ...state[url],
 //                    received: state[id].received + 1,
                 }
             }
             
         },
         receiveUploadModel(state, action) {
-            const { id, data } = action.payload
+            const { url, model } = action.payload
 
             return {
                 ...state,
-                [id]: {
-                    ...state[id],
-                    count: state[id].count + 1,
+                [url]: {
+                    ...state[url],
+                    count: state[url].count + 1,
                     resultsLoaded: [
-                        ...state[id].resultsLoaded,
-                        data
+                        ...state[url].resultsLoaded,
+                        model
                     ]
                 }
             }
         },
         receiveUploadProgress(state, action) {
-            const { id, progress } = action.payload
+            const { url, progress } = action.payload
 
             return state
             
         },
         receiveUploadStatus(state, action) {
-            const { id, status } = action.payload
+            const { url, status } = action.payload
 
             return state
         }
     }
 })
 
-export const getUpload = ({id, acceptedFiles = [], uploadData = { status: "upload" }}) => dispatch => {
+export const getUpload = ({url, acceptedFiles = [], uploadData = { status: "upload" }}) => dispatch => {
 
     const requested = acceptedFiles.length || 0
 
-    dispatch(requestUpload({id, requested}))
+    dispatch(requestUpload({url, requested}))
 
     acceptedFiles && acceptedFiles.map((file, index) => {
 //      dispatch(requestUploadModel({id}))
-        dispatch(getUploadUrl({id, file, uploadData}))
+        dispatch(getUploadUrl({url, file, uploadData}))
     })
 
 }
 
-export const getUploadUrl = ({id, file, uploadData = {}}) => dispatch => {
+export const getUploadUrl = ({url, file, uploadData = {}}) => dispatch => {
 
     console.log('getUploadMetadata', file)
 
@@ -105,23 +106,23 @@ export const getUploadUrl = ({id, file, uploadData = {}}) => dispatch => {
 
     // where to upload?
 
-    let url = API + '/admin/api/media/upload';
+    let apiUrl = API + '/admin/api/media/upload';
   
     if (type.startsWith('image/')) {
-        url = url + '/image'
+        apiUrl = apiUrl + '/image'
     } else if (type.startsWith('video/')) {
-        url = url + '/video'
+        apiUrl = apiUrl + '/video'
     } else if (type.startsWith('audio/')) {
-        url = url + '/audio'
+        apiUrl = apiUrl + '/audio'
     } else {
-        url = url + '/misc'
+        apiUrl = apiUrl + '/misc'
     }
 
-    console.log('url', url);
+    console.log('apiUrl', apiUrl);
 
     const payload = JSON.stringify(uploadData);
 
-    fetch(url, {
+    fetch(apiUrl, {
         method: "POST",
         headers: {
             "Accept": "application/json",
@@ -133,21 +134,22 @@ export const getUploadUrl = ({id, file, uploadData = {}}) => dispatch => {
         response => response.json(),
         error => console.log('An error occurred.', error)
     )
-    .then(data => dispatch(getUploadData({id, file, data})))        
+    .then(model => dispatch(getUploadData({url, file, model})))        
 
 }
 
 
 
-export const getUploadData = ({id, file, data}) => dispatch => {
+export const getUploadData = ({url, file, model}) => dispatch => {
 
     // uniqueId + uploadUrl
 
-    const { uniqueId, uploadUrl } = data;
+    const { uniqueId, uploadUrl } = model;
 
-    dispatch(receiveUploadModel({id, data}))
+    dispatch(receiveUploadModel({url, model}))
+    dispatch(receiveModel(model))
 
-    const handleStatus = (uniqueId, event) => {
+    const _onStatus = (event) => {
         let uploadProgress;
 
         if (event && event.lengthComputable) {
@@ -156,9 +158,9 @@ export const getUploadData = ({id, file, data}) => dispatch => {
             uploadProgress = 100
         }
     
-        let url = API + '/admin/api/media/upload/status/' + uniqueId
+        const apiUrl = API + '/admin/api/media/upload/status/' + uniqueId
     
-        fetch(url, {
+        fetch(apiUrl, {
             method: "GET",
             headers: {
                 "Accept": "application/json",
@@ -168,8 +170,8 @@ export const getUploadData = ({id, file, data}) => dispatch => {
             response => response.json(),
             error => console.log('An error occurred.', error)
         )
-        .then(data => {
-            dispatch(receiveUploadStatus(uniqueId, data))
+        .then(model => {
+            dispatch(receiveUploadStatus({uniqueId, model}))
         })
 
     }
@@ -183,9 +185,9 @@ export const getUploadData = ({id, file, data}) => dispatch => {
             uploadProgress = 100
         }
 
-        console.log("PROGRESS", uploadProgress)
-    
-//        dispatch(receiveUploadProgress(uniqueId, uploadProgress))
+        dispatch(receiveModelProps({uniqueId, uploadProgress}))
+
+//        dispatch(receiveUploadProgress({uniqueId, uploadProgress}))
     
     }
 

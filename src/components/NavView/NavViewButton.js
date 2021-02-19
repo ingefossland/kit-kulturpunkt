@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const NavViewButton = ({title, value, icon, selected, children, onClick, onSelect}) => {
+const NavViewButton = ({title, label, value, icon, selected, children, onClick, onSelect}) => {
 
     const classes = useStyles()
 
@@ -69,7 +69,7 @@ const NavViewButton = ({title, value, icon, selected, children, onClick, onSelec
             <>
             <ButtonBase className={classes.button} aria-selected={selected} onClick={_onToggle} ref={anchorRef}>
                 { icon && <Icon className={classes.icon}>{icon}</Icon> }
-                <div className={classes.label}>{title}</div>
+                <div className={classes.label}>{title || label}</div>
                 <DropDownIcon className={classes.arrow} />
             </ButtonBase>
             <NavActionDropdown placement="bottom-end" open={expanded} anchorEl={anchorRef.current} onClickAway={_onToggle}>

@@ -17,6 +17,17 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: theme.spacing(8),
         overflow: "hidden",
+
+        marginTop: theme.spacing(-8),
+
+        "&[aria-expanded=true]":  {
+            marginTop: 0,
+            
+            "& + *": {
+//                marginTop: theme.spacing(8),
+            }
+        },
+
     },
     section: {
         position: "relative",
@@ -107,7 +118,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const AppHeader = ({className, icons, expanded = true, elevation = 2, color = "primary", title, subtitle, sidebar, search, subview, children }) => {
+const AppHeader = ({className, position = "relative", icons, expanded = true, elevation = 2, color = "primary", title, subtitle, sidebar, search, subview, children }) => {
 
     const classes = useStyles({color, search})
 
@@ -132,7 +143,7 @@ const AppHeader = ({className, icons, expanded = true, elevation = 2, color = "p
     const growingSearch = search && search.variant === "growing"
 
     return (
-        <AppBar position="absolute" className={className || classes.header} component="header" aria-expanded={expanded} elevation={expanded && elevation}>
+        <AppBar position={position} className={className || classes.header} component="header" aria-expanded={expanded} elevation={expanded && elevation}>
             { subview && <AppSubview {...subview} className={classes.subview} expanded={subview && subview.expanded} /> }
             <section className={classes.section} aria-expanded={search && search.expanded && false || true}>
                 { collapsibleSidebar && <ButtonSidebar onClick={sidebar && sidebar.onToggle} /> }

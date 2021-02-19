@@ -13,6 +13,7 @@ const useStyles = makeStyles(theme => ({
         overflowY: "scroll"
     },
     row: {
+        position: "relative",
         flexShrink: 0,
         flexGrow: 0,
         flexBasis: 36,
@@ -21,32 +22,62 @@ const useStyles = makeStyles(theme => ({
         transition: ".125s ease-out",
 
         "&:hover": {
-            flexBasis: 96
+            flexBasis: 96,
+
+            "& > $header": {
+                display: "none"
+            }
+
         },
 
         "&[aria-expanded=true]": {
             flexGrow: 1,
             flexBasis: "auto",
         },
-
     },
+    header: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: "auto",
+        left: 0,
+        padding: theme.spacing(1, 2),
+        fontFamily: "Akkurat, sans-serif",
+        fontSize: 14,
+        lineHeight: 1.5,
+        color: theme.palette.text.secondary
+    }
 }));
 
-const PreviewGrid = ({items = [], itemsById = {}, onSelect, ...props}) => {
+const PreviewGrid = ({items = [], template = PreviewTemplate, onSelect, ...props}) => {
 
     const [rows, setRows] = useState(items)
+    const [cols, setCols] = useState(props.cols || undefined)
     const [rowIndex, setRowIndex] = useState(items.length && items.length-1)
 
     useEffect(() => {
         setRows(items)
         setRowIndex(items.length && items.length-1)
+        setCols([items[items.length-1]])
     }, [items])
+
+    useEffect(() => {
+        setCols(props.cols)
+    }, [props.cols])
 
     const _onRowIndex = (index) => {
         setRowIndex(index)
+        setCols([items[index]])
+
+        onSelect && onSelect({
+            rowIndex: index,
+            item: items[index]
+        })
     }
 
     const classes = useStyles()
+
+    const Template = template
 
     const PreviewRow = ({item, index}) => {
 
@@ -56,7 +87,7 @@ const PreviewGrid = ({items = [], itemsById = {}, onSelect, ...props}) => {
 
             return (
                 <div className={classes.row} aria-expanded={expanded}>
-                    <PreviewCols items={[item]}  />
+                    <PreviewCols items={[item]} template={template} onSelect={onSelect} />
                 </div>            
             )
 
@@ -64,7 +95,8 @@ const PreviewGrid = ({items = [], itemsById = {}, onSelect, ...props}) => {
 
             return (
                 <div className={classes.row} aria-expanded={expanded} onClick={() => _onRowIndex(index)}>
-                    <PreviewTemplate {...item} />
+                    <Template {...item} expanded={expanded} />
+                    <header className={classes.header}>{item.title}</header>
                 </div>            
             )
 

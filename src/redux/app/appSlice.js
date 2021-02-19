@@ -9,31 +9,66 @@ const appSlice = createSlice({
     initialState: {
         icon: undefined,
         isLoading: true,
+        version: "0.1.1",
         title: undefined,
         siteName: undefined,
         siteTitle: undefined,
         siteId: undefined,
         collectionId: undefined,
+        theme: {
+            palette: {
+                type: "light"
+            }
+        },
         header: {
+        },
+        sidebar: {
         },
         subview: {
             expanded: false
         },
         search: {
         },
-        sidebar: {
-        }
     }, 
     reducers: {
         requestApp(state, action) {
             const { root, icon, title, siteName, collectionType } = action.payload
             return {
+                ...state,
                 root: root,
                 icon: icon,
                 title: title,
                 siteName: siteName,
                 collectionType: collectionType,
                 isLoading: true,
+            }
+        },
+        receiveApp(state, action) {
+            return {
+                ...state,
+                isLoading: false,
+                ...action.payload
+            }
+        },
+        receiveTheme(state, action) {
+            const { theme } = action.payload
+            return {
+                ...state,
+                theme: theme
+            }
+        },
+        toggleDarkMode(state, action) {
+            const type = state.theme.palette.type
+
+            return {
+                ...state,
+                theme: {
+                    ...state.theme,
+                    palette: {
+                        ...state.theme.palette,
+                        type: type === "dark" && "light" || "dark"
+                    }
+                }
             }
         },
         receiveAppSite(state, action) {
@@ -49,13 +84,6 @@ const appSlice = createSlice({
             return {
                 ...state,
                 collectionId: id,
-            }
-        },
-        receiveApp(state, action) {
-            return {
-                ...state,
-                isLoading: false,
-                ...action.payload
             }
         },
         requestSubview(state, action) {
@@ -115,12 +143,39 @@ const appSlice = createSlice({
                 }
             }
         },
+        expandHeader(state, action) {
+            return {
+                ...state,
+                header: {
+                    ...state.header,
+                    expanded: true,
+                }
+            }
+        },
+        collapseHeader(state, action) {
+            return {
+                ...state,
+                header: {
+                    ...state.header,
+                    expanded: false,
+                }
+            }
+        },
         toggleSidebar(state, action) {
             return {
                 ...state,
                 sidebar: {
                     ...state.sidebar,
                     expanded: !state.sidebar.expanded,
+                }
+            }
+        },
+        toggleSubview(state, action) {
+            return {
+                ...state,
+                subview: {
+                    ...state.subview,
+                    expanded: !state.subview.expanded,
                 }
             }
         },
@@ -519,11 +574,13 @@ export const getMenuByUrl = ({menu = []}) => dispatch => {
 export const { 
     requestApp, receiveApp, 
     receiveAppSite, receiveAppCollection, 
+    receiveTheme, toggleDarkMode,
     requestLayout, receiveLayout, 
     requestSubview, receiveSubview, 
-    toggleHeader, 
+    toggleHeader, expandHeader, collapseHeader,
     toggleSearch, collapseSearch,
     toggleSidebar, 
+    toggleSubview, 
     requestSchemasByName, 
     receiveSchemasByName, 
     requestMenu, receiveMenu, 

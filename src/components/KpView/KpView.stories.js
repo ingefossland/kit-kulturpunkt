@@ -1,13 +1,14 @@
 import React from 'react';
 import KpView from "./KpView";
 
-import search from "./search/pageMap"
+import search from "./search/page"
 
 export default {
     title: 'App/View',
     component: KpView,
     args: {
-        ...search
+        ...search,
+        items: search.models
     },
     argTypes: {
     },

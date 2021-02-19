@@ -13,7 +13,12 @@ const SectionClassifaction = ({classification = []}) => {
 
     const items = [
         {
-            
+            value: "Keramikk generelt (Outline - Keramikk- og glassproduksjon)",
+            code: "OU 531"
+        },
+        {
+            value: "Kunsthåndverk og formgiving (Outline)",
+            code: "OU 531"
         }
     ]
 

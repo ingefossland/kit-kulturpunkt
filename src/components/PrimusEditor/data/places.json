@@ -1,0 +1,458 @@
+[
+    {
+        "uuid": "b4ae0abe-e630-4efe-a288-0d1c2a86daec",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "567d0e8c-8b7a-450f-9f45-3687864ee550_SHARED",
+        "createdAt": "Sep 16, 2013 2:17:42 PM",
+        "createdBy": "root",
+        "updatedAt": "Jan 9, 2015 1:10:33 PM",
+        "updatedBy": "root",
+        "name": {
+            "no": "Oslo"
+        },
+        "caption": {
+            "no": "Oslo (By)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "2d5c1857-ae3a-4349-8d12-e070ad01d740",
+                "displayValue": {
+                    "no": "By",
+                    "sv": "Stad",
+                    "en": "City",
+                    "et": "Linn"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "9737c49b-4f4c-4e39-927f-b3180805bdf4",
+            "specificType": [
+                {
+                    "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                    "displayValue": {
+                        "no": "Kommune",
+                        "sv": "Kommun (Norge)",
+                        "en": "Municipality (Norway)"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Oslo (Kommune)"
+            }
+        },
+        "dataset": {
+            "uuid": "567d0e8c-8b7a-450f-9f45-3687864ee550",
+            "displayValue": {
+                "no": "Norske stedsnavn (Eksterne data)",
+                "sv": "Norska platsnamn (Externa data)"
+            }
+        },
+        "specificData": {
+            "location": "59.912,10.746"
+        }
+    },
+    {
+        "uuid": "20176e1a-b050-4025-bd56-116c7fa24828",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "SYSTEM",
+        "createdAt": "Mar 15, 2013 2:45:50 PM",
+        "createdBy": "IMPORT_TEST",
+        "updatedAt": "Jan 4, 2018 4:24:04 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "no": "Oslo"
+        },
+        "caption": {
+            "no": "Oslo (Fylke)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "0462275d-4a33-4fa2-907d-8d26515da815",
+                "displayValue": {
+                    "no": "Fylke",
+                    "sv": "Fylke"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "e3269295-2756-4cce-9e79-a9280d720643",
+            "specificType": [
+                {
+                    "uuid": "359f1745-63b7-4447-8546-54aba8259ecb",
+                    "displayValue": {
+                        "no": "Land",
+                        "sv": "Land",
+                        "en": "Country",
+                        "et": "Riik"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Norge (Land)",
+                "sv": "Norge (Land)",
+                "en": "Norway (Country)"
+            }
+        },
+        "dataset": {
+            "uuid": "044fbd0f-69f2-4aba-9f33-7b7c1aea4fb0",
+            "displayValue": {
+                "no": "Fylker",
+                "sv": "Fylken"
+            }
+        }
+    },
+    {
+        "uuid": "9737c49b-4f4c-4e39-927f-b3180805bdf4",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "SYSTEM",
+        "createdAt": "Mar 15, 2013 2:45:55 PM",
+        "createdBy": "IMPORT_TEST",
+        "updatedAt": "Jan 4, 2018 4:25:36 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "no": "Oslo"
+        },
+        "caption": {
+            "no": "Oslo (Kommune)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                "displayValue": {
+                    "no": "Kommune",
+                    "sv": "Kommun (Norge)",
+                    "en": "Municipality (Norway)"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "20176e1a-b050-4025-bd56-116c7fa24828",
+            "specificType": [
+                {
+                    "uuid": "0462275d-4a33-4fa2-907d-8d26515da815",
+                    "displayValue": {
+                        "no": "Fylke",
+                        "sv": "Fylke"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Oslo (Fylke)"
+            }
+        },
+        "dataset": {
+            "uuid": "a8662f1d-d7e8-47f1-ac62-dd265a2f174d",
+            "displayValue": {
+                "no": "Kommune",
+                "sv": "Kommuner, Norge"
+            }
+        },
+        "specificData": {
+            "location": "59.91183,10.73367"
+        }
+    },
+    {
+        "uuid": "fc5ff6fd-b27e-4df3-9f7b-0f82786b16ac",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "20f38d04-1f20-4011-9732-fa1f0853ce1b_SHARED",
+        "createdAt": "Nov 13, 2013 11:58:33 PM",
+        "createdBy": "root",
+        "updatedAt": "Jan 9, 2015 1:12:36 PM",
+        "updatedBy": "root",
+        "name": {
+            "no": "Bergen"
+        },
+        "caption": {
+            "no": "Bergen (Befolket sted)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "d9e8fb3d-1ad9-4565-99bd-37b8376f0702",
+                "displayValue": {
+                    "no": "Befolket sted",
+                    "sv": "Ort/bebyggd plats",
+                    "en": "Populated place",
+                    "et": "Asustatud koht"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "fddb13a9-460c-4752-a249-3c1f1a05e4e5",
+            "specificType": [
+                {
+                    "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                    "displayValue": {
+                        "no": "Kommune",
+                        "sv": "Kommun (Norge)",
+                        "en": "Municipality (Norway)"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Hjartdal (Kommune)"
+            }
+        },
+        "dataset": {
+            "uuid": "20f38d04-1f20-4011-9732-fa1f0853ce1b",
+            "displayValue": {
+                "no": "Norske bruk och boliger (Eksterne data)",
+                "sv": "Boställen och bruk (Norge) (Externa data)"
+            }
+        },
+        "specificData": {
+            "location": "59.610853,8.920911"
+        }
+    },
+    {
+        "uuid": "e7c3b693-0d52-4d93-be14-1b864bf281af",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "567d0e8c-8b7a-450f-9f45-3687864ee550_SHARED",
+        "createdAt": "Sep 16, 2013 2:17:54 PM",
+        "createdBy": "root",
+        "updatedAt": "Jan 9, 2015 12:53:19 PM",
+        "updatedBy": "root",
+        "name": {
+            "no": "Bergen"
+        },
+        "caption": {
+            "no": "Bergen (By)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "2d5c1857-ae3a-4349-8d12-e070ad01d740",
+                "displayValue": {
+                    "no": "By",
+                    "sv": "Stad",
+                    "en": "City",
+                    "et": "Linn"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "7e0b0919-69fb-4e7b-aff0-214f0067a34d",
+            "specificType": [
+                {
+                    "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                    "displayValue": {
+                        "no": "Kommune",
+                        "sv": "Kommun (Norge)",
+                        "en": "Municipality (Norway)"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Bergen (Kommune)"
+            }
+        },
+        "dataset": {
+            "uuid": "567d0e8c-8b7a-450f-9f45-3687864ee550",
+            "displayValue": {
+                "no": "Norske stedsnavn (Eksterne data)",
+                "sv": "Norska platsnamn (Externa data)"
+            }
+        },
+        "specificData": {
+            "location": "60.398,5.329"
+        }
+    },
+    {
+        "uuid": "7e0b0919-69fb-4e7b-aff0-214f0067a34d",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "SYSTEM",
+        "createdAt": "Mar 15, 2013 2:46:00 PM",
+        "createdBy": "IMPORT_TEST",
+        "updatedAt": "Jan 4, 2018 4:25:26 PM",
+        "updatedBy": "7b89c094-da28-4fdb-bcd2-ce0db0df923e",
+        "name": {
+            "no": "Bergen"
+        },
+        "caption": {
+            "no": "Bergen (Kommune)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                "displayValue": {
+                    "no": "Kommune",
+                    "sv": "Kommun (Norge)",
+                    "en": "Municipality (Norway)"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "2907bd18-dc64-43ef-bcd5-146d65a70d8a",
+            "specificType": [
+                {
+                    "uuid": "0462275d-4a33-4fa2-907d-8d26515da815",
+                    "displayValue": {
+                        "no": "Fylke",
+                        "sv": "Fylke"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Hordaland (Fylke)"
+            }
+        },
+        "dataset": {
+            "uuid": "a8662f1d-d7e8-47f1-ac62-dd265a2f174d",
+            "displayValue": {
+                "no": "Kommune",
+                "sv": "Kommuner, Norge"
+            }
+        },
+        "specificData": {
+            "location": "60.392,5.328"
+        }
+    },
+    {
+        "uuid": "64d041ea-3ce7-41a4-a91d-435e105416ea",
+        "entityType": "Place",
+        "entityTypeHierarchy": [
+            "Place",
+            "Superconcept",
+            "Entity"
+        ],
+        "acl": "20f38d04-1f20-4011-9732-fa1f0853ce1b_SHARED",
+        "createdAt": "Nov 13, 2013 11:52:44 PM",
+        "createdBy": "root",
+        "updatedAt": "Jan 9, 2015 12:52:18 PM",
+        "updatedBy": "root",
+        "name": {
+            "no": "Gamle Bergen"
+        },
+        "caption": {
+            "no": "Gamle Bergen (Befolket sted)"
+        },
+        "status": {
+            "uuid": "853a2d84-5b2b-11e2-bcfd-0800200c9a66",
+            "displayValue": {
+                "no": "Publisert",
+                "sv": "Publicerad",
+                "en": "Published",
+                "et": "Avaldatud"
+            }
+        },
+        "specificType": [
+            {
+                "uuid": "d9e8fb3d-1ad9-4565-99bd-37b8376f0702",
+                "displayValue": {
+                    "no": "Befolket sted",
+                    "sv": "Ort/bebyggd plats",
+                    "en": "Populated place",
+                    "et": "Asustatud koht"
+                }
+            }
+        ],
+        "partOf": {
+            "uuid": "7e0b0919-69fb-4e7b-aff0-214f0067a34d",
+            "specificType": [
+                {
+                    "uuid": "cb5c0050-aa5e-461a-911d-186be489dba5",
+                    "displayValue": {
+                        "no": "Kommune",
+                        "sv": "Kommun (Norge)",
+                        "en": "Municipality (Norway)"
+                    }
+                }
+            ],
+            "displayValue": {
+                "no": "Bergen (Kommune)"
+            }
+        },
+        "dataset": {
+            "uuid": "20f38d04-1f20-4011-9732-fa1f0853ce1b",
+            "displayValue": {
+                "no": "Norske bruk och boliger (Eksterne data)",
+                "sv": "Boställen och bruk (Norge) (Externa data)"
+            }
+        },
+        "specificData": {
+            "location": "60.417897,5.311861"
+        }
+    }
+]

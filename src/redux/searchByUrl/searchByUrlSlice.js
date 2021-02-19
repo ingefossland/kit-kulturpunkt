@@ -31,6 +31,7 @@ const searchByUrlSlice = createSlice({
                 ...state,
                 [url]: {
                     isLoading: true,
+                    url: url,
                     apiUrl: apiUrl,
                     query: {
                         ...query,
@@ -62,6 +63,17 @@ const searchByUrlSlice = createSlice({
                     results: results
                 }
             }
+        },
+        requestPage(state, action) {
+            const { url, page } = action.payload
+
+            return {
+                ...state,
+                [url]: {
+                    ...state[url],
+                    isLoading: true
+                }
+            }            
         },
         receivePage(state, action) {
             const { url, page, results } = action.payload
@@ -142,6 +154,8 @@ export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
 
     if (page === 1) {
         dispatch(requestSearch({models, url, page, apiUrl, query}))
+    } else {
+        dispatch(requestPage({models, url, page, apiUrl, query}))
     }
     
     fetch(apiUrl, {
@@ -167,5 +181,5 @@ export const getQuery = ({models, url, page = 1, ...query}) => dispatch => {
 
 
 
-export const { requestSearch, receiveSearch, receivePage, receiveError } = searchByUrlSlice.actions
+export const { requestSearch, receiveSearch, requestPage, receivePage, receiveError } = searchByUrlSlice.actions
 export default searchByUrlSlice.reducer

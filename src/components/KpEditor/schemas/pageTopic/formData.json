@@ -1,0 +1,308 @@
+{
+    "documentType": "pageTopic",
+    "createdAt": "2020-08-31T06:36:26",
+    "updatedAt": "2020-12-01T17:51:36",
+    "uniqueId": "50e0fe5e-83d3-4184-9b63-6cee76164a75",
+    "schemaId": 1,
+    "parent": null,
+    "content": {
+        "mediaLayout": "gallery",
+        "titleImage": {
+            "media": {
+                "title": "kristine.jpeg",
+                "createdAt": "2020-08-31T09:45:24",
+                "uploadUrl": "https://dms-test.dimu.org/upload?aId=PBz2qyJCR6gfys9T4GmamnmhKYoVC8wvLJ4RCvfYZsZ9YLYz4&public=true",
+                "id": 3255,
+                "imageWidth": 662,
+                "uploadStatus": "done",
+                "referenceCount": 0,
+                "content": {
+                    "filename": "kristine.jpeg",
+                    "title": "kristine.jpeg",
+                    "iptcdata": {
+                        "dateCreated": "20070208"
+                    }
+                },
+                "collectionId": 54,
+                "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCy8e",
+                "mimeType": "image/jpeg",
+                "status": "upload",
+                "filename": "kristine.jpeg",
+                "updatedAt": "2020-08-31T09:45:31",
+                "imageHeight": 800,
+                "uniqueId": "bbfc4f86-d6f9-4761-aa6b-61e0adf8323c",
+                "identifier": "012uPWFFCy8e",
+                "resources": {
+                    "properties": {
+                        "url": "https://dms-test.dimu.org/properties/012uPWFFCy8e",
+                        "mimeType": "application/json"
+                    },
+                    "jpeg": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCy8e",
+                        "mimeType": "image/jpeg"
+                    },
+                    "png": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCy8e?mediaType=image%2Fpng",
+                        "mimeType": "image/png"
+                    },
+                    "original": {
+                        "url": "https://dms-test.dimu.org/image/012uPWFFCy8e?dimension=original"
+                    }
+                },
+                "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8e?mediaType=image/png",
+                "imageSize": 79382,
+                "mediaHeight": 800,
+                "mediaSize": 79382,
+                "mediaWidth": 662,
+                "mediaType": "image",
+                "description": "",
+                "imageType": "png"
+            },
+            "mediaId": "bbfc4f86-d6f9-4761-aa6b-61e0adf8323c"
+        },
+        "mapLayout": "roundtrip",
+        "links": [
+            {
+                "title": {
+                    "locale:sv": "",
+                    "locale:en": "",
+                    "locale:fr": "",
+                    "locale:no": "Pauyline Hall",
+                    "locale:es": "",
+                    "locale:de": ""
+                },
+                "titleSize": "medium",
+                "referenceType": "pageLink",
+                "x": 0,
+                "left": 50,
+                "top": 50,
+                "imageCropdata": {
+                    "y": 0,
+                    "height": 100,
+                    "scaleY": 1,
+                    "scaleX": 1,
+                    "x": 0,
+                    "rotate": 0,
+                    "width": 100
+                },
+                "color": "black",
+                "y": 0,
+                "grid": "1:1",
+                "skin": "dark",
+                "mediaId": "4ddde638-5258-4123-81e9-feb1276859f8",
+                "titleColor": "black",
+                "placement": "top-left",
+                "backgroundColor": "#7f7f7f",
+                "reference": {},
+                "media": {
+                    "title": "Rødalen bilde",
+                    "createdAt": "2019-09-16T12:07:34",
+                    "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=P7VZXf7Q76oM5TekdqyBmrUgh1iX3eVi1bqWb1zDhq6NdZx99&public=true",
+                    "id": 949,
+                    "imageWidth": 709,
+                    "uploadStatus": "done",
+                    "referenceCount": 0,
+                    "content": {
+                        "descriptionWriter": "",
+                        "creator": "",
+                        "creatorJobtitle": "",
+                        "headline": "",
+                        "title": "Rødalen bilde",
+                        "creditLine": "",
+                        "keywords": "",
+                        "filename": "rødalen.jpeg",
+                        "description": ""
+                    },
+                    "collectionId": 54,
+                    "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8TV",
+                    "mimeType": "image/jpeg",
+                    "status": "publish",
+                    "updatedAt": "2019-11-28T13:39:52",
+                    "imageHeight": 491,
+                    "uniqueId": "4ddde638-5258-4123-81e9-feb1276859f8",
+                    "identifier": "012uNXVmL8TV",
+                    "resources": {
+                        "properties": {
+                            "url": "https://dms-test.dimu.org/properties/012uNXVmL8TV",
+                            "mimeType": "application/json"
+                        },
+                        "jpeg": {
+                            "url": "https://dms-test.dimu.org/image/012uNXVmL8TV",
+                            "mimeType": "image/jpeg"
+                        },
+                        "png": {
+                            "url": "https://dms-test.dimu.org/image/012uNXVmL8TV?mediaType=image%2Fpng",
+                            "mimeType": "image/png"
+                        },
+                        "original": {
+                            "url": "https://dms-test.dimu.org/image/012uNXVmL8TV?dimension=original"
+                        }
+                    },
+                    "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8TV?mediaType=image/png",
+                    "imageSize": 0,
+                    "mediaHeight": 491,
+                    "mediaSize": 0,
+                    "mediaWidth": 709,
+                    "mediaType": "image",
+                    "description": "",
+                    "imageType": "png"
+                }
+            },
+            {
+                "title": {},
+                "titleSize": "medium",
+                "referenceType": "pageLink",
+                "x": 0,
+                "left": 50,
+                "top": 50,
+                "imageCropdata": {},
+                "color": "black",
+                "imageFocalpoint": {},
+                "y": 0,
+                "grid": "1:1",
+                "skin": "dark",
+                "referenceId": "b7a03f86-0313-42c8-be2a-3d363a1fedc3",
+                "titleColor": "black",
+                "runningHead": {},
+                "imageFilters": {},
+                "placement": "top-left",
+                "backgroundColor": "#7f7f7f",
+                "reference": {
+                    "title": "Eva Kløvstad",
+                    "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8c?mediaType=image/png",
+                    "createdAt": "2020-08-31T06:07:16",
+                    "updatedAt": "2020-08-31T06:07:16",
+                    "documentType": "article",
+                    "uniqueId": "b7a03f86-0313-42c8-be2a-3d363a1fedc3",
+                    "schemaId": 1,
+                    "status": "draft",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1549
+                },
+                "description": {},
+                "media": {}
+            },
+            {
+                "title": {},
+                "titleSize": "medium",
+                "referenceType": "pageLink",
+                "x": 0,
+                "left": 50,
+                "top": 50,
+                "imageCropdata": {},
+                "color": "black",
+                "imageFocalpoint": {},
+                "y": 0,
+                "grid": "1:1",
+                "skin": "dark",
+                "referenceId": "efcce852-f2f5-4432-9a0b-7f6a737c61c5",
+                "titleColor": "black",
+                "runningHead": {},
+                "imageFilters": {},
+                "placement": "top-left",
+                "backgroundColor": "#7f7f7f",
+                "reference": {
+                    "title": "Hulda Garborg",
+                    "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8f?mediaType=image/png",
+                    "createdAt": "2020-08-31T09:46:19",
+                    "updatedAt": "2020-08-31T09:46:19",
+                    "documentType": "article",
+                    "uniqueId": "efcce852-f2f5-4432-9a0b-7f6a737c61c5",
+                    "schemaId": 1,
+                    "status": "new",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1554
+                },
+                "description": {},
+                "media": {}
+            },
+            {
+                "title": {},
+                "titleSize": "medium",
+                "referenceType": "pageLink",
+                "x": 0,
+                "left": 50,
+                "top": 50,
+                "imageCropdata": {},
+                "color": "black",
+                "imageFocalpoint": {},
+                "y": 0,
+                "grid": "1:1",
+                "skin": "dark",
+                "referenceId": "72446cd1-d546-435c-8493-8ffcc3883f5d",
+                "titleColor": "black",
+                "runningHead": {},
+                "imageFilters": {},
+                "placement": "top-left",
+                "backgroundColor": "#7f7f7f",
+                "reference": {
+                    "title": "Kristine Anreassen",
+                    "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8e?mediaType=image/png",
+                    "createdAt": "2020-08-31T09:44:56",
+                    "updatedAt": "2020-08-31T09:44:56",
+                    "documentType": "article",
+                    "uniqueId": "72446cd1-d546-435c-8493-8ffcc3883f5d",
+                    "schemaId": 1,
+                    "status": "publish",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1553
+                },
+                "description": {},
+                "media": {}
+            }
+        ],
+        "title": {
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:fr": "",
+            "locale:no": "Kirsten Flagstad",
+            "locale:es": "",
+            "locale:de": ""
+        },
+        "linksLayout": "list",
+        "bodytext": {
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:fr": "",
+            "locale:no": "Her er noe brødtekst.",
+            "locale:es": "",
+            "locale:de": ""
+        },
+        "leadtext": {
+            "locale:sv": "",
+            "locale:en": "",
+            "locale:fr": "",
+            "locale:no": "Digital kvinnehistorisk vandring er et formidlingsprosjekt for å synliggjøre kvinner i bymiljøet og gi innbyggerne kunnskap om hvilke betydningsfulle og flotte damer som har levd her.\n\nProsjektet er et samarbeid mellom Likestillingssenteret og Kirsten Flagstad museum og Domkirkeodden (en del av Anno – museene i Hedmark).\n",
+            "locale:es": "",
+            "locale:de": ""
+        },
+        "parallaxImage": {
+            "imageCropdata": {},
+            "imageFilters": {},
+            "uploadProgress": 100,
+            "media": {
+                "mediaType": "image"
+            }
+        },
+        "backgroundImage": {
+            "imageCropdata": {},
+            "imageFilters": {},
+            "uploadProgress": 100,
+            "media": {
+                "mediaType": "image"
+            }
+        },
+        "annotateColor": "black",
+        "annotateLayout": "imagemap"
+    },
+    "title": "Kirsten Flagstad",
+    "parentId": 1758,
+    "id": 1552,
+    "referenceCount": 4,
+    "locale": "no",
+    "collectionId": 54,
+    "status": "publish"
+}

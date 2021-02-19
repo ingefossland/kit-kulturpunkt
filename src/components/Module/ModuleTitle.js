@@ -32,14 +32,14 @@ const ModuleTitle = ({className, maxWidth = "100%", title, untitled = "Untitled"
 
     if (onClick) {
         return (
-            <Typography data-name="title" className={className || classes.title} component="h2" noWrap={true}>
+            <Typography data-name="title" data-untitled={!title} className={className || classes.title} component="h2" noWrap={true}>
                 <Link className={classes.link} onClick={onClick}>{title || untitled}</Link>
             </Typography>
         )
     }
 
     return (
-        <Typography data-name="title" className={className || classes.title} component="h2" noWrap={true}>{title || untitled}</Typography>
+        <Typography data-name="title" data-untitled={!title} className={className || classes.title} component="h2" noWrap={true}>{title || untitled}</Typography>
     )
 }
 

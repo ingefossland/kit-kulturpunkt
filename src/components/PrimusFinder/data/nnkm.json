@@ -1,0 +1,2405 @@
+{
+    "models": [
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEG89Ps",
+            "sourceId": "021047996023",
+            "imageType": "jpg",
+            "identifier": "NNKM.00010",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Adde, Per Erik",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:09:49.097Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Gotland",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:32:40.842Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEG7pbh",
+            "sourceId": "021047996206",
+            "imageType": "jpg",
+            "identifier": "NNKM.00018",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Akersloot-Berg, Betzy",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:10:58.752Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Kystparti i Nord-Norge",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:32:51.649Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/03347xEG8A1A",
+            "sourceId": "021047996561",
+            "imageType": "jpg",
+            "identifier": "NNKM.00109",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Bergman, Anna-Eva",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:13:17.233Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Cap Noir",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:03.133Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/03347xEHZnqZ",
+            "sourceId": "021047997117",
+            "imageType": "jpg",
+            "identifier": "NNKM.00970",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Skjerve, Heidi Kennedy",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:16:51.751Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:14.087Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/03347xEHZnqa",
+            "sourceId": "021047997184",
+            "imageType": "jpg",
+            "identifier": "NNKM.00980",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Groth, Jan",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:17:19.055Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:24.713Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/02347xEHZnqb",
+            "sourceId": "021047996270",
+            "imageType": "jpg",
+            "identifier": "NNKM.00981",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Groth, Jan",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:11:24.302Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:36.561Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/02347xEK3SV7",
+            "sourceId": "021047995673",
+            "imageType": "jpg",
+            "identifier": "NNKM.01563",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Dillan, Ivar",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:07:26.290Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:34:49.279Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3SV8",
+            "sourceId": "021047996780",
+            "imageType": "jpg",
+            "identifier": "NNKM.01590",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Lund, Liv Katharina",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:14:42.581Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:35:00.205Z"
+        },
+        {
+            "description": null,
+            "imageUrl": null,
+            "sourceId": "021047996105",
+            "identifier": "NNKM.01652",
+            "documentType": "ekultur/fineart",
+            "updatedAt": "2020-06-19T07:35:05.567Z",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Hockney, David",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "locale": "no",
+            "source": "ekultur",
+            "title": "Midnight Sun, Norway",
+            "modelName": "ekultur",
+            "createdAt": "2018-12-06T14:10:20.545Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/02347xEK3SV9",
+            "sourceId": "021047996096",
+            "imageType": "jpg",
+            "identifier": "NNKM.01661",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Skjerve, Heidi Kennedy",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:10:17.245Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:35:16.435Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/02347xEK3SVA",
+            "sourceId": "021047997338",
+            "imageType": "jpg",
+            "identifier": "NNKM.01672",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Holmboe, Thorolf",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:21.190Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Stol",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:35:27.394Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3SVB",
+            "sourceId": "021047997027",
+            "imageType": "jpg",
+            "identifier": "NNKM.01680",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Holmboe, Thorolf",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:16:18.463Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Bolle",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:35:39.368Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/03347xEK3SZe",
+            "sourceId": "021047997412",
+            "imageType": "jpg",
+            "identifier": "NNKM.01699",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:50.882Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Berlin 18. mars 2002",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:02.002Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/03347xEK3Sdu",
+            "sourceId": "021047997417",
+            "imageType": "jpg",
+            "identifier": "NNKM.01700",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:53.055Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:13.234Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3Sdv",
+            "sourceId": "021047997369",
+            "imageType": "jpg",
+            "identifier": "NNKM.01701",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:33.941Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 19. jan 2014",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:24.217Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3Sdw",
+            "sourceId": "021047997413",
+            "imageType": "jpg",
+            "identifier": "NNKM.01702",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:51.272Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen /  R.A.D / Lya - Berlin 27. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:34.974Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEK3Sdx",
+            "sourceId": "021047997394",
+            "imageType": "jpg",
+            "identifier": "NNKM.01703",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:44.503Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 28. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:45.994Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/02347xEK3Sdy",
+            "sourceId": "021047997348",
+            "imageType": "jpg",
+            "identifier": "NNKM.01704",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:25.257Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen /  R.A.D / Lya - Berlin 27. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:38:56.939Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/02347xEHZnqc",
+            "sourceId": "021047996265",
+            "imageType": "jpg",
+            "identifier": "NNKM.01103",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "GrÃ¸stad, Terje",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:11:22.242Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:47.280Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/02347xEHZnqd",
+            "sourceId": "021047995677",
+            "imageType": "jpg",
+            "identifier": "NNKM.01298",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "BjÃ¸rndal, Arnulf",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:07:27.572Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:33:58.293Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEHZnqe",
+            "sourceId": "021047996762",
+            "imageType": "jpg",
+            "identifier": "NNKM.01328",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Gurholt, Crispin",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:14:35.945Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:34:10.109Z"
+        },
+        {
+            "description": null,
+            "imageUrl": null,
+            "sourceId": "021047996783",
+            "identifier": "NNKM.01385",
+            "documentType": "ekultur/fineart",
+            "updatedAt": "2020-06-19T07:34:15.586Z",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Groth, Jan",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "locale": "no",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "createdAt": "2018-12-06T14:14:43.562Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3SV5",
+            "sourceId": "021047997018",
+            "imageType": "jpg",
+            "identifier": "NNKM.01523",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Hansen, Hans Borchgrevink",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:16:15.314Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:34:26.192Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms10.dimu.org/image/02347xEK3SV6",
+            "sourceId": "021047995827",
+            "imageType": "jpg",
+            "identifier": "NNKM.01524",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Hansen, Hans Borchgrevink",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:08:32.779Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:34:37.961Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/03347xEK3SVC",
+            "sourceId": "021047996760",
+            "imageType": "jpg",
+            "identifier": "NNKM.01684",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Einarsen, Ann Kristin",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:14:33.343Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Solar followed by the lunar followed by the solar followed by the lunar",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:35:50.051Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEK3SVD",
+            "sourceId": "021047997379",
+            "imageType": "jpg",
+            "identifier": "NNKM.01688",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:38.947Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Grenadine / Lark",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:00.738Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/02347xEK3SVE",
+            "sourceId": "021047997392",
+            "imageType": "jpg",
+            "identifier": "NNKM.01689",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:43.842Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Adventure / Grenadine Painting",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:11.843Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/03347xEK3SZV",
+            "sourceId": "021047997402",
+            "imageType": "jpg",
+            "identifier": "NNKM.01690",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:47.088Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Advice / Grenadine Painting",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:22.471Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3SZW",
+            "sourceId": "021047997360",
+            "imageType": "jpg",
+            "identifier": "NNKM.01691",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:30.181Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Peninsula / Grenadine Painting",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:33.366Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/03347xEK3SZX",
+            "sourceId": "021047997383",
+            "imageType": "jpg",
+            "identifier": "NNKM.01692",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:40.588Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Appendix Painting No. 16 / Grenadine Painting",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:44.116Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEK3SZY",
+            "sourceId": "021047997376",
+            "imageType": "jpg",
+            "identifier": "NNKM.01693",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:37.479Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Education / Grenadine Painting",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:36:55.500Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3SZZ",
+            "sourceId": "021047997364",
+            "imageType": "jpg",
+            "identifier": "NNKM.01694",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:31.499Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 10. jan 2014",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:37:06.156Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms10.dimu.org/image/03347xEK3SZa",
+            "sourceId": "021047997411",
+            "imageType": "jpg",
+            "identifier": "NNKM.01695",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:50.534Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 11. okt. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:37:17.059Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms10.dimu.org/image/02347xEK3SZb",
+            "sourceId": "021047997407",
+            "imageType": "jpg",
+            "identifier": "NNKM.01696",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:48.968Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:37:27.730Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/03347xEK3SZc",
+            "sourceId": "021047997393",
+            "imageType": "jpg",
+            "identifier": "NNKM.01697",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:44.186Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:37:38.948Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/03347xEK3SZd",
+            "sourceId": "021047997388",
+            "imageType": "jpg",
+            "identifier": "NNKM.01698",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:42.438Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 23. des. 2007-2012",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:37:51.220Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEK3SiL",
+            "sourceId": "021047997400",
+            "imageType": "jpg",
+            "identifier": "NNKM.01711",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:46.445Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:12.078Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3SiM",
+            "sourceId": "021047997420",
+            "imageType": "jpg",
+            "identifier": "NNKM.01712",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:54.353Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 23. des. 2007-2012",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:23.131Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3SiN",
+            "sourceId": "021047997399",
+            "imageType": "jpg",
+            "identifier": "NNKM.01713",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:46.068Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 10. jan 2014",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:34.048Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/03347xEK3SiP",
+            "sourceId": "021047997380",
+            "imageType": "jpg",
+            "identifier": "NNKM.01714",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:39.343Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 23. des. 2007-2012",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:45.063Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/02347xEK3SiQ",
+            "sourceId": "021047997355",
+            "imageType": "jpg",
+            "identifier": "NNKM.01715",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:28.091Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 22. juli 2010",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:55.651Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/02347xEK3SiR",
+            "sourceId": "021047997395",
+            "imageType": "jpg",
+            "identifier": "NNKM.01716",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:44.813Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 28. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:41:06.931Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3Sdz",
+            "sourceId": "021047997357",
+            "imageType": "jpg",
+            "identifier": "NNKM.01705",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:28.827Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 23. sept. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:39:07.922Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/02347xEK3Se1",
+            "sourceId": "021047997382",
+            "imageType": "jpg",
+            "identifier": "NNKM.01706",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:40.240Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Drawing for Draw No. 07 / Berlin 14. feb 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:39:18.571Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/02347xEK3Se2",
+            "sourceId": "021047997363",
+            "imageType": "jpg",
+            "identifier": "NNKM.01707",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:31.165Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:39:29.184Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3Se3",
+            "sourceId": "021047997396",
+            "imageType": "jpg",
+            "identifier": "NNKM.01708",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:45.127Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 28. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:39:39.971Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/02347xEK3Se4",
+            "sourceId": "021047997384",
+            "imageType": "jpg",
+            "identifier": "NNKM.01709",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:40.943Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Drawing for Draw No. 07 / Berlin 18. feb 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:39:50.627Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3SiK",
+            "sourceId": "021047997354",
+            "imageType": "jpg",
+            "identifier": "NNKM.01710",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:27.454Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Sortland 26. feb 1997",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:40:01.419Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/03347xEK3SiS",
+            "sourceId": "021047997410",
+            "imageType": "jpg",
+            "identifier": "NNKM.01717",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:50.171Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen /  R.A.D / Lya - Berlin 27. des. 2013",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:41:17.538Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3SiT",
+            "sourceId": "021047997414",
+            "imageType": "jpg",
+            "identifier": "NNKM.01718",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:52.023Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Berlin 18. mars 2002",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:41:29.381Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/03347xEK3SiU",
+            "sourceId": "021047997370",
+            "imageType": "jpg",
+            "identifier": "NNKM.01719",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:34.340Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Berlin 14. mars 2002",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:41:40.928Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/02347xEK3Snj",
+            "sourceId": "021047997361",
+            "imageType": "jpg",
+            "identifier": "NNKM.01720",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:30.502Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / R.A.D / Lya - Berlin 23. des. 2007-2012",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:41:52.449Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/03347xEK3Snk",
+            "sourceId": "021047997365",
+            "imageType": "jpg",
+            "identifier": "NNKM.01721",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:31.834Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fra Tid til Annen / Lya 27. okt 2009",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:04.254Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/03347xEK3Snm",
+            "sourceId": "021047997372",
+            "imageType": "jpg",
+            "identifier": "NNKM.01722",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:35.924Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:15.121Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/03347xEK3mfN",
+            "sourceId": "021047997390",
+            "imageType": "jpg",
+            "identifier": "NNKM.01741",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:43.087Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:45:43.375Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3mfP",
+            "sourceId": "021047997356",
+            "imageType": "jpg",
+            "identifier": "NNKM.01742",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:28.431Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:45:54.308Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/02347xEK3mfQ",
+            "sourceId": "021047997408",
+            "imageType": "jpg",
+            "identifier": "NNKM.01743",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:49.299Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:46:04.955Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/02347xEK3mfR",
+            "sourceId": "021047997391",
+            "imageType": "jpg",
+            "identifier": "NNKM.01744",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:43.393Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:46:17.295Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3mfS",
+            "sourceId": "021047997397",
+            "imageType": "jpg",
+            "identifier": "NNKM.01745",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:45.446Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:46:27.900Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/03347xEK3mfT",
+            "sourceId": "021047997374",
+            "imageType": "jpg",
+            "identifier": "NNKM.01746",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:36.754Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:46:38.620Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3mfU",
+            "sourceId": "021047997404",
+            "imageType": "jpg",
+            "identifier": "NNKM.01747",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:47.769Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:46:49.285Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/03347xEK3mfV",
+            "sourceId": "021047997375",
+            "imageType": "jpg",
+            "identifier": "NNKM.01748",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:37.162Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:47:00.199Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/02347xEK3mfW",
+            "sourceId": "021047997416",
+            "imageType": "jpg",
+            "identifier": "NNKM.01749",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:52.679Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:47:12.802Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/03347xEK3mjm",
+            "sourceId": "021047997385",
+            "imageType": "jpg",
+            "identifier": "NNKM.01750",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:41.361Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:47:23.387Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/03347xEK3mjn",
+            "sourceId": "021047997366",
+            "imageType": "jpg",
+            "identifier": "NNKM.01751",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:32.244Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:47:34.518Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms10.dimu.org/image/03347xEK3mjo",
+            "sourceId": "021047997418",
+            "imageType": "jpg",
+            "identifier": "NNKM.01752",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:53.569Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:47:45.269Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/03347xEK3mb2",
+            "sourceId": "021047997387",
+            "imageType": "jpg",
+            "identifier": "NNKM.01735",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:42.080Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 05",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:37.889Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/02347xEK3mb3",
+            "sourceId": "021047997401",
+            "imageType": "jpg",
+            "identifier": "NNKM.01736",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:46.760Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 23",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:48.516Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms10.dimu.org/image/02347xEK3mb4",
+            "sourceId": "021047997358",
+            "imageType": "jpg",
+            "identifier": "NNKM.01737",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:29.245Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 17",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:59.504Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/02347xEK3mb5",
+            "sourceId": "021047997406",
+            "imageType": "jpg",
+            "identifier": "NNKM.01738",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:48.568Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 41",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:45:10.170Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/02347xEK3mb6",
+            "sourceId": "021047997367",
+            "imageType": "jpg",
+            "identifier": "NNKM.01739",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:32.636Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:45:20.852Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3mfM",
+            "sourceId": "021047997359",
+            "imageType": "jpg",
+            "identifier": "NNKM.01740",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:29.848Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Territorium",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:45:31.506Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/02347xEK3Snt",
+            "sourceId": "021047997373",
+            "imageType": "jpg",
+            "identifier": "NNKM.01729",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:36.390Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:43:32.160Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms06.dimu.org/image/02347xEK3maw",
+            "sourceId": "021047997422",
+            "imageType": "jpg",
+            "identifier": "NNKM.01730",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:55.029Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:43:43.138Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3max",
+            "sourceId": "021047997352",
+            "imageType": "jpg",
+            "identifier": "NNKM.01731",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:26.848Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:43:53.897Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/02347xEK3may",
+            "sourceId": "021047997378",
+            "imageType": "jpg",
+            "identifier": "NNKM.01732",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:38.525Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 28",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:04.929Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3maz",
+            "sourceId": "021047997419",
+            "imageType": "jpg",
+            "identifier": "NNKM.01733",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:53.941Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 38",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:15.944Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/02347xEK3mb1",
+            "sourceId": "021047997389",
+            "imageType": "jpg",
+            "identifier": "NNKM.01734",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:42.763Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Infinitiv No. 11",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:44:26.542Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3Snn",
+            "sourceId": "021047997409",
+            "imageType": "jpg",
+            "identifier": "NNKM.01723",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:49.665Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:26.412Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/02347xEK3Sno",
+            "sourceId": "021047997405",
+            "imageType": "jpg",
+            "identifier": "NNKM.01724",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:48.168Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:37.042Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3Snp",
+            "sourceId": "021047997349",
+            "imageType": "jpg",
+            "identifier": "NNKM.01725",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:25.580Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:48.133Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/03347xEK3Snq",
+            "sourceId": "021047997421",
+            "imageType": "jpg",
+            "identifier": "NNKM.01726",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:54.684Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:42:58.816Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/03347xEK3Snr",
+            "sourceId": "021047997381",
+            "imageType": "jpg",
+            "identifier": "NNKM.01727",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:39.924Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:43:10.611Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/02347xEK3Sns",
+            "sourceId": "021047997403",
+            "imageType": "jpg",
+            "identifier": "NNKM.01728",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Jenssen, Olav Christopher",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:18:47.418Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Rigoletto",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:43:21.267Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/03347xEK3n7z",
+            "sourceId": "021047997657",
+            "imageType": "jpg",
+            "identifier": "NNKM.01819",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Erixson, Sven",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:36.504Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Spansk kvinne",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:58:46.721Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3nCF",
+            "sourceId": "021047997577",
+            "imageType": "jpg",
+            "identifier": "NNKM.01820",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Finne, Henrik",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:01.548Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Fransk fjellandskap",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:58:57.326Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms03.dimu.org/image/03347xEK3nCG",
+            "sourceId": "021047997716",
+            "imageType": "jpg",
+            "identifier": "NNKM.01821",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Finne, Henrik",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:21:00.958Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Hvalkokeriet",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:59:08.127Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms05.dimu.org/image/02347xEK3nCH",
+            "sourceId": "021047997702",
+            "imageType": "jpg",
+            "identifier": "NNKM.01822",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Gundersen, Gunnar S.",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:54.856Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Komposisjon",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:59:19.739Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/03347xEK3nCK",
+            "sourceId": "021047997458",
+            "imageType": "jpg",
+            "identifier": "NNKM.01823",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Munthe, Gerhard",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:19:12.369Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Sigurd Jorsalfares inntog i Miklagard",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:59:30.985Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3n3Y",
+            "sourceId": "021047997711",
+            "imageType": "jpg",
+            "identifier": "NNKM.01807",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Bergman, Anna-Eva",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:58.598Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Uten tittel, Nr. 20",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:56:31.904Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3n3Z",
+            "sourceId": "021047997443",
+            "imageType": "jpg",
+            "identifier": "NNKM.01808",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Bergman, Anna-Eva",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:19:04.343Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Surippak - Statisk komposisjon",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:56:45.349Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/03347xEK3n3a",
+            "sourceId": "021047997510",
+            "imageType": "jpg",
+            "identifier": "NNKM.01809",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Borchgrevink, Ridley",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:19:33.990Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Ved bÃ¥let",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:56:56.887Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms02.dimu.org/image/03347xEK3n7q",
+            "sourceId": "021047997725",
+            "imageType": "jpg",
+            "identifier": "NNKM.01810",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Borchgrevink, Ridley",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:21:05.733Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Arkadisk landskap",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:57:07.511Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/03347xEK3n7r",
+            "sourceId": "021047997699",
+            "imageType": "jpg",
+            "identifier": "NNKM.01811",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Borchgrevink, Ridley",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:53.758Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Stilleben",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:57:19.213Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms04.dimu.org/image/03347xEK3n7s",
+            "sourceId": "021047997724",
+            "imageType": "jpg",
+            "identifier": "NNKM.01812",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Borchgrevink, Ridley",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:21:05.401Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Mann med steilende hest",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:57:30.456Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms01.dimu.org/image/02347xEK3n7t",
+            "sourceId": "021047997587",
+            "imageType": "jpg",
+            "identifier": "NNKM.01813",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Borchgrevink, Ridley",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:06.878Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Ryttere med rÃ¸d fane",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:57:41.241Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms07.dimu.org/image/03347xEK3n7u",
+            "sourceId": "021047997681",
+            "imageType": "jpg",
+            "identifier": "NNKM.01814",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Dahl, Chrix",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:46.057Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "GjÃ¸glerene",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:57:52.159Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms08.dimu.org/image/02347xEK3n7v",
+            "sourceId": "021047997544",
+            "imageType": "jpg",
+            "identifier": "NNKM.01815",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Dal, Harald",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:19:47.674Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Parafrase over ung gast av M.",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T07:58:02.760Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/02347xEK3nGg",
+            "sourceId": "021047997581",
+            "imageType": "jpg",
+            "identifier": "NNKM.01830",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Kielland, Else Christie",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:20:03.507Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Komposisjon",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T08:00:48.834Z"
+        },
+        {
+            "description": null,
+            "imageUrl": "https://dms09.dimu.org/image/03347xEK3nGh",
+            "sourceId": "021047997465",
+            "imageType": "jpg",
+            "identifier": "NNKM.01831",
+            "documentType": "ekultur/fineart",
+            "locale": "no",
+            "content": {
+                "owner": "NNKM",
+                "producer": "Kielland, Else Christie",
+                "ownerName": null,
+                "license": [
+                    "{} {}"
+                ]
+            },
+            "status": "publish",
+            "createdAt": "2018-12-06T14:19:15.311Z",
+            "mimeType": "image/jpg",
+            "source": "ekultur",
+            "title": "Komposisjon (2)",
+            "modelName": "ekultur",
+            "updatedAt": "2020-06-19T08:00:59.619Z"
+        }
+    ],
+    "rows": 100,
+    "start": 0,
+    "query": null,
+    "backend_query": "http://api.dimu.org/api/solr/select?country=no&api.key=9IYIdVAATsqlfalNMmh66A&q=*:*&fq=identifier.owner:(NNKM)&fq=artifact.type:(Fineart*)&start=0&rows=100",
+    "count": 2169
+}

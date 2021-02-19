@@ -1,23 +1,50 @@
-import uiPreview from "./uiPreview"
-import settings from "../page/settings/uiSchema"
-import header from "./mediaHeader/uiSchema"
-import body from "./mediaBody/uiSchema"
+import uiSchema from "../page/uiSchema"
+import itemsUi from "./itemsUi"
 
 export default {
-    "ui:field": "pageEditor",
-    "ui:preview": uiPreview,
-    "ui:fieldset": [
-        "content",
-        "settings"
-    ],
+    ...uiSchema,
     "content": {
-        "ui:field": "kpPage",
+        ...uiSchema.content,
         "ui:fieldset": [
             "header",
             "body"
         ],
-        "header": header,
-        "body": body
-    },
-    "settings": settings
+        "body": {
+            ...uiSchema.content.body,
+            "ui:preview": {
+                "select": {
+                    "title": "title"
+                },
+                prepare({formData: {links = []}}) {
+                    return {
+                        title: links && links.length + " media"
+                    }
+                }
+            },
+            "links": {
+                ...uiSchema.content.body.links,
+                "ui:dialog": {
+                    "query": {
+                        "models": "media",
+                        "mediaType": ["image","video","audio"]
+                    }
+                },
+                "ui:buttons": [
+                    {
+                        "type": "sidebar",
+                        "icon": "search",
+                        "title": "Finn media",
+                    },
+                    {
+                        "type": "upload",
+                        "title": "Last opp"
+                    }
+                ],
+                "ui:sortable": true,
+                "items": itemsUi
+            },
+            "ui:settings": [
+            ]
+        }
+    }
 }

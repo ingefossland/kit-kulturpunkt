@@ -1,26 +1,31 @@
-import uiPreview from "./uiPreview"
-import settings from "../page/settings/uiSchema"
-import header from "./timelineHeader/uiSchema"
-import media from "./timelineMedia/uiSchema"
-import body from "./timelineBody/uiSchema"
+import uiSchema from "../page/uiSchema"
+//import itemsUi from "./itemsUi"
 
 export default {
-    "ui:field": "pageEditor",
-    "ui:preview": uiPreview,
-    "ui:fieldset": [
-        "content",
-        "settings"
-    ],
+    ...uiSchema,
     "content": {
-        "ui:field": "kpPage",
-        "ui:fieldset": [
-            "header",
-            "media",
-            "body"
-        ],
-        "header": header,
-        "media": media,
-        "body": body
-    },
-    "settings": settings
+        ...uiSchema.content,
+        "media": {
+            ...uiSchema.content.media,
+            "ui:title": "Bakgrunnsbilder",
+            "ui:options": {
+                "collapsible": true,
+                "grid": true,
+                "spacing": 2
+            },
+            "ui:fieldset": [
+                "backgroundImage",
+                "parallaxImage"
+            ],
+            "backgroundImage": {
+                ...uiSchema.content.media.backgroundImage,
+                "ui:xs": 6
+            },
+            "parallaxImage": {
+                ...uiSchema.content.media.parallaxImage,
+                "ui:xs": 6
+            }
+        }
+    }
+    
 }

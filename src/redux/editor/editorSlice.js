@@ -6,46 +6,33 @@ import qs from 'query-string';
 const editorSlide = createSlice({
     name: 'editor',
     initialState: {
-        isLoading: true,
-//        isSaving: undefined,
-        pathname: undefined,
-        collectionId: undefined,
+        modelName: undefined,
         uniqueId: undefined,
-        parents: [],
-        currentId: undefined,
-        schema: {},
-        uiSchema: {},
+        isLoading: true,
+        isSaving: false,
         formData: {},
         formContext: {
-            isLoading: true,
-            isSaving: undefined,
         },
         dialog: {}
     }, 
     reducers: {
         requestEditor(state, action) {
-            const { pathname } = action.payload
+            const { modelName, uniqueId } = action.payload
             return {
                 ...state,
-                pathname: pathname,
                 isLoading: true,
-                formContext: {
-                    ...state.formContext,
-                    isLoading: true
-                }
+                modelName: modelName,
+                uniqueId: uniqueId,
             }
         },
         receiveEditor(state, action) {
-            const { pathname, uniqueId, languages } = action.payload
+            const { uniqueId, ...formData } = action.payload
             return {
                 ...state,
-                pathname: pathname,
-                uniqueId: uniqueId,
                 isLoading: false,
-                formContext: {
-                    ...state.formContext,
-                    languages: languages,
-                    isLoading: false
+                formData: {
+                    uniqueId: uniqueId,
+                    ...formData
                 }
             }
         },
@@ -125,6 +112,7 @@ const editorSlide = createSlice({
             return {
                 ...state,
                 isSaving: false,
+                uniqueId: uniqueId,
                 formData: {
                     ...formData,
                     uniqueId: uniqueId
@@ -189,100 +177,32 @@ const editorSlide = createSlice({
     }
 })
 
-export const getEditor = ({pathname, uniqueId, schema, uiSchema}) => (dispatch, getState) => {
-    dispatch(requestEditor({pathname}))
+export const getEditor = ({modelName, uniqueId, ...formData}) => (dispatch) => {
+    dispatch(requestEditor({modelName, uniqueId}))
 
-    const state = getState()
-    const app = state.app
+    const url = API + '/admin/api/' + modelName + '/' + uniqueId;
 
-    dispatch(getParents({url: pathname, uniqueId}))
+    if (modelName && uniqueId) {
+        
+        fetch(url, {
+            method: "GET",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json; charset=utf-8",
+            }})
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(formData => {
+                dispatch(receiveEditor({...formData, modelName}))
+                dispatch(getModel({...formData, modelName}))
+            })
 
-    schema && uiSchema && dispatch(receiveEditor({pathname, uniqueId, languages: app.languages}))
-
-}
-
-export const getChildren = ({modelName = "documents", id}) => (dispatch, getState) => {
-
-    const query = qs.stringify({
-        parentId: id,
-    })
-
-    const apiUrl = API + '/admin/api/' + modelName + '/search?' + query;
-
-    dispatch(requestChildren())
+    } else if (formData) {
+        dispatch(receiveEditor({...formData, modelName}))
+    }
     
-    fetch(apiUrl, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json",
-            "Content-Type": "application/json; charset=utf-8",
-        }})
-        .then(
-            response => response.json(),
-            error => console.log('An error occurred.', error)
-        )
-        .then(results => {
-            results.models && dispatch(receiveChildren({children: results.models}))
-        })
-
-
-}
-
-export const getParents = ({url, uniqueId, id, parentId, parents = []}) => (dispatch, getState) => {
-
-    const state = getState()
-    const menuByUrl = state.finder.menuByUrl
-    const menuById = state.finder.menuById
-
-    const pathnames = url.split('/');
-    pathnames.pop()
-
-    const parentUrl = pathnames.join("/")
-
-    let parent = menuByUrl[parentUrl] || menuById[pathnames.length-1]
-
-    // find parent by last child
-
-    if (parent) {
-
-        console.log('parents by last child', parent)
-
-        while (parent) {
-            parents.push(parent)
-            parent = parent.parentId && menuById[parent.parentId] || !parent.id && parent.parentUrl && menuByUrl[parent.parentUrl]
-        }
-
-        parents = parents.reverse()
-
-    } else {
-
-        let path = [], pathUrl
-
-        pathnames.map(pathname => {
-
-            path.push(pathname)
-            pathUrl = path.join('/')
-
-            console.log('parents by path', pathUrl)
-
-
-            if (menuByUrl[pathUrl]) {
-                parents.push(menuByUrl[pathUrl])
-            }
-
-        })
-
-
-    }
-
-
-    if (uniqueId) {
-        parents = parents.filter(parent => parent.uniqueId !== uniqueId)
-    }
-
-
-    dispatch(receiveParents({parents}))
-  
 }
 
 /** Edit model from uniqueId */
@@ -352,4 +272,5 @@ export const {
     requestSave, receiveSave, 
     requestDialog, receiveDialog
 } = editorSlide.actions
+
 export default editorSlide.reducer

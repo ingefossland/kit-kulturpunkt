@@ -27,7 +27,19 @@ const finderByIdSlice = createSlice({
         menu: undefined,
         menuByUrl: {},
         menuById: {},
-    }, 
+        sidebar: {
+            expanded: true
+        },
+        view: {
+            expanded: true
+        },
+        preview: {
+            expanded: false
+        },
+        editor: {
+            expanded: false
+        }
+     }, 
     reducers: {
         requestFinder(state, action) {
             const { url } = action.payload
@@ -45,11 +57,113 @@ const finderByIdSlice = createSlice({
                 isLoading: false,
             }
         },
+        expandSidebar(state, action) {
+            return {
+                ...state,
+                sidebar: {
+                    ...state.sidebar,
+                    expanded: true
+                }
+            }
+        },
+        collapseSidebar(state, action) {
+            return {
+                ...state,
+                sidebar: {
+                    ...state.sidebar,
+                    expanded: false
+                }
+            }
+        },
+        toggleSidebar(state, action) {
+            return {
+                ...state,
+                sidebar: {
+                    ...state.sidebar,
+                    expanded: !state.sidebar.expanded
+                }
+            }
+        },
+        receiveSidebar(state, action) {
+            const { sidebar } = action.payload
+            return {
+                ...state,
+                sidebar: sidebar
+            }
+        },
+        collapseView(state, action) {
+            return {
+                ...state,
+                view: {
+                    ...state.view,
+                    expanded: false
+                }
+            }
+        },
+        expandView(state, action) {
+            return {
+                ...state,
+                view: {
+                    ...state.view,
+                    expanded: true
+                }
+            }
+        },
         receiveView(state, action) {
             const { view } = action.payload
             return {
                 ...state,
                 view: view
+            }
+        },
+        expandPreview(state, action) {
+            return {
+                ...state,
+                preview: {
+                    ...state.preview,
+                    expanded: true
+                }
+            }
+        },
+        collapsePreview(state, action) {
+            return {
+                ...state,
+                preview: {
+                    ...state.preview,
+                    expanded: false
+                }
+            }
+        },
+        receivePreview(state, action) {
+            const { preview } = action.payload
+            return {
+                ...state,
+                preview: preview
+            }
+        },
+        expandEditor(state, action) {
+            return {
+                ...state,
+                editor: {
+                    ...state.editor,
+                    expanded: true
+                }
+            }
+        },
+        collapseEditor(state, action) {
+            return {
+                ...state,
+                editor: {
+                    ...state.editor,
+                    expanded: false
+                }
+            }
+        },
+        receiveEditor(state, action) {
+            const { editor } = action.payload
+            return {
+                ...state,
+                editor: editor
             }
         },
         requestViewOptions(state, action) {
@@ -372,7 +486,7 @@ export const getMenu = ({siteName, menu, root, collectionId}) => (dispatch) => {
     const getChildren = (parent) => {
         let children = []
   
-        parent.children.forEach((child) => {
+        parent && parent.children && parent.children.forEach((child) => {
             child = getChild({...child, parent});
             children.push(child);
         });
@@ -480,12 +594,18 @@ export const getParents = ({url}) => (dispatch, getState) => {
     
             path.push(pathname)
             pathUrl = path.join('/')
-    
+
+            console.log('parents by path', path)
             console.log('parents by path', pathUrl)
+
+            if (!pathUrl && menuByUrl["/"]) {
+//                parents.push(menuByUrl["/"])
+            }
+
+            const parent = menuByUrl[pathUrl]
     
-    
-            if (menuByUrl[pathUrl]) {
-                parents.push(menuByUrl[pathUrl])
+            if (parent && parent.role !== "section") {
+                parents.push(parent)
             }
     
         })
@@ -752,11 +872,43 @@ export const sortMenuTree = ({source, destination, item}) => (dispatch, getState
 
 }
 
+export const getEditor = (editor) => dispatch => {
+    dispatch(receiveEditor({editor}))
+}
+
+export const getPreview = (preview) => dispatch => {
+    dispatch(receivePreview({preview}))
+}
+
+export const getLayout = (layout = "default") => dispatch => {
+
+    if (layout === "editor") {
+        dispatch(collapseSidebar())
+        dispatch(collapseView())
+        dispatch(expandPreview())
+        dispatch(expandEditor())
+    }
+
+    if (layout === "finder") {
+        dispatch(expandSidebar())
+        dispatch(expandView())
+        dispatch(collapsePreview())
+        dispatch(collapseEditor())
+    }
+
+
+}
+
 export const { 
     requestFinder, receiveFinder, 
     requestMenu, receiveMenu,
+    expandSidebar, collapseSidebar, receiveSidebar, toggleSidebar,
+    expandView, collapseView, receiveView,
+    expandPreview, collapsePreview, receivePreview,
+    expandEditor, collapseEditor, receiveEditor,
+
     requestPrimaryAction, receivePrimaryAction,
-    requestViewOptions, receiveViewOptions, receiveView,
+    requestViewOptions, receiveViewOptions,
     requestSortOptions, receiveSortOptions, receiveSort,
     requestMenuByUrl, receiveMenuByUrl, 
     requestMenuTree, receiveMenuTree, 

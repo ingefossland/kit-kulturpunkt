@@ -1,6 +1,6 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
-//import PreviewTemplate from "../../preview/PageTopic"
+import formData from "./formData";
 
 export default {
     id: 1,
@@ -8,6 +8,7 @@ export default {
     name: 'pageTopic',
     schema: schema,
     uiSchema: uiSchema,
+    formData: formData,
     preview: {
 //        template: PreviewTemplate
     }

@@ -3,7 +3,6 @@ import schemas from "./"
 let schemasByName = {
 }
 
-
 schemas.map(schema => {
     const { schemaType, name } = schema
 

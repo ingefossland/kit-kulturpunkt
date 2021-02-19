@@ -1,25 +1,30 @@
-import uiPreview from "./uiPreview"
-import settings from "../page/settings/uiSchema"
-import header from "./header/uiSchema"
-import body from "./body/uiSchema"
+import uiSchema from "../page/uiSchema"
+import itemsUi from "./itemsUi"
 
 export default {
-    "ui:field": "pageEditor",
-    "ui:collapsible": true,
-    "ui:preview": uiPreview,
-    "ui:fieldset": [
-        "content",
-        "settings"
-    ],
+    ...uiSchema,
     "content": {
-//        "ui:field": "kioskPage",
-        "ui:layout": "pageContent",
+        ...uiSchema.content,
         "ui:fieldset": [
             "header",
             "body"
         ],
-        "header": header,
-        "body": body
-    },
-    "settings": settings
+        "body": {
+            ...uiSchema.content.body,
+            "ui:preview": {
+                "select": {
+                    "title": "title"
+                },
+                prepare({formData: {links = []}}) {
+                    return {
+                        title: links.length + " lenker"
+                    }
+                }
+            },
+            "links": {
+                ...uiSchema.content.body.links,
+                "items": itemsUi,
+            }
+        }
+    }
 }

@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
 //        backgroundColor: props => { return props.backgroundColor },
         boxShadow: props => { return props.elevation && theme.shadows[props.elevation] },
-        backgroundColor: "grey",
+        backgroundColor: theme.palette.action.selected,
         top: 0,
         right: 0,
         bottom: 0,

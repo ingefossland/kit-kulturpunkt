@@ -1,8 +1,6 @@
-import KpLinkField from "./KpLinkField"
-
 export default {
-    "ui:field": KpLinkField,
-    "ui:layout": "module",
+    "ui:field": "kpLink",
+    "ui:layout": "kpLink",
     "ui:options": {
         "minHeight": 256,
         "editable": true

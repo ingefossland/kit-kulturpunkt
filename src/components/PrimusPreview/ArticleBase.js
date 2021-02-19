@@ -3,25 +3,28 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     article: {
-        backgroundColor: "white",
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "flex-start",
-        alignItems: "flex-start",
+        backgroundColor: theme.palette.background.paper,
+        color: theme.palette.text.primary,
         minWidth: 360,
-        minHeight: 360,
-        padding: 36,
+        minHeight: "100%",
+        padding: "2em",
         fontFamily: "Akkurat, sans-serif",
         fontSize: 18,
+        overflowX: "hidden",
+
+        "& *": {
+            boxSizing: "border-box"
+        }
     },
 }));
 
-const ArticleBase = ({children, onClick}) => {
+const ArticleBase = ({expanded = true, children, onClick}) => {
 
     const classes = useStyles()
 
+
     return (
-        <article className={classes.article} onClick={onClick}>
+        <article aria-expanded={expanded} className={classes.article} onClick={onClick}>
             {children}
         </article>
     )

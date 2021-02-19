@@ -1,27 +1,30 @@
-import uiPreview from "./uiPreview"
-import settings from "../page/settings/uiSchema"
-import header from "./homeHeader/uiSchema"
-import media from "./listMedia/uiSchema"
-import body from "./listBody/uiSchema"
+import uiSchema from "../page/uiSchema"
+import itemsUi from "./itemsUi"
 
 export default {
-    "ui:field": "pageEditor",
-    "ui:collapsible": true,
-    "ui:preview": uiPreview,
-    "ui:fieldset": [
-        "content",
-        "settings"
-    ],
+    ...uiSchema,
     "content": {
-        "ui:field": "kpPage",
+        ...uiSchema.content,
         "ui:fieldset": [
             "header",
-            "media",
             "body"
         ],
-        "header": header,
-        "media": media,
-        "body": body
-    },
-    "settings": settings
+        "body": {
+            ...uiSchema.content.body,
+            "ui:preview": {
+                "select": {
+                    "title": "title"
+                },
+                prepare({formData: {links = []}}) {
+                    return {
+                        title: links.length + " lenker"
+                    }
+                }
+            },
+            "links": {
+                ...uiSchema.content.body.links,
+                "items": itemsUi,
+            }
+        }
+    }
 }

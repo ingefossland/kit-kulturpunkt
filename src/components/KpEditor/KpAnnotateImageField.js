@@ -1,14 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { ImageAnnotations } from "@kit-ui/admin"
+import model from "./KpAnnotateImage.model"
 
-const KioskAnnotateImageField = ({formContext, uiSchema, ...props}) => {
+const KioskAnnotateImageField = ({formData, formContext, ...props}) => {
     const { annotateImage = {}, imageAnnotations, onAnnotateImageChange } = formContext
     const { mediaId, media, imageFilters } = annotateImage
 
-//    const uiOptions = getUiOptions(uiSchema)
+    const { ObjectField } = props.registry.fields
+
+    const uiSchema = {
+        "ui:layout": ImageAnnotations,
+        "ui:imageUrl": media && media.imageUrl,
+        "ui:imageFilters": imageFilters,
+        "ui:imageAnnotations": imageAnnotations,
+        "ui:onChange": onAnnotateImageChange
+    }
 
     return (
-        <ImageAnnotations imageUrl={media && media.imageUrl} imageFilters={imageFilters} imageAnnotations={imageAnnotations} onChange={onAnnotateImageChange} />
+        <ObjectField {...props} uiSchema={uiSchema} /> 
     )
 
 }

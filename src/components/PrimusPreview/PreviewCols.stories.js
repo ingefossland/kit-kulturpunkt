@@ -1,7 +1,7 @@
 import React from 'react';
 import PreviewCols from "./PreviewCols";
 import person from "./data/person"
-import artifact from "./data/artifact"
+import artifact from "./data/nixons-visions"
 
 const items = [artifact]
 

@@ -4,8 +4,6 @@ export default {
     icon: "device",
     pathname: "device",
     query: {
-        models: "documents",
         documentType: "device",
-        status: "NOT trash"
     }
 }

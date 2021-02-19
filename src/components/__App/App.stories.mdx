@@ -1,0 +1,88 @@
+import { Meta, Story, Canvas } from '@storybook/addon-docs/blocks';
+import { AppHeader, AppSearch, AppSubview, AppLayout, AppSidebar } from './';
+
+<Meta title="About/App" />
+
+# App concept
+
+An app is built up of three main building blocks.
+
+1. Header
+2. Sidebar
+3. content
+
+## AppHeader
+
+The header is used to identify the name of the app + its owner (or current user). 
+
+<Canvas>
+    <AppHeader title="App" subtitle="Owner" />
+</Canvas>
+
+Depending on its configuration, the header can be used to toggle the apps menu:
+
+<Canvas>
+    <AppHeader title="App" subtitle="Owner" menu={{expanded: false}} />
+</Canvas>
+
+... search:
+
+<Canvas>
+    <AppHeader title="App" subtitle="Owner" search={{expanded: false}} />
+</Canvas>
+
+... or both:
+
+<Canvas>
+    <AppHeader title="App" subtitle="Owner" menu={{expanded: false}} search={{expanded: false}} />
+</Canvas>
+
+When the search is expanded it will replace the identifier:
+
+<Canvas>
+    <AppSearch placeholder="Search app"  />
+</Canvas>
+
+The headers can also represent a subview, always display an escape route (back button).
+
+<Canvas>
+    <AppSubview title="Uploading" description="3 of 4 images uploaded"  />
+</Canvas>
+
+
+## AppSidebar
+
+The sidebar contains the apps main navigation, primaryAction and menu:
+
+<Canvas>
+    <AppSidebar primaryAction={{title: "Create"}} menu={[{title: "Menu 1"}, {title: "Menu 2"}]}  />
+</Canvas>
+
+
+## AppLayout
+
+AppLayout is a container providing the header and sidebar:
+
+<Canvas>
+    <div style={{position: "relative", minHeight: 480}}>
+        <AppLayout sidebar={{expanded: true}} primaryAction={{title: "Create"}} menu={[{title: "Menu 1"}, {title: "Menu 2"}]}>
+            The content of the app, usually a Finder and a View.
+        </AppLayout>
+    </div>
+</Canvas>
+
+
+## The Finder and views
+
+The Finder will be the main screen for most apps, providing concept for:
+
+1. Creating new content
+2. Search
+3. Navigating content structures
+3. Bulk editing
+
+Within 
+
+# Finder apps
+
+Finder apps are built using AppLayout and FinderLayout, or the corresponding building blocks.

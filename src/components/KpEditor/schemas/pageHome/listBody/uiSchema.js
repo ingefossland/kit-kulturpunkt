@@ -1,4 +1,4 @@
-import body from "../../page/pageBody/uiSchema"
+import body from "../../pageX/pageBody/uiSchema"
 
 export default {
     ...body

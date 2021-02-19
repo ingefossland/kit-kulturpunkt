@@ -1,0 +1,94 @@
+{
+    "documentType": "device",
+    "createdAt": "2020-11-25T16:04:02",
+    "updatedAt": "2021-02-19T16:00:17",
+    "schemaId": 1,
+    "parent": null,
+    "content": {
+        "hasPages": [
+            {
+                "referenceId": "4adad937-c410-4574-9720-e4a60e22c212",
+                "referenceType": "deviceHasPages",
+                "reference": {
+                    "title": "Bergensbanen Mosaikk",
+                    "imageUrl": null,
+                    "createdAt": "2020-11-11T08:51:02",
+                    "updatedAt": "2020-11-11T08:51:02",
+                    "documentType": "pageGrid",
+                    "uniqueId": "4adad937-c410-4574-9720-e4a60e22c212",
+                    "schemaId": 1,
+                    "status": "draft",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1749
+                },
+                "content": {}
+            },
+            {
+                "referenceId": "0508bfcd-ede4-49f1-ac88-ddcdc5437fdb",
+                "referenceType": "deviceHasPages",
+                "reference": {
+                    "title": "Stasjoner på Bergensbanen",
+                    "imageUrl": null,
+                    "createdAt": "2020-11-11T08:39:42",
+                    "updatedAt": "2020-11-11T08:39:42",
+                    "documentType": "pageMap",
+                    "uniqueId": "0508bfcd-ede4-49f1-ac88-ddcdc5437fdb",
+                    "schemaId": 1,
+                    "status": "draft",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1748
+                },
+                "content": {}
+            },
+            {
+                "referenceId": "50e0fe5e-83d3-4184-9b63-6cee76164a75",
+                "referenceType": "deviceHasPages",
+                "reference": {
+                    "title": "Kirsten Flagstad",
+                    "imageUrl": null,
+                    "createdAt": "2020-08-31T06:36:26",
+                    "updatedAt": "2020-08-31T06:36:26",
+                    "documentType": "pageTopic",
+                    "uniqueId": "50e0fe5e-83d3-4184-9b63-6cee76164a75",
+                    "schemaId": 1,
+                    "status": "publish",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1552
+                },
+                "content": {}
+            },
+            {
+                "referenceId": "01c7a265-d577-45a8-a4e6-d7bfbb8d57a1",
+                "referenceType": "deviceHasPages",
+                "reference": {
+                    "title": "Jernbanestrekninger i Norge",
+                    "imageUrl": null,
+                    "createdAt": "2020-09-02T07:12:03",
+                    "updatedAt": "2020-09-02T07:12:03",
+                    "documentType": "pageMap",
+                    "uniqueId": "01c7a265-d577-45a8-a4e6-d7bfbb8d57a1",
+                    "schemaId": 1,
+                    "status": "publish",
+                    "locale": "no",
+                    "description": "",
+                    "id": 1640
+                },
+                "content": {}
+            }
+        ],
+        "deviceTitle": "iPad enhet",
+        "deviceId": 1235,
+        "deviceType": "ipad"
+    },
+    "title": "iPad enhet",
+    "id": 1768,
+    "referenceCount": 4,
+    "locale": "no",
+    "collectionId": 54,
+    "status": "draft",
+    "modelName": "documents",
+    "uniqueId": "59b2eea2-1812-4995-b7a3-dd4fa806d265"
+}

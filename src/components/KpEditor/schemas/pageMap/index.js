@@ -1,6 +1,7 @@
-import schema from "./schema";
-import uiSchema from "./uiSchema";
-import PreviewTemplate from "../../preview/PageMap"
+import schema from "./schema"
+import uiSchema from "./uiSchema"
+import formData from "./formData"
+import PreviewTemplate from "./PreviewTemplate"
 
 export default {
     id: 1,
@@ -8,6 +9,7 @@ export default {
     name: 'pageMap',
     schema: schema,
     uiSchema: uiSchema,
+    formData: formData,
     preview: {
         template: PreviewTemplate
     }

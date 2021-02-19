@@ -1,4 +1,4 @@
-import uiSchema from "../../page/pageMedia/uiSchema"
+import uiSchema from "../../pageX/pageMedia/uiSchema"
 
 export default {
     ...uiSchema,

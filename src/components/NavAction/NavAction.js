@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
-import NavActionButtongroup from "./NavActionButtongroup"
 import NavActionItem from "./NavActionItem"
 
 /** Action menu component */
 
-const NavAction = ({className, icons = {}, menu = [], menuByUrl, onSelect, onToggle}) => {
+const NavAction = ({className, variant = "contained", icons = {}, menu = [], menuByUrl, onSelect, onToggle}) => {
 
     const _onSelect = (item, event) => {
         item.onClick && item.onClick() || onSelect && onSelect(item)
@@ -33,7 +31,7 @@ const NavAction = ({className, icons = {}, menu = [], menuByUrl, onSelect, onTog
         }
 
         return (
-            <NavActionItem {...item} icons={icons} menuByUrl={menuByUrl} key={index} onSelect={_onSelect} />
+                <NavActionItem {...item} variant={item.variant || variant} icons={icons} menuByUrl={menuByUrl} key={index} onSelect={_onSelect} />
         )
 
     }
@@ -43,9 +41,9 @@ const NavAction = ({className, icons = {}, menu = [], menuByUrl, onSelect, onTog
     }
 
     return (
-        <NavActionButtongroup variant="contained" className={className}>
+        <nav className={className}>
             { menu.map(renderItem)}
-        </NavActionButtongroup>
+        </nav>
     )
 
 }

@@ -10,30 +10,40 @@ import themeEditor from "./ThemeEditor/registry"
 
 import localizedString from "./LocalizedString/registry"
 
+import primusEditor from "./PrimusEditor/registry"
+import primusMedia from "./PrimusMedia/registry"
+
+
 export default {
     "fields": {
-        ...kpEditor.fields,
         ...documentEditor.fields,
         ...referenceEditor.fields,
         ...collectionEditor.fields,
         ...pageEditor.fields,
         ...themeEditor.fields,
-        ...localizedString.fields
+        ...localizedString.fields,
+        ...primusEditor.fields,
+        ...primusMedia.fields,
+        ...kpEditor.fields
     },
     "widgets": {
-        ...kpEditor.widgets,
         ...documentEditor.widgets,
         ...referenceEditor.widgets,
         ...collectionEditor.widgets,
         ...pageEditor.widgets,
-        ...themeEditor.widgets
+        ...themeEditor.widgets,
+        ...primusEditor.widgets,
+        ...primusMedia.widgets,
+        ...kpEditor.widgets
     },
     "models": {
-        ...kpEditor.models,
         ...documentEditor.models,
         ...referenceEditor.models,
         ...collectionEditor.models,
         ...pageEditor.models,
-        ...themeEditor.models
+        ...themeEditor.models,
+        ...primusEditor.models,
+        ...primusMedia.models,
+        ...kpEditor.models
     }
 }

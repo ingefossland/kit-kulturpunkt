@@ -1,10 +1,11 @@
 import { API } from "../settings"
 import { createSlice } from '@reduxjs/toolkit'
-import { receiveModel } from "../modelsById"
+import { receiveModel, deleteModel, eraseModel } from "../modelsById"
 
 const bulkSlice = createSlice({
     name: 'bulk',
     initialState: {
+        items: [],
         count: 0,
         isLoading: false,
         isSaving: false,
@@ -22,12 +23,16 @@ const bulkSlice = createSlice({
                     "enum": [
                         false,
                         "draft",
-                        "publish"
+                        "publish",
+                        "delete",
+                        "erase"
                     ],
                     "enumNames": [
                         "** Multiple values **",
                         "Draft",
-                        "Publish"
+                        "Publish",
+                        "Move to trash",
+                        "Erase permanently"
                     ],
                     "default": false
                 },
@@ -59,10 +64,16 @@ const bulkSlice = createSlice({
                 }
             }
         },
-        bulk: [],
-        bulkById: {}
     }, 
     reducers: {
+        requestBulk(state, action) {
+            return {
+                ...state,
+                items: [],
+                count: 0,
+                formData: {},
+            }
+        },
         receiveBulkEditor(state, action) {
             const { schema, formData } = action.payload
 
@@ -83,36 +94,33 @@ const bulkSlice = createSlice({
 
         },
         bulkAdd(state, action) {
-            const { uniqueId, parentId, status, documentType } = action.payload
+            const { uniqueId } = action.payload
+
+            const bulkItems = state.items
+
+            if (bulkItems.includes(uniqueId)) {
+                return state
+            }
 
             return {
                 ...state,
                 count: state.count + 1,
-                bulkById: {
-                    ...state.bulkById,
-                    [uniqueId]: {
-                        uniqueId: uniqueId,
-                        parentId: parentId,
-                        documentType: documentType,
-                        status: status,
-                        selected: true
-                    }
-                }
+                items: [
+                    ...bulkItems,
+                    uniqueId
+                ]
             }
 
         },
         bulkRemove(state, action) {
             const { uniqueId } = action.payload
 
+            const bulkItems = state.items.filter(id => id !== uniqueId)
+
             return {
                 ...state,
-                count: state.count - 1,
-                bulkById: {
-                    ...state.bulkById,
-                    [uniqueId]: {
-                        selected: false
-                    }
-                }
+                count: bulkItems.length,
+                items: bulkItems
             }
 
         },
@@ -122,21 +130,19 @@ const bulkSlice = createSlice({
 export const bulkToggle = ({uniqueId}) => (dispatch, getState) => {
 
     const state = getState()
-    const bulkById = state.bulk.bulkById
-
-    const modelsById = state.modelsById
-    const uniqueModel = modelsById && modelsById[uniqueId]
-
-    const selected = bulkById && bulkById[uniqueId] && bulkById[uniqueId].selected
+    const bulkItems = state.bulk.items
+    const selected = bulkItems.includes(uniqueId)
 
     if (selected) {
-        dispatch(bulkRemove(uniqueModel))
-        dispatch(getBulkEditor())
+        dispatch(bulkRemove({uniqueId}))
     } else {
-        dispatch(bulkAdd(uniqueModel))
-        dispatch(getBulkEditor())
+        dispatch(bulkAdd({uniqueId}))
     }
 
+}
+
+export const bulkReset = () => (dispatch) => {
+    dispatch(requestBulk())
 }
 
 export const bulkSubmit = ({modelName = "documents", formData}) => (dispatch, getState) => {
@@ -144,8 +150,6 @@ export const bulkSubmit = ({modelName = "documents", formData}) => (dispatch, ge
     const state = getState()
     const bulkModels = Object.values(state.bulk.bulkById).filter(model => model.selected)
     const modelsById = state.modelsById
-
-    const url = API + '/admin/api/' + modelName;
 
     bulkModels.map(model => {
 
@@ -155,6 +159,12 @@ export const bulkSubmit = ({modelName = "documents", formData}) => (dispatch, ge
         if (!uniqueModel) {
             return false
         }
+
+        if (uniqueModel.modelName) {
+            modelName = uniqueModel.modelName
+        }
+
+        let apiUrl = API + '/admin/api/documents' + modelName;
 
         let newFormData = {
             ...uniqueModel
@@ -173,33 +183,39 @@ export const bulkSubmit = ({modelName = "documents", formData}) => (dispatch, ge
 
         })
 
-        /*
+        const { status } = newFormData
 
-        const newFormData = {
-            ...uniqueModel,
-            ...formData
+        if (status === "delete") {
+            dispatch(deleteModel(uniqueModel))
+
+        } else if (status === "erase") {
+            dispatch(eraseModel(uniqueModel))
+    
+        } else {
+
+            fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Accept": "application/json",
+                    "Content-Type": "application/json; charset=utf-8",
+                },
+                body: JSON.stringify(newFormData)
+            })
+            .then(
+                response => response.json(),
+                error => console.log('An error occurred.', error)
+            )
+            .then(formData => {
+                dispatch(receiveModel(formData))
+            })    
+    
         }
-        */
 
-        fetch(url, {
-            method: "POST",
-            headers: {
-                "Accept": "application/json",
-                "Content-Type": "application/json; charset=utf-8",
-            },
-            body: JSON.stringify(newFormData)
-        })
-        .then(
-            response => response.json(),
-            error => console.log('An error occurred.', error)
-        )
-        .then(formData => {
-//            dispatch(receiveSave(formData))
-            dispatch(receiveModel(formData))
-        })    
     
 
     })
+
+    dispatch(requestBulk())
 
 
 }
@@ -270,5 +286,5 @@ export const getBulkEditor = () => (dispatch, getState) => {
 
 }
 
-export const { receiveBulkEditor, bulkChange, bulkAdd, bulkRemove } = bulkSlice.actions
+export const { requestBulk, receiveBulkEditor, bulkChange, bulkAdd, bulkRemove } = bulkSlice.actions
 export default bulkSlice.reducer

@@ -1,7 +1,7 @@
 import schema from "./schema";
 import uiSchema from "./uiSchema";
 import formData from "./formData"
-import PreviewTemplate from "../../preview/KioskPreview"
+import PreviewTemplate from "./PreviewTemplate"
 
 export default {
     id: 1,

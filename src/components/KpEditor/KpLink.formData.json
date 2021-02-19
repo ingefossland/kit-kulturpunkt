@@ -1,0 +1,49 @@
+{
+    "placement": "bottom-left",
+    "referenceId": "ba586b8e-acfd-4f29-89f3-896aa44e2af0",
+    "color": "white",
+    "backgroundColor": "#456823",
+    "imageCropdata": {},
+    "grid": "2:2",
+    "reference": {
+      "documentType": "article",
+      "schemaId": 58,
+      "uniqueId": "ba586b8e-acfd-4f29-89f3-896aa44e2af0",
+      "id": 1406,
+      "createdAt": "2020-06-03T11:38:50",
+      "status": "new",
+      "title": "1986-90: Fergie kommer, ser og vinner!",
+      "description": "",
+      "locale": "no",
+      "updatedAt": "2020-06-03T11:38:50",
+      "imageUrl": "https://dms-test.dimu.org/image/012uPWFDhJNB?mediaType=image/png"
+    },
+    "imageFocalpoint": {},
+    "left": 50,
+    "title": {
+      "locale:sv": "",
+      "locale:de": "",
+      "locale:en": "",
+      "locale:fr": "",
+      "locale:es": "",
+      "locale:no": "Fergie kommer, ser og vinner!"
+    },
+    "titleColor": "white",
+    "top": 50,
+    "skin": "dark",
+    "runningHead": {
+      "locale:sv": "",
+      "locale:de": "",
+      "locale:en": "",
+      "locale:fr": "",
+      "locale:es": "",
+      "locale:no": "1986-90:"
+    },
+    "media": {},
+    "imageFilters": {},
+    "x": 0,
+    "titleSize": "medium",
+    "referenceType": "pageLink",
+    "description": {},
+    "y": 0
+  }

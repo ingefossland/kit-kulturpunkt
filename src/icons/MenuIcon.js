@@ -8,7 +8,7 @@ const MenuIconFilled = ({text = "Ap", ...props}) => {
     const color = "white"
 
     return (
-        <SvgIcon {...props} viewBox="0 0 24 24" {...props}>
+        <SvgIcon {...props} viewBox="0 0 24 24">
             <rect x="2" y="2" width="20" height="20" fill={backgroundColor}></rect>
             <text x="12" y="13" fill="white" fontFamily="Akkurat, sans-serif" fontSize="10" fontWeight="bold" dominantBaseline="middle" textAnchor="middle">{text}</text>
         </SvgIcon>
@@ -23,7 +23,7 @@ const MenuIconOutlined = ({text = "Ap", ...props}) => {
     const borderColor = color
 
     return (
-        <SvgIcon {...props} viewBox="0 0 24 24" {...props}>
+        <SvgIcon {...props} viewBox="0 0 24 24">
             <rect x="2" y="2" width="20" height="20" fill={borderColor}></rect>
             <rect x="3.5" y="3.5" width="17" height="17" fill={backgroundColor}></rect>
             <text x="12" y="13" fill={color} fontFamily="Akkurat, sans-serif" fontSize="10" fontWeight="bold" dominantBaseline="middle" textAnchor="middle">{text}</text>
