@@ -5,6 +5,9 @@ export default {
             "main": "#D94353",
             "light": "#EE7E8F",
             "dark": "#AE3552"
+        },
+        "primary": {
+            "main": "#20734b"
         }
     }
 }
