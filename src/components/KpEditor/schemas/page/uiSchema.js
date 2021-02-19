@@ -1,6 +1,8 @@
 import itemsUi from "./itemsUi"
+import uiPreview from "./uiPreview"
 
 export default {
+    "ui:preview": uiPreview,
     "ui:field": "kpPage",
     "ui:fieldset": [
         "content",

@@ -1,9 +1,9 @@
 import React from 'react';
-import { MasonryView, MasonryModule } from "../components/PrimusView"
+import { MasonryView, MasonryModule } from "../components/KpView"
 
 import FinderModel from "./FinderModel"
 
-const FinderViewGallery = ({ size, resultsLoaded, prevPage, nextPage, onPage }) => {
+const FinderViewMasonry = ({ size, resultsLoaded, prevPage, nextPage, onPage }) => {
 
     const header = prevPage && <MasonryModule placeholder maxWidth="100%" title="Prev page" onClick={() => onPage(prevPage)} />
     const footer = nextPage && <MasonryModule placeholder maxWidth="100%" title="Next page" onClick={() => onPage(nextPage)} />
@@ -28,6 +28,8 @@ const FinderViewGallery = ({ size, resultsLoaded, prevPage, nextPage, onPage })
         <MasonryView colSize={sizes[size]} cols={cols[size]} header={header} footer={footer} mediaSize={size} debug={true}>
             { resultsLoaded && resultsLoaded.map((model, index) => {
 
+                /*
+
                 const image = model && model.content && model.content.media && model.content.media[0] && model.content.media[0].media
                 const mediaWidth = model && model.mediaWidth || image && image.mediaWidth
                 const mediaHeight = model && model.mediaHeight || image && image.mediaHeight
@@ -37,6 +39,8 @@ const FinderViewGallery = ({ size, resultsLoaded, prevPage, nextPage, onPage })
                     mediaWidth: mediaWidth,
                     mediaHeight: mediaHeight,
                 }
+
+                */
 
                 return (
                     <FinderModel {...model} key={index}>
@@ -50,4 +54,4 @@ const FinderViewGallery = ({ size, resultsLoaded, prevPage, nextPage, onPage })
 
 }
 
-export default FinderViewGallery
+export default FinderViewMasonry

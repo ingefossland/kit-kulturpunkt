@@ -6,12 +6,14 @@ import qs from 'query-string';
 import FinderViewList from "./FinderViewList"
 import FinderViewGrid from "./FinderViewGrid"
 import FinderViewTable from "./FinderViewTable"
+import FinderViewIcons from "./FinderViewIcons"
 import FinderViewGallery from "./FinderViewGallery"
 import FinderViewMasonry from "./FinderViewMasonry"
 
 const templates = {
     "list": FinderViewList,
     "table": FinderViewTable,
+    "icons": FinderViewIcons,
     "grid": FinderViewGrid,
     "gallery": FinderViewGallery,
     "masonry": FinderViewMasonry

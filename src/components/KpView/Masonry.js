@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 
         "& > *": {
             width: "auto",
-            maxWidth: props => { return props.maxWidth },
+            maxWidth: props => { return props.maxWidth || "auto" },
             margin: props => { return props.spacing && theme.spacing(props.spacing * 0.5) },
         }
 
@@ -23,12 +23,12 @@ const Masonry = ({colSize, cols = 3, spacing = 1, padding = 0, children, header,
 
     const { width, height, ref } = useResizeDetector()
 
-    if (colSize) {
+    if (colSize && width) {
         cols = Math.floor(width / colSize)
     }
 
     const colWidth = (width / cols) - (spacing * 8)
-    const maxWidth = Math.floor(colWidth)
+    const maxWidth = colWidth && Math.floor(colWidth)
 
     const classes = useStyles({padding, spacing, maxWidth});
 
@@ -39,7 +39,6 @@ const Masonry = ({colSize, cols = 3, spacing = 1, padding = 0, children, header,
     const masonryOptions = {
         transitionDuration: 0
     };
-
 
     return (
         <div className={classes.wrapper} ref={ref}>

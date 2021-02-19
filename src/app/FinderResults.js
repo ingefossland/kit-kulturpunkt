@@ -58,7 +58,7 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const viewOptions = ["list","table","gallery","masonry"]
+    const viewOptions = ["list","icons","table","gallery","masonry"]
     const view = sq.view || viewOptions[0]
 
     // sizeOptions

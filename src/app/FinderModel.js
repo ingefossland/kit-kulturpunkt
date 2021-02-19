@@ -116,8 +116,8 @@ const FinderModel = ({
     const uiPreview = schemaModel && uniqueModel.uniqueId && getUiPreview({...schemaModel, formData: uniqueModel}) || {}
     
     const model = {
-        ...props,
         ...uniqueModel,
+        ...props,
         ...uiPreview,
         uniqueId: uniqueId,
         selected: bulkItems.includes(uniqueId),

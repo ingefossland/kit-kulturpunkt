@@ -20,6 +20,9 @@ import TableModule from "./TableModule"
 import MasonryView from "./MasonryView"
 import MasonryModule from "./MasonryModule"
 
+import IconsView from "./IconsView"
+import IconsModule from "./IconsModule"
+
 import { getGallery } from "./utils/getGallery"
 import { getImageUrl } from "./utils/getImageUrl"
 
@@ -32,6 +35,9 @@ export {
 
     ListView,
     ListModule,
+
+    IconsView,
+    IconsModule,
 
     GridView,
     GridModule,
