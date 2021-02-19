@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableView, TableModule } from "../components/PrimusView"
+import { TableView, TableModule } from "../components/KpView"
 import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 import qs from 'query-string';
@@ -8,16 +8,14 @@ const FinderViewGrid = ({ size, resultsLoaded, prevPage, nextPage, onPage }) =>
 
     let cols = [
         "title",
-        "artist",
-        "dating",
-        "materials",
-        "techniques",
-        "measures",
-        "depictedPeople",
-        "depictedPlaces",
-        "identifier",
-        "createdAt",
+        "status",
+        "documentType",
+        "referenceCount",
         "updatedAt",
+        "createdAt",
+        "createdBy",
+        "locale",
+        "uniqueId",
     ]
 
     if (size === "xs") {

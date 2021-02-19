@@ -1,95 +1,121 @@
 import React, { useRef, useEffect, useState } from "react"
-import TableModule from "./TableModule"
-
+import Typography from "@material-ui/core/Typography"
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    wrapper: {
-        width: "100%",
-        overflowX: "scroll"
-
-    },
     table: {
         width: "100%",
+        overflowY: "scroll",
+
+        tableLayout: "fixed",
         borderCollapse: "collapse",
         borderSpacing: 0,
 
         "& th": {
-            zIndex: 1,
-            left: 0,
-            width: "25%",
-            borderTop: "1px solid",
-            borderColor: theme.palette.divider
+            width: "50%",
+            width: 320,
+//            position: "sticky"
         },
 
         "& td": {
-            borderTop: "1px solid",
-            borderLeft: "1px solid",
-            borderColor: theme.palette.divider
+            paddingLeft: theme.spacing(1),
+            paddingRight: theme.spacing(1),
         },
 
-        "& th, & td": {
+        "& > thead > tr > th": {
+            paddingLeft: theme.spacing(2),
         },
-
-        "& > tr + tr": {
+ 
+        "& > tbody > tr": {
 
             "& > *": {
                 borderTop: "1px solid",
-                borderColor: theme.palette.divider
+                borderColor: theme.palette.divider,
+
+                "&[aria-selected=true]": {
+                    backgroundColor: theme.palette.action.selected,
+                }
+    
             }
 
         }
 
-
     },
+    label: {
+        fontFamily: "Akkurat, sans-serif",
+        fontWeight: "bold",
+        textAlign: "left",
+        fontSize: 14,
+        lineHeight: 1.5,
+        textTransform: "capitalize",
+
+        marginBottom: theme.spacing(1),
+    },
+    link: {
+        "&:hover": {
+            cursor: "pointer"
+        }
+    }
 }));
 
-const TableView = ({items = [], itemsById = {}, onSelect}) => {
-
+const TableView = ({cols = [], header, footer, children, sortable, sort, onSort}) => {
     const classes = useStyles()
 
-    const _onSelect = (item) => {
-        onSelect && onSelect(item)
+    const _onSort = (name) => {
+        onSort && onSort(name)
     }
 
-    const cols = [
-        "header",
-        "identifier",
-        "producer",
-        "dating",
-        "materials",
-        "technique",
-    ]
- 
+    const Label = ({name}) => {
+
+        let arrow
+
+        if (sort && sort === name) {
+            arrow = "↓"
+        } else if (sort && sort.startsWith(name)) {
+            arrow = "↑"
+        }
+
+        return (
+            <Typography noWrap className={classes.label}>{arrow} {name}</Typography>
+        )
+
+    }
+
     return (
-        <div className={classes.wrapper}>
+        <table className={classes.table}>
+            <thead className={classes.head}>
+                <tr>
+                    { cols.map((name, index) => {
 
-            <table className={classes.table}>
+                        const selected = sort && sort.startsWith(name)
 
-                <thead className={classes.head}>
+                        if (index === 0) {
+                            return <th aria-selected={selected} onClick={() => _onSort(name)}><Label name={name} key={index}/></th>
+                        }
 
-                    <tr>
-                        { cols.map((col, index) => <th>{col}</th>)}
-                    </tr>
+                        return <td aria-selected={selected} onClick={() => _onSort(name)}><Label name={name} key={index} /></td>
 
-                </thead>
-
-                <tbody className={classes.body}>
-
-                    {items && items.map((item, index) => {
-
-                        return (
-                            <TableModule {...item} key={index} onClick={() => _onSelect(item)}/>
-                        )
-        
                     })}
-
-                </tbody>
-
-            </table>
-        </div>
+                </tr>
+            </thead>
+            <tbody className={classes.body}>
+                {header}
+                {children}
+                {footer}
+            </tbody>
+        </table>
     )
 
+}
+
+TableView.defaultProps = {
+    cols: [
+        "artist",
+        "dating",
+        "materials",
+        "techniques",
+        "identifier",
+    ]
 }
 
 export default TableView;
