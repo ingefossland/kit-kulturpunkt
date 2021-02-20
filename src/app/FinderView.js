@@ -10,13 +10,20 @@ import FinderViewIcons from "./FinderViewIcons"
 import FinderViewGallery from "./FinderViewGallery"
 import FinderViewMasonry from "./FinderViewMasonry"
 
+import FinderViewTree from "./FinderViewTree"
+import FinderViewCols from "./FinderViewCols"
+import FinderViewApps from './FinderViewApps';
+
 const templates = {
+    "apps": FinderViewApps,
     "list": FinderViewList,
     "table": FinderViewTable,
     "icons": FinderViewIcons,
     "grid": FinderViewGrid,
     "gallery": FinderViewGallery,
-    "masonry": FinderViewMasonry
+    "masonry": FinderViewMasonry,
+    "tree": FinderViewTree,
+    "cols": FinderViewCols
 }
 
 const FinderView = ({view, size}) => {

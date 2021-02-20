@@ -8,8 +8,7 @@ const AppRoutes = () => {
 
     return (
         <Switch>
-            <Route path="/kiosk" component={ KioskApp } />
-            <Route path="/kp" component={ KpApp } />
+            <Route path="/:appName" component={ KpApp } />
             <Route path="/" component={ KpApp } />
         </Switch>
       )

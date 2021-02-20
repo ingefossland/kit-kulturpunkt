@@ -114,8 +114,8 @@ const useStyles = makeStyles(theme => ({
 
 const ColumnModule = ({
     selectable,
-    selected,
-    onSelect,
+    selected = false,
+    onExpand,
     collapsible, 
     expanded = false,
     onToggle,
@@ -138,7 +138,11 @@ const ColumnModule = ({
     
     }
 
-    const ButtonToggle = ({onClick}) => {
+    const ModuleExpand = ({onClick}) => {
+
+        if (!collapsible) {
+            return false
+        }
     
         return (
             <IconButton className={classes.toggleButton} onClick={onClick} aria-expanded={expanded}>
@@ -162,9 +166,14 @@ const ColumnModule = ({
 
     }
 
-    const _onSelect = (event) => {
+    const _onExpand = (event) => {
         event.stopPropagation()
-        onSelect && onSelect()
+        onExpand && onExpand()
+    }
+
+    const _onToggle = (event) => {
+        event.stopPropagation()
+        onToggle && onToggle()
     }
 
     if (draggable) {
@@ -178,25 +187,23 @@ const ColumnModule = ({
                 {...provided.draggableProps}
                 aria-selected={selected}
                 aria-expanded={expanded}
-                onClick={props.onSelect}
                 data-is-dragging={isDragging}
-                data-is-target={isTarget} ref={provided.innerRef} onClick={_onSelect}>
+                data-is-target={isTarget} ref={provided.innerRef} onClick={_onToggle}>
                     <DragHandle dragHandleProps={provided.dragHandleProps} />
                     <ModuleContent />
                     <NavToolbar {...props} className={classes.toolbar} />
-                    {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
-
+                    <ModuleExpand />
             </div>
         )   
 
     }
 
     return (
-        <div className={classes.module} aria-selected={selected}>
+        <div className={classes.module} aria-selected={selected} onClick={_onToggle}>
             <ModuleContent />
             <NavToolbar {...props} className={classes.toolbar} />
-            {collapsible && <ButtonToggle onClick={onSelect} /> || "" }
-        </div>
+            <ModuleExpand />
+       </div>
     )
 
 }

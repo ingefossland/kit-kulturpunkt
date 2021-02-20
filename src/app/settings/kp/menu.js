@@ -1,3 +1,19 @@
+const kpHome = {
+    title: "Alt innhold",
+    sortOptions: [],
+    sizeOptions: [],
+    rowsOptions: [],
+    viewOptions: ["tree","cols"],
+    query: {
+        fl: "uniqueId,id,title",
+        rows: 100,
+        models: "documents",
+        status: "NOT trash",
+        documentType: "page*",
+        q: "NOT parentId:*"
+    },
+}
+
 const contentTypes = [
     {
         pathname: "article",
@@ -115,16 +131,7 @@ const favourites = [
 ]
 
 export default [
-    {
-        url: "/kp",
-        title: "Alt innhold",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "documents",
-            documentType: "*",
-        }
-    },
+    kpHome,
     {
         title: "Innhold",
         pathname: "content",

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GalleryView, GalleryModule } from "../components/PrimusView"
+import { GalleryView, GalleryModule } from "../components/KpView"
 
 import FinderModel from "./FinderModel"
 

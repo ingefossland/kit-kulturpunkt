@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from "react-router-dom";
+import { useLocation, useHistory } from "react-router-dom";
 
 import { toggleDarkMode } from "../redux/app"
 
@@ -30,14 +30,14 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const PrimusFinder = (props) => {
+const Finder = () => {
 
     const history = useHistory()
+    const location = useLocation()
     const dispatch = useDispatch()
 
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)
-    const modelsById = useSelector(state => state.modelsById)
 
     // primaryAction
 
@@ -61,7 +61,7 @@ const PrimusFinder = (props) => {
 
     // parent && query
 
-    const pathname = props.location.pathname
+    const pathname = location.pathname
     const parent = menuByUrl && menuByUrl[pathname] || {}
 
     // bulk
@@ -100,7 +100,7 @@ const PrimusFinder = (props) => {
     const classes = useStyles()
 
     return (
-        <FinderLoader {...props}>
+        <FinderLoader>
             <FinderBase>
                 <FinderSidebar {...sidebar}>
                     <NavAction className={classes.action} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={_onSelect} />
@@ -122,4 +122,4 @@ const PrimusFinder = (props) => {
 
 }
 
-export default PrimusFinder
+export default Finder

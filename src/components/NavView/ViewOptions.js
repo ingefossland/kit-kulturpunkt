@@ -53,13 +53,18 @@ const icons = {
     "icons": "apps",
     "details": "view_stream",
     "grid": "view_module",
-    "column": "view_column",
+    "tree": "view_headline",
+    "cols": "view_column",
 }
 
 
 const ViewOptions = ({className, options = [], value, onChange}) => {
     const { t, i18n } = useTranslation('view');
     const classes = useStyles()
+
+    if (!options.length) {
+        return false
+    }
 
     const _onChange = (value) => {
         onChange && onChange(value)

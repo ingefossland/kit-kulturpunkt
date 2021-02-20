@@ -294,7 +294,7 @@ const IconModule = (props) => {
     const classes = useStyles()
 
     return (
-        <ModuleBase className={classes.module} status={status} selected={selected} deleted={deleted} erased={erased} onClick={selected && onSelect}>
+        <ModuleBase className={classes.module} status={status} selected={selected} deleted={deleted} erased={erased} onClick={onClick}>
 
             <Paper className={classes.figure} square={true}>
                 { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }

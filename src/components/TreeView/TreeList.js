@@ -3,13 +3,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     treeList: {
-        display: "flex",
-        flexDirection: "column",
         "& > * + *": {
             borderTop: "1px solid",
             borderColor: theme.palette.divider,
         },
 
+        "& $treeList": {
+            borderTop: "1px solid",
+            borderColor: theme.palette.divider,
+        },
+       
         "&[data-is-dragging-over=true]": {
             backgroundColor: theme.palette.divider
         },

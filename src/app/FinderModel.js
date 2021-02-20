@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from "react"
 import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import { getModel, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
+import { getModel, getChildren, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 import qs from 'query-string';
 
 import { schemasByName } from "./schemas"
@@ -83,22 +83,18 @@ const FinderModel = ({
     }, [uniqueId])
 
 
-    /*
-
-    // get action
-
-    const uiAction = bulkCount && {
-        onClick: () => _onSelect({uniqueId})
-    } || {
-        onSelect: () => _onSelect({uniqueId}),
-        onEdit: () => _onEdit({source, sourceId, uniqueId})
-    }
-
-    */
-
     // uniqueItem
 
     const uniqueModel = modelsById[uniqueId] || {}
+
+    // get children?
+
+    useEffect(() => {
+        if (uniqueModel.id && !uniqueModel.children && props.getChildren) {
+            dispatch(getChildren(uniqueModel))
+        }
+    }, [uniqueModel.id])
+
 
     // uiPreview
 
@@ -165,17 +161,29 @@ const FinderModel = ({
 
     let actions = {}
 
+    if (selectable) {
+        actions.onSelect = () => _onSelect({uniqueId})
+    }
+
+    if (editable) {
+        actions.onEdit = () => _onEdit({source, sourceId, uniqueId})
+    }
+
+    if (deletable) {
+        actions.onDelete = () => _onDelete({modelName, uniqueId})
+    }
+
+    if (erasable) {
+        actions.onErase = () => _onErase({modelName, uniqueId})
+    }
+
+    if (restorable) {
+        actions.onRestore = () => _onRestore({modelName, uniqueId})
+    }
+
     if (bulkCount) {
         actions = {
             onClick: () => _onSelect({uniqueId})
-        }
-    } else {
-        actions = {
-            onSelect: () => _onSelect({uniqueId}),
-            onEdit: () => _onEdit({source, sourceId, uniqueId}),
-            onDelete: () => _onDelete({modelName, uniqueId}),
-            onErase: () => _onErase({modelName, uniqueId}),
-            onRestore: () => _onRestore({modelName, uniqueId}),
         }
     }
 

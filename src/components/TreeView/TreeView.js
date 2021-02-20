@@ -3,14 +3,14 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
     treeView: {
-        position: "absolute",
+        position: "relative",
         top: 0,
         right: 0,
         bottom: 0,
         left: 0,
         
-        border: "1px solid",
-        borderColor: theme.palette.divider,
+//        border: "1px solid",
+//        borderColor: theme.palette.divider,
 
     },
 

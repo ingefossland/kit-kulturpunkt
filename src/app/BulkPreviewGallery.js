@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewBase, ViewHeader, GalleryView, GalleryModule } from "../components/PrimusView"
+import { ViewBase, ViewHeader, GalleryView, GalleryModule } from "../components/KpView"
 
 const BulkPreviewGallery = ({title, items = []}) => {
 

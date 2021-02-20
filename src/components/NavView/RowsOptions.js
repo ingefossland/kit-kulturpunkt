@@ -49,8 +49,11 @@ const useStyles = makeStyles((theme) => ({
 
 const RowsOptions = ({className, options = [], value, onChange}) => {
     const { t, i18n } = useTranslation('rows');
-
     const classes = useStyles()
+
+    if (!options.length) {
+        return false
+    }
 
     const _onChange = (value) => {
         onChange && onChange(value)

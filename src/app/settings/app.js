@@ -4,17 +4,17 @@ import menu from "./menu"
 
 export default {
     theme: theme,
-    icon: "primusApp",
+    icon: "kpApp",
     url: "/",
     root: "",
-    siteId: 2,
-    collectionId: 201,
-    title: "Primus art",
+    siteId: 1,
+    collectionId: 54,
+    title: "KulturPunkt",
     subtitle: "Museum",
     menu: menu,
     primaryAction: primaryAction,
     sidebar: {
-        expanded: true
+        expanded: false
     },
     languages: [
         "no", "sv", "en", "de", "es", "fr"
@@ -22,6 +22,6 @@ export default {
     search: {
 //        "variant": "growing",
         "expanded": false,
-        "placeholder": "Søk i Primus art"
+        "placeholder": "Søk i KulturPunkt"
     }
 }

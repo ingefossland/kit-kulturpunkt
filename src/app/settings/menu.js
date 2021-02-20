@@ -1,122 +1,36 @@
-const objectTypes = [
-    {
-        pathname: "artwork",
-        title: "Art",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "documents",
-            documentType: "*",
-        }
+const home = {
+    url: "/",
+    title: "Alt innhold",
+    viewOptions: ["apps"],
+    query: {
+        fl: "uniqueId,id,title",
+        rows: 0,
+        models: "documents",
+        status: "NOT trash",
     },
-    {
-        pathname: "design",
-        title: "Design",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Artdesign",
-        }
-    },
-    {
-        pathname: "fineart",
-        title: "Billedkunst",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Fineart",
-        }
-    },
-    {
-        pathname: "architecture",
-        title: "Arkitektur",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Architecture",
-        }
-    },
+}
 
-]
-
-const collectionTypes = [
+const favourites = [
     {
-        pathname: "folder",
-        title: "Mapper",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Folder",
-        }
+        url: "/kp",
+        title: "KulturPunkt",
+        icon: "kpMenu",
     },
     {
-        pathname: "exhibition",
-        title: "Utstillinger",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Exhibition",
-        }
-    },
-
-]
-
-const nameTypes = [
-    {
-        pathname: "people",
-        title: "Personer",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Person",
-        }
-    },
-    {
-        pathname: "org",
-        title: "Organisasjoner",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "ekultur",
-            documentType: "Organization",
-        }
-    },
-
+        url: "/kiosk",
+        title: "Kiosk",
+        icon: "kioskMenu",
+    }
 ]
 
 export default [
+    home,
+
     {
-        pathname: "/",
-        title: "Alt innhold",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "documents",
-            documentType: "*",
-        }
-    },
-    {
-        title: "Objekter",
-        pathname: "types",
+        title: "Favoritter",
+        pathname: "favourites",
         role: "section",
-        children: objectTypes
-    },
-    {
-        title: "Collections",
-        pathname: "collections",
-        role: "section",
-        children: collectionTypes
-    },
-    {
-        title: "Navn",
-        pathname: "names",
-        role: "section",
-        children: nameTypes
+        children: favourites
     }
+
 ]

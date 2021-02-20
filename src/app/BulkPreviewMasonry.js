@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewBase, ViewHeader, MasonryView, MasonryModule } from "../components/PrimusView"
+import { ViewBase, ViewHeader, MasonryView, MasonryModule } from "../components/KpView"
 
 const BulkPreviewMasonry = ({title, items = []}) => {
 

@@ -7,7 +7,7 @@ import { getPreview, getEditor, collapseEditor } from '../redux/finder';
 import { getModel, getArtifact, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 import qs from 'query-string';
 
-import { ViewBase, ViewHeader } from "../components/PrimusView"
+import { ViewBase, ViewHeader } from "../components/KpView"
 
 import ViewTemplate from "./FinderView"
 

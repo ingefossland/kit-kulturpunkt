@@ -21,6 +21,7 @@ const PrimusRoutes = (props) => {
             <Route path="/:appName/:parents*/:uniqueId/view" component={ DocumentViewer } />
             <Route path="/:appName/:parents*" component={ Finder } />
             <Route path="/:appName" component={ Finder } />
+            <Route path="/" component={ Finder } />
         </Switch>
       )
 

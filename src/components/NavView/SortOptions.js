@@ -48,8 +48,11 @@ const useStyles = makeStyles((theme) => ({
 
 const SortOptions = ({className, options = [], value, onChange}) => {
     const { t, i18n } = useTranslation('sort');
-
     const classes = useStyles()
+
+    if (!options.length) {
+        return false
+    }
 
     const _onChange = (value) => {
         onChange && onChange(value)

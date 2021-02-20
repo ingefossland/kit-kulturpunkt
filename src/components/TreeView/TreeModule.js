@@ -9,7 +9,6 @@ import { ModuleBase, ModuleTitle, NavToolbar } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
     module: {
-
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected,
         },
@@ -52,8 +51,8 @@ const useStyles = makeStyles(theme => ({
 
     },
     children: {
-        borderTop: "1px solid",
-        borderColor: theme.palette.divider,
+//        borderTop: "1px solid",
+//        borderColor: theme.palette.divider,
     },
     toolbar: {
 
@@ -191,7 +190,7 @@ const TreeModule = ({
                     <ModuleContent />
                     <NavToolbar {...props} className={classes.toolbar} />
                 </div>
-                {renderChildren && <div className={classes.children}>{renderChildren()}</div> }
+                {expanded && renderChildren && <div className={classes.children}>{renderChildren()}</div> }
             </div>
         )
     

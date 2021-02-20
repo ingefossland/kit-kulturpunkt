@@ -65,9 +65,8 @@ const FinderQuery = ({query = {}, sortOptions = [], viewOptions = [], ...props})
     const searchByUrl = useSelector(state => state.searchByUrl)
     const currentSearch = searchByUrl && searchByUrl[url] || {}
     
-
     return (
-        <FinderResults {...finder} {...sq} {...props} {...currentSearch}  />
+        <FinderResults {...sq} {...props} {...currentSearch}  />
     )
 
 }

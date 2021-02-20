@@ -7,7 +7,9 @@ import collectionReducer from './collection/collectionSlice'
 import appReducer from './app/appSlice'
 import finderReducer from './finder/finderSlice'
 import editorReducer from './editor/editorSlice'
+
 import bulkReducer from './bulk/bulkSlice'
+import treeReducer from './tree/treeSlice'
 
 import searchByUrlReducer from './searchByUrl/searchByUrlSlice'
 
@@ -22,6 +24,7 @@ export default combineReducers({
     editor: editorReducer,
     finder: finderReducer,
     bulk: bulkReducer,
+    tree: treeReducer,
     modelsById: modelsByIdReducer,
     searchByUrl: searchByUrlReducer,
     uploadByUrl: uploadByUrlReducer,

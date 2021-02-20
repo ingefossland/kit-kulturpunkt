@@ -5,8 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { getApp } from "../redux/app"
 import { collapseEditor, toggleSidebar } from "../redux/finder"
 import { bulkReset } from '../redux/bulk';
-
-import settings from "./settings/kp"
+import { useParams } from "react-router-dom";
 
 import { AppBase, AppHeader, AppBody } from "../components/App"
 
@@ -14,7 +13,21 @@ import AppLoader from "./AppLoader"
 import AppSearch from "./AppSearch"
 import AppRoutes from "./KpRoutes"
 
+import kpSettings from "./settings/kp"
+import kioskSettings from "./settings/kiosk"
+import defaultSettings from "./settings"
+
+const apps = {
+    "default": defaultSettings,
+    "kp": kpSettings,
+    "kiosk": kioskSettings
+}
+
 const KpApp = (props) => {
+
+    const { appName } = useParams()
+
+    const settings = apps[appName] || apps["default"]
 
     const dispatch = useDispatch()
     const location = useLocation()
@@ -24,7 +37,7 @@ const KpApp = (props) => {
     useEffect(() => {
         console.log('get app', settings)
         dispatch(getApp(settings))
-    }, [])
+    }, [settings])
     
     const app = useSelector(state => state.app)
     const finder = useSelector(state => state.finder)

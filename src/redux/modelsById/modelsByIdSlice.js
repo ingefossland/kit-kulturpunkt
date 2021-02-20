@@ -277,6 +277,7 @@ export const getParents = ({modelName = "documents", uniqueId, id, parentId, par
 export const getChildren = ({modelName = "documents", uniqueId, id}) => (dispatch, getState) => {
 
     const query = qs.stringify({
+        fl: "id,parentId,uniqueId,title",
         parentId: id,
     })
 

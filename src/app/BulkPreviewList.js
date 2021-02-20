@@ -1,5 +1,5 @@
 import React from 'react';
-import { ViewBase, ViewHeader, ListView, ListModule } from "../components/PrimusView"
+import { ViewBase, ViewHeader, ListView, ListModule } from "../components/KpView"
 
 const BulkPreviewList = ({title, viewAction, items = []}) => {
 

@@ -1,29 +1,24 @@
 import React, { forwardRef } from 'react';
-import PropTypes from "prop-types";
 import { makeStyles } from '@material-ui/core/styles';
-import { ViewHeader, ViewPages } from "@kit-ui/admin"
 
 const useStyles = makeStyles(theme => ({
-    columnView: {
-        display: "flex",
-        flexDirection: "column",
-
-    },
     columns: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-
         display: "flex",
+        width: "100%",
 
-        border: "1px solid",
-        borderColor: theme.palette.divider,
+//        border: "1px solid",
+//        borderColor: theme.palette.divider,
 
         "& > *": {
             flexBasis: 0,
-            flexGrow: 1
+            flexGrow: 1,
+            overflow: "hidden",
+
+            "&:last-child": {
+                flexBasis: "50%"
+            }
+
+
         },
 
         "& > * + *": {
@@ -44,11 +39,8 @@ const ColumnView = ({children}) => {
     }
 
     return (
-        <div className={classes.columnView}>
-            <ViewHeader />
-            <div className={classes.columns}>
-                {children}
-            </div>
+        <div className={classes.columns}>
+            {children}
         </div>
     )
 

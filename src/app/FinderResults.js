@@ -4,11 +4,8 @@ import { useHistory, useLocation } from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 import { bulkAdd, bulkRemove, bulkToggle, bulkReset } from '../redux/bulk';
 import { getPreview, getEditor, collapseEditor } from '../redux/finder';
-
-import { getModel, getArtifact, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
 import qs from 'query-string';
-
-import { ViewBase, ViewHeader, ViewLoader, EmptyView } from "../components/PrimusView"
+import { ViewBase, ViewHeader, ViewLoader, EmptyView } from "../components/KpView"
 
 import FinderView from "./FinderView"
 
@@ -22,6 +19,12 @@ const FinderResults = (props) => {
     const dispatch = useDispatch()
 
     const sq = location.search && qs.parse(location.search)
+
+
+    // parent && query
+    const menuByUrl = useSelector(state => state.finder.menuByUrl)
+    const pathname = location.pathname
+    const parent = menuByUrl && menuByUrl[pathname] || {}
 
     // onSelect
 
@@ -37,7 +40,7 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const sortOptions = ["title", "title DESC", "createdAt DESC", "updatedAt DESC"]
+    const sortOptions = parent.sortOptions || ["title", "title DESC", "createdAt DESC", "updatedAt DESC"]
     const sort = sq.sort || sortOptions && sortOptions[0]
 
     // rowsOptions
@@ -48,7 +51,7 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const rowsOptions = [10,20,30,40,50]
+    const rowsOptions = parent.rowsOptions || [10,20,30,40,50]
     const rows = sq.rows || rowsOptions[0]
 
     // viewOptions
@@ -58,7 +61,7 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const viewOptions = ["list","icons","table","gallery","masonry"]
+    const viewOptions = parent.viewOptions || ["tree","cols","list","icons","table","gallery","masonry"]
     const view = sq.view || viewOptions[0]
 
     // sizeOptions
@@ -68,8 +71,8 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const sizeOptions = ["xs","sm","md","lg","xl"]
-    const size = sq.size || "md"
+    const sizeOptions = parent.sizeOptions || ["xs","sm","md","lg","xl"]
+    const size = sq.size || sizeOptions[0]
 
     // parents, title, etc
 
@@ -195,13 +198,24 @@ const FinderResults = (props) => {
 
     // title
 
+    let queryTitle
+
+    if (parent && parent.query && parent.query.q && query && query.q) {
+        queryTitle = query.q.replace(parent.query.q, "")
+    } else if (query && query.q) {
+        queryTitle = query.q
+    }
+
+    // title
+
     let title
 
-    if (query && query.q) {
+    if (queryTitle) {
+
         parents = [
             ...parents,
             {
-                title: "«" + query.q + "»"
+                title: "«" + queryTitle + "»"
             }
         ]
     }
