@@ -98,38 +98,39 @@ const contentTypes = [
 
 ]
 
+
 const mediaTypes = [
     {
         pathname: "image",
         title: "Bilder",
         view: "icons",
-        viewOptions: ["gallery","icons","list","table"],
+        icon: "imageFolder",
+        viewOptions: ["list","icons"],
         query: {
             models: "media",
             mediaType: "image",
-            status: "NOT trash"
         }
     },
     {
         pathname: "video",
         title: "Video",
+        icon: "videoFolder",
         view: "icons",
-        viewOptions: ["gallery","icons","list","table"],
+        viewOptions: ["list","icons"],
         query: {
             models: "media",
             mediaType: "video",
-            status: "NOT trash"
         }
     },
     {
         pathname: "audio",
         title: "Audio",
+        icon: "audioFolder",
         view: "icons",
-        viewOptions: ["icons","list","table"],
+        viewOptions: ["list","icons"],
         query: {
             models: "media",
             mediaType: "audio",
-            status: "NOT trash"
         }
     },
 

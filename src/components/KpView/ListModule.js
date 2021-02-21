@@ -180,6 +180,10 @@ const ListModule = ({
     mediaType,
     mediaLabel,
 
+    createdAt,
+    updatedAt,
+    updatedByName = "N/A",
+
     untitled,
     title,
     description,
@@ -233,11 +237,11 @@ const ListModule = ({
             <div className={classes.content}>
                 <header className={classes.header}>
                     <ModuleTitle status={status} untitled={untitled} title={title} onClick={!onClick && onEdit} />
-                    <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
-                    <ModuleByline author={author} datetime={datetime} />
+                    <ModuleByline author={updatedByName} datetime={updatedAt || createdAt} />
                 </header>
                 <footer className={classes.footer}>
                     <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
+                    <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
                     <ModuleMetadata metadata={metadata} />
                     <ModuleDescription description={description} />
                 </footer>

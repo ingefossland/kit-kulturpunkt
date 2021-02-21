@@ -16,6 +16,9 @@ import PageAnnotate from "./PageAnnotate"
 import PageMap from "./PageMap"
 import PageParent from "./PageParent"
 
+import ImageFolder from "./ImageFolder"
+import VideoFolder from "./VideoFolder"
+import AudioFolder from "./AudioFolder"
 
 export {
     Article,
@@ -31,7 +34,11 @@ export {
     PageList,
     PageAnnotate,
     PageMap,
-    PageParent
+    PageParent,
+
+    ImageFolder,
+    VideoFolder,
+    AudioFolder
 }
 
 export default {
@@ -51,6 +58,10 @@ export default {
 
     "device": <Device />,
     "deviceMac": <DeviceMac />,
-    "deviceWin": <DeviceWin />
+    "deviceWin": <DeviceWin />,
+
+    "audioFolder": <AudioFolder />,
+    "videoFolder": <VideoFolder />,
+    "imageFolder": <ImageFolder />
 
 }

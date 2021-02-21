@@ -24,6 +24,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "article",
+            status: "NOT trash"
         }
     },
     {
@@ -35,6 +36,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageHome",
+            status: "NOT trash"
         }
     },
     {
@@ -46,6 +48,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageTopic",
+            status: "NOT trash"
         }
     },
     {
@@ -57,6 +60,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageMap",
+            status: "NOT trash"
         }
     },
 
@@ -67,6 +71,7 @@ const mediaTypes = [
         pathname: "image",
         title: "Bilder",
         view: "icons",
+        icon: "imageFolder",
         viewOptions: ["list","icons"],
         query: {
             models: "media",
@@ -76,6 +81,7 @@ const mediaTypes = [
     {
         pathname: "video",
         title: "Video",
+        icon: "videoFolder",
         view: "icons",
         viewOptions: ["list","icons"],
         query: {
@@ -86,6 +92,7 @@ const mediaTypes = [
     {
         pathname: "audio",
         title: "Audio",
+        icon: "audioFolder",
         view: "icons",
         viewOptions: ["list","icons"],
         query: {
@@ -99,8 +106,8 @@ const mediaTypes = [
 const shortcuts = [
     {
         pathname: "latest",
-        title: "Latest",
-        icon: "access_time",
+        title: "Sist oppdatert",
+        icon: "history",
         query: {
             models: "documents",
             status: "NOT trash",
@@ -109,8 +116,8 @@ const shortcuts = [
         }
         },
     {
-        icon: "delete",
-        title: "Trash",
+        icon: "delete_outline",
+        title: "Slettet",
         pathname: "trash",
         query: {
             models: "documents",
