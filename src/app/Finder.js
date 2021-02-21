@@ -21,12 +21,37 @@ import icons from "../icons/"
 
 const useStyles = makeStyles(theme => ({
     action: {
-        minHeight: 96,
+        position: "absolute",
+        zIndex: 2,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: theme.spacing(0, 3),
-        boxSizing: "border-box"
+        padding: theme.spacing(1.5),
+        margin: theme.spacing(1.5),
+        boxSizing: "border-box",
+        backgroundColor: theme.palette.background.default,
+    },
+    menu: {
+        position: "absolute",
+        zIndex: 1,
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        overflowY: "scroll",
+        paddingTop: 96,
+        paddingBottom: 96,
+    },
+    info: {
+        position: "absolute",
+        zIndex: 2,
+        top: "auto",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        padding: theme.spacing(1.5),
+        margin: theme.spacing(1.5),
+        backgroundColor: theme.palette.background.default,       
     }
 }));
 
@@ -103,11 +128,11 @@ const Finder = () => {
         <FinderLoader>
             <FinderBase>
                 <FinderSidebar {...sidebar}>
+                    <AppInfo {...app} className={classes.info} icons={icons} onClick={_onToggleDarkMode} />
                     <NavAction className={classes.action} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={_onSelect} />
-                    <NavMenu icons={icons} currentUrl={pathname} menu={menu} menuByUrl={menuByUrl} onSelect={_onSelect} />
-                    <AppInfo {...app} icons={icons} onClick={_onToggleDarkMode} />
+                    <NavMenu className={classes.menu} icons={icons} currentUrl={pathname} menu={menu} menuByUrl={menuByUrl} onSelect={_onSelect} />
                 </FinderSidebar>
-                <FinderSection {...view}>
+               <FinderSection {...view}>
                     <FinderQuery {...parent} />
                 </FinderSection>
                 <FinderSection {...preview}>

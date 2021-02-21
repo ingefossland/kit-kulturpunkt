@@ -8,17 +8,17 @@ const useStyles = makeStyles(theme => ({
         position: "absolute",
         bottom: 0,
         left: 0,
-        margin: 14,
     },
     info: {
         display: "flex",
-        alignItems: "center"
+        alignItems: "center",
     },
     icon: {
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         fontSize: 64,
+        margin: -10,
         color: theme.palette.text.primary,
         "& > *": {
             fontSize: "inherit",
@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
     content: {
         display: "flex",
         flexDirection: "column",
-        marginLeft: 8
+        marginLeft: theme.spacing(2)
     },
     title: {
         fontFamily: "Akkurat, sans-serif",
