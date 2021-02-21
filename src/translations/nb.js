@@ -95,14 +95,16 @@ export default {
     },
     documentType: {
         "article": "Artikkel",
+        "device": "Enhet",
+        "object": "Objekt",
         "pageHome": "Hjemmeside",
         "pageTopic": "Tema",
         "pageMap": "Kart",
         "pageGrid": "Mosaikk",
         "pageList": "Liste",
+        "pageTimeline": "Tidslinje",
         "pageAnnotate": "Bildekart",
         "pageMedia": "Media",
-        "device": "Enhet",
     },
     status: {
         "undefined": "Ukjent",

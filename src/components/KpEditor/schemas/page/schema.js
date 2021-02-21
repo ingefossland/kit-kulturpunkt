@@ -9,12 +9,12 @@ export default {
             "enum": [
                 "pageHome",
                 "pageTopic",
-                "pageMap"
-            ],
-            "enumNames": [
-                "Startside",
-                "Tema",
-                "Kart"
+                "pageMap",
+                "pageList",
+                "pageGrid",
+                "pageTimeline",
+                "pageAnnotate",
+                "pageMedia",
             ]
         },
         "locale": {

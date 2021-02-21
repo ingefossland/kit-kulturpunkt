@@ -1,0 +1,23 @@
+{
+    "documentType": "object",
+    "createdAt": "2019-06-24T14:14:08",
+    "updatedAt": "2019-06-24T14:14:08",
+    "collectionId": 54,
+    "uniqueId": "b1386b48-7350-4819-9865-6237b45a0377",
+    "schemaId": 54,
+    "parent": null,
+    "imageUrl": "https://dms01.dimu.org/image/032uL2JJ5RbK",
+    "status": "publish",
+    "title": "Banner",
+    "id": 734,
+    "referenceCount": 0,
+    "locale": "no",
+    "content": {
+        "title": "Banner",
+        "imageUrl": "https://dms01.dimu.org/image/032uL2JJ5RbK",
+        "description": "10 banner laget til utstillingen Fotball i norske tegneserier.",
+        "objectId": "011025091643",
+        "objectType": "Thing"
+    },
+    "description": "10 banner laget til utstillingen Fotball i norske tegneserier."
+}

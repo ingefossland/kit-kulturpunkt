@@ -1,15 +1,18 @@
 import React, { useRef, useState } from 'react';
-import { Dropdown } from "@kit-ui/core"
-
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Icon from "@material-ui/core/Icon"
-
-import NavViewButton from "./NavViewButton"
+import Slider from '@material-ui/core/Slider'
+import ZoomInIcon from "@material-ui/icons/AddCircle"
+import ZoomOutIcon from "@material-ui/icons/RemoveCircle"
 
 import { makeStyles } from '@material-ui/core/styles';
-import { useTranslation } from 'react-i18next';
 
 const useStyles = makeStyles((theme) => ({
+    control: {
+        display: 'flex',
+        alignItems: 'center',
+    },
+    slider: {
+        width: 100
+    },
     buttongroup: {
         display: 'flex',
         alignItems: 'center',
@@ -47,40 +50,33 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
-const SizeOptions = ({className, options = [], value, onChange}) => {
-    const { t, i18n } = useTranslation('size');
+const SizeOptions = ({
+        min = 0, 
+        max = 200,
+        defaultValue = 100,
+        value, 
+        onChange
+    }) => {
+
     const classes = useStyles()
 
-    if (!options.length) {
-        return false
-    }
-
-    const _onChange = (value) => {
+    const _onChange = (event, value) => {
         onChange && onChange(value)
     }
 
-    options = options.map(option => {
-
-        if (typeof option === "string" || typeof option === "number") {
-            return {
-                title: t(option),
-                value: option,
-                onClick: () => _onChange(option)
-            }
-        }
-
-        return option
-
-    })
-
-    const currentOption = value && options.find(option => option.value === value)
-
     return (
-        <nav className={className}>
-            <NavViewButton {...currentOption} label={value} value={value} children={options} />
-        </nav>
+        <div className={classes.control}>
+            <Slider className={classes.slider} value={value} min={min} max={max} onChange={_onChange} />
+        </div>
     )
-
+    
+    return (
+        <div className={classes.control}>
+            <ZoomOutIcon className={classes.icon} />
+            <Slider className={classes.slider} defaultValue={value || defaultValue} min={min} max={max} onChangeCommitted={_onChange} />
+            <ZoomInIcon className={classes.icon} />
+        </div>
+    )
         
 }
 

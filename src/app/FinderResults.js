@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { bulkAdd, bulkRemove, bulkToggle, bulkReset } from '../redux/bulk';
 import { getPreview, getEditor, collapseEditor } from '../redux/finder';
 import qs from 'query-string';
+
 import { ViewBase, ViewHeader, ViewLoader, EmptyView } from "../components/KpView"
 
 import FinderView from "./FinderView"
@@ -71,8 +72,13 @@ const FinderResults = (props) => {
         history.replace(url)
     }
 
-    const sizeOptions = parent.sizeOptions || ["xs","sm","md","lg","xl"]
-    const size = sq.size || sizeOptions[0]
+    const sizeOptions = parent.sizeOptions || {
+        defaultValue: 100,
+        min: 0,
+        max: 200
+    }
+
+    const size = sq.size || 100
 
     // parents, title, etc
 

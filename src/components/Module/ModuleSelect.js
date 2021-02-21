@@ -13,10 +13,13 @@ const useStyles = makeStyles(theme => ({
         width: theme.spacing(3),
         height: theme.spacing(3),
 
+        color: theme.palette.text.primary,
+
         border: "1px solid",
-        margin: -1,
         borderColor: "transparent",
 
+                margin: -1,
+        
         "&[aria-selected=true]": {
             opacity: 1,
             margin: -2,
@@ -37,7 +40,7 @@ const useStyles = makeStyles(theme => ({
         color: "currentColor"
     },
     selectButton: {
-        opacity: .5,
+        color: "inherit",
 
         "&:hover": {
             opacity: 1,

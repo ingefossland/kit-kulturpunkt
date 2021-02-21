@@ -21,27 +21,13 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const GridView = ({items = [], maxWidth = 160, maxHeight = 160}) => {
+const GridView = ({children}) => {
 
     const classes = useStyles()
 
     return (
         <div className={classes.grid}>
-
-            {items && items.map((item, index) => {
-
-                item = {
-                    ...item,
-                    width: maxWidth,
-                    maxHeight: maxHeight,
-                //                    mediaLayout: mediaLayout
-                }
-
-                return (
-                    <GridModule {...item} key={index} />
-                )
- 
-             })}
+            {children}
         </div>
     )
 

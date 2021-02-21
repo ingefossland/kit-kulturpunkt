@@ -1,37 +1,34 @@
-import { getUiPreview } from "./getUiPreview"
-import { schemasByName } from "../schemas"
+import { getSchemaModel, getUiPreview } from "./"
 
-export const getUiModel = ({model, modelsById = {}, bulkItems = []}) => {
+export const getUiModel = ({model, modelsById = {}, t}) => {
 
-    const { modelName, source, sourceId } = model;
+    const { source, sourceId, status, documentType, mediaType } = model;
 
     const uniqueId = model.uniqueId || source + "/" + sourceId
-
-    // uniqueItem
-
     const uniqueModel = modelsById[uniqueId] || {}
 
-    // uiPreview
+    const { schema, uiSchema } = getSchemaModel(model)
 
-    const documentType = uniqueModel && uniqueModel.documentType || model.documentType
-    const documentModel = documentType && schemasByName && schemasByName["documents/" + documentType]
-
-    const mediaType = uniqueModel && uniqueModel.mediaType || model.mediaType
-    const mediaModel = mediaType && schemasByName && schemasByName["media/" + mediaType]
-
-    const collectionType = uniqueModel && uniqueModel.collectionType || model.collectionType
-    const collectionModel = collectionType && schemasByName && schemasByName["collections/" + collectionType]
+    const uiPreview = uiSchema && getUiPreview({schema, uiSchema, formData: uniqueModel}) || {}
     
-    const schemaModel = documentModel || mediaModel || collectionModel
+    // labels
 
-    const uiPreview = schemaModel && uniqueModel.uniqueId && getUiPreview({...schemaModel, formData: uniqueModel}) || {}
-    
+    const statusLabel = status && t('status:'+status)
+    const documentLabel = documentType && t('documentType:'+documentType)
+    const mediaLabel = mediaType && t('mediaType:'+mediaType)
+
+    const uiLabels = {
+        documentLabel: documentLabel,
+        mediaLabel: mediaLabel,
+        statusLabel: statusLabel
+    }    
+
     return {
-        ...model,
         ...uniqueModel,
+        ...model,
         ...uiPreview,
+        ...uiLabels,
         uniqueId: uniqueId,
-        selected: bulkItems.includes(uniqueId),
     }    
 
 }

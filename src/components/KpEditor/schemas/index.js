@@ -2,6 +2,8 @@
 //import kpCollection from './kpCollection';
 
 import article from './article';
+import object from './object';
+import device from './device';
 
 import page from './page';
 import pageHome from './pageHome';
@@ -14,10 +16,10 @@ import pageTimeline from './pageTimeline';
 import pageAnnotate from './pageAnnotate';
 import pageMedia from './pageMedia';
 
-import device from './device';
 
 export default [
     article,
+    object,
     page,
     pageHome,
     pageMap,

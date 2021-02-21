@@ -1,77 +1,69 @@
-import React, { useRef, useState, useMemo, useLayoutEffect } from "react"
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react"
+import { 
+    ViewBase,
+    ViewHeader,
+    ViewLoader,
+    ViewPages,
+    EmptyView,
 
-import ViewHeader from "./ViewHeader"
-import { ListView, GridView, GalleryView } from "."
+    ListView,
+    ListModule,
 
+    IconsView,
+    IconsModule,
 
-const useStyles = makeStyles(theme => ({
-    view: {
-        position: "absolute",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-//        overflowY: "scroll",
-        overflow: "auto",
+    GridView,
+    GridModule,
 
-        "&:hover": {
-
-            "&::-webkit-scrollbar": {
-                width: 8,
-                height: 8,
-                backgroundColor: "transparent",
-                backgroundColor: theme.palette.divider
-            },
+    TableView,
+    TableModule,
     
-            "&::-webkit-scrollbar-thumb": {
-                backgroundColor: theme.palette.primary.main
-            },
-    
-        },
+    GalleryView,
+    GalleryModule,
 
+    MasonryView,
+    MasonryModule,    
+} from "."
 
-        "& > header": {
-            position: "sticky",
-            zIndex: 2,
-            top: 0
-        }
-
-    }
-
-}));
+import icons from "../KpIcons"
 
 const templates = {
     "list": ListView,
+    "icons": IconsView,
+    "table": TableView,
+    "gallery": GalleryView,
+    "masonry": MasonryView,
     "grid": GridView,
-    "gallery": GalleryView
 }
 
-const PrimusView = ({items, ...props}) => {
+const modules = {
+    "list": ListModule,
+    "icons": IconsModule,
+    "table": TableModule,
+    "gallery": GalleryModule,
+    "masonry": MasonryModule,
+    "grid": GridModule,
+}
 
+const KpView = ({view = "list", items,}) => {
 
-    const { view } = props
+    const Template = templates && templates[view]
+    const Module = modules && modules[view]
 
-    const viewRef = useRef(null)
-
-    const [scrollTop, setScrollTop] = useState(45)
- 
-    const _onScroll = (event) => {
-//        setScrollTop(viewRef.current.scrollTop)
+    const Icon = ({documentType, mediaType}) => {
+        return documentType && icons[documentType]
     }
 
-    const ViewTemplate = templates && templates[view] || templates["list"]
-
-    const classes = useStyles()
-
     return (
-        <div className={classes.view} ref={viewRef} onScroll={_onScroll}>
-            <ViewHeader {...props} />
-            <ViewTemplate {...props} items={items} />
-        </div>
+        <ViewBase>
+            <ViewHeader title={view} />
+            <Template>
+                {items && items.map((item, index) => <Module {...item} icon={<Icon {...item} />} key={index} />)}
+            </Template>
+        </ViewBase>
 
     )
 
 }
 
-export default PrimusView;
+export default KpView;

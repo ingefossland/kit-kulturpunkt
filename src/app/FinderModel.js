@@ -3,11 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useLocation, useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { getModel, getChildren, deleteModel, restoreModel, eraseModel, selectModel } from '../redux/modelsById';
-import qs from 'query-string';
 
-import { schemasByName } from "./schemas"
-import { getUiPreview } from "./utils"
-
+import { getUiModel } from "./utils"
 
 const FinderModel = ({
     onClick,
@@ -24,12 +21,11 @@ const FinderModel = ({
     ...props
 }) => {
 
-    const { t, i18n } = useTranslation('search');
+    const { t, i18n } = useTranslation();
 
     const location = useLocation()
     const history = useHistory()
     
-
     // actions
 
     const dispatch = useDispatch()
@@ -95,33 +91,21 @@ const FinderModel = ({
         }
     }, [uniqueModel.id])
 
+    // uiModel
 
-    // uiPreview
+    const uiModel = getUiModel({model: props, modelsById, t})
 
-    const documentType = uniqueModel && uniqueModel.documentType || props.documentType
-    const documentModel = documentType && schemasByName && schemasByName["documents/" + documentType]
+    // model
 
-    const mediaType = uniqueModel && uniqueModel.mediaType || props.mediaType
-    const mediaModel = mediaType && schemasByName && schemasByName["media/" + mediaType]
-
-    const collectionType = uniqueModel && uniqueModel.collectionType || props.collectionType
-    const collectionModel = collectionType && schemasByName && schemasByName["collections/" + collectionType]
-    
-    const schemaModel = documentModel || mediaModel || collectionModel
-
-    const uiPreview = schemaModel && uniqueModel.uniqueId && getUiPreview({...schemaModel, formData: uniqueModel}) || {}
-    
     const model = {
-        ...uniqueModel,
-        ...props,
-        ...uiPreview,
+        ...uiModel,
         uniqueId: uniqueId,
         selected: bulkItems.includes(uniqueId),
     }
 
     // capabilities
 
-    const { selected, status } = model
+    const { status, selected } = model
 
     if (status === "trash") {
         deleted = true

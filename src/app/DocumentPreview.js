@@ -6,7 +6,7 @@ import {
     PreviewJSON
 } from "@kit-ui/admin"
 
-import { schemasByName } from "./schemas"
+import { getSchemaModel } from "./utils"
 
 import DocumentPreviewCols from "./DocumentPreviewCols"
 
@@ -14,14 +14,9 @@ const DocumentPreview = () => {
     const editor = useSelector(state => state.editor)
 
     const { formData } = editor
-    const { documentType } = formData
 
-    const modelType = documentType && "documents/"+documentType 
-    const model = schemasByName && schemasByName[modelType]
-
-    const schema = model && model.schema
-    const uiSchema = model && model.uiSchema
-
+    const { preview, schema, uiSchema } = getSchemaModel(formData)
+   
     let previewOptions = [
         {
             "title": "JSON",
@@ -40,11 +35,11 @@ const DocumentPreview = () => {
         },
     ]    
 
-    if (model.preview && model.preview.template) {
+    if (preview && preview.template) {
 
         previewOptions = [
             {
-                ...model.preview,
+                ...preview,
 //                template: DocumentPreviewCols,
                 title: "Preview",
                 value: "preview"

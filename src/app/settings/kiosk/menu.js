@@ -1,3 +1,15 @@
+const home = {
+    url: "/kiosk",
+    title: "Alt innhold",
+    view: "icons",
+    viewOptions: ["list","table","icons","gallery","masonry"],
+    query: {
+        models: "documents",
+        documentType: "*",
+        status: "NOT trash"
+    }
+}
+
 const contentTypes = [
     {
         pathname: "article",
@@ -8,6 +20,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "article",
+            status: "NOT trash"
         }
     },
     {
@@ -19,6 +32,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "device",
+            status: "NOT trash"
         }
     },
     {
@@ -30,6 +44,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageGrid",
+            status: "NOT trash"
         }
     },
     {
@@ -41,6 +56,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageTimeline",
+            status: "NOT trash"
         }
     },
     {
@@ -52,6 +68,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageAnnotate",
+            status: "NOT trash"
         }
     },
     {
@@ -63,6 +80,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageMedia",
+            status: "NOT trash"
         }
     },
     {
@@ -74,6 +92,7 @@ const contentTypes = [
         query: {
             models: "documents",
             documentType: "pageList",
+            status: "NOT trash"
         }
     },
 
@@ -84,30 +103,33 @@ const mediaTypes = [
         pathname: "image",
         title: "Bilder",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["gallery","icons","list","table"],
         query: {
             models: "media",
             mediaType: "image",
+            status: "NOT trash"
         }
     },
     {
         pathname: "video",
         title: "Video",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["gallery","icons","list","table"],
         query: {
             models: "media",
             mediaType: "video",
+            status: "NOT trash"
         }
     },
     {
         pathname: "audio",
         title: "Audio",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["icons","list","table"],
         query: {
             models: "media",
             mediaType: "audio",
+            status: "NOT trash"
         }
     },
 
@@ -148,16 +170,7 @@ const favourites = [
 ]
 
 export default [
-    {
-        url: "/kiosk",
-        title: "Alt innhold",
-        view: "icons",
-        viewOptions: ["list","icons"],
-        query: {
-            models: "documents",
-            documentType: "*",
-        }
-    },
+    home,
     {
         title: "Innhold",
         pathname: "content",

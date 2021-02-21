@@ -107,12 +107,6 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center"
     },
     icon: {
-        fontSize: 24,
-        color: theme.palette.text.secondary,
-
-        "& > svg": {
-            fontSize: "inherit"
-        }
 
     },
     image: {
@@ -181,6 +175,11 @@ const ListModule = ({
 
     uniqueId,
 
+    documentType, 
+    documentLabel, 
+    mediaType,
+    mediaLabel,
+
     untitled,
     title,
     description,
@@ -198,7 +197,7 @@ const ListModule = ({
     ...props
 }) => {
 
-    const { author, datetime, documentType, documentLabel, mediaType, mediaLabel, metadata, onEdit, status, statusLabel, deleted, erased } = props
+    const { author, datetime, metadata, onEdit, status, statusLabel, deleted, erased } = props
 
     const icon = props.icon || props.documentType && icons[props.documentType]
 
@@ -238,7 +237,7 @@ const ListModule = ({
                     <ModuleByline author={author} datetime={datetime} />
                 </header>
                 <footer className={classes.footer}>
-                    <ModuleLabel label={documentLabel || documentType || mediaLabel || mediaType} />
+                    <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
                     <ModuleMetadata metadata={metadata} />
                     <ModuleDescription description={description} />
                 </footer>

@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ButtonBase from "@material-ui/core/ButtonBase"
 import Paper from "@material-ui/core/Paper"
 import Icon from "@material-ui/core/Icon"
 
 import {
     ModuleBase,
     ModuleTitle,
-    ModuleImage,
     ModuleLabel,
     ModuleMetadata,
     ModuleDescription,
@@ -22,12 +22,15 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     module: {
         position: "relative",
-        width: 192,
-        minWidth: 192,
+        width: props => { return props.width },
+        minWidth: props => { return props.minWidth },
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        margin: theme.spacing(1),
+
+        "&[role=button]:hover": {
+            cursor: "pointer"
+        },
 
         "& button": {
             opacity: 0,
@@ -157,12 +160,42 @@ const useStyles = makeStyles(theme => ({
             }
 
         }        
-    },    
-    figure: {
+    },      
+    placeholder: {
         position: "relative",
-        minWidth: 96,
-        width: 96,
-        minHeight: 96 * 4/3,
+        width: props => { return props.paperWidth },
+        height: props => { return props.paperHeight },
+        padding: 8,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+        border: "1px solid",
+        borderColor: theme.palette.divider,
+
+        "&[role=button]": {
+            cursor: "pointer",
+
+            "& > $icon": {
+                opacity: .5
+            },
+
+            "&:hover > $icon": {
+                opacity: 1
+            }
+    
+        },
+
+        "& > $icon": {
+            fontSize: 24,
+        }
+
+    }, 
+ 
+    paper: {
+        position: "relative",
+        width: props => { return props.paperWidth },
+        height: props => { return props.paperHeight },
         padding: 8,
         display: "flex",
         justifyContent: "center",
@@ -178,7 +211,7 @@ const useStyles = makeStyles(theme => ({
 
     },
     icon: {
-        fontSize: 96,
+        fontSize: props => { return props.iconSize },
 
         "& > svg": {
             fontSize: "inherit"
@@ -187,7 +220,28 @@ const useStyles = makeStyles(theme => ({
     },
     image: {
         display: "block",
-        width: 96,
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+
+        "& > img": {
+            display: "block",
+            maxWidth: "100%",
+            maxHeight: "100%"
+        },
+
+        "& > $icon": {
+            position: "absolute",
+            bottom: 0,
+            left: 0,
+            fontSize: 24,
+            backgroundColor: "white",
+            padding: theme.spacing(.5),
+//            boxShadow: theme.shadows[2]
+        }
+        
     },
     content: {
         flexGrow: 1,
@@ -245,9 +299,53 @@ const useStyles = makeStyles(theme => ({
 
 /** IconModule for listing documents */
 
-const IconModule = (props) => {
+const IconModule = ({
+    width,
+    minWidth = 128,
+    maxWidth,
+
+    imageUrl,
+
+    icon,
+    iconSize = 96,
+    minIconSize = 24,
+    maxIconSize = 96,
+
+    minImageSize = 64,
+
+    paperWidth,
+    paperHeight,
+    minPaperWidth = 48,
+    ...props
+}) => {
+
+    if (!paperWidth) {
+        paperWidth = iconSize
+    }
+
+    // iconSize
+    
+    if (iconSize < minIconSize) {
+        iconSize = minIconSize
+    } else if (iconSize > maxIconSize) {
+        iconSize = maxIconSize
+    }
+
+    if (iconSize < minImageSize) {
+        imageUrl = null
+    }
+ 
+    
+    paperHeight = paperWidth * 4/3
+
+    if (!width) {
+        width = paperWidth + 24
+    }
 
     const {
+        button,
+        placeholder,
+
         status,
         statusLabel,
     
@@ -278,8 +376,6 @@ const IconModule = (props) => {
         erased,
         onErase,
     
-        icon,
-        imageUrl,
         untitled,
     
         title,
@@ -291,15 +387,43 @@ const IconModule = (props) => {
         onClick,
     } = props
 
-    const classes = useStyles()
+    const classes = useStyles({width, minWidth, paperWidth, paperHeight, iconSize})
+
+    if (placeholder) {
+        return (
+            <div className={classes.module}>
+                <ModuleBase className={classes.placeholder} role={onClick && "button"} onClick={onClick}>
+                    { icon && <Icon className={classes.icon}>{icon}</Icon> || title }
+                </ModuleBase>
+            </div>
+        )
+    }
+
+    const ModuleMedia = () => {
+
+        if (imageUrl) {
+
+            return (
+                <div className={classes.image}>
+                    <img src={imageUrl} />
+                    <Icon className={classes.icon}>{icon}</Icon>
+                </div>
+            )
+
+        } else {
+            return (
+                <Icon className={classes.icon}>{icon}</Icon>
+            )
+        }
+
+    }
 
     return (
-        <ModuleBase className={classes.module} status={status} selected={selected} deleted={deleted} erased={erased} onClick={onClick}>
+        <ModuleBase className={classes.module} {...props}>
 
-            <Paper className={classes.figure} square={true}>
-                { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                { imageUrl && <ModuleImage className={classes.image} imageUrl={imageUrl} /> }
-                { selected && <ModuleToolbar selectable={selectable} selected={selected} className={classes.toolbar} /> || <ModuleToolbar className={classes.toolbar} {...props} /> }
+            <Paper className={classes.paper} square={true}>
+                <ModuleMedia />
+                <ModuleToolbar className={classes.toolbar} {...props} />
             </Paper>
 
             <div className={classes.content}>

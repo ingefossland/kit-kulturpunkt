@@ -1,6 +1,7 @@
 import React from "react"
 
 import Article from "./Article"
+import Object from "./Object"
 
 import Device from "./Device"
 import DeviceMac from "./DeviceMac"
@@ -18,6 +19,7 @@ import PageParent from "./PageParent"
 
 export {
     Article,
+    Object,
     Device,
     DeviceMac,
     DeviceWin,
@@ -34,6 +36,7 @@ export {
 
 export default {
     "article": <Article />,
+    "object": <Object />,
 
     "pageHome": <PageHome />,
     "pageGrid": <PageGrid />,

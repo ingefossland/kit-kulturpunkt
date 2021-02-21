@@ -1,9 +1,11 @@
+import uiPreview from "./uiPreview"
 import header from "./header/uiSchema";
 import body from "./body/uiSchema";
 import isPartOf from "./isPartOf/uiSchema";
 import settings from "./settings/uiSchema";
 
 export default {
+    "ui:preview": uiPreview,
     "ui:field": "pageEditor",
     "ui:collapsible": true,
     "ui:fieldset": [

@@ -4,10 +4,16 @@ import uiPreview from "./uiPreview"
 export default {
     "ui:preview": uiPreview,
     "ui:field": "kpPage",
+    "ui:options": {
+        "collapsible": true
+    },
     "ui:fieldset": [
         "content",
         "settings"
     ],
+    "settings": {
+        "ui:fieldset": ["documentType"]
+    },
     "content": {
         "ui:layout": "pageContent",
 //        "ui:field": KpPageContentField,

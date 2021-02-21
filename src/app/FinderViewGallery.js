@@ -7,17 +7,20 @@ const FinderViewGallery = ({ size, resultsLoaded, prevPage, nextPage, onPage })
 
     const header = prevPage && <GalleryModule placeholder title="Prev page" onClick={() => onPage(prevPage)} />
     const footer = nextPage && <GalleryModule placeholder title="Next page" onClick={() => onPage(nextPage)} />
+    
+    const mediaSize = 200 + size * 1
 
+    /*
     const sizes = {
         "xs": 200,
         "sm": 300,
         "md": 400,
         "lg": 600,
         "xl": 800
-    }
+    }*/
 
     return (
-        <GalleryView header={header} footer={footer} mediaSize={sizes[size]} debug={true}>
+        <GalleryView header={header} footer={footer} mediaSize={mediaSize} debug={true}>
             { resultsLoaded && resultsLoaded.map((model, index) => {
 
                 const image = model && model.content && model.content.media && model.content.media[0] && model.content.media[0].media
