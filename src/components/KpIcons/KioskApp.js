@@ -1,4 +1,9 @@
 import React from "react"
-import { AppIcon } from "@kit-ui/icons"
-const KioskApp = (props) => <AppIcon {...props} variant="filled" color="red" text="Ki" />
-export default KioskApp
+import AppIcon from "./AppIcon"
+import kioskTheme from "../../app/settings/kiosk/theme"
+
+const kioskColor = kioskTheme.palette.primary.main
+
+const KioskAppIcon = (props) => <AppIcon {...props} color={kioskColor} variant="filled" text="Ki" />
+
+export default KioskAppIcon

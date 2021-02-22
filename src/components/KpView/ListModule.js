@@ -37,6 +37,18 @@ const useStyles = makeStyles(theme => ({
             borderColor: theme.palette.divider
         },
 
+        "& > $toolbar": {
+            opacity: 0
+        },
+
+        "&:hover": {
+            "& > $toolbar": {
+                opacity: 1
+            }
+        },
+
+        /*
+
         "& button": {
             opacity: 0.5,
 
@@ -52,8 +64,10 @@ const useStyles = makeStyles(theme => ({
             },
         },
 
+        */
+
         "&[aria-selected=true]": {
-            backgroundColor: "white",
+            backgroundColor: theme.palette.action.selected,
 
             "& button[value=select]": {
                 opacity: 1,

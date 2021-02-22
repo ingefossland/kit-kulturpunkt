@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const TreeList = ({droppable, children, ...props}) => {
+const TreeList = ({droppable, children}) => {
 
     const classes = useStyles();
 

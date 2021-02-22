@@ -29,12 +29,9 @@ const TreeColumn = ({
 
     const { treeRoot, treeColumns, nodesById } = useSelector(state => state.tree)
 
-    const _onToggle = (node) => {
+    const _onToggle = (event, node) => {
+        event.stopPropagation()
         dispatch(toggleNode(node))
-    }
-
-    const _onExpand = (node) => {
-        dispatch(selectNode(node))
     }
 
     const _onDragEnd = (results) => {
@@ -53,14 +50,16 @@ const TreeColumn = ({
 
         const uniqueModel = modelsById && modelsById[child.uniqueId]
         const uniqueNode = nodesById && nodesById[child.uniqueId]
+
         const children = uniqueModel && uniqueModel.children || []
+        const collapsible = children.length && true
 
         child = {
             ...child,
-            ...uniqueModel,
+//            ...uniqueModel,
             ...uniqueNode,
-//            selectable: false,
-            collapsible: children.length && true,
+            children: children,
+            collapsible: collapsible,
         }
 
         return (
@@ -69,10 +68,9 @@ const TreeColumn = ({
                     <FinderModel {...child}
                             index={index}
                             level={level}
-                            onToggle={() => _onExpand(child)}
                             draggable={{provided, snapshot}} 
                             getChildren={true}>
-                        <ColumnModule />
+                        <ColumnModule onClick={(event) => _onToggle(event, child)} />
                     </FinderModel>
                 )}
             </Draggable>
@@ -83,7 +81,7 @@ const TreeColumn = ({
 
     const DroppableColumn = ({parent, children, level, index}) => {
 
-        if (!children.length) {
+        if (!children) {
             return false
         }
 
@@ -91,7 +89,7 @@ const TreeColumn = ({
             <>
             <Droppable isCombineEnabled={true} index={index} droppableId={parent.droppableId} key={parent.droppableId}>
                 {(provided, snapshot) => (
-                    <ColumnList droppable={{provided, snapshot}} key={index}>
+                    <ColumnList elevation={level} droppable={{provided, snapshot}} key={index}>
                         {children && children.map((child, index) => {
                             return (
                                 <DraggableChild child={child} level={level} index={index} key={index} />

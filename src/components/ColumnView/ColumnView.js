@@ -2,17 +2,24 @@ import React, { forwardRef } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(theme => ({
-    columns: {
+    columnView: {
         display: "flex",
         width: "100%",
+        height: "100%",
 
-//        border: "1px solid",
-//        borderColor: theme.palette.divider,
+        position: "relative",
+        border: "1px solid",
+        borderColor: theme.palette.divider,
+
+        boxShadow: props => { return theme.shadows[props.elevation]},
+        overflow: "hidden",
 
         "& > *": {
             flexBasis: 0,
             flexGrow: 1,
             overflow: "hidden",
+            height: "100%",
+            overflowY: "scroll",
 
             "&:last-child": {
                 flexBasis: "50%"
@@ -30,16 +37,16 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ColumnView = ({children}) => {
+const ColumnView = ({elevation = 1, children}) => {
 
-    const classes = useStyles()
+    const classes = useStyles({elevation})
 
     if (!children) {
         return false
     }
 
     return (
-        <div className={classes.columns}>
+        <div className={classes.columnView}>
             {children}
         </div>
     )

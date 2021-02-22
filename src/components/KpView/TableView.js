@@ -23,7 +23,6 @@ const useStyles = makeStyles(theme => ({
         },
 
         "& > thead > tr > th": {
-            paddingLeft: theme.spacing(2),
         },
  
         "& > tbody > tr": {
@@ -110,11 +109,11 @@ const TableView = ({cols = [], header, footer, children, sortable, sort, onSort}
 
 TableView.defaultProps = {
     cols: [
-        "artist",
-        "dating",
-        "materials",
-        "techniques",
-        "identifier",
+        "title",
+        "status",
+        "updatedAt",
+        "createdAt",
+        "uniqueId"
     ]
 }
 

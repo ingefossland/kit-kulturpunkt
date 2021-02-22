@@ -7,7 +7,6 @@ import Gallery from "./Gallery"
 const useStyles = makeStyles(theme => ({
     view: {
         display: "block",
-        padding: theme.spacing(0,2),
     },
 }));
 

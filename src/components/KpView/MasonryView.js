@@ -7,21 +7,12 @@ import Masonry from "./Masonry"
 const useStyles = makeStyles(theme => ({
     view: {
         display: "block",
-        padding: props => { return theme.spacing(props.paddingY,props.paddingX) }
     },
 }));
 
-const MasonryView = ({colSize, cols = 3, padding = 0, paddingX = 2, paddingY, spacing = 2, header, footer, children, debug = false}) => {
+const MasonryView = ({colSize, cols = 3, spacing = 2, header, footer, children, debug = false}) => {
 
-    if (!paddingX) {
-        paddingX = padding
-    }
-
-    if (!paddingY) {
-        paddingY = padding
-    }
-
-    const classes = useStyles({padding, paddingX, paddingY, spacing})
+    const classes = useStyles()
 
     return (
         <div className={classes.view}>

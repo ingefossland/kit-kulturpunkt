@@ -13,6 +13,7 @@ import ModuleDate from "./ModuleDate";
 
 import ModuleMedia from "./ModuleMedia";
 import ModuleImage from "./ModuleImage";
+import ModuleIcon from "./ModuleIcon";
 
 import ModuleLabel from "./ModuleLabel";
 import ModuleIdentifier from "./ModuleIdentifier";
@@ -54,6 +55,7 @@ export {
 
     ModuleMedia,
     ModuleImage,
+    ModuleIcon,
 
     ModuleMetadata,
     ModuleStatus,

@@ -25,7 +25,8 @@ const FinderViewTree = ({
 
     const { treeRoot, treeParents, nodesById } = useSelector(state => state.tree)
 
-    const _onToggle = (node) => {
+    const _onToggle = (event, node) => {
+        event.stopPropagation()
         dispatch(toggleNode(node))
     }
 
@@ -42,41 +43,34 @@ const FinderViewTree = ({
             url: url + "/" + child.uniqueId
         }
 
-        const uniqueModel = modelsById && modelsById[child.uniqueId]
         const uniqueNode = nodesById && nodesById[child.uniqueId]
+        const uniqueModel = modelsById && modelsById[child.uniqueId]
+
         const children = uniqueModel && uniqueModel.children || []
+        const collapsible = children.length && true
 
         child = {
             ...child,
-            ...uniqueModel,
+//            ...uniqueModel,
             ...uniqueNode,
+            children: false,
             selectable: false,
-            collapsible: children.length && true,
+            collapsible: collapsible,
         }
+
+        const { expanded } = child
     
-        const _renderChildren = () => {
-
-            if (!children || !child.expanded) {
-                return false
-            }
-
-            return (
-                <DroppableChildren parent={child} children={children} level={level+1} />
-            )
-
-        }
-
         return (
             <Draggable index={index} draggableId={child.draggableId} key={child.draggableId}>
                 {(provided, snapshot) => (
                     <FinderModel {...child}
                             index={index}
                             level={level}
-                            onToggle={() => _onToggle(child)}
                             draggable={{provided, snapshot}} 
-                            getChildren={true}
-                            renderChildren={_renderChildren}>
-                        <TreeModule />
+                            getChildren={true}>
+                        <TreeModule onClick={(event) => _onToggle(event, child)}>
+                            {collapsible && expanded && <DroppableChildren parent={child} children={children} level={level+1} /> || "" }
+                        </TreeModule>
                     </FinderModel>
                 )}
             </Draggable>
@@ -107,7 +101,7 @@ const FinderViewTree = ({
     return (
         <TreeView>
             <DragDropContext onDragEnd={_onDragEnd}>
-                { treeParents && <DroppableChildren parent={treeRoot} children={treeParents} index={0} level={1} /> }
+                { treeParents && <DroppableChildren parent={treeRoot} children={treeParents} index={0} level={0} /> }
             </DragDropContext>        
         </TreeView>
     )

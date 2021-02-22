@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
         position: "relative",
         width: props => { return props.width },
         height: props => { return props.height },
-        margin: "0",
+        margin: 0,
     },
     cropbox: {
         display: "block",
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const ModuleImage = ({className, elevation = 0, selected = false, imageUrl, backgroundColor = "transparent", layout = "contain", width = 56, height = 56, maxWidth = "100%", maxHeight = "100%", margin = 0, onClick, ...props}) => {
+const ModuleImage = ({className, elevation = 0, selected = false, imageUrl, backgroundColor = "transparent", layout = "contain", width = "100%", height = "100%", maxWidth = "100%", maxHeight = "100%", margin = 0, onClick, ...props}) => {
     const classes = useStyles({...props, elevation, backgroundColor, width, height, maxWidth, maxHeight, margin})
 
     const coverStyle = {

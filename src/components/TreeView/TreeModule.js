@@ -5,10 +5,14 @@ import ToggleIcon from '@material-ui/icons/ArrowDropDown';
 import DragIcon from '@material-ui/icons/DragHandle';
 import { makeStyles } from '@material-ui/core/styles';
 
-import { ModuleBase, ModuleTitle, NavToolbar } from "@kit-ui/admin"
+import { ModuleTitle, ModuleImage, ModuleIcon, ModuleToolbar } from "../Module"
 
 const useStyles = makeStyles(theme => ({
     module: {
+        width: "100%",
+        overflow: "hidden",
+        userSelect: "none",
+
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected,
         },
@@ -33,7 +37,7 @@ const useStyles = makeStyles(theme => ({
                 display: "none"
             },
 
-            "& $level": {
+            "& $content": {
                 marginLeft: 0
             }
 
@@ -51,80 +55,87 @@ const useStyles = makeStyles(theme => ({
 
     },
     children: {
-//        borderTop: "1px solid",
-//        borderColor: theme.palette.divider,
+
     },
     toolbar: {
 
+
+
     },
-    level: {
-        marginLeft: props => { return props.level * 48 },
+    content: {
+        marginLeft: props => { return props.margin * 48 },
+        height: 48,
+
         position: "relative",
         display: "flex",
         alignItems: "center",
         justifyContent: "flex-start",
-    },
-    content: {
-        flexGrow: 1,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "flex-start",
+
+        "& > $toolbar": {
+            opacity: 0
+        },
+
+        "&:hover": {
+            "& > $toolbar": {
+                opacity: 1
+            }
+        }
+
+
     },
     media: {
-        minWidth: 48,
-        width: 48,
+        width: 36,
+        height: 36,
+        margin: theme.spacing(.5),
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
-    icon: {
-        fontSize: 24,
-        "& > svg": {
-            fontSize: "inherit"
-        }
-    },
-    image: {
-        display: "block",
-        width: 48,
+    body: {
+        flexGrow: 1,
+        margin: theme.spacing(1),
     },
     toggle: {
         width: 48,
         position: "absolute",
         left: -48,
 
-        "& $toggleIcon": {
-            transition: ".125s ease-in-out",
-            transform: "rotate(-90deg)",
-        },
-
-        "&[aria-expanded=true] $toggleIcon": {
-//            transition: ".125s ease-in-out",
-            transform: "rotate(0deg)"
-        },
-    },
-    toggleIcon: {
         transition: ".125s ease-in-out",
         transform: "rotate(-90deg)",
-    }
+
+        "&[aria-expanded=true]": {
+            transition: ".125s ease-in-out",
+            transform: "rotate(0deg)"
+        },
+
+        color: theme.palette.primary.main,
+        cursor: "pointer"
+
+    },
 
 }));
 
 const TreeModule = ({
+    level = 0, 
+    children,
+    onClick,
+
     selectable,
     selected,
     onSelect,
+
     collapsible, 
     expanded = false,
     onToggle,
+
     draggable, 
-    level, 
     title,
     imageUrl,
     icon, 
-    renderChildren,
-...props}) => {
+    ...props
+}) => {
 
-    const classes = useStyles({level});
+    const classes = useStyles({level, margin: level + 1});
 
     const DragHandle = ({dragHandleProps}) => {
 
@@ -136,40 +147,46 @@ const TreeModule = ({
     
     }
 
-    const ButtonToggle = ({onClick}) => {
-    
+    const ModuleToggle = ({onClick}) => {
+
         return (
-            <IconButton className={classes.toggle} onClick={onClick} aria-expanded={expanded}>
-                <ToggleIcon className={classes.toggleIcon} />
-            </IconButton>
+            <ToggleIcon className={classes.toggle} onClick={onClick} aria-expanded={expanded} />
         )
+
     }
 
-    const ModuleContent = () => {
+    const ModuleMedia = () => {
+
+        return (
+            <div className={classes.media}>
+                { !imageUrl && <ModuleIcon icon={icon} /> }
+                { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
+            </div>
+        )
+
+    }
+
+    const ModuleContent = ({startAdornment}) => {
 
         return (
             <div className={classes.content}>
-                <div className={classes.media}>
-                    { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                    { imageUrl && <img className={classes.image} src={imageUrl} /> }
+                { collapsible && <ModuleToggle onClick={onToggle} /> || "" }
+                {startAdornment}
+                <ModuleMedia />
+                <div className={classes.body}>
+                    <ModuleTitle>{title}</ModuleTitle>
                 </div>
-                <ModuleTitle>{title}</ModuleTitle>
+                <ModuleToolbar {...props} className={classes.toolbar} />
             </div>
 
         )
 
     }
 
-    const _onToggle = (event) => {
-        event.stopPropagation()
-        onToggle && onToggle()
+    if (children && !React.isValidElement(children)) {
+        children = undefined
     }
-
-    const _onSelect = (event) => {
-        event.stopPropagation()
-        onSelect && onSelect()
-    }
-
+        
     if (draggable && draggable.provided) {
 
         const { provided, snapshot, } = draggable
@@ -183,14 +200,9 @@ const TreeModule = ({
                 aria-selected={selected}
                 aria-expanded={expanded}
                 data-is-dragging={isDragging}
-                data-is-target={isTarget} ref={provided.innerRef} onClick={_onSelect}>
-                <div className={classes.level}>
-                    {collapsible && <ButtonToggle onClick={_onToggle} /> || "" }
-                    <DragHandle dragHandleProps={provided.dragHandleProps} />
-                    <ModuleContent />
-                    <NavToolbar {...props} className={classes.toolbar} />
-                </div>
-                {expanded && renderChildren && <div className={classes.children}>{renderChildren()}</div> }
+                data-is-target={isTarget} ref={provided.innerRef} onClick={onClick}>
+                    <ModuleContent startAdornment={<DragHandle dragHandleProps={provided.dragHandleProps} />} />
+                    { children }
             </div>
         )
     
@@ -199,12 +211,9 @@ const TreeModule = ({
 
 
     return (
-        <div className={classes.module} onClick={_onSelect}>
-            <div className={classes.level}>
-                {collapsible && <ButtonToggle onClick={onToggle} /> }
-                <ModuleContent />
-            </div>
-            {renderChildren && <div className={classes.children}>{renderChildren()}</div> }
+        <div className={classes.module} aria-expanded={expanded} onClick={onClick}>
+            <ModuleContent />
+            { children }
         </div>
     )
 

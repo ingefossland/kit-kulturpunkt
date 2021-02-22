@@ -10,14 +10,7 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "flex-start",
         alignItems: "flex-start",
 
-        "& > * + *": {
-            borderTop: "1px solid",
-            borderColor: theme.palette.divider
-        },
-
-        "&[aria-selected=true]": {
-            backgroundColor: theme.palette.action.selected,
-        },
+        boxShadow: props => { return theme.shadows[props.elevation] },
 
         "&[data-is-dragging-over=true]": {
             backgroundColor: theme.palette.divider
@@ -33,12 +26,26 @@ const useStyles = makeStyles(theme => ({
         }
 
     },
+    list: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+        overflowY: "scroll",
+
+        "& > * + *": {
+            borderTop: "1px solid",
+            borderColor: theme.palette.divider
+        },
+
+    }
 
 }));
 
-const ColumnList = ({droppable, expanded, children, ...props}) => {
+const ColumnList = ({droppable, elevation = 0, expanded, children, ...props}) => {
 
-    const classes = useStyles()
+    const classes = useStyles({elevation})
 
     if (!children) {
         return false
@@ -51,15 +58,19 @@ const ColumnList = ({droppable, expanded, children, ...props}) => {
 
         return (
             <div data-is-dragging-over={isDraggingOver} className={classes.column} {...droppableProps} ref={innerRef}>
-                {children}
-                {provided.placeholder}
+                <div className={classes.list}>
+                    {children}
+                    {provided.placeholder}
+                </div>
             </div>
         )
     }
 
     return (
         <div className={classes.column} aria-expanded={expanded}>
-            {children}
+            <div className={classes.list}>
+                {children}
+            </div>
         </div>
     )
 

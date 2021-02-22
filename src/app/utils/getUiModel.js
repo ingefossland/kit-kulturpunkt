@@ -7,9 +7,20 @@ export const getUiModel = ({model, modelsById = {}, t}) => {
     const uniqueId = model.uniqueId || source + "/" + sourceId
     const uniqueModel = modelsById[uniqueId] || {}
 
+    model = {
+        ...uniqueModel,
+        ...model
+    }
+
     const { schema, uiSchema } = getSchemaModel(model)
 
-    const uiPreview = uiSchema && getUiPreview({schema, uiSchema, formData: uniqueModel}) || {}
+    const uiPreview = uiSchema && getUiPreview({schema, uiSchema, formData: model}) || {}
+
+    // author
+
+    const { updatedByName } = model
+
+    const author = updatedByName || "N/A"
     
     // labels
 
@@ -24,10 +35,10 @@ export const getUiModel = ({model, modelsById = {}, t}) => {
     }    
 
     return {
-        ...uniqueModel,
         ...model,
         ...uiPreview,
         ...uiLabels,
+        author: author,
         uniqueId: uniqueId,
     }    
 

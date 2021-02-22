@@ -11,6 +11,15 @@ const useStyles = makeStyles(theme => ({
         overflowY: "scroll",
         width: "100%",
         height: "100%",
+        boxSizing: "border-box",
+        padding: props => { return theme.spacing(props.padding )},
+
+        display: "flex",
+        flexDirection: "column",
+
+        "& > * + *": {
+            marginTop: props => { return theme.spacing(props.spacing )},
+        },
 
         "& > header": {
             position: "sticky",
@@ -22,7 +31,7 @@ const useStyles = makeStyles(theme => ({
 
 }));
 
-const ViewBase = ({children}) => {
+const ViewBase = ({padding = 2, spacing = 2, children}) => {
 
     const viewRef = useRef(null)
 
@@ -32,7 +41,7 @@ const ViewBase = ({children}) => {
 //        setScrollTop(viewRef.current.scrollTop)
     }
 
-    const classes = useStyles()
+    const classes = useStyles({padding, spacing})
 
     return (
         <div className={classes.view} ref={viewRef} onScroll={_onScroll}>

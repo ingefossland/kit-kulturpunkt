@@ -1,10 +1,12 @@
 import React, { useEffect } from "react"
-import { FinderBase, FinderSidebar } from "../Finder"
-import { AppInfo } from "../App"
-import { NavMenu } from "../NavMenu"
-import { NavAction } from "../NavAction"
+import { FinderBase, FinderSidebar } from "../components/Finder"
+import { AppInfo } from "../components/App"
+import { NavMenu } from "../components/NavMenu"
+import { NavAction } from "../components/NavAction"
 
 import { makeStyles } from '@material-ui/core/styles';
+
+import icons from "../icons/"
 
 const useStyles = makeStyles(theme => ({
     action: {
@@ -43,15 +45,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const FinderLayout = ({
-    icons = [],
-    sidebar = {},
-    info = {},
-    primaryAction = {},
-    menu = [],
-    menuByUrl = {},
-    currentUrl,
-    onSelect,
-    children
+    sidebar: {},
+    info: {},
+    menu: [],
+    menuByUrl: [],
+    onSelect
 }) => {
 
     const classes = useStyles()
@@ -61,7 +59,7 @@ const FinderLayout = ({
             <FinderSidebar {...sidebar}>
                 <AppInfo {...info} className={classes.info} icons={icons}  />
                 <NavAction className={classes.action} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={onSelect} />
-                <NavMenu className={classes.menu} icons={icons} currentUrl={currentUrl} menu={menu} menuByUrl={menuByUrl} onSelect={onSelect} />
+                <NavMenu className={classes.menu} icons={icons} currentUrl={pathname} menu={menu} menuByUrl={menuByUrl} onSelect={onSelect} />
             </FinderSidebar>
             {children}
         </FinderBase>

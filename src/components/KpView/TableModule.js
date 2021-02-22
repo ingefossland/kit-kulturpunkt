@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react"
 
 import { 
     ModuleSelect, 
+    ModuleIcon,
+    ModuleImage,
     ModuleTitle,
     ModuleDescription,
     ModuleIdentifier,
     ModuleLabel,
+    ModuleDate,
     ModuleToolbar
  } from "../Module"
 
@@ -14,6 +17,8 @@ import Badge from '@material-ui/core/Badge';
 import Typography from "@material-ui/core/Typography"
 import { makeStyles } from '@material-ui/core/styles';
 import { getImageUrl } from "./utils"
+
+import moment from "moment"
 
 const useStyles = makeStyles(theme => ({
     row: {
@@ -62,11 +67,6 @@ const useStyles = makeStyles(theme => ({
         justifyContent: "center",
         alignItems: "center"
     },
-    image: {
-        display: "block",
-        maxWidth: "100%",
-        maxHeight: "100%",
-    },
     title: {
         fontFamily: "Akkurat, sans-serif",
         fontWeight: "bold",
@@ -99,10 +99,24 @@ const useStyles = makeStyles(theme => ({
     }
 }));
 
-const TableModule = ({cols = [], sort, placeholder, selectable, selected, onSelect, ...props}) => {
+const TableModule = ({
+    cols = [], 
+    sort, 
+    placeholder, 
+    selectable, 
+    selected, 
+    onSelect,
+
+    icon,
+    title, 
+    onClick,
+
+    ...props
+}) => {
+
     const classes = useStyles()
 
-    const { title, onClick } = props
+    const {  } = props
 
     const imageUrl = getImageUrl(props)
 
@@ -132,18 +146,24 @@ const TableModule = ({cols = [], sort, placeholder, selectable, selected, onSele
         
    }
 
+   const ModuleMedia = () => {
+
+        return (
+            <div className={classes.media}>
+                { !imageUrl && <ModuleIcon icon={icon} /> }
+                { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
+            </div>
+        )
+
+    }
+
     const ModuleHeader = () => {
         return (
             <header className={classes.header}>
                 <ModuleSelect selected={selected} onClick={onSelect} />
-
-                <div className={classes.media}>
-                    <img src={imageUrl} className={classes.image} />
-                </div>
-
+                <ModuleMedia />
                 <ModuleTitle className={classes.title}>{title}</ModuleTitle>
                 <ModuleToolbar className={classes.toolbar} {...props} />
-
             </header>
         )
     }
@@ -151,6 +171,14 @@ const TableModule = ({cols = [], sort, placeholder, selectable, selected, onSele
     const Column = ({name}) => {
 
         const value = props[name]
+
+        if (name === "updatedAt") {
+            return <ModuleDate datetime={value} />
+        }
+
+        if (name === "createdAt") {
+            return <ModuleDate datetime={value} format="D. MMM YYYY" />
+        }
 
         if (name === "title") {
             return <ModuleHeader>{value}</ModuleHeader>
@@ -192,11 +220,10 @@ const TableModule = ({cols = [], sort, placeholder, selectable, selected, onSele
 TableModule.defaultProps = {
     cols: [
         "title",
-        "artist",
-        "dating",
-        "materials",
-        "techniques",
-        "identifier",
+        "status",
+        "updatedAt",
+        "createdAt",
+        "uniqueId",
     ]
 }
 

@@ -2,26 +2,22 @@ import React, { forwardRef} from 'react';
 import Icon from "@material-ui/core/Icon"
 import { makeStyles } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton"
-import SelectIcon from "@material-ui/icons/ChevronRight"
-import EditIcon from "@material-ui/icons/Edit"
+import ToggleIcon from "@material-ui/icons/ChevronRight"
 import DragIcon from '@material-ui/icons/DragHandle';
 
-import { ModuleBase, ModuleTitle, NavToolbar } from "@kit-ui/admin"
+import { ModuleTitle, ModuleImage, ModuleIcon, ModuleToolbar } from "../Module"
 
 const useStyles = makeStyles(theme => ({
     module: {
-        position: "relative",
-        display: "flex",
-        alignItems: "center",
-        width: "auto",
         width: "100%",
-        maxWidth: "100%",
-        minWidth: theme.spacing(16),
         overflow: "hidden",
-
+        userSelect: "none",
 
         "&:hover": {
             cursor: "pointer"
+
+
+
         },
 
         "&[aria-expanded=true]": {
@@ -54,41 +50,48 @@ const useStyles = makeStyles(theme => ({
         },
     },
     content: {
-        flexBasis: 0,
-        flexGrow: 1,
+        height: 48,
+        margin: theme.spacing(0, 1),
 
-        width: "100%",
+        paddingRight: 24,
 
-        marginTop: 8,
-        marginBottom: 8,
-
+        position: "relative",
         display: "flex",
+        alignItems: "center",
         justifyContent: "flex-start",
-        alignItems: "flex-start",
 
-        color: "inherit",
+        "& > $toolbar": {
+            opacity: 0
+        },
 
-        "& > *": {
-            color: "inherit"
+        "&:hover": {
+            "& > $toolbar": {
+                opacity: 1
+            }
         }
+
 
     },
     media: {
-        minWidth: 48,
-        width: 48,
+        flexShrink: 0,
+        width: 36,
+        height: 36,
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
     },
-    icon: {
-        fontSize: 24,
-        "& > svg": {
-            fontSize: "inherit"
-        }
+    body: {
+        flexShrink: 1,
+        flexGrow: 1,
+        margin: theme.spacing(1),
     },
-    image: {
-        display: "block",
-        width: 48,
+    toggle: {
+        width: 24,
+        position: "absolute",
+        right: 0,
+        color: theme.palette.primary.main,
+        cursor: "pointer"
+
     },
     footer: {
         display: "flex",
@@ -96,9 +99,6 @@ const useStyles = makeStyles(theme => ({
         "& > * + *": {
             marginLeft: theme.spacing(1)
         }
-    },
-    dragHandle: {
-        margin: theme.spacing(.5)
     },
     toolbar: {
         display: "flex",
@@ -113,12 +113,14 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ColumnModule = ({
+    onClick,
     selectable,
     selected = false,
-    onExpand,
+
+    onToggle,
     collapsible, 
     expanded = false,
-    onToggle,
+
     draggable, 
     level, 
     title,
@@ -138,42 +140,39 @@ const ColumnModule = ({
     
     }
 
-    const ModuleExpand = ({onClick}) => {
+    const ModuleToggle = ({onClick}) => {
 
-        if (!collapsible) {
-            return false
-        }
-    
         return (
-            <IconButton className={classes.toggleButton} onClick={onClick} aria-expanded={expanded}>
-                <SelectIcon className={classes.toggleIcon} />
-            </IconButton>
+            <ToggleIcon className={classes.toggle} onClick={onClick} />
         )
     }
 
-    const ModuleContent = () => {
+    const ModuleMedia = () => {
+
+        return (
+            <div className={classes.media}>
+                { !imageUrl && <ModuleIcon icon={icon} /> }
+                { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
+            </div>
+        )
+
+    }
+
+    const ModuleContent = ({startAdornment}) => {
 
         return (
             <div className={classes.content}>
-                <div className={classes.media}>
-                    { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                    { imageUrl && <img className={classes.image} src={imageUrl} /> }
+                {startAdornment}
+                <ModuleMedia />
+                <div className={classes.body}>
+                    <ModuleTitle>{title}</ModuleTitle>
                 </div>
-                <ModuleTitle>{title}</ModuleTitle>
+                <ModuleToolbar {...props} className={classes.toolbar} />
+                { collapsible && <ModuleToggle onClick={onToggle} /> || "" }
             </div>
 
         )
 
-    }
-
-    const _onExpand = (event) => {
-        event.stopPropagation()
-        onExpand && onExpand()
-    }
-
-    const _onToggle = (event) => {
-        event.stopPropagation()
-        onToggle && onToggle()
     }
 
     if (draggable) {
@@ -188,21 +187,16 @@ const ColumnModule = ({
                 aria-selected={selected}
                 aria-expanded={expanded}
                 data-is-dragging={isDragging}
-                data-is-target={isTarget} ref={provided.innerRef} onClick={_onToggle}>
-                    <DragHandle dragHandleProps={provided.dragHandleProps} />
-                    <ModuleContent />
-                    <NavToolbar {...props} className={classes.toolbar} />
-                    <ModuleExpand />
+                data-is-target={isTarget} ref={provided.innerRef} onClick={onClick}>
+                    <ModuleContent startAdornment={<DragHandle dragHandleProps={provided.dragHandleProps} />} />
             </div>
         )   
 
     }
 
     return (
-        <div className={classes.module} aria-selected={selected} onClick={_onToggle}>
+        <div className={classes.module} aria-expanded={expanded} onClick={onClick}>
             <ModuleContent />
-            <NavToolbar {...props} className={classes.toolbar} />
-            <ModuleExpand />
        </div>
     )
 

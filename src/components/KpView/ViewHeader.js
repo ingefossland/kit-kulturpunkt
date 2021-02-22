@@ -6,11 +6,10 @@ import { NavAction } from "../NavAction"
 
 const useStyles = makeStyles(theme => ({
     header: {
-        minHeight: 96,
+        minHeight: 64,
         display: "flex",
         alignItems: "center",
         justifyContent: "space-between",
-        padding: theme.spacing(2),
         boxSizing: "border-box"
     },
     title: {

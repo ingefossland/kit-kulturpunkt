@@ -4,29 +4,19 @@ import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 import qs from 'query-string';
 
-const FinderViewGrid = ({ size, resultsLoaded, prevPage, nextPage, onPage }) => {
+const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
 
     let cols = [
         "title",
         "status",
+        "author",
         "documentType",
+        "locale",
         "referenceCount",
         "updatedAt",
         "createdAt",
-        "createdBy",
-        "locale",
         "uniqueId",
     ]
-
-    if (size === "xs") {
-        cols = [
-            "title",
-            "artist",
-            "dating",
-            "identifier",
-            "createdAt",
-        ]
-    }
 
     const location = useLocation()
     const history = useHistory()

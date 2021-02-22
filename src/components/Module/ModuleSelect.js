@@ -14,11 +14,12 @@ const useStyles = makeStyles(theme => ({
         height: theme.spacing(3),
 
         color: theme.palette.text.primary,
+        color: theme.palette.action.active,
 
         border: "1px solid",
         borderColor: "transparent",
 
-                margin: -1,
+        margin: -1,
         
         "&[aria-selected=true]": {
             opacity: 1,

@@ -79,14 +79,14 @@ export default {
         "No unprocessed uploads": "Ingen ubehandlede opplastninger",
         "{{count}} unprocessed uploads": "{{count}} ubehandlede opplastninger",
     },
-    view: {
+    rows: {
         "{{rows}} rows": "{{rows}} rader",
     },
     sort: {
-        "title": "Sortert alfabetisk",
+        "title": "Alfabetisk",
         "updatedAt DESC": "Sist oppdatert",
-        "createdAt ASC": "Opprettet dato, først",
-        "createdAt DESC": "Opprettet dato",
+        "createdAt DESC": "Sist opprettet",
+        "createdAt ASC": "Først opprettet",
     },
     mediaType: {
         "image": "Bilde",

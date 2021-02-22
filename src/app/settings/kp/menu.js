@@ -70,34 +70,37 @@ const mediaTypes = [
     {
         pathname: "image",
         title: "Bilder",
-        view: "icons",
+        view: "gallery",
         icon: "imageFolder",
-        viewOptions: ["list","icons"],
+        viewOptions: ["gallery","masonry","table","list","icons"],
         query: {
             models: "media",
             mediaType: "image",
+            status: "NOT trash"
         }
     },
     {
         pathname: "video",
         title: "Video",
         icon: "videoFolder",
-        view: "icons",
-        viewOptions: ["list","icons"],
+        view: "gallery",
+        viewOptions: ["gallery","masonry","table","list","icons"],
         query: {
             models: "media",
             mediaType: "video",
+            status: "NOT trash"
         }
     },
     {
         pathname: "audio",
         title: "Audio",
         icon: "audioFolder",
-        view: "icons",
-        viewOptions: ["list","icons"],
+        view: "list",
+        viewOptions: ["list","table","icons"],
         query: {
             models: "media",
             mediaType: "audio",
+            status: "NOT trash"
         }
     },
 

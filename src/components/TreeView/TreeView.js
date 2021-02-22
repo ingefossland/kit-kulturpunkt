@@ -4,21 +4,16 @@ import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles(theme => ({
     treeView: {
         position: "relative",
-        top: 0,
-        right: 0,
-        bottom: 0,
-        left: 0,
-        
-//        border: "1px solid",
-//        borderColor: theme.palette.divider,
-
+        border: "1px solid",
+        borderColor: theme.palette.divider,
+        boxShadow: props => { return theme.shadows[props.elevation] }
     },
 
 }));
 
-const TreeView = ({droppable, children, ...props}) => {
+const TreeView = ({border = 0, elevation = 1, droppable, children, ...props}) => {
 
-    const classes = useStyles();
+    const classes = useStyles({border, elevation})
 
     if (droppable && droppable.provided) {
         const { provided, snapshot } = droppable

@@ -140,7 +140,7 @@ const shortcuts = [
     {
         pathname: "latest",
         title: "Latest",
-        icon: "access_time",
+        icon: "history",
         query: {
             models: "documents",
             status: "NOT trash",
@@ -149,7 +149,7 @@ const shortcuts = [
         }
         },
     {
-        icon: "delete",
+        icon: "delete_outline",
         title: "Trash",
         pathname: "trash",
         query: {

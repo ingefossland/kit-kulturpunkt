@@ -20,7 +20,23 @@ import ImageFolder from "./ImageFolder"
 import VideoFolder from "./VideoFolder"
 import AudioFolder from "./AudioFolder"
 
+import KioskApp from "./KioskApp"
+import KioskMenu from "./KioskMenu"
+import KioskEditor from "./KioskEditor"
+
+import KpApp from "./KpApp"
+import KpMenu from "./KpMenu"
+import KpEditor from "./KpEditor"
+
 export {
+    KioskApp,
+    KioskMenu,
+    KioskEditor,
+
+    KpApp,
+    KpMenu,
+    KpEditor,
+
     Article,
     Object,
     Device,
@@ -42,6 +58,15 @@ export {
 }
 
 export default {
+
+    "kpApp": <KpApp />,
+    "kpEditor": <KpEditor />,
+    "kpMenu": <KpMenu />,
+
+    "kioskApp": <KioskApp />,
+    "kioskEditor": <KioskEditor />,
+    "kioskMenu": <KioskMenu />,
+
     "article": <Article />,
     "object": <Object />,
 

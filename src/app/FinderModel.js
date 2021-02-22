@@ -30,31 +30,34 @@ const FinderModel = ({
 
     const dispatch = useDispatch()
 
-    const _onEdit = ({source, sourceId, uniqueId}) => {
+    const _onEdit = (event, {source, sourceId, uniqueId}) => {
+        event.stopPropagation()
 
         let editUrl = location.pathname + "/" + uniqueId + "/edit"
         editUrl = editUrl.replace("//", "/")
 
         console.log(editUrl)
-
-
         history.push(editUrl)
 
     }
 
-    const _onDelete = ({modelName, uniqueId}) => {
+    const _onDelete = (event, {modelName, uniqueId}) => {
+        event.stopPropagation()
         dispatch(deleteModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
-    const _onRestore = ({modelName, uniqueId}) => {
+    const _onRestore = (event, {modelName, uniqueId}) => {
+        event.stopPropagation()
         dispatch(restoreModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
-    const _onErase = ({modelName, uniqueId}) => {
+    const _onErase = (event, {modelName, uniqueId}) => {
+        event.stopPropagation()
         dispatch(eraseModel({modelName: modelName, uniqueId: uniqueId}))
     }
 
-    const _onSelect = (model) => {
+    const _onSelect = (event, model) => {
+        event.stopPropagation()
         dispatch(selectModel(model))
     }
 
@@ -143,42 +146,22 @@ const FinderModel = ({
 
     }
 
-    let actions = {}
-
-    if (selectable) {
-        actions.onSelect = () => _onSelect({uniqueId})
+    const actions = {
+        onSelect: (event) => _onSelect(event, {uniqueId}),
+        onEdit: (event) => _onEdit(event, {source, sourceId, uniqueId}),
+        onDelete: (event) => _onDelete(event, {modelName, uniqueId}),
+        onErase: (event) => _onErase(event, {modelName, uniqueId}),
+        onRestore: (event) => _onRestore(event, {modelName, uniqueId})
     }
-
-    if (editable) {
-        actions.onEdit = () => _onEdit({source, sourceId, uniqueId})
-    }
-
-    if (deletable) {
-        actions.onDelete = () => _onDelete({modelName, uniqueId})
-    }
-
-    if (erasable) {
-        actions.onErase = () => _onErase({modelName, uniqueId})
-    }
-
-    if (restorable) {
-        actions.onRestore = () => _onRestore({modelName, uniqueId})
-    }
-
-    if (bulkCount) {
-        actions = {
-            onClick: () => _onSelect({uniqueId})
-        }
-    }
-
+    
     const childrenWithProps = React.Children.map(children, (child, index) => {
         // checking isValidElement is the safe way and avoids a typescript error too
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
-                ...capabilities,
                 ...model,
+                ...child.props,
                 ...actions,
-//                ...child.props
+                ...capabilities,
             });
         }
         return child;

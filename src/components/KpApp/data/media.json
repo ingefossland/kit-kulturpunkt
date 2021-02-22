@@ -1,0 +1,540 @@
+{
+    "models": [
+        {
+            "title": "eva.jpeg",
+            "createdAt": "2020-08-31T06:07:09",
+            "uploadUrl": "https://dms-test.dimu.org/upload?aId=kgw4MJvD7mxKk7RzrsZBVAs6wUuor5qNNJen5XfW7W2LD1dk5&public=true",
+            "id": 3253,
+            "imageWidth": 3573,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "filename": "eva.jpeg",
+                "title": "eva.jpeg",
+                "iptcdata": {
+                    "dateCreated": "20100202"
+                }
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCy8c",
+            "mimeType": "image/jpeg",
+            "status": "upload",
+            "filename": "eva.jpeg",
+            "imageHeight": 4000,
+            "updatedAt": "2020-08-31T18:08:08",
+            "collectionId": 54,
+            "uniqueId": "15f7bffc-6009-449c-b9ad-7413ec2bd919",
+            "identifier": "012uPWFFCy8c",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uPWFFCy8c",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8c",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8c?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8c?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8c?mediaType=image/png",
+            "imageSize": 83985,
+            "mediaHeight": 4000,
+            "mediaSize": 83985,
+            "mediaWidth": 3573,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "gamle-storwatz.jpeg",
+            "createdAt": "2019-09-16T13:59:14",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=kF7Coj99TgsCJ1YoZmdrLUnwfAFoRhVr7BvFT5EfeyEvgaAU9&public=true",
+            "id": 953,
+            "imageWidth": 585,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "gamle-storwatz.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "gamle-storwatz.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8TZ",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 400,
+            "updatedAt": "2019-09-16T13:59:23",
+            "collectionId": 54,
+            "uniqueId": "7b6dbb2c-17fc-46ed-8cea-f6fc1692a8b7",
+            "identifier": "012uNXVmL8TZ",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8TZ",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TZ",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TZ?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TZ?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8TZ?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 400,
+            "mediaSize": 0,
+            "mediaWidth": 585,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "gml-solskinn.jpeg",
+            "createdAt": "2019-09-16T14:04:47",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=mDPBo9RbrFvexFuiQjyT1py79LHDBCaMXXgK3tH34QBt8BQUj&public=true",
+            "id": 960,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "gml-solskinn.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "gml-solskinn.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xv",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 530,
+            "updatedAt": "2019-09-16T14:04:54",
+            "collectionId": 54,
+            "uniqueId": "7f9d8b3b-cdbf-445c-92a8-a8aca5d7824f",
+            "identifier": "012uNXVmL8Xv",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8Xv",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xv",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xv?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xv?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xv?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 530,
+            "mediaSize": 0,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "hestkletten.jpeg",
+            "createdAt": "2019-09-16T14:03:21",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=meucARUoxbbpbbzBS8Quu472iqfGgaqCDzEEPEV7oEbxFZQb6&public=true",
+            "id": 957,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "hestkletten.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "hestkletten.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xs",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 530,
+            "updatedAt": "2019-09-16T14:03:26",
+            "collectionId": 54,
+            "uniqueId": "16bf0603-dd44-4a24-aba7-cf3648da6eee",
+            "identifier": "012uNXVmL8Xs",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8Xs",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xs",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xs?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xs?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xs?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 530,
+            "mediaSize": 0,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "hulda.jpeg",
+            "createdAt": "2020-08-31T09:45:51",
+            "uploadUrl": "https://dms-test.dimu.org/upload?aId=PzUuH2inB7sEPHEnK3FAqnRVXnSvEMzRN7pU9hSyBEUgFrwjb&public=true",
+            "id": 3256,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "filename": "hulda.jpeg",
+                "title": "hulda.jpeg",
+                "iptcdata": {
+                    "dateCreated": "20090310"
+                }
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCy8f",
+            "mimeType": "image/jpeg",
+            "status": "upload",
+            "filename": "hulda.jpeg",
+            "imageHeight": 500,
+            "updatedAt": "2020-08-31T09:45:59",
+            "collectionId": 54,
+            "uniqueId": "71929469-d113-49db-902a-b4dbbc98fd7e",
+            "identifier": "012uPWFFCy8f",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uPWFFCy8f",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8f",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8f?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8f?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8f?mediaType=image/png",
+            "imageSize": 71231,
+            "mediaHeight": 500,
+            "mediaSize": 71231,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "katti.jpeg",
+            "createdAt": "2020-08-25T07:51:47",
+            "uploadUrl": "https://dms-test.dimu.org/upload?aId=n6FbGPLXSzEbNSrPHjXofYqyS1QEezTG8hsk4ynnrcmfVpSBJ&public=true",
+            "id": 3252,
+            "imageWidth": 2760,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "filename": "katti.jpeg",
+                "title": "katti.jpeg",
+                "iptcdata": {
+                    "byline": "foto",
+                    "caption": "no-nb_blds_01106 002",
+                    "dateCreated": "20050420"
+                }
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCeG7",
+            "mimeType": "image/jpeg",
+            "status": "upload",
+            "filename": "katti.jpeg",
+            "imageHeight": 4000,
+            "updatedAt": "2020-08-25T07:53:00",
+            "collectionId": 54,
+            "uniqueId": "37acc1a8-999c-4124-9edf-4f08a16468d3",
+            "identifier": "012uPWFFCeG7",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uPWFFCeG7",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCeG7",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCeG7?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCeG7?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCeG7?mediaType=image/png",
+            "imageSize": 36965,
+            "mediaHeight": 4000,
+            "mediaSize": 36965,
+            "mediaWidth": 2760,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "kongens-gruvev.jpeg",
+            "createdAt": "2019-09-16T12:09:19",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=RQ1yeBSPUkSY7RipyHtLWJaCFfo28GgirhT31qbetctF43DTX&public=true",
+            "id": 951,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "kongens-gruvev.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "kongens-gruvev.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8TX",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 481,
+            "updatedAt": "2019-09-16T12:09:28",
+            "collectionId": 54,
+            "uniqueId": "cd95e53a-d9eb-4e5a-935b-6ea853872b14",
+            "identifier": "012uNXVmL8TX",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8TX",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TX",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TX?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TX?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8TX?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 481,
+            "mediaSize": 0,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "kristine.jpeg",
+            "createdAt": "2020-08-31T09:45:24",
+            "uploadUrl": "https://dms-test.dimu.org/upload?aId=PBz2qyJCR6gfys9T4GmamnmhKYoVC8wvLJ4RCvfYZsZ9YLYz4&public=true",
+            "id": 3255,
+            "imageWidth": 662,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "filename": "kristine.jpeg",
+                "title": "kristine.jpeg",
+                "iptcdata": {
+                    "dateCreated": "20070208"
+                }
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uPWFFCy8e",
+            "mimeType": "image/jpeg",
+            "status": "upload",
+            "filename": "kristine.jpeg",
+            "imageHeight": 800,
+            "updatedAt": "2020-08-31T09:45:31",
+            "collectionId": 54,
+            "uniqueId": "bbfc4f86-d6f9-4761-aa6b-61e0adf8323c",
+            "identifier": "012uPWFFCy8e",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uPWFFCy8e",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8e",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8e?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uPWFFCy8e?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uPWFFCy8e?mediaType=image/png",
+            "imageSize": 79382,
+            "mediaHeight": 800,
+            "mediaSize": 79382,
+            "mediaWidth": 662,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "muggruva.jpeg",
+            "createdAt": "2019-09-16T12:08:59",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=kLVjjNx9Kb3Wave9DaRQcuWsZRdjKjM46Ar9LmwGQ4Ymd14pc&public=true",
+            "id": 950,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "muggruva.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "muggruva.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8TW",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 530,
+            "updatedAt": "2019-09-16T12:09:10",
+            "collectionId": 54,
+            "uniqueId": "f35db77f-7719-41e4-bc96-c49a62a366a5",
+            "identifier": "012uNXVmL8TW",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8TW",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TW",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TW?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8TW?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8TW?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 530,
+            "mediaSize": 0,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        },
+        {
+            "title": "myrgruva.jpeg",
+            "createdAt": "2019-09-16T14:00:20",
+            "uploadUrl": "https://dms-test.dimu.org:8443/upload?aId=SGi1HS2JqPYzNUExx9FKwmHMdwCvCZXGYHDdcV2oa9RQT8tzA&public=true",
+            "id": 955,
+            "imageWidth": 800,
+            "uploadStatus": "done",
+            "referenceCount": 0,
+            "content": {
+                "descriptionWriter": "",
+                "creator": "",
+                "creatorJobtitle": "",
+                "headline": "",
+                "title": "myrgruva.jpeg",
+                "creditLine": "",
+                "keywords": "",
+                "filename": "myrgruva.jpeg",
+                "description": ""
+            },
+            "mediaUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xq",
+            "mimeType": "image/jpeg",
+            "status": "draft",
+            "imageHeight": 547,
+            "updatedAt": "2019-09-16T14:00:26",
+            "collectionId": 54,
+            "uniqueId": "dedb040e-68ea-462b-9593-9ffb71f3db97",
+            "identifier": "012uNXVmL8Xq",
+            "resources": {
+                "properties": {
+                    "url": "https://dms-test.dimu.org/properties/012uNXVmL8Xq",
+                    "mimeType": "application/json"
+                },
+                "jpeg": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xq",
+                    "mimeType": "image/jpeg"
+                },
+                "png": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xq?mediaType=image%2Fpng",
+                    "mimeType": "image/png"
+                },
+                "original": {
+                    "url": "https://dms-test.dimu.org/image/012uNXVmL8Xq?dimension=original"
+                }
+            },
+            "imageUrl": "https://dms-test.dimu.org/image/012uNXVmL8Xq?mediaType=image/png",
+            "imageSize": 0,
+            "mediaHeight": 547,
+            "mediaSize": 0,
+            "mediaWidth": 800,
+            "modelName": "media",
+            "mediaType": "image",
+            "description": "",
+            "imageType": "png"
+        }
+    ],
+    "sort": "title",
+    "backend_query": "SELECT media.unique_id, media.created_at, media.updated_at, media.deleted_at, media.erased_at, media.id, media.identifier, media.media_type, media.parent_id, media.mime_type, media.title, media.locale, media.description, media.media_url, media.media_size, media.media_width, media.media_height, media.duration, media.filename, media.content, media.status, media.collection_id, media.upload_url, media.upload_status, media.published_at, media.source, media.source_id, media.updated_by_id, media.deleted_by_id \nFROM media INNER JOIN collections ON collections.id = media.collection_id \nWHERE media.erased_at IS NULL AND media.media_type = %s AND media.collection_id = %s AND media.status != %s AND collections.site_id = %s ORDER BY media.title",
+    "rows": 10,
+    "count": 19,
+    "query": null,
+    "start": 0
+}

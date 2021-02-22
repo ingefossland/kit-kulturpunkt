@@ -1,11 +1,52 @@
 import { Meta, Canvas, Story, Preview } from '@storybook/addon-docs/blocks';
-import { ImageFolder, AudioFolder, VideoFolder, Article, Object, Device, DeviceWin, DeviceMac, PageTopic, PageHome, PageParent, PageGrid, PageMap, PageList, PageAnnotate, PageTimeline, PageMedia,  } from "./"
+import { 
+    KioskApp,
+    KioskMenu,
+    KioskEditor,
+    KpApp,
+    KpMenu,
+    KpEditor,
+    Article,
+    Object,
+    Device,
+    DeviceMac,
+    DeviceWin,
+    PageHome,
+    PageGrid,
+    PageMedia,
+    PageTimeline,
+    PageList,
+    PageAnnotate,
+    PageMap,
+    PageParent,
+    ImageFolder,
+    VideoFolder,
+    AudioFolder
+} from "../KpIcons"
 
-<Meta title="Icons/KpIcons" />
+<Meta title="KpApp/Icons" />
 
 # Icons
 
 Icons should be used in menus and in modules when image is missing.
+
+## App and editor icons
+
+Use for loaders, etc:
+
+<Canvas>
+    <KioskApp style={{fontSize: 48}} />
+    <KioskEditor style={{fontSize: 48}} />
+    <KpApp style={{fontSize: 48}} />
+    <KpEditor style={{fontSize: 48}} />
+</Canvas>
+
+## Menu icons
+
+<Canvas>
+    <KpMenu style={{fontSize: 48}} />
+    <KioskMenu style={{fontSize: 48}} />
+</Canvas>
 
 ## DocumentTypes
 
