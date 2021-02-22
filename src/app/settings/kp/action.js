@@ -1,16 +1,48 @@
+const contentTypes = [
+    {
+        icon: "article",
+        title: "Artikkel",
+        pathname: "article",
+        search: "documentType=article"
+    },
+]
 
-const artifacts = {
-    icon: "article",
-    title: "Nytt objekt",
-    pathname: "/create?documentType=artifact"
-}
+
+const pageTypes = [
+    {
+        icon: "pageHome",
+        title: "Forside",
+        pathname: "grid",
+        search: "documentType=pageHome"
+    },
+    {
+        icon: "pageTopic",
+        title: "Tema",
+        pathname: "topic",
+        search: "documentType=pageTopic"
+    },
+    {
+        icon: "pageMap",
+        title: "Kart",
+        pathname: "grid",
+        search: "documentType=pageMap"
+    }
+
+]
 
 
 export default {
     title: "Create",
-    pathname: "/create?documentType=artifact",
+    pathname: "create",
     "children": [
-        artifacts
+        {
+            type: "section",
+            children: contentTypes
+        },
+        {
+            type: "section",
+            children: pageTypes
+        }
     ]
 
 }

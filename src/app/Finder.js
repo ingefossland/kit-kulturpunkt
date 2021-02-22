@@ -129,7 +129,7 @@ const Finder = () => {
             <FinderBase>
                 <FinderSidebar {...sidebar}>
                     <AppInfo {...app} className={classes.info} icons={icons} onClick={_onToggleDarkMode} />
-                    <NavAction className={classes.action} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={_onSelect} />
+                    <NavAction className={classes.action} icons={icons} menu={[primaryAction]} menuByUrl={menuByUrl} onSelect={_onSelect} />
                     <NavMenu className={classes.menu} icons={icons} currentUrl={pathname} menu={menu} menuByUrl={menuByUrl} onSelect={_onSelect} />
                 </FinderSidebar>
                <FinderSection {...view}>

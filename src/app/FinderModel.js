@@ -7,7 +7,6 @@ import { getModel, getChildren, deleteModel, restoreModel, eraseModel, selectMod
 import { getUiModel } from "./utils"
 
 const FinderModel = ({
-    onClick,
     viewable = false,
     linkable = true,
     selectable = true, 
@@ -25,64 +24,26 @@ const FinderModel = ({
 
     const location = useLocation()
     const history = useHistory()
-    
-    // actions
-
     const dispatch = useDispatch()
-
-    const _onEdit = (event, {source, sourceId, uniqueId}) => {
-        event.stopPropagation()
-
-        let editUrl = location.pathname + "/" + uniqueId + "/edit"
-        editUrl = editUrl.replace("//", "/")
-
-        console.log(editUrl)
-        history.push(editUrl)
-
-    }
-
-    const _onDelete = (event, {modelName, uniqueId}) => {
-        event.stopPropagation()
-        dispatch(deleteModel({modelName: modelName, uniqueId: uniqueId}))
-    }
-
-    const _onRestore = (event, {modelName, uniqueId}) => {
-        event.stopPropagation()
-        dispatch(restoreModel({modelName: modelName, uniqueId: uniqueId}))
-    }
-
-    const _onErase = (event, {modelName, uniqueId}) => {
-        event.stopPropagation()
-        dispatch(eraseModel({modelName: modelName, uniqueId: uniqueId}))
-    }
-
-    const _onSelect = (event, model) => {
-        event.stopPropagation()
-        dispatch(selectModel(model))
-    }
-
-    // items
-
-    const bulk = useSelector(state => state.bulk)
-    const bulkItems = bulk.items    
-    const bulkCount = bulk.count    
 
     // get model
 
-    const modelsById = useSelector(state => state.modelsById)
-
-    const { modelName, source, sourceId } = props;
-
+    const { modelName, source, sourceId } = props;
     const uniqueId = props.uniqueId || source + "/" + sourceId
 
     useEffect(() => {
         if (modelName && uniqueId && !modelsById[uniqueId]) {
-            dispatch(getModel(props))
+            dispatch(getModel({modelName, uniqueId}))
         }
     }, [uniqueId])
 
-
     // uniqueItem
+
+    const modelsById = useSelector(state => state.modelsById)
+
+    const bulk = useSelector(state => state.bulk)
+    const bulkItems = bulk.items    
+    const bulkCount = bulk.count    
 
     const uniqueModel = modelsById[uniqueId] || {}
 
@@ -94,16 +55,49 @@ const FinderModel = ({
         }
     }, [uniqueModel.id])
 
-    // uiModel
-
-    const uiModel = getUiModel({model: props, modelsById, t})
-
     // model
 
     const model = {
-        ...uiModel,
+        ...uniqueModel,
         uniqueId: uniqueId,
         selected: bulkItems.includes(uniqueId),
+    }
+
+    // uiModel
+
+    const uiModel = getUiModel({model: props, modelsById, t})
+    
+    // actions
+
+    const _onEdit = (event) => {
+        event.stopPropagation()
+
+        let editUrl = location.pathname + "/" + uniqueId + "/edit"
+        editUrl = editUrl.replace("//", "/")
+
+        console.log(editUrl)
+        history.push(editUrl)
+
+    }
+
+    const _onDelete = (event) => {
+        event.stopPropagation()
+        dispatch(deleteModel({modelName: modelName, uniqueId: uniqueId}))
+    }
+
+    const _onRestore = (event) => {
+        event.stopPropagation()
+        dispatch(restoreModel({modelName: modelName, uniqueId: uniqueId}))
+    }
+
+    const _onErase = (event) => {
+        event.stopPropagation()
+        dispatch(eraseModel({modelName: modelName, uniqueId: uniqueId}))
+    }
+
+    const _onSelect = (event) => {
+        event.stopPropagation()
+        dispatch(selectModel(model))
     }
 
     // capabilities
@@ -147,11 +141,12 @@ const FinderModel = ({
     }
 
     const actions = {
-        onSelect: (event) => _onSelect(event, {uniqueId}),
-        onEdit: (event) => _onEdit(event, {source, sourceId, uniqueId}),
-        onDelete: (event) => _onDelete(event, {modelName, uniqueId}),
-        onErase: (event) => _onErase(event, {modelName, uniqueId}),
-        onRestore: (event) => _onRestore(event, {modelName, uniqueId})
+        onSelect: _onSelect,
+        onEdit: _onEdit,
+        onDelete: _onDelete,
+        onErase: _onErase,
+        onRestore: _onRestore,
+        onClick: bulkCount && _onSelect || _onEdit
     }
     
     const childrenWithProps = React.Children.map(children, (child, index) => {
@@ -159,9 +154,11 @@ const FinderModel = ({
         if (React.isValidElement(child)) {
             return React.cloneElement(child, {
                 ...model,
-                ...child.props,
+                ...uiModel,
                 ...actions,
+                ...child.props,
                 ...capabilities,
+                status: status
             });
         }
         return child;

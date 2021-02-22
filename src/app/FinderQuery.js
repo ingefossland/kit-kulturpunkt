@@ -36,6 +36,8 @@ const FinderQuery = ({query = {}, sortOptions = [], viewOptions = [], ...props})
     const sortable = [
         "title",
         "title DESC",
+        "deletedAt",
+        "deletedAt DESC",
         "createdAt",
         "createdAt DESC",
         "updatedAt",
