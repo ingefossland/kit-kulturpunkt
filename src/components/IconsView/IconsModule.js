@@ -93,8 +93,8 @@ const useStyles = makeStyles(theme => ({
                 opacity: .25
             },
 
-            "& [data-name=title]": {
-                color: theme.palette.text.disabled,
+            "& h2": {
+                color: theme.palette.text.secondary,
                 textDecoration: "line-through"
             }
 
@@ -103,11 +103,15 @@ const useStyles = makeStyles(theme => ({
 
         "&[data-erased=true]": {
 
+            "& *": {
+                color: theme.palette.text.disabled,
+            },
+
             "& $image, & $icon": {
                 opacity: .25
             },
 
-            "& [data-name=title]": {
+            "& h2": {
                 color: theme.palette.text.disabled,
                 textDecoration: "line-through"
             }

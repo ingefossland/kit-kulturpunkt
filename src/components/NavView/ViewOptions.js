@@ -47,11 +47,11 @@ const useStyles = makeStyles((theme) => ({
 
 const icons = {
     "list": "view_stream",
+    "details": "view_stream",
     "table": "view_column",
     "gallery": "view_compact",
     "masonry": "view_quilt",
-    "icons": "apps",
-    "details": "view_stream",
+    "icons": "view_module",
     "grid": "view_module",
     "tree": "view_headline",
     "cols": "view_column",

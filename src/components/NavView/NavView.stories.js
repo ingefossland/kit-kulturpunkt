@@ -22,7 +22,7 @@ Default.args = {
 
 export const ViewOptions = Template.bind({});
 ViewOptions.args = {
-    viewOptions: ["list","grid","table","gallery"]
+    viewOptions: ["list","details","grid","icons","table","gallery","masonry"]
 }
 
 export const SortOptions = Template.bind({});

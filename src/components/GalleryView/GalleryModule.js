@@ -290,7 +290,6 @@ const GalleryModule = ({
         return (
             <header className={classes.header}>
                 <ModuleTitle>{title}</ModuleTitle>
-                <ModuleDescription>{description}</ModuleDescription>
             </header>
         )
 
