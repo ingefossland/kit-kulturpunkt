@@ -1,8 +1,8 @@
-import Path from './Path';
-import PathItem from './PathItem';
+import NavPathList from './NavPathList';
+import NavPathItem from './NavPathItem';
 import NavPath from './NavPath';
 export {
     NavPath,
-    Path,
-    PathItem
+    NavPathList,
+    NavPathItem
 }

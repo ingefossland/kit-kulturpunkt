@@ -19,15 +19,15 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const Masonry = ({colSize, cols = 3, spacing = 1, padding = 0, children, header, footer, debug = false}) => {
+const Masonry = ({columnSize = 200, columns = 3, spacing = 1, padding = 0, children, header, footer, debug = false}) => {
 
     const { width, height, ref } = useResizeDetector()
 
-    if (colSize && width) {
-        cols = Math.floor(width / colSize)
+    if (columnSize && width) {
+        columns = Math.floor(width / columnSize)
     }
 
-    const colWidth = (width / cols) - (spacing * 8)
+    const colWidth = (width / columns) - (spacing * 8)
     const maxWidth = colWidth && Math.floor(colWidth)
 
     const classes = useStyles({padding, spacing, maxWidth});

@@ -8,6 +8,8 @@ import {
     ModuleBase,
     ModuleTitle,
     ModuleLabel,
+    ModuleImage,
+    ModuleIcon,
     ModuleMetadata,
     ModuleDescription,
     ModuleStatus,
@@ -306,6 +308,7 @@ const IconModule = ({
 
     imageUrl,
 
+    icons = [],
     icon,
     iconSize = 96,
     minIconSize = 24,
@@ -316,6 +319,13 @@ const IconModule = ({
     paperWidth,
     paperHeight,
     minPaperWidth = 48,
+
+    documentType,
+    documentLabel,
+
+    mediaType,
+    mediaLabel,
+
     ...props
 }) => {
 
@@ -335,7 +345,6 @@ const IconModule = ({
         imageUrl = null
     }
  
-    
     paperHeight = paperWidth * 4/3
 
     if (!width) {
@@ -349,8 +358,6 @@ const IconModule = ({
         status,
         statusLabel,
     
-        documentType,
-        documentLabel,
     
         selectable,
         selected,
@@ -406,13 +413,13 @@ const IconModule = ({
             return (
                 <div className={classes.image}>
                     <img src={imageUrl} />
-                    <Icon className={classes.icon}>{icon}</Icon>
+                    <ModuleIcon className={classes.icon} documentType={documentType} mediaType={mediaType} icon={icon} icons={icons} />
                 </div>
             )
 
         } else {
             return (
-                <Icon className={classes.icon}>{icon}</Icon>
+                <ModuleIcon className={classes.icon} documentType={documentType} mediaType={mediaType} icon={icon} icons={icons} />
             )
         }
 

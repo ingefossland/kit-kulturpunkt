@@ -1,15 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Icon from "@material-ui/core/Icon"
-
-import icons from "../KpIcons"
 import { getImageUrl } from "./utils"
-
 
 import {
     ModuleSelect,
     ModuleBase,
     ModuleTitle,
+    ModuleIcon,
     ModuleImage,
     ModuleLabel,
     ModuleMetadata,
@@ -47,68 +45,39 @@ const useStyles = makeStyles(theme => ({
             }
         },
 
-        /*
-
-        "& button": {
-            opacity: 0.5,
-
-            "&:hover": {
-                opacity: 1,
-            },
-    
-        },
-
-        "&:hover": {
-            "& button": {
-                opacity: .5,
-            },
-        },
-
-        */
-
         "&[aria-selected=true]": {
-            backgroundColor: theme.palette.action.selected,
-
-            "& button[value=select]": {
-                opacity: 1,
-            }
-
+            backgroundColor: theme.palette.action.selected
         },
 
         "&[data-deleted=true]": {
+            color: theme.palette.action.disabled,
 
-            "& button[value=restore]": {
-                opacity: .5,
-
-                "&:hover": {
-                    opacity: 1,
-                },
-    
-            },
-
-            "& $image, & $icon": {
+            "& img": {
                 opacity: .25
-            },
-
-            "& [data-name=title]": {
-                color: theme.palette.text.disabled,
-                textDecoration: "line-through"
             }
 
         },
 
         "&[data-erased=true]": {
+            color: theme.palette.action.disabled,
 
-            "& $image, & $icon": {
+            "& *": {
+                color: theme.palette.action.disabled,
+            },
+
+            "& img": {
                 opacity: .25
             },
 
-            "& [data-name=title]": {
-                color: theme.palette.text.disabled,
+            "& button": {
+                opacity: 0
+            },
+
+            "& h2": {
                 textDecoration: "line-through"
             }
 
-        }
+        },
 
 
     },
@@ -122,12 +91,6 @@ const useStyles = makeStyles(theme => ({
     },
     icon: {
 
-    },
-    image: {
-        position: "relative",
-        display: "block",
-        width: 48,
-        height: 48,
     },
     content: {
         flexGrow: 1,
@@ -184,43 +147,49 @@ const useStyles = makeStyles(theme => ({
 /** ListModule for listing documents */
 
 const ListModule = ({
+    size = "medium",
     placeholder = false,
     children,
-
-    uniqueId,
-
-    documentType, 
-    documentLabel, 
-    mediaType,
-    mediaLabel,
-
-    createdAt,
-    updatedAt,
-    updatedByName = "N/A",
-
-    untitled,
-    title,
-    description,
-    label,
-    identifier,
-
-    onClick,
-
-    startAdornment,
-
-    selectable,
-    selected,
-    onSelect,
-
     ...props
 }) => {
 
-    const { author, datetime, metadata, onEdit, status, statusLabel, deleted, erased } = props
+    const { 
+        uniqueId,
 
-    const icon = props.icon || props.documentType && icons[props.documentType]
+        documentType, 
+        documentLabel, 
+        mediaType,
+        mediaLabel,
+    
+        createdAt,
+        updatedAt,
+    
+        icon,
+        icons = [],
+    
+        untitled,
+        title,
+        author,
+        description,
+        label,
+        identifier,
+        metadata,
+    
+        startAdornment,
+    
+        selectable,
+        selected,
+        onSelect,
+
+        onEdit,
+        onClick,
+    
+        status,
+        statusLabel
+    
+    } = props
 
     const classes = useStyles()
-
 
     const imageUrl = getImageUrl(props)
 
@@ -232,26 +201,37 @@ const ListModule = ({
         )
     }
 
-    return (
-        <ModuleBase className={classes.module} status={status} selected={selected} deleted={deleted} erased={erased} onClick={onClick}>
+    const ModuleMedia = () => {
 
-            { startAdornment || selectable &&
-                <ModuleSelect 
-                    selected={selected}
-                    onClick={onClick ? undefined : onSelect}
-                />
-            }
-
+        return (
             <div className={classes.media}>
-                { !imageUrl && icon && <Icon className={classes.icon}>{icon}</Icon> }
-                { imageUrl && <ModuleImage className={classes.image} imageUrl={imageUrl} width={48} height={48} /> }
+                { !imageUrl && <ModuleIcon icons={icons} icon={icon} documentType={documentType} mediaType={mediaType} /> }
+                { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
             </div>
+        )
 
+    }
 
+    const ModuleContent = () => {
+
+        if (size === "small") {
+            return (
+                <div className={classes.content}>
+                    <header className={classes.header}>
+                        <ModuleTitle untitled={untitled} title={title} />
+                        <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
+                        <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
+                        <ModuleByline author={author} datetime={updatedAt || createdAt} />
+                    </header>
+                </div>
+            )
+        }
+
+        return (
             <div className={classes.content}>
                 <header className={classes.header}>
-                    <ModuleTitle status={status} untitled={untitled} title={title} onClick={!onClick && onEdit} />
-                    <ModuleByline author={updatedByName} datetime={updatedAt || createdAt} />
+                    <ModuleTitle untitled={untitled} title={title} />
+                    <ModuleByline author={author} datetime={updatedAt || createdAt} />
                 </header>
                 <footer className={classes.footer}>
                     <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
@@ -260,34 +240,70 @@ const ListModule = ({
                     <ModuleDescription description={description} />
                 </footer>
             </div>
+        )
+
+    }
+
+    return (
+        <ModuleBase {...props} className={classes.module}>
+
+            { startAdornment || selectable &&
+                <ModuleSelect 
+                    selected={selected}
+                    onClick={onClick ? undefined : onSelect}
+                />
+            }
+
+            <ModuleMedia />
+            
+            <ModuleContent />
+
             <ModuleSettings {...props} className={classes.settings} />
-            <ModuleToolbar {...props} className={classes.toolbar} />
+            <ModuleToolbar {...props} className={classes.toolbar} selectable={false} />
         </ModuleBase>
     )    
 
 }
 
 ListModule.propTypes = {
+    size: PropTypes.oneOf(["small","medium","large"]),
+
     selectable: PropTypes.bool,
     selected: PropTypes.bool,
     onSelect: PropTypes.func,
+
     editable: PropTypes.bool,
     onEdit: PropTypes.func,
+
     deletable: PropTypes.bool,
+    deleted: PropTypes.bool,
     onDelete: PropTypes.func,
+
     restorable: PropTypes.bool,
     onRestore: PropTypes.func,
+
+    erasable: PropTypes.bool,
+    erased: PropTypes.bool,
+    onErase: PropTypes.func,
+
+    status: PropTypes.string,
+    statusLabel: PropTypes.string,
+
+    documentType: PropTypes.string,
+    documentLabel: PropTypes.string,
+
+    mediaType: PropTypes.string,
+    mediaLabel: PropTypes.string,
+
     imageUrl: PropTypes.string,
     title: PropTypes.string,
     description: PropTypes.string,
-    type: PropTypes.string,
-    typeLabel: PropTypes.string,
-    metadata: PropTypes.array,
-    status: PropTypes.string,
-    statusLabel: PropTypes.string,
     author: PropTypes.string,
-    datetime: PropTypes.string,
-    /** Whole object is clickable, will override any other onClick events */
+    updatedAt: PropTypes.string,
+    createdAt: PropTypes.string,
+
+    metadata: PropTypes.array,
+
     onClick: PropTypes.func,
 }
 

@@ -14,8 +14,9 @@ export default {
 
 const Template = (args) => (
     <ViewBase>
+        <ViewHeader title="Loading ..." />
         <ViewLoader>
-            <ViewHeader title="Loading ..." />
+            Wrap ViewLoader around a view.
         </ViewLoader>
     </ViewBase>
 )

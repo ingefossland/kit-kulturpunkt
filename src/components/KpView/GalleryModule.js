@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import {
+    ModuleBase,
     ModuleTitle,
     ModuleImage,
+    ModuleIcon,
     ModuleLabel,
     ModuleIdentifier,
     ModuleDescription,
@@ -202,15 +204,15 @@ const GalleryModule = ({
     mediaStyle, 
     mediaLayout = "cover", 
 
-//    selectable,
-//    selected,
-//    onSelect,
+    icon,
+    icons = [],
+    documentType,
+    mediaType,
 
     title,
     description,
     label,
     identifier,
-//    imageUrl,
 
     ...props
     
@@ -263,17 +265,30 @@ const GalleryModule = ({
         )
     }
 
+    const ModuleMedia = () => {
+
+        return (
+            <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
+                { props.imageUrl && <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} /> }
+                
+                <ModuleIcon icon={icon} icons={icons} documentType={documentType} mediaType={mediaType} />
+            </figure>
+        )
+
+    }
+
     return (
-        <article className={classes.module} aria-selected={selected}>
+        <ModuleBase {...props} className={classes.module}>
             <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
                 <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} />
+                <ModuleIcon icon={icon} icons={icons} documentType mediaType />
             </figure>
             <div className={classes.content}>
                 <ModuleHeader />
                 <ModuleFooter />
             </div>
             <ModuleToolbar className={classes.toolbar} {...props} />
-        </article>
+        </ModuleBase>
     )    
 
 }

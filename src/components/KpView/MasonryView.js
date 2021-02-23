@@ -10,14 +10,14 @@ const useStyles = makeStyles(theme => ({
     },
 }));
 
-const MasonryView = ({colSize, cols = 3, spacing = 2, header, footer, children, debug = false}) => {
+const MasonryView = ({columnSize = 200, columns = 3, spacing = 2, header, footer, children, debug = false}) => {
 
     const classes = useStyles()
 
     return (
         <div className={classes.view}>
             {header}
-            <Masonry colSize={colSize} cols={cols} spacing={spacing}>
+            <Masonry columnSize={columnSize} columns={columns} spacing={spacing}>
                 {children}
             </Masonry>
             {footer}
@@ -27,8 +27,11 @@ const MasonryView = ({colSize, cols = 3, spacing = 2, header, footer, children, 
 }
 
 MasonryView.propTypes = {
+    columnSize: PropTypes.number,
+    columns: PropTypes.number,
     spacing: PropTypes.number,
-    padding: PropTypes.number,
+    header: PropTypes.node,
+    footer: PropTypes.node,
     children: PropTypes.node 
 }
 
