@@ -7,34 +7,19 @@ import "moment/locale/sv";
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 
+import { ModuleStatus, ModuleDate } from "../Module"
 
 const useStyles = makeStyles(theme => ({
-    root: {
+    status: {
         display: "flex",
+        flexWrap: "nowrap",
         alignItems: "center",
         justifyContent: "center",
         fontFamily: "Akkurat, sans-serif",
         fontSize: "12px",
         margin: theme.spacing(1)
     },
-    status: {
-        display: "inline",
-        fontWeight: "bold",
-        "&[data-status=error]": {
-            color: theme.palette.error.main
-        }
-    },
-    message: {
-        display: "inline",
-        marginLeft: theme.spacing(1),
-        "&[data-status=error]": {
-            color: theme.palette.error.main
-        }
-    },
-    datetime: {
-        display: "inline",
-        marginLeft: theme.spacing(1)
-    }
+
 }));
 
 const statusLabels = {
@@ -42,43 +27,6 @@ const statusLabels = {
     "draft": "Utkast",
     "publish": "Publisert",
     "error": "Feil"
-}
-
-const StatusLabel = ({className, locale = "nb", status, children}) => {
-    const classes = useStyles()
-
-    const statusLabel = children || statusLabels[status] || status
-
-    return (
-        <span className={className || classes.status} data-status={status}>{statusLabel}</span>
-    )
-
-}
-
-const StatusDate = ({className, locale = "nb", format = "relative", datetime, children}) => {
-    const classes = useStyles()
-
-    datetime = children || datetime
-    
-    if (!datetime) {
-        return false
-    }
-
-    // format value
-
-    moment.locale(locale)
-
-    let date;
-    
-    if (format === "relative") {
-        date = moment.utc(datetime).local().fromNow()
-    } else if (format) {
-        date = moment.utc(datetime).local().format(format)
-    }
-
-    return (
-        <time datetime={datetime} className={className || classes.datetime}>{date}</time>
-    )
 }
 
 const StatusMessage = ({className, status, code, children}) => {
@@ -96,11 +44,15 @@ const StatusMessage = ({className, status, code, children}) => {
 const EditorStatus = ({className, status, statusLabel, statusDate, statusCode, statusMessage}) => {
     const classes = useStyles()
 
+    if (!statusLabel && statusLabels[status]) {
+        statusLabel = statusLabels[status]
+    }
+
     return (
-        <Typography className={className || classes.root} noWrap>
-            <StatusLabel className={classes.status} status={status}>{statusLabel}</StatusLabel>
+        <Typography className={className || classes.status} noWrap>
+            <ModuleStatus variant="outlined" fontSize={14} status={status}>{statusLabel || status}</ModuleStatus>
             <StatusMessage className={classes.message} status={status} code={statusCode}>{statusMessage}</StatusMessage>
-            {!statusMessage && <StatusDate className={classes.datetime}>{statusDate}</StatusDate> }
+            {!statusMessage && <ModuleDate datetime={statusDate} className={classes.datetime}>{statusDate}</ModuleDate> }
         </Typography>
     )
 

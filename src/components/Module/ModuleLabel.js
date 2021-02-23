@@ -3,40 +3,24 @@ import Color from 'color';
 import PropTypes from "prop-types"
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-
-const getContrastColor = (color) => {
-
-    color = Color(color);
-
-    if (color.isDark()) {
-        return "white"
-    } else {
-        return "black"
-    }
-
-}
-
+import { getContrastColor } from "./utils"
 
 const useStyles = makeStyles(theme => ({
-    root: {
-        display: "inline-block",
-        fontSize: "12px",
-    },
     label: {
         fontFamily: "Akkurat, sans-serif",
-        fontSize: "inherit",
+        fontSize: props => { return props.fontSize },
         fontWeight: "bold",
-        padding: ".125em .75em",
-        border: "1px solid",
+//        padding: ".125em .75em",
+//        border: "1px solid",
         backgroundColor: props => { return props.color || "transparent" },
         borderColor: props => { return props.color || theme.palette.divider },
         color: props => { return props.color && getContrastColor(props.color) || theme.palette.text.secondary },
-        borderRadius: "1.25em",
+//        borderRadius: "1.25em",
     }
 }));
 
-const ModuleLabel = ({className, component = "h4", label, color, children}) => {
-    const classes = useStyles({color})
+const ModuleLabel = ({component = "h4", fontSize = 14, label, color, children}) => {
+    const classes = useStyles({fontSize, color})
 
     if (!label && children) {
         label = children
@@ -47,9 +31,7 @@ const ModuleLabel = ({className, component = "h4", label, color, children}) => {
     }
 
     return (
-        <span className={className || classes.root}>
-           <Typography className={classes.label} noWrap={true} component={component}>{label}</Typography>
-        </span>
+        <Typography className={classes.label} noWrap={true} component={component}>{label}</Typography>
     )
 }
 

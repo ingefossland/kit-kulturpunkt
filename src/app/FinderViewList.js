@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListView, ListModule, ViewPages } from "../components/KpView"
+import { ListView, ListModule, ViewPages } from "../components"
 import FinderModel from "./FinderModel"
 
 const FinderViewList = ({ results, resultsLoaded, page, pages, prevPage, nextPage, onPage }) => {

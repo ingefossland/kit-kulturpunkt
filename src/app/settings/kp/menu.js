@@ -20,7 +20,7 @@ const contentTypes = [
         title: "Artikler",
         icon: "article",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["list","table","icons"],
         query: {
             models: "documents",
             documentType: "article",
@@ -32,7 +32,7 @@ const contentTypes = [
         title: "Forside",
         icon: "pageHome",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["list","table","icons"],
         query: {
             models: "documents",
             documentType: "pageHome",
@@ -44,7 +44,7 @@ const contentTypes = [
         title: "Tema",
         icon: "pageTopic",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["list","table","icons"],
         query: {
             models: "documents",
             documentType: "pageTopic",
@@ -56,7 +56,7 @@ const contentTypes = [
         title: "Kart",
         icon: "pageMap",
         view: "icons",
-        viewOptions: ["list","icons"],
+        viewOptions: ["list","table","icons"],
         query: {
             models: "documents",
             documentType: "pageMap",

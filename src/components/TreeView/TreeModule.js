@@ -64,7 +64,7 @@ const useStyles = makeStyles(theme => ({
     },
     content: {
         marginLeft: props => { return props.margin * 48 },
-        height: 48,
+        height: props => { return props.minHeight },
 
         position: "relative",
         display: "flex",
@@ -84,8 +84,8 @@ const useStyles = makeStyles(theme => ({
 
     },
     media: {
-        width: 36,
-        height: 36,
+        width: props => { return props.mediaSize},
+        height: props => { return props.mediaSize},
         margin: theme.spacing(.5),
         display: "flex",
         justifyContent: "center",
@@ -117,25 +117,57 @@ const useStyles = makeStyles(theme => ({
 
 const TreeModule = ({
     level = 0, 
-    children,
-    onClick,
+    size = "medium",
+    minHeight,
+    mediaSize,
 
-    selectable,
-    selected,
-    onSelect,
+    draggable, 
 
     collapsible, 
     expanded = false,
     onToggle,
 
-    draggable, 
-    title,
-    imageUrl,
-    icon, 
+    onClick,
+    children,
+
     ...props
 }) => {
 
-    const classes = useStyles({level, margin: level + 1});
+    if (size === "small") {
+        mediaSize = 36
+        minHeight = 48
+    }
+
+    if (size === "medium") {
+        mediaSize = 40
+        minHeight = 56
+    }
+
+    if (size === "large") {
+        mediaSize = 56
+        minHeight = 72
+    }
+
+    const classes = useStyles({level, margin: level + 1, minHeight, mediaSize});
+
+    const {
+        selectable,
+        selected,
+        onSelect,
+
+        icons = [],
+        icon, 
+
+        documentType,
+        mediaType,
+        
+        title,
+        imageUrl,
+
+
+    } = props
+
+
 
     const DragHandle = ({dragHandleProps}) => {
 
@@ -159,7 +191,7 @@ const TreeModule = ({
 
         return (
             <div className={classes.media}>
-                { !imageUrl && <ModuleIcon icon={icon} /> }
+                { !imageUrl && <ModuleIcon icons={icons} icon={icon} documentType={documentType} mediaType={mediaType} /> }
                 { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
             </div>
         )

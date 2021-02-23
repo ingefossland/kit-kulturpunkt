@@ -47,11 +47,20 @@ const useStyles = makeStyles(theme => ({
         marginRight: theme.spacing(1),
         [theme.breakpoints.down('xs')]: {
             display: "none",
+        },
+
+        "& > * + *": {
+            marginLeft: theme.spacing(1.5)
         }
+
     },
     status: {
-        fontSize: "14px",
-        margin: theme.spacing(1.5)
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        "& > * + *": {
+            marginLeft: theme.spacing(1)
+        }
     },
     action: {
         fontSize: "14px",

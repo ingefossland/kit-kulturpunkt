@@ -6,7 +6,8 @@ import {
     ModuleTitle,
     ModuleImage,
     ModuleIcon,
-    ModuleLabel,
+    ModuleStatus,
+    ModuleDate,
     ModuleIdentifier,
     ModuleDescription,
     ModuleSelect,
@@ -168,25 +169,17 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-        marginTop: theme.spacing(.5),
-
-        "& + $footer": {
-            borderTop: "1px solid",
-            borderColor: theme.palette.divider,
-            paddingTop: theme.spacing(.5)
-        }
-
+        marginTop: theme.spacing(1),
     },
     footer: {
         width: "100%",
         flexBasis: "100%",
         display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "center",
         justifyContent: "flex-start",
         marginTop: theme.spacing(.5),
         "& > * + *": {
-            marginTop: theme.spacing(.5)
+            marginLeft: theme.spacing(1)
         }
     }
 
@@ -213,6 +206,12 @@ const GalleryModule = ({
     description,
     label,
     identifier,
+
+    status,
+    statusLabel,
+
+    updatedAt,
+    createdAt,
 
     ...props
     
@@ -253,36 +252,25 @@ const GalleryModule = ({
     const ModuleFooter = () => {
         return (
             <footer className={classes.footer}>
-                <ModuleIdentifier>{identifier}</ModuleIdentifier>
+                <ModuleStatus status={status}>{statusLabel}</ModuleStatus>
+                <ModuleDate datetime={updatedAt || createdAt} />
             </footer>
-        )
-
-        return (
-            <footer className={classes.footer}>
-                <ModuleLabel>{label}</ModuleLabel>
-                <ModuleIdentifier>{identifier}</ModuleIdentifier>
-            </footer>
-        )
-    }
-
-    const ModuleMedia = () => {
-
-        return (
-            <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
-                { props.imageUrl && <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} /> }
-                
-                <ModuleIcon icon={icon} icons={icons} documentType={documentType} mediaType={mediaType} />
-            </figure>
         )
 
     }
 
-    return (
-        <ModuleBase {...props} className={classes.module}>
+    const ModuleMedia = () => {
+        return (
             <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
                 <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} />
                 <ModuleIcon icon={icon} icons={icons} documentType mediaType />
             </figure>
+        )
+    }
+
+    return (
+        <ModuleBase {...props} className={classes.module}>
+            <ModuleMedia />
             <div className={classes.content}>
                 <ModuleHeader />
                 <ModuleFooter />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { GridView, GridModule } from "../components/KpView"
+import { GridView, GridModule } from "../components"
 
 import FinderModel from "./FinderModel"
 

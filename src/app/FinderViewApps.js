@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconsView, IconsModule } from "../components/KpView"
+import { IconsView, IconsModule } from "../components"
 import { useLocation, useHistory } from 'react-router-dom';
 import icons from "../icons/"
 

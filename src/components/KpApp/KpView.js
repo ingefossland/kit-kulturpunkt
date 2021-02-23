@@ -23,7 +23,7 @@ import {
 
     MasonryView,
     MasonryModule,    
-} from "../KpView"
+} from "../"
 
 import KpColumnView from "./KpViewColumn"
 import KpTreeView from "./KpViewTree"

@@ -50,7 +50,7 @@ const useStyles = makeStyles(theme => ({
         },
     },
     content: {
-        height: 48,
+        height: props => { return props.minHeight},
         margin: theme.spacing(0, 1),
 
         paddingRight: 24,
@@ -74,11 +74,12 @@ const useStyles = makeStyles(theme => ({
     },
     media: {
         flexShrink: 0,
-        width: 36,
-        height: 36,
+        width: props => { return props.mediaSize},
+        height: props => { return props.mediaSize},
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
+        margin: 0
     },
     body: {
         flexShrink: 1,
@@ -113,6 +114,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const ColumnModule = ({
+    size = "medium",
+    minHeight,
+    mediaSize,
+
     onClick,
     selectable,
     selected = false,
@@ -126,9 +131,30 @@ const ColumnModule = ({
     title,
     imageUrl,
     icon, 
-    ...props}) => {
+    icons,
 
-    const classes = useStyles()
+    documentType,
+    mediaType,
+
+    ...props
+}) => {
+
+    if (size === "small") {
+        mediaSize = 36
+        minHeight = 48
+    }
+
+    if (size === "medium") {
+        mediaSize = 40
+        minHeight = 56
+    }
+
+    if (size === "large") {
+        mediaSize = 56
+        minHeight = 72
+    }
+
+    const classes = useStyles({mediaSize, minHeight})
 
     const DragHandle = ({dragHandleProps}) => {
 
@@ -150,10 +176,10 @@ const ColumnModule = ({
     const ModuleMedia = () => {
 
         return (
-            <div className={classes.media}>
-                { !imageUrl && <ModuleIcon icon={icon} /> }
+            <figure className={classes.media}>
+                { !imageUrl && <ModuleIcon icons={icons} icon={icon} documentType={documentType} mediaType={mediaType} /> }
                 { imageUrl && <ModuleImage imageUrl={imageUrl} /> }
-            </div>
+            </figure>
         )
 
     }

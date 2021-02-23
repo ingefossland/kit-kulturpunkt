@@ -1,6 +1,6 @@
 import React from 'react';
-import ViewBase from "./ViewBase"
-import ViewHeader from "./ViewHeader"
+import ViewBase from "../View/ViewBase"
+import ViewHeader from "../View//ViewHeader"
 
 import MasonryView from "./MasonryView";
 import MasonryModule from "./MasonryModule";

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Badge from '@material-ui/core/Badge';
 
-import ListModule from "../KpView/ListModule"
+import ListModule from "./KpLinkModule"
 
 import {
     ModuleBase,

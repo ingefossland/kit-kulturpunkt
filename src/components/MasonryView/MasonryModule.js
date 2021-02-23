@@ -4,9 +4,12 @@ import PropTypes from 'prop-types';
 import {
     ModuleTitle,
     ModuleImage,
+    ModuleIcon,
     ModuleLabel,
     ModuleIdentifier,
     ModuleDescription,
+    ModuleStatus,
+    ModuleDate,
     ModuleSelect,
     ModuleToolbar
 } from "../Module"
@@ -61,6 +64,14 @@ const useStyles = makeStyles(theme => ({
 
         "&[aria-selected=true]": {
 
+            "& $media": {
+                padding: theme.spacing(2)
+            },
+
+            "& $image": {
+                boxShadow: theme.shadows[2]
+            },
+
             "& button[name=select]": {
                 opacity: 1,
             },
@@ -97,11 +108,13 @@ const useStyles = makeStyles(theme => ({
         margin: "0",
         display: "flex",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        boxSizing: "border-box"
     },
     image: {
         display: "block",
         width: "100%",
+        maxWidth: "100%",
         height: "auto"
     },
     toolbar: {
@@ -166,25 +179,17 @@ const useStyles = makeStyles(theme => ({
         flexDirection: "column",
         alignItems: "flex-start",
         justifyContent: "flex-start",
-        marginTop: theme.spacing(.5),
-
-        "& + $footer": {
-            borderTop: "1px solid",
-            borderColor: theme.palette.divider,
-            paddingTop: theme.spacing(.5)
-        }
-
+        marginTop: theme.spacing(1),
     },
     footer: {
         width: "100%",
         flexBasis: "100%",
         display: "flex",
-        flexDirection: "column",
-        alignItems: "flex-start",
+        alignItems: "center",
         justifyContent: "flex-start",
         marginTop: theme.spacing(.5),
         "& > * + *": {
-            marginTop: theme.spacing(.5)
+            marginLeft: theme.spacing(1)
         }
     }
 
@@ -200,10 +205,19 @@ const MasonryModule = ({
     mediaStyle, 
     mediaLayout = "cover", 
 
+    icons,
+    icon,
+
     title,
     description,
     label,
     identifier,
+
+    status,
+    statusLabel,
+
+    updatedAt,
+    createdAt,
 
     ...props
     
@@ -242,24 +256,33 @@ const MasonryModule = ({
     const ModuleFooter = () => {
         return (
             <footer className={classes.footer}>
-                <ModuleIdentifier>{identifier}</ModuleIdentifier>
+                <ModuleStatus status={status}>{statusLabel}</ModuleStatus>
+                <ModuleDate datetime={updatedAt || createdAt} />
             </footer>
         )
 
-        return (
-            <footer className={classes.footer}>
-                <ModuleLabel>{label}</ModuleLabel>
-                <ModuleIdentifier>{identifier}</ModuleIdentifier>
-            </footer>
-        )
     }
 
-    return (
-        <article className={classes.module} aria-selected={selected}>
+    const ModuleMedia = () => {
+        return (
             <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
                 <img src={imageUrl || defaultImageUrl} className={classes.image} />
                 <ModuleToolbar className={classes.toolbar} {...props} />
             </figure>
+        )
+
+        return (
+            <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
+                <img src={imageUrl || defaultImageUrl} className={classes.image} />
+                <ModuleToolbar className={classes.toolbar} {...props} />
+            </figure>
+        )
+    }
+
+
+    return (
+        <article className={classes.module} aria-selected={selected}>
+            <ModuleMedia />
             <div className={classes.content}>
                 <ModuleHeader />
                 <ModuleFooter />

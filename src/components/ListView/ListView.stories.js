@@ -1,6 +1,6 @@
 import React from 'react';
-import ViewBase from "./ViewBase"
-import ViewHeader from "./ViewHeader"
+import ViewBase from "../View/ViewBase"
+import ViewHeader from "../View//ViewHeader"
 
 import ListView from "./ListView";
 import ListModule from "./ListModule";
@@ -99,11 +99,6 @@ const Template = ({size, items, ...args}) => (
 
 export const Default = Template.bind({});
 Default.args = {
-}
-
-export const SizeSmall = Template.bind({});
-SizeSmall.args = {
-    size: "small"
 }
 
 export const Media = Template.bind({});

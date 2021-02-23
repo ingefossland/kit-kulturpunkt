@@ -11,7 +11,10 @@ const useStyles = makeStyles(theme => ({
     root: {
         fontFamily: "Akkurat, sans-serif",
         fontSize: "14px",
-        color: theme.palette.text.secondary
+        color: theme.palette.text.secondary,
+        whiteSpace: "nowrap",
+        overflow: "hidden",
+        textOverflow: "ellipsis"
     }
 }));
 

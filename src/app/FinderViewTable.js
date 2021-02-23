@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableView, TableModule } from "../components/KpView"
+import { TableView, TableModule } from "../components"
 import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 import qs from 'query-string';
@@ -17,6 +17,8 @@ const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
         "createdAt",
         "uniqueId",
     ]
+
+    cols = ["header","body","footer"]
 
     const location = useLocation()
     const history = useHistory()
@@ -40,7 +42,7 @@ const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
     const footer = nextPage && <TableModule cols={cols} placeholder title="Next page" onClick={() => onPage(nextPage)} />
 
     return (
-        <TableView header={header} footer={footer} cols={cols} sort={sort} onSort={_onSort}>
+        <TableView head={false} header={header} footer={footer} cols={cols} sort={sort} onSort={_onSort}>
             { resultsLoaded && resultsLoaded.map((model, index) => {
                 return (
                     <FinderModel {...model} key={index}>

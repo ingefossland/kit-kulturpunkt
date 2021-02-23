@@ -1,5 +1,5 @@
 import React from 'react'
-import { EditorBase, EditorHeader, EditorBody, EditorFooter, EditorOverlay } from "@kit-ui/admin"
+import { EditorBase, EditorHeader, EditorBody, EditorFooter, EditorOverlay } from "../Editor"
 
 const PageEditor = ({collapsible, expanded, overlay, onToggle, onSelect, children, ...props}) => {
 

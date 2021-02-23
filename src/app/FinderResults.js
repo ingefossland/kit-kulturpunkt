@@ -6,7 +6,7 @@ import { bulkAdd, bulkRemove, bulkToggle, bulkReset } from '../redux/bulk';
 import { getPreview, getEditor, collapseEditor } from '../redux/finder';
 import qs from 'query-string';
 
-import { ViewBase, ViewHeader, ViewLoader, EmptyView } from "../components/KpView"
+import { ViewBase, ViewHeader, ViewLoader, EmptyView } from "../components/View"
 
 import FinderView from "./FinderView"
 

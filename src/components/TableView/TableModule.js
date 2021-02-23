@@ -6,9 +6,11 @@ import {
     ModuleIcon,
     ModuleImage,
     ModuleTitle,
+    ModuleDescription,
     ModuleIdentifier,
     ModuleStatus,
     ModuleLabel,
+    ModuleByline,
     ModuleDate,
     ModuleToolbar
  } from "../Module"
@@ -26,7 +28,10 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[data-deleted=true]": {
-            color: theme.palette.action.disabled,
+
+            "& h2": {
+                color: theme.palette.action.disabled,
+            },
 
             "& img": {
                 opacity: .25
@@ -35,7 +40,6 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[data-erased=true]": {
-            color: theme.palette.action.disabled,
 
             "& *": {
                 color: theme.palette.action.disabled,
@@ -66,7 +70,7 @@ const useStyles = makeStyles(theme => ({
         },
 
         "& > th, & td": {
-            height: 48,
+            height: props => { return props.minHeight},
         }
         
     },
@@ -84,7 +88,8 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
         position: "absolute",
         right: 0,
-        display: "none"
+        display: "none",
+        margin: theme.spacing(1)
     },
     header: {
         display: "flex",
@@ -92,10 +97,17 @@ const useStyles = makeStyles(theme => ({
         alignItems: "center",
         width: "100%",
     },
+    footer: {
+        display: "flex",
+        justifyContent: "flex-start",
+        alignItems: "center",
+        width: "100%",
+    },
     media: {
-        flexBasis: 36,
-        width: 36,
-        height: 36,
+        flexShrink: 0,
+        flexBasis:  props => { return props.mediaSize },
+        width: props => { return props.mediaSize },
+        height: props => { return props.mediaSize },
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -106,7 +118,6 @@ const useStyles = makeStyles(theme => ({
         fontWeight: "bold",
         textAlign: "left",
         fontSize: 16,
-        flexGrow: 1,
         padding: theme.spacing(1)
     },
     value: {
@@ -136,7 +147,11 @@ const useStyles = makeStyles(theme => ({
 const TableModule = ({
     cols = [], 
     sort, 
-    placeholder, 
+
+    size = "medium",
+    mediaSize = 36,
+    minHeight = 48,
+    placeholder = false,
 
     icons = [],
     icon,
@@ -144,11 +159,34 @@ const TableModule = ({
     ...props
 }) => {
 
-    const classes = useStyles()
+
+    if (size === "small") {
+        mediaSize = 36
+        minHeight = 46
+    }
+
+    if (size === "medium") {
+        mediaSize = 40
+        minHeight = 54
+    }
+
+    if (size === "large") {
+        mediaSize = 56
+        minHeight = 70
+    }
+
+    const classes = useStyles({mediaSize, minHeight})
 
     const {
+
+        description,
+        metadata,
+
         status,
         statusLabel,
+
+        updatedAt,
+        createdAt,
 
         documentType,
         documentLabel,
@@ -156,6 +194,7 @@ const TableModule = ({
         mediaLabel,
     
         title, 
+        author,
     
         onClick,
         selectable, 
@@ -202,14 +241,31 @@ const TableModule = ({
 
     }
 
-    const ModuleHeader = () => {
+    const ModuleHeader = ({title, status}) => {
         return (
             <header className={classes.header}>
                 { selectable && <ModuleSelect selected={selected} onClick={onSelect} /> }
                 <ModuleMedia />
                 <ModuleTitle className={classes.title}>{title}</ModuleTitle>
+                {status && <ModuleStatus status={status}>{statusLabel || status}</ModuleStatus> }
                 <ModuleToolbar className={classes.toolbar} {...props} selectable={false} />
             </header>
+        )
+    }
+
+    const ModuleBody = () => {
+        return (
+            <div className={classes.body}>
+                <ModuleDescription>{description || metadata.join(" – ")}</ModuleDescription>
+            </div>
+        )
+    }
+
+    const ModuleFooter = () => {
+        return (
+            <footer className={classes.footer}>
+                <ModuleByline  datetime={updatedAt || createdAt} author={author || "N/A" } />
+            </footer>
         )
     }
 
@@ -218,7 +274,19 @@ const TableModule = ({
         const value = props[name]
 
         if (name === "title") {
-            return <ModuleHeader>{value}</ModuleHeader>
+            return <ModuleHeader title={title} />
+        }
+
+        if (name === "header") {
+            return <ModuleHeader title={title} status={status} />
+        }
+
+        if (name === "body") {
+            return <ModuleBody>{value}</ModuleBody>
+        }
+
+        if (name === "footer") {
+            return <ModuleFooter>{value}</ModuleFooter>
         }
 
         if (name === "label") {
@@ -272,11 +340,8 @@ const TableModule = ({
 
 TableModule.defaultProps = {
     cols: [
-        "title",
-        "status",
-        "updatedAt",
-        "createdAt",
-        "uniqueId",
+        "header",
+        "footer",
     ]
 }
 

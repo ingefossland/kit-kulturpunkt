@@ -14,7 +14,6 @@ import {
     ModuleDescription,
     ModuleIdentifier,
     ModuleToolbar,
-    ModuleSettings,
     ModuleStatus,
     ModuleByline
 } from "../Module"
@@ -25,7 +24,7 @@ const useStyles = makeStyles(theme => ({
     module: {
         position: "relative",
         display: "flex",
-        minHeight: theme.spacing(8),
+        minHeight: props => { return props.minHeight},
         justifyContent: "flex-start",
         alignItems: "center",
         userSelect: "none",
@@ -50,7 +49,11 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[data-deleted=true]": {
-            color: theme.palette.action.disabled,
+
+            "& h2": {
+                color: theme.palette.text.secondary,
+                textDecoration: "line-through"
+            },
 
             "& img": {
                 opacity: .25
@@ -59,7 +62,6 @@ const useStyles = makeStyles(theme => ({
         },
 
         "&[data-erased=true]": {
-            color: theme.palette.action.disabled,
 
             "& *": {
                 color: theme.palette.action.disabled,
@@ -83,8 +85,8 @@ const useStyles = makeStyles(theme => ({
     },
 
     media: {
-        width: 48,
-        height: 48,
+        width: props => { return props.mediaSize},
+        height: props => { return props.mediaSize},
         display: "flex",
         justifyContent: "center",
         alignItems: "center"
@@ -109,7 +111,7 @@ const useStyles = makeStyles(theme => ({
         alignItems: "baseline",
         justifyContent: "flex-start",
         "& * + *": {
-            marginLeft: theme.spacing(.5)
+            marginLeft: theme.spacing(1)
         }
     },
     footer: {
@@ -139,7 +141,7 @@ const useStyles = makeStyles(theme => ({
         flexWrap: "none",
 
         "& > * + *": {
-            marginLeft: theme.spacing(-1)
+//            marginLeft: theme.spacing(-1)
         },
     },
 }));
@@ -148,6 +150,8 @@ const useStyles = makeStyles(theme => ({
 
 const ListModule = ({
     size = "medium",
+    mediaSize = 36,
+    minHeight = 48,
     placeholder = false,
     children,
     ...props
@@ -189,7 +193,22 @@ const ListModule = ({
     
     } = props
 
-    const classes = useStyles()
+    if (size === "small") {
+        mediaSize = 36
+        minHeight = 48
+    }
+
+    if (size === "medium") {
+        mediaSize = 40
+        minHeight = 56
+    }
+
+    if (size === "large") {
+        mediaSize = 56
+        minHeight = 72
+    }
+
+    const classes = useStyles({mediaSize, minHeight})
 
     const imageUrl = getImageUrl(props)
 
@@ -214,18 +233,15 @@ const ListModule = ({
 
     const ModuleContent = () => {
 
-        if (size === "small") {
-            return (
-                <div className={classes.content}>
-                    <header className={classes.header}>
-                        <ModuleTitle untitled={untitled} title={title} />
-                        <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
-                        <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
-                        <ModuleByline author={author} datetime={updatedAt || createdAt} />
-                    </header>
-                </div>
-            )
-        }
+        return (
+            <div className={classes.content}>
+                <header className={classes.header}>
+                    <ModuleTitle untitled={untitled} title={title} />
+                    <ModuleStatus status={status}>{statusLabel || status}</ModuleStatus>
+                    <ModuleByline author={author} datetime={updatedAt || createdAt} />
+                </header>
+            </div>
+        )
 
         return (
             <div className={classes.content}>
@@ -246,7 +262,6 @@ const ListModule = ({
 
     return (
         <ModuleBase {...props} className={classes.module}>
-
             { startAdornment || selectable &&
                 <ModuleSelect 
                     selected={selected}
@@ -255,11 +270,9 @@ const ListModule = ({
             }
 
             <ModuleMedia />
-            
             <ModuleContent />
-
-            <ModuleSettings {...props} className={classes.settings} />
             <ModuleToolbar {...props} className={classes.toolbar} selectable={false} />
+
         </ModuleBase>
     )    
 

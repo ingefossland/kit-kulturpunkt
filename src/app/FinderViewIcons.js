@@ -1,5 +1,5 @@
 import React from 'react';
-import { IconsView, IconsModule } from "../components/KpView"
+import { IconsView, IconsModule } from "../components"
 import { useTranslation } from 'react-i18next';
 
 import FinderModel from "./FinderModel"

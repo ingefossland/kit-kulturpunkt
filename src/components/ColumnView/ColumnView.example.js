@@ -6,7 +6,7 @@ import {
     ColumnModule,
 } from "./"
 
-const ColumnViewExample = ({items}) => {
+const ColumnViewExample = ({size, icons = [], items}) => {
 
     const [columns, setColumns] = useState([
         {
@@ -51,7 +51,7 @@ const ColumnViewExample = ({items}) => {
         const { level, children } = item
 
         return (
-            <ColumnModule {...item} editable={true} collapsible={children && true} onClick={() => _onToggle(item)} />
+            <ColumnModule {...item} size={size} icons={icons} editable={true} collapsible={children && true} onClick={() => _onToggle(item)} />
         )
 
     }

@@ -1,21 +1,9 @@
-import { ViewBase, ViewHeader, ViewLoader, ViewPages } from "../View"
+import { ViewBase, ViewHeader, ViewLoader, ViewPages, EmptyView } from "../View"
+import { ListView, ListModule } from "../ListView"
 import { TableView, TableModule } from "../TableView"
 import { GalleryView, GalleryModule } from "../GalleryView"
+import { MasonryView, MasonryModule } from "../MasonryView"
 import { IconsView, IconsModule } from "../IconsView"
-
-import EmptyView from "./EmptyView"
-
-import ListView from "./ListView"
-import ListModule from "./ListModule"
-
-import GridView from "./GridView"
-import GridModule from "./GridModule"
-
-import MasonryView from "./MasonryView"
-import MasonryModule from "./MasonryModule"
-
-import { getGallery } from "./utils/getGallery"
-import { getImageUrl } from "./utils/getImageUrl"
 
 export {
     ViewBase,
@@ -27,8 +15,8 @@ export {
     ListView,
     ListModule,
 
-    GridView,
-    GridModule,
+    IconsView,
+    IconsModule,
 
     TableView,
     TableModule,
@@ -38,7 +26,4 @@ export {
 
     MasonryView,
     MasonryModule,
-
-    getGallery,
-    getImageUrl
 }

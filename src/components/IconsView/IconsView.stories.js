@@ -77,15 +77,15 @@ const Template = ({iconSize, items, ...args}) => (
                 item.iconSize = iconSize
 
                 if (index === 2) {
-                    return <IconsModule {...item} {...args} title="Selected" selected={true} key={index} />
+                    return <IconsModule {...item} {...args} selected={true} key={index} />
                 }
 
                 if (index === 3) {
-                    return <IconsModule {...item} {...args} status="trash" title="Deleted" deleted={true} key={index} />
+                    return <IconsModule {...item} {...args} status="trash" deleted={true} key={index} />
                 }
 
                 if (index === 4) {
-                    return <IconsModule {...item} {...args} status="erased" title="Erased" erased={true} key={index} />
+                    return <IconsModule {...item} {...args} status="erased" erased={true} key={index} />
                 }
 
                 return <IconsModule {...item} {...args} key={index} />

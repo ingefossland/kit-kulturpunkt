@@ -1,5 +1,5 @@
 import React from 'react';
-import { MasonryView, MasonryModule } from "../components/KpView"
+import { MasonryView, MasonryModule } from "../components"
 
 import FinderModel from "./FinderModel"
 

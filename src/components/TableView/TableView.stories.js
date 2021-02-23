@@ -13,6 +13,8 @@ export default {
     title: 'Views/TableView',
     component: TableView,
     args: {
+        head: false,
+        cols: ["header","footer"],
         items: pages.models,
         selectable: true,
         editable: true,
@@ -21,11 +23,18 @@ export default {
         erasable: true,
     },
     argTypes: {
-        columnSize: {
+        head: {
             control: {
-                type: 'range',
-                min: 100,
-                max: 1000
+                type: 'boolean'
+            }
+        },
+        cols: {
+            control: {
+                type: 'select',
+                options: [
+                    ["header","footer"],
+                    ["title","status","createdAt","updatedAt"]
+                ]
             }
         },
         selectable: {
@@ -66,14 +75,15 @@ export default {
     },
 };
 
-const Template = ({columnSize, items, ...args}) => (
+const Template = ({head, cols, items, ...args}) => (
     <ViewBase>
         <ViewHeader parents={[{title: "Parent"}]} title="Table" />
 
-        <TableView columnSize={columnSize}>
+        <TableView head={head} cols={cols}>
             { items.map((item, index) => {
 
                 item.icons = icons
+                item.cols = cols
 
                 if (index === 2) {
                     return <TableModule {...item} {...args} selected={true} key={index} />

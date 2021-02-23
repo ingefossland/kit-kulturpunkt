@@ -7,6 +7,7 @@ import Icon from "@material-ui/core/Icon"
 import {
     ModuleBase,
     ModuleTitle,
+    ModuleDate,
     ModuleLabel,
     ModuleImage,
     ModuleIcon,
@@ -239,7 +240,7 @@ const useStyles = makeStyles(theme => ({
             bottom: 0,
             left: 0,
             fontSize: 24,
-            backgroundColor: "white",
+            backgroundColor: theme.palette.background.paper,
             padding: theme.spacing(.5),
 //            boxShadow: theme.shadows[2]
         }
@@ -261,40 +262,21 @@ const useStyles = makeStyles(theme => ({
 
         "& > *": {
             maxWidth: "100%",
-            overflow: "hidden"
-        }
-
-    },
-    status: {
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "baseline",
-
-        "& > * + *": {
-            marginLeft: theme.spacing(.5)
+            overflow: "hidden",
+            marginTop: theme.spacing(.5)
         }
 
     },
     footer: {
-        width: "100%",
-        maxWidth: "100%",
-        overflow: "hidden",
         display: "flex",
-        alignItems: "baseline",
-        justifyContent: "flex-start",
-        "& * + *": {
-            marginLeft: theme.spacing(.5)
-        }
-    },
-    settings: {
-        zIndex: 3,
-        display: "flex",
-        flexWrap: "none",
+        flexDirection: "column",
+        alignItems: "center",
+        marginTop: theme.spacing(1),
 
-        "& > * + *": {
-            marginLeft: theme.spacing(-1)
+        "& > *": {
+            maxWidth: "100%",
+            overflow: "hidden"
         }
-
     },
 
 }));
@@ -358,7 +340,9 @@ const IconModule = ({
         status,
         statusLabel,
     
-    
+        updatedAt,
+        createdAt,
+
         selectable,
         selected,
         onSelect,
@@ -436,12 +420,10 @@ const IconModule = ({
             <div className={classes.content}>
                 <header className={classes.header}>
                     <ModuleTitle untitled={untitled} title={title} onClick={!selected && onEdit} />
-                    <div className={classes.status}>
-                        <ModuleLabel label={documentLabel || documentType} />
-                        <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
-                    </div>
+                    <ModuleStatus status={status}>{statusLabel || status}</ModuleStatus>
                 </header>
                 <footer className={classes.footer}>
+                    <ModuleDate datetime={updatedAt || createdAt} />
                     <ModuleByline author={author} datetime={datetime} />
                 </footer>
             </div>
