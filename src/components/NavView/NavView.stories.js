@@ -1,55 +1,42 @@
 import React from 'react';
-import NavView from './NavView';
+import NavView from "./NavView";
 
 export default {
-    title: 'Navigation/NavView',
+    title: 'NavView/NavView',
     component: NavView,
     args: {
+        viewOptions: ["list","grid"]
     },
     argTypes: {
     },
-    
 };
 
-const Template = (args) => <NavView {...args} />
+const Template = (args) => (
+    <NavView {...args} />
+)
 
 export const Default = Template.bind({});
 Default.args = {
-    options: [
-        "list",
-        "icons",
-        "grid",
-        "column",
-        "masonry",
-        "gallery",
-        "details",
-        "table",
-    ],
-    value: "grid"
 }
 
-export const WithIcons = Template.bind({});
-WithIcons.args = {
-    options: [
-        {
-            title: "Icons",
-            value: "icons"
-        },
-        {
-            icon: "view_column",
-            title: "Gallery",
-            value: "gallery"
-        },
-        {
-            icon: "view_module",
-            title: "Grid",
-            value: "grid"
-        },
-        {
-            icon: "view_headline",
-            title: "List",
-            value: "list"
-        }
-    ],
-    value: "grid"
+
+export const ViewOptions = Template.bind({});
+ViewOptions.args = {
+    viewOptions: ["list","grid","table","gallery"]
+}
+
+export const SortOptions = Template.bind({});
+SortOptions.args = {
+    sortOptions: ["alpha","numeric","random"],
+    viewOptions: ["list","grid","table","gallery"]
+}
+
+export const SizeOptions = Template.bind({});
+SizeOptions.args = {
+    sortOptions: ["alpha","numeric","random"],
+    viewOptions: ["list","grid","table","gallery"],
+    sizeOptions: {
+        min: 100,
+        max: 200
+    }
 }

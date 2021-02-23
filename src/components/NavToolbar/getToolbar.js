@@ -127,19 +127,19 @@ const getToolbar = (props, toolbar = []) => {
             
         toolbar = [];
 
-        if (restorable) {
-            toolbar.push({
-                name: "restore",
-                icon: "restore",
-                onClick: onRestore
-            });
-        }
-
         if (erasable) {
             toolbar.push({
                 name: "erase",
                 icon: "delete_forever",
                 onClick: onErase
+            });
+        }
+
+        if (restorable) {
+            toolbar.push({
+                name: "restore",
+                icon: "restore",
+                onClick: onRestore
             });
         }
 

@@ -26,16 +26,16 @@ const useStyles = makeStyles(theme => ({
     
 }));
 
-const LoadingView = () => {
+const LoadingView = ({icon = "search", message = "No hits"}) => {
 
     const classes = useStyles()
 
     return (
         <div className={classes.view}>
             <Icon className={classes.icon}>
-                <SearchIcon />
+               {icon}
             </Icon>
-            <Typography>Sorry, we couldn't find any hits.</Typography>
+            <Typography>{message}</Typography>
         </div>
     )
 

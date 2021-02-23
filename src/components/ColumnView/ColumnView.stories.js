@@ -75,8 +75,15 @@ const Example = ({parents, title, ...args}) => (
     </ViewBase>
 )
 
-export const ExpandableExample = Example.bind({});
-ExpandableExample.args = {
+export const ExpandableColumns = Example.bind({});
+ExpandableColumns.args = {
     title: "Expandable columns",
+    items: tree.models
+}
+
+export const SortableColumns = Example.bind({});
+SortableColumns.args = {
+    sortable: true,
+    title: "Sortable columns",
     items: tree.models
 }

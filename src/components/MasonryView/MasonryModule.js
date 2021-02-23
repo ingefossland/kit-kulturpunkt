@@ -1,9 +1,9 @@
-import React, { Component } from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 
 import {
+    ModuleBase,
     ModuleTitle,
-    ModuleImage,
     ModuleIcon,
     ModuleLabel,
     ModuleIdentifier,
@@ -41,35 +41,55 @@ const useStyles = makeStyles(theme => ({
                 opacity: .5,
             },
 
-            "& $image, & $icon": {
+            "& $image": {
                 opacity: .5
             }
 
         },
 
         "&[data-deleted=true]": {
-            "& $media": {
-                opacity: .5 
+
+            "& h2": {
+                color: theme.palette.text.secondary,
+                textDecoration: "line-through"
             },
-            "& button": {
-                opacity: 1
-            }
+
+            "& $image, &:hover $image": {
+                opacity: .25
+            },
+
+            "& button[name=restore]": {
+                opacity: 1,
+            },
+
         },        
 
         "&[data-erased=true]": {
-            "& $media": {
-                opacity: .25 
+
+            "& *": {
+                color: theme.palette.action.disabled,
+            },
+
+            "& $image, &:hover $image": {
+                opacity: ".25"
+            },
+
+            "& button": {
+                opacity: 0
+            },
+
+            "& h2": {
+                textDecoration: "line-through"
             }
+
         },
 
         "&[aria-selected=true]": {
 
-            "& $media": {
-                padding: theme.spacing(2)
-            },
-
-            "& $image": {
-                boxShadow: theme.shadows[2]
+            "& $image, &:hover $image": {
+                transform: "scale(0.8)",
+                boxShadow: theme.shadows[2],
+                opacity: 1,
             },
 
             "& button[name=select]": {
@@ -102,20 +122,43 @@ const useStyles = makeStyles(theme => ({
     media: {
         display: "block",
         backgroundColor: theme.palette.action.selected,
+
         position: "relative",
         width: "100%",
-        height: "auto",
+        height: 0,
+
         margin: "0",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        boxSizing: "border-box"
+
+        paddingBottom: props => { return Math.floor(props.mediaRatio * 100) + "%"}
+
+    },
+    icon: {
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        margin: theme.spacing(2)
     },
     image: {
+        position: "absolute",
+
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+
+        margin: "auto",
+
         display: "block",
-        width: "100%",
         maxWidth: "100%",
-        height: "auto"
+        maxHeight: "100%",
+
+        width: "auto",
+        height: "auto",
+
+        transformOrigin: "50% 50%",
+        transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1)",
+        transform: "scale(1)",
+
     },
     toolbar: {
         position: "absolute",
@@ -131,7 +174,7 @@ const useStyles = makeStyles(theme => ({
 
         "& button": {
             position: "absolute",
-            color: "white",
+//            color: "white",
 
             "&[name=select]": {
                 top: 0,
@@ -202,11 +245,18 @@ const MasonryModule = ({
 
     width = "100%", 
     maxWidth, 
+
     mediaStyle, 
     mediaLayout = "cover", 
 
-    icons,
+    mediaWidth,
+    mediaHeight,
+    mediaRatio = 1,
+
     icon,
+    icons = [],
+    documentType,
+    mediaType,
 
     title,
     description,
@@ -225,9 +275,14 @@ const MasonryModule = ({
 
     const { selected } = props
 
+    if (mediaWidth && mediaHeight) {
+        mediaRatio = mediaHeight / mediaWidth
+    }
+
     const classes = useStyles({
         width: width,
         maxWidth: maxWidth,
+        mediaRatio,
     })
 
     const imageUrl = getImageUrl(props)
@@ -263,31 +318,25 @@ const MasonryModule = ({
 
     }
 
+
     const ModuleMedia = () => {
         return (
-            <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
+            <figure className={classes.media} role={onClick && "button"} onClick={onClick}>
                 <img src={imageUrl || defaultImageUrl} className={classes.image} />
-                <ModuleToolbar className={classes.toolbar} {...props} />
-            </figure>
-        )
-
-        return (
-            <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
-                <img src={imageUrl || defaultImageUrl} className={classes.image} />
+                {!imageUrl && <ModuleIcon className={classes.icon} icon={icon} icons={icons} documentType={documentType} mediaType={mediaType}  /> }
                 <ModuleToolbar className={classes.toolbar} {...props} />
             </figure>
         )
     }
 
-
     return (
-        <article className={classes.module} aria-selected={selected}>
+        <ModuleBase {...props} className={classes.module}>
             <ModuleMedia />
             <div className={classes.content}>
                 <ModuleHeader />
                 <ModuleFooter />
             </div>
-        </article>
+        </ModuleBase>
     )    
 
 }

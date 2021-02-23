@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
     },
     slider: {
-        width: 100
+        width: 100,
+        margin: theme.spacing(2)
     },
     buttongroup: {
         display: 'flex',

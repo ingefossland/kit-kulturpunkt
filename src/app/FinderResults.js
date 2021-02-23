@@ -254,10 +254,10 @@ const FinderResults = (props) => {
 
     return (
         <ViewBase>
-            <ViewHeader {...props} 
+            <ViewHeader 
                 parents={parents}
-                title={title} 
-                description={description}
+                title={title || false} 
+                description={description || false}
 
                 view={view}
                 viewOptions={!selected && viewOptions}

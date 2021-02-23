@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import {
     ModuleBase,
     ModuleTitle,
-    ModuleImage,
     ModuleIcon,
     ModuleStatus,
     ModuleDate,
@@ -41,28 +40,56 @@ const useStyles = makeStyles(theme => ({
                 opacity: .5,
             },
 
-            "& $image, & $icon": {
+            "& $image": {
                 opacity: .5
             }
 
         },
 
         "&[data-deleted=true]": {
-            "& $media": {
-                opacity: .5 
+
+            "& h2": {
+                color: theme.palette.text.secondary,
+                textDecoration: "line-through"
             },
-            "& button": {
-                opacity: 1
-            }
+
+            "& $image, &:hover $image": {
+                opacity: .25
+            },
+
+            "& button[name=restore]": {
+                opacity: 1,
+            },
+
         },        
 
         "&[data-erased=true]": {
-            "& $media": {
-                opacity: .25 
+
+            "& *": {
+                color: theme.palette.action.disabled,
+            },
+
+            "& $image, &:hover $image": {
+                opacity: ".25"
+            },
+
+            "& button": {
+                opacity: 0
+            },
+
+            "& h2": {
+                textDecoration: "line-through"
             }
+
         },
 
         "&[aria-selected=true]": {
+
+            "& $image, &:hover $image": {
+                transform: "scale(0.8)",
+                boxShadow: theme.shadows[2],
+                opacity: 1,
+            },
 
             "& button[name=select]": {
                 opacity: 1,
@@ -98,11 +125,32 @@ const useStyles = makeStyles(theme => ({
         width: "100%",
         height: props => { return props.mediaHeight},
         margin: "0",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center"
+    },
+    icon: {
+        position: "absolute",
+        left: 0,
+        bottom: 0,
+        margin: theme.spacing(2)
     },
     image: {
+        position: "absolute",
+        top: 0,
+        right: 0,
+        bottom: 0,
+        left: 0,
+
+        transformOrigin: "50% 50%",
+        transition: "transform .135s cubic-bezier(0.0,0.0,0.2,1)",
+        transform: "scale(1)",
+
+        backgroundPosition: "50% 50%",
+        backgroundImage: props => { return "url("+props.imageUrl+")" },
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+
+        "& > img": {
+            display: "none",
+        }
 
     },
     toolbar: {
@@ -110,10 +158,8 @@ const useStyles = makeStyles(theme => ({
         zIndex: 2,
         top: 0,
         right: 0,
-        bottom: "auto",
+        bottom: 0,
         left: 0,
-        width: "100%",
-        height: props => { return props.mediaHeight },
 
         display: "flex",
         justifyContent: "center",
@@ -121,7 +167,7 @@ const useStyles = makeStyles(theme => ({
 
         "& button": {
             position: "absolute",
-            color: "white",
+//            color: "white",
 
             "&[name=select]": {
                 top: 0,
@@ -219,15 +265,16 @@ const GalleryModule = ({
 
     const { selected } = props
 
+    const imageUrl = getImageUrl(props)
+    const defaultImageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
+
     const classes = useStyles({
         width: width,
         maxWidth: maxWidth,
         mediaWidth: mediaWidth,
         mediaHeight: mediaHeight,
+        imageUrl: imageUrl
     })
-
-    const imageUrl = getImageUrl(props)
-    const defaultImageUrl = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+P+/HgAFhAJ/wlseKgAAAABJRU5ErkJggg=="
 
     if (placeholder) {
         return (
@@ -262,8 +309,9 @@ const GalleryModule = ({
     const ModuleMedia = () => {
         return (
             <figure className={classes.media} role={onClick && "button"} aria-selected={selected} onClick={onClick}>
-                <ModuleImage elevation={1} selected={selected} layout="cover" imageUrl={imageUrl || defaultImageUrl} className={classes.image} />
-                <ModuleIcon icon={icon} icons={icons} documentType mediaType />
+                <div className={classes.image}><img src={imageUrl || defaultImageUrl} /></div>
+                {!imageUrl && <ModuleIcon className={classes.icon} icon={icon} icons={icons} documentType={documentType} mediaType={mediaType}  /> }
+                <ModuleToolbar className={classes.toolbar} {...props} />
             </figure>
         )
     }
@@ -275,7 +323,6 @@ const GalleryModule = ({
                 <ModuleHeader />
                 <ModuleFooter />
             </div>
-            <ModuleToolbar className={classes.toolbar} {...props} />
         </ModuleBase>
     )    
 

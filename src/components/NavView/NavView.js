@@ -1,95 +1,50 @@
-import React, { useRef, useState } from 'react';
-import { Dropdown } from "@kit-ui/core"
-
-import ButtonBase from '@material-ui/core/ButtonBase';
-import Icon from "@material-ui/core/Icon"
-
-import NavViewButton from "./NavViewButton"
-
+import React, { useRef, useEffect, useState } from "react"
 import { makeStyles } from '@material-ui/core/styles';
+import { ViewOptions, RowsOptions, SortOptions, SizeOptions } from "./"
 
-const useStyles = makeStyles((theme) => ({
-    buttongroup: {
-        display: 'flex',
-        alignItems: 'center',
-        border: "1px solid",
-        borderColor: theme.palette.divider,
-        '& > * + *': {
-            borderLeft: "1px solid",
-            borderColor: theme.palette.divider,
-        },
-    },
-    button: {
-        padding: theme.spacing(.5),
+const useStyles = makeStyles(theme => ({
+    nav: {
+        display: "flex",
+        alignItems: "center",
 
-        "&[aria-selected=true]": {
-            "& > $icon": {
-                opacity: .5
-            }
+        "& > * + *": {
+            marginLeft: 6
         }
-
-
-    },
-    label: {
-        fontFamily: "Akkurat, sans-serif",
-        fontSize: 14,
-        fontWeight: "bold",
-        margin: 5
-    },
-    icon: {
-        margin: theme.spacing(0, .5),
-
-        "& + $label": {
-            display: "none"
-        }
-        
     }
 }));
 
-const icons = {
-    "list": "view_headline",
-    "icons": "apps",
-    "details": "view_stream",
-    "table": "view_stream",
-    "masonry": "view_quilt",
-    "gallery": "view_compact",
-    "grid": "view_module",
-    "column": "view_column",
-}
+const NavView = ({
+    view,
+    viewOptions,
+    onView,
 
+    rows,
+    rowsOptions,
+    onRows,
 
-const NavView = ({className, options = [], value, onChange}) => {
+    sort,
+    sortOptions,
+    onSort,
+
+    size,
+    sizeOptions,
+    onSize,
+
+    options,
+    onSelect,
+}) => {
 
     const classes = useStyles()
 
-    const _onChange = (value) => {
-        onChange && onChange(value)
-    }
-
-
     return (
-        <nav className={className}>
-            <div className={classes.buttongroup}>
-                { options && options.map((item, index) => {
-
-                    if (typeof item === "string") {
-                        item = {
-                            title: item,
-                            value: item,
-                            onClick: () => _onChange(item.value)
-                        }
-                    }
-                    
-                    return (
-                        <NavViewButton {...item} selected={value === item.value} key={index}/>
-                    )
-                    
-                })}
-            </div>
-        </nav>
+        <div className={classes.nav}>
+            { sortOptions && <SortOptions options={sortOptions} value={sort} onChange={onSort} /> }
+            { rowsOptions && <RowsOptions options={rowsOptions} value={rows} onChange={onRows} /> }
+            { sizeOptions && <SizeOptions options={sizeOptions} value={size} onChange={onSize} /> }
+            { viewOptions && <ViewOptions options={viewOptions} value={view} onChange={onView} /> }
+        </div>
     )
 
-        
 }
 
-export default NavView
+export default NavView;

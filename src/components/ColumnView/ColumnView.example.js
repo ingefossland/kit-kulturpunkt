@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 import {
     ColumnView,
@@ -6,7 +7,7 @@ import {
     ColumnModule,
 } from "./"
 
-const ColumnViewExample = ({size, icons = [], items}) => {
+const ColumnViewExample = ({sortable, size, icons = [], items}) => {
 
     const [columns, setColumns] = useState([
         {
@@ -48,7 +49,19 @@ const ColumnViewExample = ({size, icons = [], items}) => {
 
     const _renderModule = (item) => {
 
-        const { level, children } = item
+        const { level, index, children } = item
+
+        const draggableId = "drag-" + level + "-" + index
+
+        if (sortable) {
+            return (
+                <Draggable index={index} draggableId={draggableId} key={draggableId}>
+                    {(provided, snapshot) => (
+                        <ColumnModule {...item} draggable={{provided, snapshot}} size={size} icons={icons} editable={true} collapsible={children && true} onClick={() => _onToggle(item)}></ColumnModule>
+                    )}
+                </Draggable>
+            )
+        }
 
         return (
             <ColumnModule {...item} size={size} icons={icons} editable={true} collapsible={children && true} onClick={() => _onToggle(item)} />
@@ -56,10 +69,24 @@ const ColumnViewExample = ({size, icons = [], items}) => {
 
     }
 
-    const _renderColumn = ({level = 0, children}) => {
+    const _renderColumn = ({index, level = 0, children}) => {
 
         if (!children) {
             return false
+        }
+
+        const droppableId = "drop-" + level
+
+        if (sortable) {
+            return (
+                <Droppable isCombineEnabled={true} index={index} droppableId={droppableId} key={droppableId}>
+                    {(provided, snapshot) => (
+                        <ColumnList droppable={{provided, snapshot}} elevation={level}>
+                            {children && children.map((item, index) => _renderModule({...item, level, index}))}
+                        </ColumnList>
+                    )}
+                </Droppable>
+            )
         }
 
         return (
@@ -70,9 +97,23 @@ const ColumnViewExample = ({size, icons = [], items}) => {
     
     }
 
+    const _onDragEnd = (results) => {
+        console.log("onDragEnd", results)
+    }
+
+    if (sortable) {
+        return (
+            <ColumnView>
+                <DragDropContext onDragEnd={_onDragEnd}>
+                    {columns.map((parent, index) => _renderColumn({...parent, index: index, level: index}))}
+                </DragDropContext>
+            </ColumnView>
+        )
+    }
+
     return (
         <ColumnView>
-            {columns.map((parent, index) => _renderColumn({...parent, level: index}))}
+            {columns.map((parent, index) => _renderColumn({...parent, index: index, level: index}))}
         </ColumnView>
     )
 

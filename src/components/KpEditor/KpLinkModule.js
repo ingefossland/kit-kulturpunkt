@@ -35,12 +35,12 @@ const useStyles = makeStyles(theme => ({
             borderColor: theme.palette.divider
         },
 
-        "& > $toolbar": {
-            opacity: 0
+        "& > $toolbar, & > $settings": {
+            opacity: .5
         },
 
         "&:hover": {
-            "& > $toolbar": {
+            "& > $toolbar, & > $settings": {
                 opacity: 1
             }
         },

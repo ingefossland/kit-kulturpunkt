@@ -7,6 +7,15 @@ export default {
     title: 'View/ViewLoader',
     component: ViewLoader,
     args: {
+        parents: [
+            {
+                title: "Parent"
+            },
+            {
+                title: "«query»",
+            }
+        ],
+        description: "Loading ..."
     },
     argTypes: {
     },
@@ -14,7 +23,7 @@ export default {
 
 const Template = (args) => (
     <ViewBase>
-        <ViewHeader title="Loading ..." />
+        <ViewHeader {...args} />
         <ViewLoader>
             Wrap ViewLoader around a view.
         </ViewLoader>

@@ -34,13 +34,18 @@ const useStyles = makeStyles(theme => ({
             borderColor: theme.palette.divider
         },
 
-        "& > $toolbar": {
-            opacity: 0
+        "& button": {
+            opacity: 0,
+
+            "&[name=select]": {
+                opacity: 1,
+            }
+
         },
 
         "&:hover": {
-            "& > $toolbar": {
-                opacity: 1
+            "& button": {
+                opacity: 1,
             }
         },
 
@@ -57,7 +62,11 @@ const useStyles = makeStyles(theme => ({
 
             "& img": {
                 opacity: .25
-            }
+            },
+
+            "& button[name=restore]": {
+                opacity: 1,
+            },
 
         },
 
@@ -243,21 +252,6 @@ const ListModule = ({
             </div>
         )
 
-        return (
-            <div className={classes.content}>
-                <header className={classes.header}>
-                    <ModuleTitle untitled={untitled} title={title} />
-                    <ModuleByline author={author} datetime={updatedAt || createdAt} />
-                </header>
-                <footer className={classes.footer}>
-                    <ModuleLabel label={label || documentLabel || documentType || mediaLabel || mediaType} />
-                    <ModuleStatus statusLabel={statusLabel} status={statusLabel || status} />
-                    <ModuleMetadata metadata={metadata} />
-                    <ModuleDescription description={description} />
-                </footer>
-            </div>
-        )
-
     }
 
     return (
@@ -265,7 +259,7 @@ const ListModule = ({
             { startAdornment || selectable &&
                 <ModuleSelect 
                     selected={selected}
-                    onClick={onClick ? undefined : onSelect}
+                    onClick={onSelect}
                 />
             }
 

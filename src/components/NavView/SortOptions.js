@@ -72,6 +72,10 @@ const SortOptions = ({className, options = [], value, onChange}) => {
 
     })
 
+    if (!value) {
+        value = options[0].value
+    }
+
     const currentOption = value && options.find(option => option.value === value)
 
     return (

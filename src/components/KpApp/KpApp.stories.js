@@ -7,7 +7,7 @@ import kioskSettings from "../../app/settings/kiosk"
 import tree from "./data/tree"
 
 export default {
-    title: 'KpApp/Finder',
+    title: 'Kp/Finder',
     component: KpApp,
     args: {
     },
@@ -28,8 +28,8 @@ KulturPunkt.args = {
 }
 
 
-export const Kiosk = Template.bind({});
-Kiosk.args = {
+export const KioskApp = Template.bind({});
+KioskApp.args = {
     app: kioskSettings,
     section: {
         view: "list",

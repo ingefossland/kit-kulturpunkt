@@ -35,6 +35,35 @@ export default {
     },
 };
 
+const Template = ({parents, title, ...args}) => (
+    <ViewBase>
+        <ViewHeader parents={parents} title={title} />
+        <TreeView>
+            <TreeList>
+                <TreeModule collapsible expanded icon="bug_report" level={0} title="Parent">
+                    <TreeList>
+                        <TreeModule collapsible level={1} icon="bug_report" title="Child"></TreeModule>
+                        <TreeModule collapsible level={1} icon="bug_report" title="Child"></TreeModule>
+                        <TreeModule collapsible expanded level={1} icon="bug_report" title="Child">
+                            <TreeList>
+                                <TreeModule level={2} icon="bug_report" title="GrandChild"></TreeModule>
+                                <TreeModule level={2} icon="bug_report" title="GrandChild"></TreeModule>
+                                <TreeModule level={2} icon="bug_report" title="GrandChild"></TreeModule>
+                            </TreeList>
+                        </TreeModule>
+                        <TreeModule level={1} icon="bug_report" title="Child"></TreeModule>
+                    </TreeList>
+                </TreeModule>
+            </TreeList>
+        </TreeView>
+    </ViewBase>
+)
+
+
+export const Default = Template.bind({});
+Default.args = {
+}
+
 const Example = ({parents, title, ...args}) => (
     <ViewBase>
         <ViewHeader parents={parents} title={title} />
@@ -42,8 +71,15 @@ const Example = ({parents, title, ...args}) => (
     </ViewBase>
 )
 
-export const ExpandableExample = Example.bind({});
-ExpandableExample.args = {
+export const ExpandableTree = Example.bind({});
+ExpandableTree.args = {
     title: "Expandable tree",
+    items: tree.models
+}
+
+export const SortableTree = Example.bind({});
+SortableTree.args = {
+    sortable: true,
+    title: "Sortable tree",
     items: tree.models
 }

@@ -3,7 +3,7 @@ import KpEditor from "./KpEditor";
 import schemasByName from "./schemas/schemasByName"
 
 export default {
-    title: 'KpEditor/KpEditor',
+    title: 'Kp/Editor',
     component: KpEditor,
     args: {
         "formData": {

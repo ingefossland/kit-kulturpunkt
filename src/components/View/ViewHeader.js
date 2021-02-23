@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useState } from "react"
 import { makeStyles } from '@material-ui/core/styles';
 import { NavPath } from "../NavPath"
-import { NavView, ViewOptions, RowsOptions, SortOptions, SizeOptions } from "../NavView"
+import { NavView } from "../NavView"
 import { NavAction } from "../NavAction"
 
 const useStyles = makeStyles(theme => ({
@@ -67,20 +67,24 @@ const ViewHeader = ({
     return (
         <header className={classes.header}>
             <NavPath parents={parents} title={title} description={description} onSelect={onSelect} />
+            <NavView
+                viewOptions={viewOptions}
+                view={view}
+                onView={onView}
 
-            <div className={classes.nav}>
+                sortOptions={sortOptions}
+                sort={sort}
+                onSort={onSort}
 
-                { options && <NavView className={classes.toolbar} options={options} onChange={onSelect} /> }
+                sizeOptions={sizeOptions}
+                size={size}
+                onSize={onSize}
 
-                { sortOptions && <SortOptions options={sortOptions} value={sort} onChange={onSort} /> }
-                { rowsOptions && <RowsOptions options={rowsOptions} value={rows} onChange={onRows} /> }
-                { sizeOptions && <SizeOptions options={sizeOptions} value={size} onChange={onSize} /> }
-                { viewOptions && <ViewOptions options={viewOptions} value={view} onChange={onView} /> }
+                rowsOptions={rowsOptions}
+                rows={rows}
+                onRows={onRows}
 
-                { viewAction && <NavAction menu={[viewAction]} /> }
-
-            </div>
-
+            />
         </header>
     )
 

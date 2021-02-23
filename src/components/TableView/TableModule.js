@@ -23,6 +23,21 @@ const useStyles = makeStyles(theme => ({
     module: {
         position: "relative",
 
+        "& button": {
+            opacity: 0,
+
+            "&[name=select]": {
+                opacity: 1,
+            }
+
+        },
+
+        "&:hover": {
+            "& button": {
+                opacity: 1,
+            }
+        },
+
         "&[aria-selected=true]": {
             backgroundColor: theme.palette.action.selected
         },
@@ -30,12 +45,17 @@ const useStyles = makeStyles(theme => ({
         "&[data-deleted=true]": {
 
             "& h2": {
-                color: theme.palette.action.disabled,
+                color: theme.palette.text.secondary,
+                textDecoration: "line-through"
             },
 
             "& img": {
                 opacity: .25
-            }
+            },
+
+            "& button[name=restore]": {
+                opacity: 1,
+            },
 
         },
 
@@ -57,12 +77,6 @@ const useStyles = makeStyles(theme => ({
                 textDecoration: "line-through"
             }
 
-        },
-
-        "&:hover": {
-            "& $toolbar": {
-                display: "block"
-            }
         },
 
         "&[role=button]": {
@@ -88,7 +102,6 @@ const useStyles = makeStyles(theme => ({
     toolbar: {
         position: "absolute",
         right: 0,
-        display: "none",
         margin: theme.spacing(1)
     },
     header: {

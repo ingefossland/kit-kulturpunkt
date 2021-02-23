@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
         display: "flex",
         alignItems: "baseline",
         "& > * + *": {
-            marginLeft: theme.spacing(.5),
+            marginLeft: theme.spacing(1),
         }
     },
     title: {

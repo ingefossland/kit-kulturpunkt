@@ -18,7 +18,7 @@ const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
         "uniqueId",
     ]
 
-    cols = ["header","body","footer"]
+    cols = ["header","footer"]
 
     const location = useLocation()
     const history = useHistory()

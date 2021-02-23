@@ -25,8 +25,8 @@ import {
     MasonryModule,    
 } from "../"
 
-import KpColumnView from "./KpViewColumn"
-import KpTreeView from "./KpViewTree"
+import KpColumnView from "../ColumnView/ColumnView.example"
+import KpTreeView from "../TreeView/TreeView.example"
 
 import icons from "../KpIcons"
 
@@ -66,7 +66,7 @@ const KpView = ({viewOptions, view = "list", onView, items, parents, title}) => 
         return (
             <ViewBase>
                 <ViewHeader parents={parents} title={title} viewOptions={viewOptions} view={view} onView={onView} />
-                <KpTreeView items={items} />
+                <KpTreeView sortable={true} icons={icons} items={items} />
             </ViewBase>
         )
     }
@@ -76,7 +76,7 @@ const KpView = ({viewOptions, view = "list", onView, items, parents, title}) => 
         return (
             <ViewBase>
                 <ViewHeader parents={parents} title={title} viewOptions={viewOptions} view={view} onView={onView}  />
-                <KpColumnView items={items} />
+                <KpColumnView sortable={true} icons={icons} items={items} />
             </ViewBase>
         )
     }
