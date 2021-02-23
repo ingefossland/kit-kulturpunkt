@@ -2,7 +2,15 @@ import React from 'react';
 import { ListView, ListModule, ViewPages } from "../components"
 import FinderModel from "./FinderModel"
 
-const FinderViewList = ({ results, resultsLoaded, page, pages, prevPage, nextPage, onPage }) => {
+const FinderViewList = ({size, results, resultsLoaded, page, pages, prevPage, nextPage, onPage }) => {
+
+    if (size < 25) {
+        size = "small"
+    } else if (size > 175) {
+        size = "large"
+    } else {
+        size = "medium"
+    }
 
     const models = results && results.models
     const nav = <ViewPages page={page} pages={pages} onPage={onPage} />
@@ -12,7 +20,7 @@ const FinderViewList = ({ results, resultsLoaded, page, pages, prevPage, nextPag
             {  models && models.map((model, index) => {
                 return (
                     <FinderModel {...model} key={index}>
-                        <ListModule />
+                        <ListModule size={size} />
                     </FinderModel>
                 )
             })}

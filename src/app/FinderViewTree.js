@@ -8,11 +8,20 @@ import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 
 const FinderViewTree = ({
+    size,
     query = {},
     url,
     resultsLoaded,
     ...props
 }) => {
+
+    if (size < 25) {
+        size = "small"
+    } else if (size > 175) {
+        size = "large"
+    } else {
+        size = "medium"
+    }
 
     const location = useLocation()
     const dispatch = useDispatch()
@@ -68,7 +77,7 @@ const FinderViewTree = ({
                             level={level}
                             draggable={{provided, snapshot}} 
                             getChildren={true}>
-                        <TreeModule onClick={(event) => _onToggle(event, child)}>
+                        <TreeModule size={size} onClick={(event) => _onToggle(event, child)}>
                             {collapsible && expanded && <DroppableChildren parent={child} children={children} level={level+1} /> || "" }
                         </TreeModule>
                     </FinderModel>

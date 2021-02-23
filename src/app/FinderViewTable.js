@@ -4,7 +4,15 @@ import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 import qs from 'query-string';
 
-const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
+const FinderViewGrid = ({size, resultsLoaded, prevPage, nextPage, onPage }) => {
+
+    if (size < 25) {
+        size = "small"
+    } else if (size > 175) {
+        size = "large"
+    } else {
+        size = "medium"
+    }
 
     let cols = [
         "title",
@@ -46,7 +54,7 @@ const FinderViewGrid = ({resultsLoaded, prevPage, nextPage, onPage }) => {
             { resultsLoaded && resultsLoaded.map((model, index) => {
                 return (
                     <FinderModel {...model} key={index}>
-                        <TableModule cols={cols} sort={sort} />
+                        <TableModule size={size} cols={cols} sort={sort} />
                     </FinderModel>
                 )
             })}

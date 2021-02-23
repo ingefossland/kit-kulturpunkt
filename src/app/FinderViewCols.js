@@ -12,11 +12,20 @@ import { useHistory, useLocation } from "react-router-dom";
 import FinderModel from "./FinderModel"
 
 const TreeColumn = ({
+    size,
     query = {},
     url,
     resultsLoaded,
     ...props
 }) => {
+
+    if (size < 25) {
+        size = "small"
+    } else if (size > 175) {
+        size = "large"
+    } else {
+        size = "medium"
+    }
 
     const location = useLocation()
     const dispatch = useDispatch()
@@ -70,7 +79,7 @@ const TreeColumn = ({
                             level={level}
                             draggable={{provided, snapshot}} 
                             getChildren={true}>
-                        <ColumnModule onClick={(event) => _onToggle(event, child)} />
+                        <ColumnModule size={size} onClick={(event) => _onToggle(event, child)} />
                     </FinderModel>
                 )}
             </Draggable>
